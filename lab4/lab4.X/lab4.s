@@ -1,186 +1,266 @@
-;Archivo:		lab4.S
+;Archivo:		Lab5.s
 ;Dispositivo:		PIC16F887
-;Autor;			Jose Alejandro Rodriguez Porras
+;Autor;			Fernando Jose Caceros Morales
 ;Compilador:		pic-as (v2.31) MPLABX V5.40
 ;
 ;Programa:		
-;Hardware:		Pushbuttons en puerto B, Leds en Puerto A, 7seg en puerto C y 7seg en puerto D
+;Hardware:		Pushbuttons en puerto B, Leds en Puerto C, 7seg en puerto D 
 ;
-;Creado:		22 febrero, 2021
-;Ultima modificacion:	27 febrero, 2021
+;Creado:		2 marzo, 2021
+;Ultima modificacion:	2 marzo, 2021
     
 PROCESSOR 16F887
 #include <xc.inc>
 
-;CONFIGURATION WORD 1
-CONFIG FOSC=INTRC_NOCLKOUT  ;Oscilador interno sin salida
-CONFIG WDTE=OFF             ;Reinicio repetitivo del pic
-CONFIG PWRTE=ON             ;espera de 72 ms al iniciar el pic
-CONFIG MCLRE=OFF            ;El pin MCLR se utiliza como entrada/salida
-CONFIG CP=OFF               ;Sin protección de código
-CONFIG CPD=OFF              ;Sin protección de datos
+;configuration word 1
+ CONFIG FOSC=INTRC_NOCLKOUT ; Oscilador externo de cristal a 1MHz
+ CONFIG WDTE=OFF    ; wdt disables (reinicio repetitivo del pic)
+ CONFIG PWRTE=ON    ; PWRT enabled (espera de 72ms al iniciar)
+ CONFIG MCLRE=OFF   ; El pin de MCLR se utiliza como I/O
+ CONFIG CP=OFF	    ; Sin protección de código
+ CONFIG CPD=OFF	    ; Sin protección de datos
+ 
+ CONFIG BOREN=OFF   ; Sin reinicio cuándo el voltaje de alimentación baja de 4V
+ CONFIG IESO=OFF    ; Reinicio sin cambio de reloj de interno a externo
+ CONFIG FCMEN=OFF   ; Cambio de reloj externo a interno en caso de fallo
+ CONFIG LVP=ON	    ; programación en bajo voltaje permitida
+ 
+ ;configuration word 2
+ CONFIG WRT=OFF	    ; Protección de autoescritura por el programa desactivada
+ CONFIG BOR4V=BOR40V ; Reinicio abajo de 4v, (BOR21V=2.1V)
+ 
+ 
+;***variables a usar****
+ 
+PSECT udata_bank0 
+    Cont_Cent:		DS 1 ; 1 byte
+    Cont_Dec:		DS 1 ; 1 byte
+    banderas:		DS 1 ; 1 byte
+    nibble:		DS 2 ; 2 byte
+    display_var:	DS 2 ; 2 byte
     
-CONFIG BOREN=OFF            ;Sin reinicio cuando el input voltage es inferior a 4V
-CONFIG IESO=OFF             ;Reinicio sin cambio de reloj de interno a externo
-CONFIG FCMEN=OFF            ;Cambio de reloj externo a interno en caso de fallas
-CONFIG LVP=ON               ;Programación en low voltage permitida
-    
-;CONFIGURATION WORD 2
-CONFIG WRT=OFF              ;Proteccion de autoescritura por el programa desactivada
-CONFIG BOR4V=BOR40V         ;Reinicio abajo de 4V 
-;**********variables a usar***********  
 PSECT udata_shr ;memoria compartida
-    w_temp:    DS 1; variable para guardar w temporalmente
-    s_temp:    DS 1; variable para guardar status temporalmente
-    sevseg:    DS 1; Variable para el 7 seg del contador
-    sevsegtmr: DS 1; Variable para el 7 seg del timer0
+    w_temp:	 DS 1
+    status_temp: DS 1
     
-;*********instrucciones vector reset**********   
-PSECT resVect, class=CODE, abs, delta=2
-;---------------------------------vector reset----------------------------------
-ORG 00h
-resetVec:
+;****instrucciones vector reset***
+
+ PSECT resVector, class=CODE, abs, delta=2
+ ORG 00h	    ; posición 0000h para el reset
+ resetVector:
     PAGESEL main
     goto main
-;*********vector de interrupciones**********
-PSECT intVect, class = CODE, abs, delta = 2
+ 
+;***configuracion del micro***
+
+PSECT intVect, class=CODE,abs, delta=2
 ORG 04h
 push:
-    movwf w_temp    ;guardar w en una variable temporal
+    movwf w_temp
     swapf STATUS, w
-    movwf s_temp
+    movwf status_temp
 
 isr:
-    btfsc RBIF      ;chequear la bandera de la interrupcion por cambio
-    call  int_ocb
+    btfsc RBIF
+    call  int_OCB
     btfsc T0IF
-    call  int_tmr
+    call  int_tm0
 
 pop:
-    swapf s_temp, w  ;regresar el w temporal a w 
-    movwf STATUS     ;y regresar status temporal a status
+    swapf status_temp, w
+    movwf STATUS
     swapf w_temp, f
     swapf w_temp, w
     retfie
-    
-;**********configuracion del micro**********    
+ 
+
+
 PSECT code, delta=2, abs
 ORG 100h
-tabla: ;7 segmentos
+siete_seg:
     clrf    PCLATH
-    bsf     PCLATH, 0   ; PCLATH = 01 y PCL = 02
-    andlw   0x0F	; se pone como limite F, es decir que después de F vuelve a 0
-    addwf   PCL         ; PCL = PCLATH + PCL + W
-    retlw   00111111B	; 0
-    retlw   00000110B	; 1
-    retlw   01011011B	; 2
-    retlw   01001111B	; 3
-    retlw   01100110B	; 4
-    retlw   01101101B	; 5
-    retlw   01111101B	; 6
-    retlw   00000111B	; 7
-    retlw   01111111B	; 8
-    retlw   01101111B	; 9
-    retlw   01110111B	; A
-    retlw   01111100B	; b
-    retlw   00111001B	; C
-    retlw   01011110B	; d
-    retlw   01111001B	; E
-    retlw   01110001B	; F 
-
+    bsf	    PCLATH, 0
+    andlw   0Fh
+    addwf   PCL, F
+    retlw   3Fh	    ; 0
+    retlw   06h	    ; 1
+    retlw   5Bh	    ; 2
+    retlw   4Fh	    ; 3
+    retlw   66h	    ; 4
+    retlw   6Dh	    ; 5
+    retlw   7Dh	    ; 6
+    retlw   07h	    ; 7
+    retlw   7Fh	    ; 8
+    retlw   6Fh	    ; 9
+    retlw   77h	    ; A
+    retlw   7Ch	    ; B
+    retlw   39h	    ; C
+    retlw   5Eh	    ; D
+    retlw   79h	    ; E
+    retlw   71h	    ; F
+    
+    
 main:
-    call    config_reloj ; se configura el reloj
-    call    config_io    ; RB0 y RB1 in y puertos A, C y D out
-    call    config_iocb  ; configuracion del interrupt on change
-    call    config_inten ; se configura el interrupt enable
-    call    config_tmr0  ; se configura el tmr0
+    call    config_IO	    ;inputs PORTB, outputs PORTA, C, D
+    call    Tm0_config	    ;Configuración timer 0
+    call    reloj_config    
+    call    config_iocb
+    call    config_interrup
+    banksel PORTA
+    clrf    PORTA
+    movlw   3Fh
+    movwf   PORTC
+
     
     
-;***********loop principal************
+    
+    
+;****loop proncipal*****
+    
 loop:
-    movf    sevseg,w    ;se mueve del dato de la variable sevseg a w
-    movwf   PORTA       ;se pasa w al puerto A
-    call    tabla	;se llama a la tabla para encender el 7 segmentos del puerto C
-    movwf   PORTC	;con la conversion de valores del puerto A en hexa
-    goto    loop
-;---------------------subrutinas------------------------------------------------    
-int_ocb:
-    banksel PORTA    ;se chequea cual de los dos pushbuttons fue presionado
-    btfss   PORTB, 0 ;y se usa un antirebote
-    incf    sevseg   ;
-    btfss   PORTB, 1
-    decf    sevseg
-    bcf   RBIF    ;se resetea la bandera del interrupt on change
-    return
- 
-int_tmr:
-    call    rst_tmr0		; Regresa la bandera de overflow del tmr0 a 0
-    incf    sevsegtmr           ;se incrementa la variable del 7seg del tmr 0 cada 
-    movf    sevsegtmr, w        ;segundo
-    call    tabla
-    movwf   PORTD
-    return
+    call separar_nibbles
+    call preparar_display
+    ;call seleccionador
+    ;call direccion
+    goto loop
     
-config_reloj:
-    banksel OSCCON; Seleccion de banco
-    bcf     IRCF2 ; 001, Frecuencia de 125kHz
-    bcf     IRCF1
-    bsf     IRCF0
-    bsf     SCS   ; reloj interno
+;****subrutina****
+
+config_IO: 
+    banksel ANSEL
+    clrf    ANSEL	    ; pines digitales
+    clrf    ANSELH
+    
+    banksel TRISA
+    bsf	    TRISB, 0	    ;PORTB, 0 y 1 como entreada
+    bsf	    TRISB, 1
+    bcf     TRISB, 2
+    bcf     TRISB, 3
+    clrf    TRISA	    ;PORT A, C y D como salidas
+    clrf    TRISC   
+    clrf    TRISD
+    bcf	    OPTION_REG, 7   ;habilita pull-ups
+    bsf	    WPUB, 0	    ;incrementar
+    bsf	    WPUB, 1	    ;decrementar
     return
 
-config_io: 
-    banksel ANSELH ;selecciona el banco donde se encuentra la seleccion  
-    clrf    ANSELH ;de pines digitales 
-    clrf    ANSEL  
-    banksel TRISB  ;Seleccion del banco donde se encuentra TRISB (todos los TRIS están en ese banco)
-    movlw   3h     ;Se pasa el dato en hexa a w para poner en 1 (entradas) 
-    movwf   TRISB  ;los pines deseados en el puerto B como in(RB0, RB1)
-    clrf    TRISA  ;Se ponen los pines de los puertos A,C,D y E como salidas 
-    clrf    TRISC  
-    clrf    TRISD 
-    bcf     OPTION_REG, 7 ;habilitar los pull ups
-    bsf     WPUB, 0 ;habilitar los pullups en RB0 y RB1 como inputs
-    bsf     WPUB, 1
-    banksel PORTB  ;Se selecciona el banco que contiene el puerto B (y tambien contiene los demas puertos)
-    clrf    PORTA  ;Se ponen todos los pines de los puertos A, C, D y E en 0 
-    clrf    PORTC  
-    clrf    PORTD
+Tm0_config:
+    banksel TRISA
+    bcf	    T0CS	    ;selección del reloj interno
+    bcf	    PSA		    ;asignamos prescaler al Timer0
+    bcf	    PS2
+    bcf	    PS1
+    bsf	    PS0		    ;prescaler a 4
+    banksel PORTA
+    movlw   125
+    movwf   TMR0
+    bcf	    T0IF
+    return
+
+reloj_config:
+    banksel TRISA
+    bsf	    IRCF2
+    bcf	    IRCF1
+    bcf	    IRCF0	    ; reloj a 1MHz 
+    return
+
+config_interrup:
+    banksel TRISA
+    bsf	    GIE
+    
+    bsf	    RBIE	    ;interrupción del puerto B
+    bcf	    RBIF
+    
+    bsf	    T0IE	    ;interrupción del Timer0
+    bcf	    T0IF   
     return
 
 config_iocb:
-    banksel TRISA    ;se configuran los pines de  RB0 y RB1 con interrupcion en cambio
-    bsf     IOCB, 0  ;interrupt on change para reaccionar con los pb
-    bsf     IOCB, 1
+    banksel TRISA
+    bsf	    IOCB, 0
+    bsf	    IOCB, 1
+    
     banksel PORTA
-    movf    PORTB, w 
-    bcf     RBIF     ;se pone en 0 la bandera de la interrupcion por cambio
+    movf    PORTB, W
+    bcf	    RBIF    
+    return
+
+;*RUTINAS DE INTERRUPCIONES*  
+
+int_OCB:
+    btfss   PORTB, 0
+    incf    PORTA
+    btfss   PORTB, 1
+    decf    PORTA
+    bcf	    RBIF
+    return
+
+int_tm0:
+    banksel PORTA
+    movlw   125
+    movwf   TMR0
+    bcf	    T0IF
+    clrf PORTB
+    btfsc banderas, 0
+    goto    display_1
+    display_0:
+    movf    display_var+1, W
+    movwf   PORTC
+    bsf	    PORTB, 2
+    goto    siguiente_display
+    display_1:
+    movf    display_var, W
+    movwf   PORTC
+    bsf	    PORTB, 3
+    goto    siguiente_display
+    siguiente_display:
+    movlw   1
+    xorwf   banderas, F
+    return
+    return
+
+    
+;**RUTINAS DEL LOOP*
+/*seleccionador:
+    movlw   6
+    subwf   cont_timer0, w	
+    btfsc   ZERO
+    clrf    cont_timer0
+    movf    cont_timer0, w
+    call    siete_seg_sel
+    movwf   PORTD
+    return*/
+ 
+    
+separar_nibbles:
+    movf    PORTA, w
+    andwf   0x0f
+    movwf   nibble
+    swapf   PORTA, w
+    andwf   0x0f
+    movwf   nibble+1
     return
     
-config_tmr0:
-    banksel TRISA ;
-    bcf     T0CS  ; reloj interno (low to high)
-    bcf     PSA   ; prescaler
-    bsf     PS2   ; 111, que es 1:256
-    bsf     PS1
-    bsf     PS0
-    banksel PORTA ;
-    call    rst_tmr0; se resetea el timer0
+preparar_display:
+    movf    nibble, w
+    call    siete_seg
+    movwf   display_var
+    movf    nibble+1, w
+    call    siete_seg
+    movwf   display_var+1
     return
     
-rst_tmr0:
-    movlw 134     ;Valor calculado con la formula aprendida en clase
-    movwf TMR0    ;
-    bcf   T0IF    ;se pone en cero la bandera de overflow del timer0
-    return
-    
-config_inten:
-    bsf     GIE  ;enable global de interrupts
-    bsf     RBIE ;interrupt on change habilitado
-    bcf     RBIF ;pone en 0 la bandera del interrupt on change
-    bsf     T0IE ;habilita interrupt de overflow del tmr0
-    return
-    
+/*direccion:
+    btfss   PORTD,0
+    goto    $+3
+    movf    display_var,w
+    movwf   PORTC
+    btfss   PORTD,1
+    goto    $+3
+    movf    display_var+1,w
+    movwf   PORTC
+    return*/
+  
 END
 
 
