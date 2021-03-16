@@ -7,7 +7,7 @@
 ;Hardware:		Pushbuttons y transistores en el Puerto B, leds en el puerto A, display de 7seg de 2 digitos en el puerto C, y display de 7 seg
 ;
 ;Creado:		2 de marzo, 2021
-;Ultima modificacion:	6, 2021
+;Ultima modificacion:	6 de marzo, 2021
     
 PROCESSOR 16F887
 #include <xc.inc>
