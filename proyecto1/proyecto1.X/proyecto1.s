@@ -1,12 +1,16 @@
-;Archivo:		lab5.S
+;Archivo:		proyecto1.S
 ;Dispositivo:		PIC16F887
 ;Autor;			Jose Alejandro Rodriguez Porras
 ;Compilador:		pic-as (v2.31) MPLABX V5.40
 ;
-;Programa:		Displays simultaneos
-;Hardware:		Pushbuttons y transistores en el Puerto B, leds en el puerto A, display de 7seg de 2 digitos en el puerto C, y display de 7 seg
+;Programa:		Proyecto 1: Semaforos de 3 vias, con displays de 10 a 20
+;                                   segundos y modo de configuración 
 ;
-;Creado:		2 de marzo, 2021
+;Hardware:		8 displays 7seg en el puerto A, LEDs en el puerto C,    
+;                       transistores en el puerto D y LEDs y pushbuttons en 
+;                       el puerto B
+; 
+;Creado:		21 de marzo, 2021
 ;Ultima modificacion:	6 de marzo, 2021
     
 PROCESSOR 16F887
@@ -32,6 +36,7 @@ CONFIG BOR4V=BOR40V         ;Reinicio abajo de 4V
 PSECT udata_bank0           ;variable para:
     banderas:    DS 1       ;activar cada display
     nibble:      DS 2	    ;guardar y separar los nibbles del puerto A
+    dispvar:     DS 2
     display_var: DS 2       ;almacenar la conversion a display hexa de los nibbles
     numerador:   DS 1       ;almacenar el valor de las unidades
     cocientecen: DS 1       ;almacenar el valor de las centenas
@@ -101,7 +106,7 @@ tabla: ;7 segmentos
 
 main:
     call    config_reloj ; se configura el reloj
-    call    config_io    ; RB0 y RB1 in y puertos A, C y D out
+    call    config_io    ; RB0, RB1 y RB2 in y puertos A, C y D out
     call    config_iocb  ; configuracion del interrupt on change
     call    config_inten ; se configura el interrupt enable
     call    config_tmr0  ; se configura el tmr0
@@ -110,8 +115,6 @@ main:
     
 ;****loop principal*****
 loop:
-    call    sepnibbles   ;se separan y almacenan los nibbles del byte del puerto A
-    call    prepdisplays ;se preparan los displays del contador hexa
     clrf    cocientecen  ;se limpian las variables de calculo de las centenas, decenas y
     clrf    cocientedec  ;unidades
     clrf    numerador
@@ -120,77 +123,106 @@ loop:
 ;******subrutinas de interrupcion***********
 int_ocb:
     banksel PORTA    ;se chequea cual de los dos pushbuttons fue presionado
-    btfss   PORTB, 0 ;y se usa un antirebote
-    incf    PORTA   ;
-    btfss   PORTB, 1
-    decf    PORTA
+    btfss   PORTB, 1 ;y se usa un antirebote
+    incf    dispvar   ;
+    btfss   PORTB, 2
+    decf    dispvar
     bcf   RBIF    ;se resetea la bandera del interrupt on change
     return
 int_tmr0:
     banksel PORTA     
     call  rst_tmr0   ;se resetea el tmr0
-    clrf  PORTB      ;se limpia el puerto B (para los transistores)
+    clrf  PORTA      ;se limpia el puerto D (para los transistores)
     btfsc banderas, 0;se van chequeando cada una de las banderas para ver si se levantaron
-    goto display1    ;y si no se han levantado entonces se enciende el display especifico
+    goto display0    ;y si no se han levantado entonces se enciende el display especifico
     btfsc banderas, 1
-    goto display0
+    goto display1
     btfsc banderas, 2
     goto display2
     btfsc banderas, 3
     goto display3
     btfsc banderas, 4
     goto display4
-    
+    btfsc banderas, 5
+    goto display5
+    btfsc banderas, 6
+    goto display6
+    btfsc banderas, 7
+    goto display7
 
 display0:
-    movf  display_var+1, w  ;se enciende el display con la posicion mas significativa en hexa
-    movwf PORTC
-    bsf   PORTB, 2          ;se activa el transistor que enciende dicho display 
-    bcf   banderas, 1       ;se apaga la bandera del display actual 
-    bsf   banderas, 2       ;y se enciende la del siguiente display
+    movf  dispcen, w  ;se enciende el display con la posicion mas significativa en hexa
+    movwf PORTA
+    bsf   PORTD, 0          ;se activa el transistor que enciende dicho display 
+    bcf   banderas, 0       ;se apaga la bandera del display actual 
+    bsf   banderas, 1       ;y se enciende la del siguiente display
     return
     
 display1:
-    movf  display_var, w    ;se enciende el display con la posicion menos significativa en hexa
-    movwf PORTC
-    bsf   PORTB, 3          ;se repite lo mismo que en el display0 pero para el display1
-    bcf   banderas, 0
-    bsf   banderas, 1
+    movf  dispcen, w    ;se enciende el display con la posicion menos significativa en hexa
+    movwf PORTA
+    bsf   PORTD, 1          ;se repite lo mismo que en el display0 pero para el display1
+    bcf   banderas, 1
+    bsf   banderas, 2
     return
     
 display2:
     movf  dispcen, w        ;se enciende el display con la posicion de las centenas
-    movwf PORTD             
-    bsf   PORTB, 4
+    movwf PORTA             
+    bsf   PORTD, 2
     bcf   banderas, 2       ;se repite lo mismo que en el display1 pero para el display2
     bsf   banderas, 3
     return
     
 display3:
     movf  dispdec, w        ;se enciende el display con la posicion de las decenas
-    movwf PORTD
-    bsf   PORTB, 5
+    movwf PORTA
+    bsf   PORTD, 3
     bcf   banderas, 3       ;se repite lo mismo que en el display2 pero para el display3
     bsf   banderas, 4
     return
 
 display4:
     movf  dispnum, w        ;se enciende el display con la posicion de las unidades
-    movwf PORTD
-    bsf   PORTB, 6
-    bsf   banderas, 0       ;se repite lo mismo que en el display3 pero para el display4
-    bcf   banderas, 4
+    movwf PORTA
+    bsf   PORTD, 4
+    bcf   banderas, 4       ;se repite lo mismo que en el display3 pero para el display4
+    bsf   banderas, 5
     return
 
+display5:
+    movf  dispnum, w        ;se enciende el display con la posicion de las unidades
+    movwf PORTA
+    bsf   PORTD, 5
+    bcf   banderas, 5       ;se repite lo mismo que en el display3 pero para el display4
+    bsf   banderas, 6
+    return
+
+display6:
+    movf  dispnum, w        ;se enciende el display con la posicion de las unidades
+    movwf PORTA
+    bsf   PORTD, 6
+    bcf   banderas, 6       ;se repite lo mismo que en el display3 pero para el display4
+    bsf   banderas, 7
+    return
+
+display7:
+    movf  dispnum, w        ;se enciende el display con la posicion de las unidades
+    movwf PORTA
+    bsf   PORTD, 7
+    bcf   banderas, 7       ;se repite lo mismo que en el display3 pero para el display4
+    bsf   banderas, 0
+    return
+    
 ;los displays se encienden con las banderas asi: se apaga la bandera del display
 ;encendido actualmente y se enciende la bandera del siguiente display
 ;orden de los displays: 1, 0, 2, 3, 4
 ;---------------------subrutinas------------------------------------------------
-sepnibbles:        ;se guardan ambas nibbles por separado en la variable nibble
-    movf  PORTA, w ;se guarda la primera posición del hexa en nibble
+/*sepnibbles:        ;se guardan ambas nibbles por separado en la variable nibble
+    movf  dispvar, w ;se guarda la primera posición del hexa en nibble
     andlw 0x0f     ;se pone como tope la F (para numero hexa)
     movwf nibble   
-    swapf PORTA, w ;y mediante un swap para nibble+1 (segunda posicion del hexa)
+    swapf dispvar, w ;y mediante un swap para nibble+1 (segunda posicion del hexa)
     andlw 0x0f     ;
     movwf nibble+1
     return
@@ -202,11 +234,11 @@ prepdisplays:         ;se pasan nibble y nibble+1 a la traduccion de la tabla
     movf  nibble+1, w ;se repite el proceso para traduccion del segundo digito hexa 
     call  tabla       ;a display_var+1
     movwf display_var+1
-    return
+    return*/
 
 division:                 ;operacion de division mediante resta
     bcf   STATUS, 0       ;se limpia la bandera de carry
-    movf  PORTA, w        ;se mueve el numero binario del puerto A a la variable
+    movf  dispvar, w        ;se mueve el numero binario del puerto A a la variable
     movwf numerador       ;numerador
     movlw 100             ;se mueve 100 al denominador 
     incf  cocientecen     ;se incrementa la variable de centenas
@@ -247,7 +279,7 @@ config_io:
     clrf    ANSELH ;de pines digitales 
     clrf    ANSEL  
     banksel TRISB  ;Seleccion del banco donde se encuentra TRISB (todos los TRIS están en ese banco)
-    movlw   3h     ;Se pasa el dato en hexa a w para poner en 1 (entradas) 
+    movlw   7h     ;Se pasa el dato en hexa a w para poner en 1 (entradas) 
     movwf   TRISB  ;los pines deseados en el puerto B como in(RB0, RB1)
     clrf    TRISA  ;Se ponen los pines de los puertos A,C,D y E como salidas 
     clrf    TRISC  
@@ -255,29 +287,34 @@ config_io:
     bcf     OPTION_REG, 7 ;habilitar los pull ups
     bsf     WPUB, 0 ;habilitar los pullups en RB0 y RB1 como inputs
     bsf     WPUB, 1
+    bsf     WPUB, 2
     banksel PORTB  ;Se selecciona el banco que contiene el puerto B (y tambien contiene los demas puertos)
-    clrf    PORTA  ;Se ponen todos los pines de los puertos A, C, D y E en 0 
+    clrf    PORTA  ;Se ponen todos los pines de los puertos A,B,C y D en 0 
+    bcf     PORTB, 3
+    bcf     PORTB, 4
+    bcf     PORTB, 5
     clrf    PORTC  
     clrf    PORTD
     return
 
 config_iocb:
-    banksel TRISA    ;se configuran los pines de  RB0 y RB1 con interrupcion en cambio
+    banksel TRISA    ;se configuran los pines de  RB0, RB1 y RB2 con interrupcion en cambio
     bsf     IOCB, 0  ;interrupt on change para reaccionar con los pb
     bsf     IOCB, 1
+    bsf     IOCB, 2
     banksel PORTA
     movf    PORTB, w 
     bcf     RBIF     ;se pone en 0 la bandera de la interrupcion por cambio
     return
     
 config_tmr0:
-    banksel TRISA ;
+    banksel TRISA 
     bcf     T0CS  ; reloj interno (low to high)
     bcf     PSA   ; prescaler
     bcf     PS2   ; 001, que es 1:4
     bcf     PS1
     bsf     PS0
-    banksel PORTA ;
+    banksel PORTA 
     call    rst_tmr0; se resetea el timer0
     return
     
