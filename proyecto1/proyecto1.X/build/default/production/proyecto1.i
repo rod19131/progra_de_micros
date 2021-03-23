@@ -2484,8 +2484,10 @@ CONFIG BOR4V=BOR40V ;Reinicio abajo de 4V
 ;***variables a usar****
 PSECT udata_bank0 ;variable para:
     banderas: DS 1 ;activar cada display
-    nibble: DS 2 ;guardar y separar los nibbles del puerto A
     dispvar: DS 2
+    bestados: DS 1
+    estadvar: DS 1
+    semaforo: DS 1
     display_var: DS 2 ;almacenar la conversion a display hexa de los nibbles
     numerador: DS 1 ;almacenar el valor de las unidades
     cocientecen: DS 1 ;almacenar el valor de las centenas
@@ -2560,24 +2562,36 @@ main:
     call config_inten ; se configura el interrupt enable
     call config_tmr0 ; se configura el tmr0
     bsf banderas, 0 ; se inicializa el primer display
+    movlw 10
+    movwf semaforo
 
 
 ;****loop principal*****
 loop:
-    clrf cocientecen ;se limpian las variables de calculo de las centenas, decenas y
+    ;se limpian las variables de calculo de las centenas, decenas y
     clrf cocientedec ;unidades
     clrf numerador
     call division ;se efectua la division mediante resta
+    btfsc bestados, 0
+    call selestado
+    btfsc bestados, 1
+    call subir
+    btfsc bestados, 2
+    call bajar
     goto loop
 ;******subrutinas de interrupcion***********
+
 int_ocb:
-    banksel PORTA ;se chequea cual de los dos pushbuttons fue presionado
-    btfss PORTB, 1 ;y se usa un antirebote
-    incf dispvar ;
+    banksel PORTB
+    btfss PORTB, 0
+    bsf bestados, 0
+    btfss PORTB, 1
+    bsf bestados, 1
     btfss PORTB, 2
-    decf dispvar
-    bcf ((INTCON) and 07Fh), 0 ;se resetea la bandera del interrupt on change
+    bsf bestados, 2
+    bcf ((INTCON) and 07Fh), 0
     return
+# 156 "proyecto1.s"
 int_tmr0:
     banksel PORTA
     call rst_tmr0 ;se resetea el tmr0
@@ -2600,7 +2614,7 @@ int_tmr0:
     goto display7
 
 display0:
-    movf dispcen, w ;se enciende el display con la posicion mas significativa en hexa
+    movf dispdec, w ;se enciende el display con la posicion mas significativa en hexa
     movwf PORTA
     bsf PORTD, 0 ;se activa el transistor que enciende dicho display
     bcf banderas, 0 ;se apaga la bandera del display actual
@@ -2608,7 +2622,7 @@ display0:
     return
 
 display1:
-    movf dispcen, w ;se enciende el display con la posicion menos significativa en hexa
+    movf dispnum, w ;se enciende el display con la posicion menos significativa en hexa
     movwf PORTA
     bsf PORTD, 1 ;se repite lo mismo que en el display0 pero para el display1
     bcf banderas, 1
@@ -2616,7 +2630,7 @@ display1:
     return
 
 display2:
-    movf dispcen, w ;se enciende el display con la posicion de las centenas
+    movf dispdec, w ;se enciende el display con la posicion de las centenas
     movwf PORTA
     bsf PORTD, 2
     bcf banderas, 2 ;se repite lo mismo que en el display1 pero para el display2
@@ -2624,7 +2638,7 @@ display2:
     return
 
 display3:
-    movf dispdec, w ;se enciende el display con la posicion de las decenas
+    movf dispnum, w ;se enciende el display con la posicion de las decenas
     movwf PORTA
     bsf PORTD, 3
     bcf banderas, 3 ;se repite lo mismo que en el display2 pero para el display3
@@ -2632,7 +2646,7 @@ display3:
     return
 
 display4:
-    movf dispnum, w ;se enciende el display con la posicion de las unidades
+    movf dispdec, w ;se enciende el display con la posicion de las unidades
     movwf PORTA
     bsf PORTD, 4
     bcf banderas, 4 ;se repite lo mismo que en el display3 pero para el display4
@@ -2648,7 +2662,7 @@ display5:
     return
 
 display6:
-    movf dispnum, w ;se enciende el display con la posicion de las unidades
+    movf dispdec, w ;se enciende el display con la posicion de las unidades
     movwf PORTA
     bsf PORTD, 6
     bcf banderas, 6 ;se repite lo mismo que en el display3 pero para el display4
@@ -2667,22 +2681,50 @@ display7:
 ;encendido actualmente y se enciende la bandera del siguiente display
 ;orden de los displays: 1, 0, 2, 3, 4
 ;---------------------subrutinas------------------------------------------------
-# 239 "proyecto1.s"
+# 262 "proyecto1.s"
+selestado:
+    banksel PORTA
+    incf estadvar
+    bcf STATUS, 2
+    movlw 5 ; Se mueve el 20 a W
+    subwf estadvar, w ; Se resta w a sevseg
+    btfss STATUS, 2 ; si la resta da 0 significa que son iguales entonces la zero flag se enciende
+    goto $+3
+    movlw 0 ; cuando la bandera de cero se activa se llama a alarma
+    movwf estadvar
+    bcf bestados, 0
+    return
+
+subir:
+    banksel PORTA
+    incf semaforo
+    bcf STATUS, 2
+    movlw 21 ; Se mueve el 20 a W
+    subwf semaforo , w ; Se resta w a sevseg
+    btfss STATUS, 2 ; si la resta da 0 significa que son iguales entonces la zero flag se enciende
+    goto $+3
+    movlw 10 ; cuando la bandera de cero se activa se llama a alarma
+    movwf semaforo
+    bcf bestados, 1
+    return
+
+bajar:
+    banksel PORTA
+    decf semaforo
+    bcf STATUS, 2
+    movlw 9 ; Se mueve el 20 a W
+    subwf semaforo , w ; Se resta w a sevseg
+    btfss STATUS, 2 ; si la resta da 0 significa que son iguales entonces la zero flag se enciende
+    goto $+3
+    movlw 20 ; cuando la bandera de cero se activa se llama a alarma
+    movwf semaforo
+    bcf bestados, 2
+    return
+
 division: ;operacion de division mediante resta
     bcf STATUS, 0 ;se limpia la bandera de carry
-    movf dispvar, w ;se mueve el numero binario del puerto A a la variable
+    movf semaforo, w ;se mueve el numero binario del puerto A a la variable
     movwf numerador ;numerador
-    movlw 100 ;se mueve 100 al denominador
-    incf cocientecen ;se incrementa la variable de centenas
-    subwf numerador, f ;se resta 100 al numerador
-    btfsc STATUS, 0 ;se chequea la bandera de carry y si no se alteró entonces
-    goto $-3 ;se repite el procedimiento, hasta que la resta de un resultado <= 0
-    decf cocientecen ;se decrementa la variable de centenas en 1
-    addwf numerador ;se suma 100 al numerador
-    movf cocientecen, w ;se traduce el dato al display de 7segmentos y se mueve
-    call tabla ;a la variable para encender el display de posición de centenas
-    movwf dispcen
-    bcf STATUS, 0 ;se limpia la bandera de carry
     movlw 10 ;se mueve 10 al denominador
     incf cocientedec ;se incrementa la variable de decenas
     subwf numerador, f ;se resta 10 al numerador
