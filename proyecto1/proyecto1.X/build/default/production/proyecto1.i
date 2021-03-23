@@ -2520,6 +2520,8 @@ isr:
     call int_ocb ;llama a la subrutina del boton
     btfsc ((INTCON) and 07Fh), 2 ;chequear la bandera de la interrupción del tmr0
     call int_tmr0 ;llama a la subrutina del tmr0
+    btfsc ((PIR1) and 07Fh), 0
+    call int_tmr1
 
 pop:
     swapf s_temp, w ;regresar el w temporal a w
@@ -2561,6 +2563,7 @@ main:
     call config_iocb ; configuracion del interrupt on change
     call config_inten ; se configura el interrupt enable
     call config_tmr0 ; se configura el tmr0
+    call config_tmr1 ; se configura el tmr1
     bsf banderas, 0 ; se inicializa el primer display
     movlw 10
     movwf semaforo
@@ -2591,7 +2594,7 @@ int_ocb:
     bsf bestados, 2
     bcf ((INTCON) and 07Fh), 0
     return
-# 156 "proyecto1.s"
+# 159 "proyecto1.s"
 int_tmr0:
     banksel PORTA
     call rst_tmr0 ;se resetea el tmr0
@@ -2677,11 +2680,24 @@ display7:
     bsf banderas, 0
     return
 
+int_tmr1:
+    banksel PORTA
+    call rst_tmr1
+    incf semaforo
+    bcf STATUS, 2
+    movlw 21 ; Se mueve el 20 a W
+    subwf semaforo , w ; Se resta w a sevseg
+    btfss STATUS, 2 ; si la resta da 0 significa que son iguales entonces la zero flag se enciende
+    goto $+3
+    movlw 10 ; cuando la bandera de cero se activa se llama a alarma
+    movwf semaforo
+    bcf bestados, 1
+    return
 ;los displays se encienden con las banderas asi: se apaga la bandera del display
 ;encendido actualmente y se enciende la bandera del siguiente display
 ;orden de los displays: 1, 0, 2, 3, 4
 ;---------------------subrutinas------------------------------------------------
-# 262 "proyecto1.s"
+# 278 "proyecto1.s"
 selestado:
     banksel PORTA
     incf estadvar
@@ -2792,10 +2808,28 @@ config_tmr0:
     call rst_tmr0; se resetea el timer0
     return
 
+config_tmr1:
+    banksel T1CON
+    bsf ((T1CON) and 07Fh), 5 ;Prescaler de 1:4
+    bcf ((T1CON) and 07Fh), 4 ;10
+    bcf ((T1CON) and 07Fh), 1 ;Reloj interno
+    bsf ((T1CON) and 07Fh), 0 ;timer1 habilitado
+    call rst_tmr1
+    return
+
 rst_tmr0:
     movlw 125 ;Valor calculado con la formula aprendida en clase
     movwf TMR0 ;
     bcf ((INTCON) and 07Fh), 2 ;se pone en cero la bandera de overflow del timer0
+    return
+
+rst_tmr1:
+    banksel PIR1
+    movlw 11011100B
+    movwf TMR1L
+    movlw 1011B
+    movwf TMR1H
+    bcf ((PIR1) and 07Fh), 0
     return
 
 config_inten:
@@ -2803,6 +2837,9 @@ config_inten:
     bsf ((INTCON) and 07Fh), 3 ;interrupt on change habilitado
     bcf ((INTCON) and 07Fh), 0 ;pone en 0 la bandera del interrupt on change
     bsf ((INTCON) and 07Fh), 5 ;habilita interrupt de overflow del tmr0
+    bcf ((PIR1) and 07Fh), 0 ;pone en 0 la bandera de interrupcion de overflow de tmr1
+    bsf ((PIE1) and 07Fh), 0 ;habilita la interrupcion del overflow del tmr1
+    bsf ((INTCON) and 07Fh), 6 ;habilita unmasked interrupts (para tmr1)
     return
 
 END

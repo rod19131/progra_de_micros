@@ -71,6 +71,8 @@ isr:
     call  int_ocb   ;llama a la subrutina del boton
     btfsc T0IF      ;chequear la bandera de la interrupción del tmr0 
     call  int_tmr0  ;llama a la subrutina del tmr0
+    btfsc TMR1IF    
+    call  int_tmr1
 
 pop:
     swapf s_temp, w  ;regresar el w temporal a w 
@@ -112,6 +114,7 @@ main:
     call    config_iocb  ; configuracion del interrupt on change
     call    config_inten ; se configura el interrupt enable
     call    config_tmr0  ; se configura el tmr0
+    call    config_tmr1  ; se configura el tmr1
     bsf     banderas, 0  ; se inicializa el primer display
     movlw   10
     movwf   semaforo
@@ -237,7 +240,20 @@ display7:
     bcf   banderas, 7       ;se repite lo mismo que en el display3 pero para el display4
     bsf   banderas, 0
     return
-    
+
+int_tmr1:
+    banksel PORTA
+    call    rst_tmr1
+    incf    semaforo
+    bcf     STATUS, 2
+    movlw   21             ; Se mueve el 20 a W
+    subwf   semaforo , w   ; Se resta w a sevseg
+    btfss   STATUS, 2	   ; si la resta da 0 significa que son iguales entonces la zero flag se enciende
+    goto    $+3   
+    movlw   10   	   ; cuando la bandera de cero se activa se llama a alarma
+    movwf   semaforo
+    bcf     bestados, 1
+    return
 ;los displays se encienden con las banderas asi: se apaga la bandera del display
 ;encendido actualmente y se enciende la bandera del siguiente display
 ;orden de los displays: 1, 0, 2, 3, 4
@@ -368,18 +384,39 @@ config_tmr0:
     banksel PORTA 
     call    rst_tmr0; se resetea el timer0
     return
+
+config_tmr1:
+    banksel T1CON
+    bsf     T1CKPS1 ;Prescaler de 1:4
+    bcf     T1CKPS0 ;10
+    bcf     TMR1CS  ;Reloj interno
+    bsf     TMR1ON  ;timer1 habilitado
+    call    rst_tmr1
+    return    
     
 rst_tmr0:
     movlw 125     ;Valor calculado con la formula aprendida en clase
     movwf TMR0    ;
     bcf   T0IF    ;se pone en cero la bandera de overflow del timer0
     return
+
+rst_tmr1:
+    banksel PIR1
+    movlw   11011100B
+    movwf   TMR1L
+    movlw   1011B
+    movwf   TMR1H
+    bcf     TMR1IF
+    return
     
 config_inten:
-    bsf     GIE  ;enable global de interrupts
-    bsf     RBIE ;interrupt on change habilitado
-    bcf     RBIF ;pone en 0 la bandera del interrupt on change
-    bsf     T0IE ;habilita interrupt de overflow del tmr0
+    bsf     GIE    ;enable global de interrupts
+    bsf     RBIE   ;interrupt on change habilitado
+    bcf     RBIF   ;pone en 0 la bandera del interrupt on change
+    bsf     T0IE   ;habilita interrupt de overflow del tmr0
+    bcf     TMR1IF ;pone en 0 la bandera de interrupcion de overflow de tmr1
+    bsf     TMR1IE ;habilita la interrupcion del overflow del tmr1
+    bsf     PEIE   ;habilita unmasked interrupts (para tmr1)
     return
     
 END
