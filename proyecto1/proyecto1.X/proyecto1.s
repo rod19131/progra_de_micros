@@ -132,6 +132,7 @@ loop:
     call    subir
     btfsc   bestados, 2
     call    bajar
+    call    modos
     goto    loop
 ;******subrutinas de interrupcion***********
  
@@ -159,7 +160,7 @@ int_ocb:
 int_tmr0:
     banksel PORTA     
     call  rst_tmr0   ;se resetea el tmr0
-    clrf  PORTA      ;se limpia el puerto D (para los transistores)
+    clrf  PORTD      ;se limpia el puerto D (para los transistores)
     btfsc banderas, 0;se van chequeando cada una de las banderas para ver si se levantaron
     goto display0    ;y si no se han levantado entonces se enciende el display especifico
     btfsc banderas, 1
@@ -244,13 +245,13 @@ display7:
 int_tmr1:
     banksel PORTA
     call    rst_tmr1
-    incf    semaforo
+    decf    semaforo
     bcf     STATUS, 2
-    movlw   21             ; Se mueve el 20 a W
+    movlw   9             ; Se mueve el 20 a W
     subwf   semaforo , w   ; Se resta w a sevseg
     btfss   STATUS, 2	   ; si la resta da 0 significa que son iguales entonces la zero flag se enciende
     goto    $+3   
-    movlw   10   	   ; cuando la bandera de cero se activa se llama a alarma
+    movlw   20   	   ; cuando la bandera de cero se activa se llama a alarma
     movwf   semaforo
     bcf     bestados, 1
     return
@@ -258,23 +259,6 @@ int_tmr1:
 ;encendido actualmente y se enciende la bandera del siguiente display
 ;orden de los displays: 1, 0, 2, 3, 4
 ;---------------------subrutinas------------------------------------------------
-/*sepnibbles:        ;se guardan ambas nibbles por separado en la variable nibble
-    movf  dispvar, w ;se guarda la primera posición del hexa en nibble
-    andlw 0x0f     ;se pone como tope la F (para numero hexa)
-    movwf nibble   
-    swapf dispvar, w ;y mediante un swap para nibble+1 (segunda posicion del hexa)
-    andlw 0x0f     ;
-    movwf nibble+1
-    return
-prepdisplays:         ;se pasan nibble y nibble+1 a la traduccion de la tabla
-                      ;en hexa y se guardan en la variable de display_var y display_var+1
-    movf  nibble, w   ;traduccion del primero digito hexa llamando a la tabla
-    call  tabla
-    movwf display_var ;se guarda en display_var
-    movf  nibble+1, w ;se repite el proceso para traduccion del segundo digito hexa 
-    call  tabla       ;a display_var+1
-    movwf display_var+1
-    return*/
 selestado:
     banksel PORTA
     incf    estadvar
@@ -331,6 +315,16 @@ division:                 ;operacion de division mediante resta
     movf  numerador, w    ;se traduce el dato del numerador restante al display de 7segmentos
     call  tabla           ;y se mueve a la variable para encender el display de posición de unidades
     movwf dispnum
+    return
+
+modos:
+    banksel PORTA
+    bcf     STATUS, 2
+    movlw   0
+    movlw   1
+    movlw   2
+    movlw   3
+    movlw   4
     return
     
 config_reloj:
