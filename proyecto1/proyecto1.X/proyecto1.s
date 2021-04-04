@@ -54,10 +54,16 @@ PSECT udata_bank0           ;variable para:
     redsem0:     DS 1
     redsem1:     DS 1
     redsem2:     DS 1
+    gresem0:     DS 1
+    gresem1:     DS 1
+    gresem2:     DS 1
     config0:     DS 1
     config1:     DS 1
     config2:     DS 1
     configmisc:  DS 1
+    togglevar:   DS 1
+    togglevar1:  DS 1
+    togglevar2:  DS 1
 PSECT udata_shr ;memoria compartida
     w_temp:      DS 1; variable para guardar w temporalmente
     s_temp:      DS 1; variable para guardar status temporalmente
@@ -129,14 +135,30 @@ main:
     bsf     banderas, 0  ; se inicializa el primer display
     movlw   10
     movwf   sem0
+    movlw   10
     movwf   sem1
+    movlw   12
     movwf   sem2
+    movlw   10
     movwf   config0
     movwf   config1
     movwf   config2
+    movwf   gresem0
+    movwf   gresem1
+    movwf   gresem2
+    movlw   11
+    movwf   redsem0
+    movlw   10
+    movwf   redsem1
+    movlw   12
+    movwf   redsem2
     movlw   0
     movwf   estadvar
-    
+    movlw   1
+    movwf   togglevar
+    movlw   0
+    movwf   togglevar1
+    movwf   togglevar2
     
 ;****loop principal*****
 loop:
@@ -260,24 +282,37 @@ int_tmr1:
     movlw   255             ; Se mueve el 20 a W
     subwf   sem0 , w   ; Se resta w a sevseg
     btfss   STATUS, 2	   ; si la resta da 0 significa que son iguales entonces la zero flag se enciende
-    goto    $+3   
-    movlw   20    	   ; cuando la bandera de cero se activa se llama a alarma
+    goto    $+7
+    incf    togglevar
+    btfsc   togglevar, 0
+    movf    redsem0, w
+    btfss   togglevar, 0
+    movf    gresem0, w
     movwf   sem0
+    ;movlw   20    	   ; cuando la bandera de cero se activa se llama a alarma
     decf    sem1
     bcf     STATUS, 2
     movlw   255             ; Se mueve el 20 a W
     subwf   sem1 , w   ; Se resta w a sevseg
     btfss   STATUS, 2	   ; si la resta da 0 significa que son iguales entonces la zero flag se enciende
-    goto    $+3   
-    movlw   20   	   ; cuando la bandera de cero se activa se llama a alarma
+    goto    $+7   
+    incf    togglevar1
+    btfsc   togglevar1, 0
+    movf    redsem1, w
+    btfss   togglevar1, 0
+    movf    gresem1, w
     movwf   sem1
     decf    sem2
     bcf     STATUS, 2
     movlw   255             ; Se mueve el 20 a W
     subwf   sem2 , w   ; Se resta w a sevseg
     btfss   STATUS, 2	   ; si la resta da 0 significa que son iguales entonces la zero flag se enciende
-    goto    $+3   
-    movlw   20   	   ; cuando la bandera de cero se activa se llama a alarma
+    goto    $+7   
+    incf    togglevar2
+    btfsc   togglevar2, 0
+    movf    redsem2, w
+    btfss   togglevar2, 0
+    movf    gresem2, w
     movwf   sem2
     ;bcf     bestados, 1
     return
@@ -487,19 +522,19 @@ modo_4:
 
 aceptar:
     movf  config0, w
-    movwf sem0
+    movwf gresem0
     movf  config1, w
-    movwf sem1
+    movwf gresem1
     movf  config2, w
-    movwf sem2
-    movf  sem1, w
-    addwf sem2, w
+    movwf gresem2
+    movf  gresem1, w
+    addwf gresem2, w
     movwf redsem0, w
-    movf  sem2, w
-    addwf sem0, w
+    movf  gresem2, w
+    addwf gresem0, w
     movwf redsem1, w
-    movf  sem0, w
-    addwf sem1, w
+    movf  gresem0, w
+    addwf gresem1, w
     movwf redsem2, w
     movlw 0
     movwf estadvar
