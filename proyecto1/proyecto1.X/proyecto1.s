@@ -46,7 +46,18 @@ PSECT udata_bank0           ;variable para:
     dispcen:     DS 1       ;guardar el valor de centena traducido por la tabla 
     dispdec:     DS 1       ;guardar el valor de decena traducido por la tabla
     dispnum:     DS 1       ;guardar el valor de unidad traducido por la tabla
-    
+    dispconf1:   DS 1
+    dispconf0:   DS 1
+    dispdecsem0: DS 1
+    dispdecsem1: DS 1 
+    dispdecsem2: DS 1
+    dispnumsem0: DS 1
+    dispnumsem1: DS 1
+    dispnumsem2: DS 1
+    sem0:        DS 1
+    sem1:        DS 1
+    sem2:        DS 1
+    config0:      DS 1
 PSECT udata_shr ;memoria compartida
     w_temp:    DS 1; variable para guardar w temporalmente
     s_temp:    DS 1; variable para guardar status temporalmente
@@ -117,21 +128,35 @@ main:
     call    config_tmr1  ; se configura el tmr1
     bsf     banderas, 0  ; se inicializa el primer display
     movlw   10
+    movwf   sem0
+    movlw   10
+    movwf   sem1
+    movlw   10
+    movwf   sem2
+    movlw   10
+    movwf   config0
+    movlw   10 
     movwf   semaforo
+    movlw   0
+    movwf   estadvar
+    ;movlw   10
+    ;movwf   semaforo
     
     
 ;****loop principal*****
 loop:
     ;se limpian las variables de calculo de las centenas, decenas y
-    clrf    cocientedec  ;unidades
-    clrf    numerador
-    call    division     ;se efectua la division mediante resta
+    ;call    division     ;se efectua la division mediante resta
     btfsc   bestados, 0
     call    selestado
-    btfsc   bestados, 1
-    call    subir
-    btfsc   bestados, 2
-    call    bajar
+;    btfsc   bestados, 1
+;    call    subir
+;    btfsc   bestados, 2
+;    call    bajar
+    ;movf  sem0, w
+    ;addwf sem1
+    ;movf  sem1, w
+    ;addwf sem2
     call    modos
     goto    loop
 ;******subrutinas de interrupcion***********
@@ -147,16 +172,6 @@ int_ocb:
     bcf     RBIF
     return
     
-    
-    
-/*int_ocb:
-    banksel PORTA    ;se chequea cual de los dos pushbuttons fue presionado
-    btfss   PORTB, 1 ;y se usa un antirebote
-    incf    dispvar   ;
-    btfss   PORTB, 2
-    decf    dispvar
-    bcf   RBIF    ;se resetea la bandera del interrupt on change
-    return*/
 int_tmr0:
     banksel PORTA     
     call  rst_tmr0   ;se resetea el tmr0
@@ -179,7 +194,7 @@ int_tmr0:
     goto display7
 
 display0:
-    movf  dispdec, w  ;se enciende el display con la posicion mas significativa en hexa
+    movf  dispconf1, w  ;se enciende el display con la posicion mas significativa en hexa
     movwf PORTA
     bsf   PORTD, 0          ;se activa el transistor que enciende dicho display 
     bcf   banderas, 0       ;se apaga la bandera del display actual 
@@ -187,7 +202,7 @@ display0:
     return
     
 display1:
-    movf  dispnum, w    ;se enciende el display con la posicion menos significativa en hexa
+    movf  dispconf0, w    ;se enciende el display con la posicion menos significativa en hexa
     movwf PORTA
     bsf   PORTD, 1          ;se repite lo mismo que en el display0 pero para el display1
     bcf   banderas, 1
@@ -195,7 +210,7 @@ display1:
     return
     
 display2:
-    movf  dispdec, w        ;se enciende el display con la posicion de las centenas
+    movf  dispdecsem0, w        ;se enciende el display con la posicion de las centenas
     movwf PORTA             
     bsf   PORTD, 2
     bcf   banderas, 2       ;se repite lo mismo que en el display1 pero para el display2
@@ -203,7 +218,7 @@ display2:
     return
     
 display3:
-    movf  dispnum, w        ;se enciende el display con la posicion de las decenas
+    movf  dispnumsem0, w        ;se enciende el display con la posicion de las decenas
     movwf PORTA
     bsf   PORTD, 3
     bcf   banderas, 3       ;se repite lo mismo que en el display2 pero para el display3
@@ -211,7 +226,7 @@ display3:
     return
 
 display4:
-    movf  dispdec, w        ;se enciende el display con la posicion de las unidades
+    movf  dispdecsem1, w        ;se enciende el display con la posicion de las unidades
     movwf PORTA
     bsf   PORTD, 4
     bcf   banderas, 4       ;se repite lo mismo que en el display3 pero para el display4
@@ -219,7 +234,7 @@ display4:
     return
 
 display5:
-    movf  dispnum, w        ;se enciende el display con la posicion de las unidades
+    movf  dispnumsem1, w        ;se enciende el display con la posicion de las unidades
     movwf PORTA
     bsf   PORTD, 5
     bcf   banderas, 5       ;se repite lo mismo que en el display3 pero para el display4
@@ -227,7 +242,7 @@ display5:
     return
 
 display6:
-    movf  dispdec, w        ;se enciende el display con la posicion de las unidades
+    movf  dispdecsem2, w        ;se enciende el display con la posicion de las unidades
     movwf PORTA
     bsf   PORTD, 6
     bcf   banderas, 6       ;se repite lo mismo que en el display3 pero para el display4
@@ -235,7 +250,7 @@ display6:
     return
 
 display7:
-    movf  dispnum, w        ;se enciende el display con la posicion de las unidades
+    movf  dispnumsem2, w        ;se enciende el display con la posicion de las unidades
     movwf PORTA
     bsf   PORTD, 7
     bcf   banderas, 7       ;se repite lo mismo que en el display3 pero para el display4
@@ -245,15 +260,31 @@ display7:
 int_tmr1:
     banksel PORTA
     call    rst_tmr1
-    decf    semaforo
+    decf    sem0
     bcf     STATUS, 2
-    movlw   9             ; Se mueve el 20 a W
-    subwf   semaforo , w   ; Se resta w a sevseg
+    movlw   255             ; Se mueve el 20 a W
+    subwf   sem0 , w   ; Se resta w a sevseg
     btfss   STATUS, 2	   ; si la resta da 0 significa que son iguales entonces la zero flag se enciende
     goto    $+3   
     movlw   20   	   ; cuando la bandera de cero se activa se llama a alarma
-    movwf   semaforo
-    bcf     bestados, 1
+    movwf   sem0
+    decf    sem1
+    bcf     STATUS, 2
+    movlw   255             ; Se mueve el 20 a W
+    subwf   sem1 , w   ; Se resta w a sevseg
+    btfss   STATUS, 2	   ; si la resta da 0 significa que son iguales entonces la zero flag se enciende
+    goto    $+3   
+    movlw   20   	   ; cuando la bandera de cero se activa se llama a alarma
+    movwf   sem1
+    decf    sem2
+    bcf     STATUS, 2
+    movlw   255             ; Se mueve el 20 a W
+    subwf   sem2 , w   ; Se resta w a sevseg
+    btfss   STATUS, 2	   ; si la resta da 0 significa que son iguales entonces la zero flag se enciende
+    goto    $+3   
+    movlw   20   	   ; cuando la bandera de cero se activa se llama a alarma
+    movwf   sem2
+    ;bcf     bestados, 1
     return
 ;los displays se encienden con las banderas asi: se apaga la bandera del display
 ;encendido actualmente y se enciende la bandera del siguiente display
@@ -299,8 +330,10 @@ bajar:
     return
     
 division:                 ;operacion de division mediante resta
+    clrf    cocientedec  ;unidades
+    clrf    numerador
     bcf   STATUS, 0       ;se limpia la bandera de carry
-    movf  semaforo, w     ;se mueve el numero binario del puerto A a la variable
+    ;movf  semaforo, w     ;se mueve el numero binario del puerto A a la variable
     movwf numerador       ;numerador
     movlw 10              ;se mueve 10 al denominador 
     incf  cocientedec     ;se incrementa la variable de decenas 
@@ -309,22 +342,158 @@ division:                 ;operacion de division mediante resta
     goto  $-3             ;se repite el procedimiento hasta que la resta de un resultado <= 0
     decf  cocientedec     ;se decrementa la variable de decenas en 1
     addwf numerador       ;se suma 10 al numerador
-    movf  cocientedec, w  ;se traduce el dato al display de 7segmentos y se mueve a 
-    call  tabla           ;la variable  para encender el display de posición de decenas
-    movwf dispdec         
-    movf  numerador, w    ;se traduce el dato del numerador restante al display de 7segmentos
-    call  tabla           ;y se mueve a la variable para encender el display de posición de unidades
-    movwf dispnum
     return
 
 modos:
     banksel PORTA
     bcf     STATUS, 2
     movlw   0
+    subwf   estadvar, w
+    btfsc   STATUS, 2
+    call    modo_0
+    bcf     STATUS, 2
     movlw   1
+    subwf   estadvar, w
+    btfsc   STATUS, 2
+    call    modo_1
+    bcf     STATUS, 2
     movlw   2
+    subwf   estadvar, w
+    btfsc   STATUS, 2
+    call    modo_2
+    bcf     STATUS, 2
     movlw   3
+    subwf   estadvar, w
+    btfsc   STATUS, 2
+    call    modo_3
+    bcf     STATUS, 2
     movlw   4
+    subwf   estadvar, w
+    btfsc   STATUS, 2
+    call    modo_4
+    return
+
+modo_0:
+    ;clrf  dispconf1
+    ;clrf  dispconf0
+    movf  sem0, w
+    call  division
+    movf  cocientedec, w  ;se traduce el dato al display de 7segmentos y se mueve a 
+    call  tabla           ;la variable  para encender el display de posición de decenas
+    movwf dispdecsem0         
+    movf  numerador, w    ;se traduce el dato del numerador restante al display de 7segmentos
+    call  tabla           ;y se mueve a la variable para encender el display de posición de unidades
+    movwf dispnumsem0
+    movf  sem1, w
+    call  division
+    movf  cocientedec, w  ;se traduce el dato al display de 7segmentos y se mueve a 
+    call  tabla           ;la variable  para encender el display de posición de decenas
+    movwf dispdecsem1         
+    movf  numerador, w    ;se traduce el dato del numerador restante al display de 7segmentos
+    call  tabla           ;y se mueve a la variable para encender el display de posición de unidades
+    movwf dispnumsem1
+    movf  sem2, w
+    call  division
+    movf  cocientedec, w  ;se traduce el dato al display de 7segmentos y se mueve a 
+    call  tabla           ;la variable  para encender el display de posición de decenas
+    movwf dispdecsem2         
+    movf  numerador, w    ;se traduce el dato del numerador restante al display de 7segmentos
+    call  tabla           ;y se mueve a la variable para encender el display de posición de unidades
+    movwf dispnumsem2
+    bcf     STATUS, 2
+    movlw   3             ; Se mueve el 20 a W
+    subwf   sem0 , w   ; Se resta w a sevseg
+    btfss   STATUS, 2	   ; si la resta da 0 significa que son iguales entonces la zero flag se enciende
+    goto    $+11  
+    bcf     PORTC, 2
+    bsf     PORTC, 1; cuando la bandera de cero se activa se llama a alarm
+    bcf     STATUS, 2
+    movlw   255             ; Se mueve el 20 a W
+    subwf   sem0 , w   ; Se resta w a sevseg
+    btfss   STATUS, 2	   ; si la resta da 0 significa que son iguales entonces la zero flag se enciende
+    goto    $+4   
+    bcf     PORTC, 2
+    bcf     PORTC, 1
+    bsf     PORTC, 0
+    goto    $+2
+    bsf     PORTC, 2
+    bcf     STATUS, 2
+    ;bcf   bestados, 1
+    ;bcf   bestados, 2
+    return
+    
+modo_1:
+    bsf     PORTB, 3
+    movf    config0, w
+    btfsc   bestados, 1
+    call    subir
+    movf    semaforo, w
+    movwf   config0
+    call    division
+    btfsc   bestados, 2
+    call    bajar
+    movf    semaforo, w
+    movwf   config0
+    call    division
+    movf    cocientedec, w  ;se traduce el dato al display de 7segmentos y se mueve a 
+    call    tabla           ;la variable  para encender el display de posición de decenas
+    movwf   dispconf1         
+    movf    numerador, w    ;se traduce el dato del numerador restante al display de 7segmentos
+    call    tabla           ;y se mueve a la variable para encender el display de posición de unidades
+    movwf   dispconf0
+    call    modo_0
+    ;bcf bestados, 1
+    return
+modo_2:
+    bcf     PORTB, 3
+    bsf     PORTB, 4
+    movf    config0, w
+    btfsc   bestados, 1
+    call    subir
+    movf    semaforo, w
+    movwf   config0
+    call    division
+    btfsc   bestados, 2
+    call    bajar
+    movf    semaforo, w
+    movwf   config0
+    call    division
+    movf    cocientedec, w  ;se traduce el dato al display de 7segmentos y se mueve a 
+    call    tabla           ;la variable  para encender el display de posición de decenas
+    movwf   dispconf1         
+    movf    numerador, w    ;se traduce el dato del numerador restante al display de 7segmentos
+    call    tabla           ;y se mueve a la variable para encender el display de posición de unidades
+    movwf   dispconf0
+    call    modo_0
+    ;bcf bestados, 1
+    return
+modo_3:
+    bcf     PORTB, 3
+    bcf     PORTB, 4
+    bsf     PORTB, 5
+    movf    config0, w
+    btfsc   bestados, 1
+    call    subir
+    movf    semaforo, w
+    movwf   config0
+    call    division
+    btfsc   bestados, 2
+    call    bajar
+    movf    semaforo, w
+    movwf   config0
+    call    division
+    movf    cocientedec, w  ;se traduce el dato al display de 7segmentos y se mueve a 
+    call    tabla           ;la variable  para encender el display de posición de decenas
+    movwf   dispconf1         
+    movf    numerador, w    ;se traduce el dato del numerador restante al display de 7segmentos
+    call    tabla           ;y se mueve a la variable para encender el display de posición de unidades
+    movwf   dispconf0
+    call    modo_0
+    ;bcf bestados, 1
+    return
+modo_4:
+    
+    clrf PORTA
     return
     
 config_reloj:
@@ -396,7 +565,7 @@ rst_tmr0:
 
 rst_tmr1:
     banksel PIR1
-    movlw   11011100B
+    movlw   11011100B;valor para que se resetee cada segundo
     movwf   TMR1L
     movlw   1011B
     movwf   TMR1H
