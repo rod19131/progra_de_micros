@@ -2500,6 +2500,9 @@ PSECT udata_bank0 ;variable para:
     sem0: DS 1
     sem1: DS 1
     sem2: DS 1
+    redsem0: DS 1
+    redsem1: DS 1
+    redsem2: DS 1
     config0: DS 1
     config1: DS 1
     config2: DS 1
@@ -2580,12 +2583,8 @@ main:
     movwf config0
     movwf config1
     movwf config2
-    ;movlw 10
-    ;movwf semaforo
     movlw 0
     movwf estadvar
-    ;movlw 10
-    ;movwf semaforo
 
 
 ;****loop principal*****
@@ -2778,7 +2777,6 @@ division: ;operacion de division mediante resta
     clrf cocientedec ;unidades
     clrf numerador
     bcf STATUS, 0 ;se limpia la bandera de carry
-    ;movf semaforo, w ;se mueve el numero binario del puerto A a la variable
     movwf numerador ;numerador
     movlw 10 ;se mueve 10 al denominador
     incf cocientedec ;se incrementa la variable de decenas
@@ -2866,13 +2864,11 @@ modoperm:
     ;bcf bestados, 1
     ;bcf bestados, 2
     return
+
 modoconfig:
     movwf semaforo
     btfsc bestados, 1
     call subir
-    ;movf semaforo, w
-    ;movwf config0
-    ;call division
     btfsc bestados, 2
     call bajar
     movf semaforo, w
@@ -2886,6 +2882,7 @@ modoconfig:
     movwf dispconf0
     call modoperm
     return
+
 modo_0:
     bcf PORTB, 3
     bcf PORTB, 4
@@ -2903,74 +2900,24 @@ modo_1:
     call modoconfig
     movf configmisc, w
     movwf config0
-; movwf semaforo
-; btfsc bestados, 1
-; call subir
-; ;movf semaforo, w
-; ;movwf config0
-; ;call division
-; btfsc bestados, 2
-; call bajar
-; movf semaforo, w
-; movwf config0
-; call division
-; movf cocientedec, w ;se traduce el dato al display de 7segmentos y se mueve a
-; call tabla ;la variable para encender el display de posición de decenas
-; movwf dispconf1
-; movf numerador, w ;se traduce el dato del numerador restante al display de 7segmentos
-; call tabla ;y se mueve a la variable para encender el display de posición de unidades
-; movwf dispconf0
-; call modoperm
-    ;bcf bestados, 1
     return
+
 modo_2:
     bcf PORTB, 3
     bsf PORTB, 4
     movf config1, w
-    movwf semaforo
-    btfsc bestados, 1
-    call subir
-    movf semaforo, w
+    call modoconfig
+    movf configmisc, w
     movwf config1
-    call division
-    btfsc bestados, 2
-    call bajar
-    movf semaforo, w
-    movwf config1
-    call division
-    movf cocientedec, w ;se traduce el dato al display de 7segmentos y se mueve a
-    call tabla ;la variable para encender el display de posición de decenas
-    movwf dispconf1
-    movf numerador, w ;se traduce el dato del numerador restante al display de 7segmentos
-    call tabla ;y se mueve a la variable para encender el display de posición de unidades
-    movwf dispconf0
-    call modoperm
-    ;bcf bestados, 1
     return
 modo_3:
     bcf PORTB, 3
     bcf PORTB, 4
     bsf PORTB, 5
     movf config2, w
-    movwf semaforo
-    btfsc bestados, 1
-    call subir
-    movf semaforo, w
+    call modoconfig
+    movf configmisc, w
     movwf config2
-    call division
-    btfsc bestados, 2
-    call bajar
-    movf semaforo, w
-    movwf config2
-    call division
-    movf cocientedec, w ;se traduce el dato al display de 7segmentos y se mueve a
-    call tabla ;la variable para encender el display de posición de decenas
-    movwf dispconf1
-    movf numerador, w ;se traduce el dato del numerador restante al display de 7segmentos
-    call tabla ;y se mueve a la variable para encender el display de posición de unidades
-    movwf dispconf0
-    call modoperm
-    ;bcf bestados, 1
     return
 
 modo_4:
@@ -2981,6 +2928,38 @@ modo_4:
     movlw 0111001B ; C
     movwf dispconf0
     call modoperm
+    btfsc bestados, 1
+    call aceptar
+    btfsc bestados, 2
+    call cancelar
+    return
+
+aceptar:
+    movf config0, w
+    movwf sem0
+    movf config1, w
+    movwf sem1
+    movf config2, w
+    movwf sem2
+    movf sem1, w
+    addwf sem2, w
+    movwf redsem0, w
+    movf sem2, w
+    addwf sem0, w
+    movwf redsem1, w
+    movf sem0, w
+    addwf sem1, w
+    movwf redsem2, w
+    movlw 0
+    movwf estadvar
+    return
+cancelar:
+    movlw 10
+    movwf config0
+    movwf config1
+    movwf config2
+    movlw 0
+    movwf estadvar
     return
 
 config_reloj:
