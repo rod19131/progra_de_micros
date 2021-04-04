@@ -35,19 +35,13 @@ CONFIG BOR4V=BOR40V         ;Reinicio abajo de 4V
 ;***variables a usar**** 
 PSECT udata_bank0           ;variable para:
     banderas:    DS 1       ;activar cada display
-    dispvar:     DS 2
     bestados:    DS 1
     estadvar:    DS 1
     semaforo:    DS 1
-    display_var: DS 2       ;almacenar la conversion a display hexa de los nibbles
     numerador:   DS 1       ;almacenar el valor de las unidades
-    cocientecen: DS 1       ;almacenar el valor de las centenas
     cocientedec: DS 1       ;almacenar el valor de las decenas
-    dispcen:     DS 1       ;guardar el valor de centena traducido por la tabla 
-    dispdec:     DS 1       ;guardar el valor de decena traducido por la tabla
-    dispnum:     DS 1       ;guardar el valor de unidad traducido por la tabla
-    dispconf1:   DS 1
     dispconf0:   DS 1
+    dispconf1:   DS 1
     dispdecsem0: DS 1
     dispdecsem1: DS 1 
     dispdecsem2: DS 1
@@ -57,7 +51,10 @@ PSECT udata_bank0           ;variable para:
     sem0:        DS 1
     sem1:        DS 1
     sem2:        DS 1
-    config0:      DS 1
+    config0:     DS 1
+    config1:     DS 1
+    config2:     DS 1
+    configmisc:  DS 1
 PSECT udata_shr ;memoria compartida
     w_temp:    DS 1; variable para guardar w temporalmente
     s_temp:    DS 1; variable para guardar status temporalmente
@@ -129,14 +126,13 @@ main:
     bsf     banderas, 0  ; se inicializa el primer display
     movlw   10
     movwf   sem0
-    movlw   10
     movwf   sem1
-    movlw   10
     movwf   sem2
-    movlw   10
     movwf   config0
-    movlw   10 
-    movwf   semaforo
+    movwf   config1
+    movwf   config2
+    ;movlw   10 
+    ;movwf   semaforo
     movlw   0
     movwf   estadvar
     ;movlw   10
@@ -373,7 +369,7 @@ modos:
     call    modo_4
     return
 
-modo_0:
+modoperm:
     ;clrf  dispconf1
     ;clrf  dispconf0
     movf  sem0, w
@@ -400,63 +396,98 @@ modo_0:
     movf  numerador, w    ;se traduce el dato del numerador restante al display de 7segmentos
     call  tabla           ;y se mueve a la variable para encender el display de posición de unidades
     movwf dispnumsem2
-    bcf     STATUS, 2
-    movlw   3             ; Se mueve el 20 a W
-    subwf   sem0 , w   ; Se resta w a sevseg
-    btfss   STATUS, 2	   ; si la resta da 0 significa que son iguales entonces la zero flag se enciende
-    goto    $+11  
-    bcf     PORTC, 2
-    bsf     PORTC, 1; cuando la bandera de cero se activa se llama a alarm
-    bcf     STATUS, 2
-    movlw   255             ; Se mueve el 20 a W
-    subwf   sem0 , w   ; Se resta w a sevseg
-    btfss   STATUS, 2	   ; si la resta da 0 significa que son iguales entonces la zero flag se enciende
-    goto    $+4   
-    bcf     PORTC, 2
-    bcf     PORTC, 1
-    bsf     PORTC, 0
-    goto    $+2
-    bsf     PORTC, 2
-    bcf     STATUS, 2
+;    bcf     STATUS, 2
+;    movlw   3             ; Se mueve el 20 a W
+;    subwf   sem0 , w   ; Se resta w a sevseg
+;    btfss   STATUS, 2	   ; si la resta da 0 significa que son iguales entonces la zero flag se enciende
+;    goto    $+11  
+;    bcf     PORTC, 2
+;    bsf     PORTC, 1; cuando la bandera de cero se activa se llama a alarm
+;    bcf     STATUS, 2
+;    movlw   255             ; Se mueve el 20 a W
+;    subwf   sem0 , w   ; Se resta w a sevseg
+;    btfss   STATUS, 2	   ; si la resta da 0 significa que son iguales entonces la zero flag se enciende
+;    goto    $+4   
+;    bcf     PORTC, 2
+;    bcf     PORTC, 1
+;    bsf     PORTC, 0
+;    goto    $+2
+;    bsf     PORTC, 2
+;    bcf     STATUS, 2
     ;bcf   bestados, 1
     ;bcf   bestados, 2
+    return
+modoconfig: 
+    movwf   semaforo
+    btfsc   bestados, 1
+    call    subir
+    ;movf    semaforo, w
+    ;movwf   config0
+    ;call    division
+    btfsc   bestados, 2
+    call    bajar
+    movf    semaforo, w
+    movwf   configmisc
+    call    division
+    movf    cocientedec, w  ;se traduce el dato al display de 7segmentos y se mueve a 
+    call    tabla           ;la variable  para encender el display de posición de decenas
+    movwf   dispconf1         
+    movf    numerador, w    ;se traduce el dato del numerador restante al display de 7segmentos
+    call    tabla           ;y se mueve a la variable para encender el display de posición de unidades
+    movwf   dispconf0
+    call    modoperm
+    return
+modo_0:
+    bcf  PORTB, 3
+    bcf  PORTB, 4
+    bcf  PORTB, 5
+    bcf  bestados, 1
+    bcf  bestados, 2
+    clrf dispconf1
+    clrf dispconf0
+    call modoperm
     return
     
 modo_1:
     bsf     PORTB, 3
     movf    config0, w
-    btfsc   bestados, 1
-    call    subir
-    movf    semaforo, w
+    call    modoconfig
+    movf    configmisc, w
     movwf   config0
-    call    division
-    btfsc   bestados, 2
-    call    bajar
-    movf    semaforo, w
-    movwf   config0
-    call    division
-    movf    cocientedec, w  ;se traduce el dato al display de 7segmentos y se mueve a 
-    call    tabla           ;la variable  para encender el display de posición de decenas
-    movwf   dispconf1         
-    movf    numerador, w    ;se traduce el dato del numerador restante al display de 7segmentos
-    call    tabla           ;y se mueve a la variable para encender el display de posición de unidades
-    movwf   dispconf0
-    call    modo_0
+;    movwf   semaforo
+;    btfsc   bestados, 1
+;    call    subir
+;    ;movf    semaforo, w
+;    ;movwf   config0
+;    ;call    division
+;    btfsc   bestados, 2
+;    call    bajar
+;    movf    semaforo, w
+;    movwf   config0
+;    call    division
+;    movf    cocientedec, w  ;se traduce el dato al display de 7segmentos y se mueve a 
+;    call    tabla           ;la variable  para encender el display de posición de decenas
+;    movwf   dispconf1         
+;    movf    numerador, w    ;se traduce el dato del numerador restante al display de 7segmentos
+;    call    tabla           ;y se mueve a la variable para encender el display de posición de unidades
+;    movwf   dispconf0
+;    call    modoperm
     ;bcf bestados, 1
     return
 modo_2:
     bcf     PORTB, 3
     bsf     PORTB, 4
-    movf    config0, w
+    movf    config1, w
+    movwf   semaforo
     btfsc   bestados, 1
     call    subir
     movf    semaforo, w
-    movwf   config0
+    movwf   config1
     call    division
     btfsc   bestados, 2
     call    bajar
     movf    semaforo, w
-    movwf   config0
+    movwf   config1
     call    division
     movf    cocientedec, w  ;se traduce el dato al display de 7segmentos y se mueve a 
     call    tabla           ;la variable  para encender el display de posición de decenas
@@ -464,23 +495,24 @@ modo_2:
     movf    numerador, w    ;se traduce el dato del numerador restante al display de 7segmentos
     call    tabla           ;y se mueve a la variable para encender el display de posición de unidades
     movwf   dispconf0
-    call    modo_0
+    call    modoperm
     ;bcf bestados, 1
     return
 modo_3:
     bcf     PORTB, 3
     bcf     PORTB, 4
     bsf     PORTB, 5
-    movf    config0, w
+    movf    config2, w
+    movwf   semaforo
     btfsc   bestados, 1
     call    subir
     movf    semaforo, w
-    movwf   config0
+    movwf   config2
     call    division
     btfsc   bestados, 2
     call    bajar
     movf    semaforo, w
-    movwf   config0
+    movwf   config2
     call    division
     movf    cocientedec, w  ;se traduce el dato al display de 7segmentos y se mueve a 
     call    tabla           ;la variable  para encender el display de posición de decenas
@@ -488,12 +520,18 @@ modo_3:
     movf    numerador, w    ;se traduce el dato del numerador restante al display de 7segmentos
     call    tabla           ;y se mueve a la variable para encender el display de posición de unidades
     movwf   dispconf0
-    call    modo_0
+    call    modoperm
     ;bcf bestados, 1
     return
-modo_4:
     
-    clrf PORTA
+modo_4:
+    bsf   PORTB, 3
+    bsf   PORTB, 4
+    movlw 01110111B	; A
+    movwf dispconf1
+    movlw 0111001B	; C
+    movwf dispconf0
+    call  modoperm
     return
     
 config_reloj:
