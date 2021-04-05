@@ -134,28 +134,11 @@ main:
     call    config_tmr0  ; se configura el tmr0
     call    config_tmr1  ; se configura el tmr1
     bsf     banderas, 0  ; se inicializa el primer display
-;    movlw   10
-;    movwf   sem0
-;    movlw   10
-;    movwf   sem1
-;    movlw   20
-;    movwf   sem2
     movlw   10
     movwf   config0
     movwf   config1
     movwf   config2
     call    aceptar
-;    movwf   gresem0
-;    movwf   gresem1
-;    movwf   gresem2
-;    movlw   10
-;    movwf   redsem0
-;    movlw   10
-;    movwf   redsem1
-;    movlw   10
-;    movwf   redsem2
-;    movlw   0
-;    movwf   estadvar
     movlw   0
     movwf   togglevar
     movlw   1
@@ -164,8 +147,6 @@ main:
     
 ;****loop principal*****
 loop:
-    ;se limpian las variables de calculo de las centenas, decenas y
-    ;call    division     ;se efectua la division mediante resta
     btfsc   bestados, 0
     call    selestado
     call    modos
@@ -271,8 +252,6 @@ display7:
 int_tmr1:
     banksel PORTA
     call    rst_tmr1
-    ;btfss   bandactual, 0
-    ;call    actual
     decf    sem0
     bcf     STATUS, 2
     movlw   0              ; Se mueve el 20 a W
@@ -411,8 +390,6 @@ modos:
     return
 
 modoperm:
-    ;clrf  dispconf1
-    ;clrf  dispconf0
     movf  sem0, w
     call  division
     movf  cocientedec, w  ;se traduce el dato al display de 7segmentos y se mueve a 
@@ -437,26 +414,6 @@ modoperm:
     movf  numerador, w    ;se traduce el dato del numerador restante al display de 7segmentos
     call  tabla           ;y se mueve a la variable para encender el display de posición de unidades
     movwf dispnumsem2
-;    bcf     STATUS, 2
-;    movlw   3             ; Se mueve el 20 a W
-;    subwf   sem0 , w   ; Se resta w a sevseg
-;    btfss   STATUS, 2	   ; si la resta da 0 significa que son iguales entonces la zero flag se enciende
-;    goto    $+11  
-;    bcf     PORTC, 2
-;    bsf     PORTC, 1; cuando la bandera de cero se activa se llama a alarm
-;    bcf     STATUS, 2
-;    movlw   255             ; Se mueve el 20 a W
-;    subwf   sem0 , w   ; Se resta w a sevseg
-;    btfss   STATUS, 2	   ; si la resta da 0 significa que son iguales entonces la zero flag se enciende
-;    goto    $+4   
-;    bcf     PORTC, 2
-;    bcf     PORTC, 1
-;    bsf     PORTC, 0
-;    goto    $+2
-;    bsf     PORTC, 2
-;    bcf     STATUS, 2
-    ;bcf   bestados, 1
-    ;bcf   bestados, 2
     return
     
 modoconfig: 
@@ -542,16 +499,16 @@ aceptar:
     movf  gresem1, w
     addwf gresem2, w
     movwf redsem0
-    ;movf  gresem2, w
-    ;addwf gresem0, w
-    ;movwf redsem1
-    ;movwf sem1
     movf  gresem0, w
     addwf gresem1, w
     movwf redsem2
     movwf sem2
     movlw 0
     movwf estadvar
+    movlw 10
+    movwf config0
+    movwf config1
+    movwf config2
     return
     
 cancelar:
@@ -563,32 +520,6 @@ cancelar:
     movwf estadvar
     return
 
-actual:
-    incf  bandactual
-    movf  gresem0, w
-    addwf gresem2, w
-    movwf redsem1
-;    movf  gresem0, w
-;    grese
-;    
-;    movwf redsem1
-;    movwf sem1
-;    movf  config1, w
-;    movwf gresem1
-;    movf  config2, w
-;    movwf gresem2
-;    movf  gresem1, w
-;    addwf gresem2, w
-;    movwf redsem0
-;    ;movf  gresem2, w
-;    ;addwf gresem0, w
-;    ;movwf redsem1
-;    ;movwf sem1
-;    movf  gresem0, w
-;    addwf gresem1, w
-;    movwf redsem2
-;    movwf sem2
-    return
 config_reloj:
     banksel OSCCON; Seleccion de banco
     bsf     IRCF2 ; 001, Frecuencia de 1MHz
