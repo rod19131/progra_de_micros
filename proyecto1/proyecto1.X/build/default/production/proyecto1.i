@@ -2513,10 +2513,13 @@ PSECT udata_bank0 ;variable para:
     togglevar: DS 1
     togglevar1: DS 1
     togglevar2: DS 1
+    bandactual: DS 1
+    contcomp: DS 1
 PSECT udata_shr ;memoria compartida
     w_temp: DS 1; variable para guardar w temporalmente
     s_temp: DS 1; variable para guardar status temporalmente
     sevseg: DS 1; Variable para el 7 seg del contador
+
 ;****instrucciones vector reset***
 PSECT resVect, class=CODE, abs, delta=2
 ;---------------------------------vector reset----------------------------------
@@ -2572,8 +2575,6 @@ tabla: ;7 segmentos
     retlw 01111001B ; E
     retlw 01110001B ; F
 
-
-
 main:
     call config_reloj ; se configura el reloj
     call config_io ; ((PORTB) and 07Fh), 0, ((PORTB) and 07Fh), 1 y ((PORTB) and 07Fh), 2 in y puertos A, C y D out
@@ -2582,30 +2583,31 @@ main:
     call config_tmr0 ; se configura el tmr0
     call config_tmr1 ; se configura el tmr1
     bsf banderas, 0 ; se inicializa el primer display
-    movlw 10
-    movwf sem0
-    movlw 10
-    movwf sem1
-    movlw 12
-    movwf sem2
+; movlw 10
+; movwf sem0
+; movlw 10
+; movwf sem1
+; movlw 20
+; movwf sem2
     movlw 10
     movwf config0
     movwf config1
     movwf config2
-    movwf gresem0
-    movwf gresem1
-    movwf gresem2
-    movlw 11
-    movwf redsem0
-    movlw 10
-    movwf redsem1
-    movlw 12
-    movwf redsem2
+    call aceptar
+; movwf gresem0
+; movwf gresem1
+; movwf gresem2
+; movlw 10
+; movwf redsem0
+; movlw 10
+; movwf redsem1
+; movlw 10
+; movwf redsem2
+; movlw 0
+; movwf estadvar
     movlw 0
-    movwf estadvar
-    movlw 1
     movwf togglevar
-    movlw 0
+    movlw 1
     movwf togglevar1
     movwf togglevar2
 
@@ -2615,14 +2617,6 @@ loop:
     ;call division ;se efectua la division mediante resta
     btfsc bestados, 0
     call selestado
-; btfsc bestados, 1
-; call subir
-; btfsc bestados, 2
-; call bajar
-    ;movf sem0, w
-    ;addwf sem1
-    ;movf sem1, w
-    ;addwf sem2
     call modos
     goto loop
 ;******subrutinas de interrupcion***********
@@ -2726,9 +2720,11 @@ display7:
 int_tmr1:
     banksel PORTA
     call rst_tmr1
+    ;btfss bandactual, 0
+    ;call actual
     decf sem0
     bcf STATUS, 2
-    movlw 255 ; Se mueve el 20 a W
+    movlw 0 ; Se mueve el 20 a W
     subwf sem0 , w ; Se resta w a sevseg
     btfss STATUS, 2 ; si la resta da 0 significa que son iguales entonces la zero flag se enciende
     goto $+7
@@ -2741,7 +2737,7 @@ int_tmr1:
     ;movlw 20 ; cuando la bandera de cero se activa se llama a alarma
     decf sem1
     bcf STATUS, 2
-    movlw 255 ; Se mueve el 20 a W
+    movlw 0 ; Se mueve el 20 a W
     subwf sem1 , w ; Se resta w a sevseg
     btfss STATUS, 2 ; si la resta da 0 significa que son iguales entonces la zero flag se enciende
     goto $+7
@@ -2753,7 +2749,7 @@ int_tmr1:
     movwf sem1
     decf sem2
     bcf STATUS, 2
-    movlw 255 ; Se mueve el 20 a W
+    movlw 0 ; Se mueve el 20 a W
     subwf sem2 , w ; Se resta w a sevseg
     btfss STATUS, 2 ; si la resta da 0 significa que son iguales entonces la zero flag se enciende
     goto $+7
@@ -2763,7 +2759,19 @@ int_tmr1:
     btfss togglevar2, 0
     movf gresem2, w
     movwf sem2
-    ;bcf bestados, 1
+    bcf STATUS, 2
+    btfss bandactual, 0
+    goto $+11
+    movf gresem0, w
+    subwf contcomp, w
+    btfss STATUS, 2
+    goto $+3
+    incf contcomp
+    goto $+5
+    movf gresem0, w
+    addwf gresem2, w
+    movwf redsem1
+    bcf bandactual, 0
     return
 ;los displays se encienden con las banderas asi: se apaga la bandera del display
 ;encendido actualmente y se enciende la bandera del siguiente display
@@ -2970,24 +2978,31 @@ modo_4:
     return
 
 aceptar:
+    bsf bandactual, 0
     movf config0, w
     movwf gresem0
+    movwf sem0
+    movwf redsem1
+    movwf sem1
     movf config1, w
     movwf gresem1
     movf config2, w
     movwf gresem2
     movf gresem1, w
     addwf gresem2, w
-    movwf redsem0, w
-    movf gresem2, w
-    addwf gresem0, w
-    movwf redsem1, w
+    movwf redsem0
+    ;movf gresem2, w
+    ;addwf gresem0, w
+    ;movwf redsem1
+    ;movwf sem1
     movf gresem0, w
     addwf gresem1, w
-    movwf redsem2, w
+    movwf redsem2
+    movwf sem2
     movlw 0
     movwf estadvar
     return
+
 cancelar:
     movlw 10
     movwf config0
@@ -2997,6 +3012,32 @@ cancelar:
     movwf estadvar
     return
 
+actual:
+    incf bandactual
+    movf gresem0, w
+    addwf gresem2, w
+    movwf redsem1
+; movf gresem0, w
+; grese
+;
+; movwf redsem1
+; movwf sem1
+; movf config1, w
+; movwf gresem1
+; movf config2, w
+; movwf gresem2
+; movf gresem1, w
+; addwf gresem2, w
+; movwf redsem0
+; ;movf gresem2, w
+; ;addwf gresem0, w
+; ;movwf redsem1
+; ;movwf sem1
+; movf gresem0, w
+; addwf gresem1, w
+; movwf redsem2
+; movwf sem2
+    return
 config_reloj:
     banksel OSCCON; Seleccion de banco
     bsf ((OSCCON) and 07Fh), 6 ; 001, Frecuencia de 1MHz
