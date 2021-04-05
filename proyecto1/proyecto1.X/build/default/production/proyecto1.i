@@ -2515,6 +2515,7 @@ PSECT udata_bank0 ;variable para:
     togglevar2: DS 1
     bandactual: DS 1
     contcomp: DS 1
+    yelsign: DS 1
 PSECT udata_shr ;memoria compartida
     w_temp: DS 1; variable para guardar w temporalmente
     s_temp: DS 1; variable para guardar status temporalmente
@@ -2593,12 +2594,49 @@ main:
     movlw 1
     movwf togglevar1
     movwf togglevar2
+; call luzverde0
+; call luzroja1
+; call luzroja2
+; bsf PORTC, 2
+; bsf PORTC, 3
+; bsf PORTC, 6
 
 ;****loop principal*****
 loop:
     btfsc bestados, 0
     call selestado
     call modos
+
+    btfss yelsign, 0
+    goto $+7
+    bcf STATUS, 2
+    movlw 3 ; Se mueve el 20 a W
+    subwf sem0, w ; Se resta w a sevseg
+    btfss STATUS, 2 ; si la resta da 0 significa que son iguales entonces la zero flag se enciende
+    goto $+3
+    bsf PORTC, 1
+    bcf PORTC, 2
+
+    btfss yelsign, 1
+    goto $+7
+    bcf STATUS,2
+    movlw 3 ; Se mueve el 20 a W
+    subwf sem1, w ; Se resta w a sevseg
+    btfss STATUS, 2 ; si la resta da 0 significa que son iguales entonces la zero flag se enciende
+    goto $+3
+    bsf PORTC, 4
+    bcf PORTC, 5
+
+    btfss yelsign, 2
+    goto $+7
+    bcf STATUS, 2
+    movlw 3 ; Se mueve el 20 a W
+    subwf sem2, w ; Se resta w a sevseg
+    btfss STATUS, 2 ; si la resta da 0 significa que son iguales entonces la zero flag se enciende
+    goto $+3
+    bsf PORTC, 7
+    bcf PORTE, 0
+    ;comparacion semaforos 6
     goto loop
 ;******subrutinas de interrupcion***********
 
@@ -2709,11 +2747,10 @@ int_tmr1:
     goto $+7
     incf togglevar
     btfsc togglevar, 0
-    movf redsem0, w
+    call luzroja0
     btfss togglevar, 0
-    movf gresem0, w
+    call luzverde0
     movwf sem0
-    ;movlw 20 ; cuando la bandera de cero se activa se llama a alarma
     decf sem1
     bcf STATUS, 2
     movlw 0 ; Se mueve el 20 a W
@@ -2722,9 +2759,9 @@ int_tmr1:
     goto $+7
     incf togglevar1
     btfsc togglevar1, 0
-    movf redsem1, w
+    call luzroja1
     btfss togglevar1, 0
-    movf gresem1, w
+    call luzverde1
     movwf sem1
     decf sem2
     bcf STATUS, 2
@@ -2734,9 +2771,9 @@ int_tmr1:
     goto $+7
     incf togglevar2
     btfsc togglevar2, 0
-    movf redsem2, w
+    call luzroja2
     btfss togglevar2, 0
-    movf gresem2, w
+    call luzverde2
     movwf sem2
     bcf STATUS, 2
     btfss bandactual, 0
@@ -2767,6 +2804,54 @@ selestado:
     movlw 0 ; cuando la bandera de cero se activa se llama a alarma
     movwf estadvar
     bcf bestados, 0
+    return
+
+luzroja0:
+    movf redsem0, w
+    bsf PORTC, 0
+    bcf PORTC, 1
+    bcf PORTC, 2
+    bcf yelsign, 0
+    return
+
+luzroja1:
+    movf redsem1, w
+    bsf PORTC, 3
+    bcf PORTC, 4
+    bcf PORTC, 5
+    bcf yelsign, 1
+    return
+
+luzroja2:
+    movf redsem2, w
+    bsf PORTC, 6
+    bcf PORTC, 7
+    bcf PORTE, 0
+    bcf yelsign, 2
+    return
+
+luzverde0:
+    movf gresem0, w
+    bcf PORTC, 0
+    bcf PORTC, 1
+    bsf PORTC, 2
+    bsf yelsign, 0
+    return
+
+luzverde1:
+    movf gresem1, w
+    bcf PORTC, 3
+    bcf PORTC, 4
+    bsf PORTC, 5
+    bsf yelsign, 1
+    return
+
+luzverde2:
+    movf gresem2, w
+    bcf PORTC, 6
+    bcf PORTC, 7
+    bsf PORTE, 0
+    bsf yelsign, 2
     return
 
 subir:
@@ -2958,6 +3043,9 @@ aceptar:
     movwf config0
     movwf config1
     movwf config2
+    call luzverde0
+    call luzroja1
+    call luzroja2
     return
 
 cancelar:
@@ -2987,6 +3075,7 @@ config_io:
     clrf TRISA ;Se ponen los pines de los puertos A,C,D y E como salidas
     clrf TRISC
     clrf TRISD
+    clrf PORTE
     bcf OPTION_REG, 7 ;habilitar los pull ups
     bsf WPUB, 0 ;habilitar los pullups en ((PORTB) and 07Fh), 0 y ((PORTB) and 07Fh), 1 como inputs
     bsf WPUB, 1
@@ -2998,6 +3087,7 @@ config_io:
     bcf PORTB, 5
     clrf PORTC
     clrf PORTD
+    clrf PORTE
     return
 
 config_iocb:
