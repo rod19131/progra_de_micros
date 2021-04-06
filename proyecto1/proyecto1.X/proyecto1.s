@@ -667,6 +667,7 @@ aceptar:
     call    luzroja1
     call    luzroja2
     call    delay_big
+    call    luzverde0
     bsf   bandactual, 0
     movf  config0, w
     movwf gresem0
@@ -849,5 +850,3 @@ config_inten:
     return
 
 END
-
-

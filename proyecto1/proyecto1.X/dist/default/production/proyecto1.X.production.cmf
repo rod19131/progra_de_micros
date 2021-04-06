@@ -13,7 +13,7 @@
 %PSECTS
 $build/default/production/proyecto1.o
 resVect CODE 0 0 0 3 2
-code CODE 0 0 0 37E 2
+code CODE 0 0 0 37F 2
 intVect CODE 0 0 0 14 2
 udata_bank0 BANK0 1 20 20 26 1
 udata_shr COMMON 1 70 70 3 1
@@ -32,14 +32,14 @@ BANK0 46-6F 1
 BANK1 A0-EF 1
 BANK2 110-16F 1
 BANK3 190-1EF 1
-CONST 37E-1FFF 2
-ENTRY 37E-1FFF 2
+CONST 37F-1FFF 2
+ENTRY 37F-1FFF 2
 IDLOC 2000-2003 2
-CODE 37E-1FFF 2
+CODE 37F-1FFF 2
 COMMON 73-7F 1
 EEDATA 2100-21FF 2
-STRCODE 37E-1FFF 2
-STRING 37E-1FFF 2
+STRCODE 37F-1FFF 2
+STRING 37F-1FFF 2
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
 # The beginning of the section is indicated by %LINETAB.
@@ -625,48 +625,48 @@ F intVect CODE >106:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\p
 2FF code CODE >707:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 300 code CODE >708:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 301 code CODE >709:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
-302 code CODE >713:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
-303 code CODE >715:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
-303 code CODE >716:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
+302 code CODE >710:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
+303 code CODE >714:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
+304 code CODE >716:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 304 code CODE >717:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 305 code CODE >718:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 306 code CODE >719:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 307 code CODE >720:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 308 code CODE >721:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 309 code CODE >722:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
-30A code CODE >724:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
-30A code CODE >725:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
+30A code CODE >723:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
+30B code CODE >725:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 30B code CODE >726:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 30C code CODE >727:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 30D code CODE >728:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 30E code CODE >729:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 30F code CODE >730:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
-310 code CODE >732:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
-310 code CODE >733:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
+310 code CODE >731:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
+311 code CODE >733:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 311 code CODE >734:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 312 code CODE >735:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 313 code CODE >736:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 314 code CODE >737:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 315 code CODE >738:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
-316 code CODE >740:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
-316 code CODE >741:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
+316 code CODE >739:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
+317 code CODE >741:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 317 code CODE >742:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 318 code CODE >743:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 319 code CODE >744:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 31A code CODE >745:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
-31B code CODE >747:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
-31B code CODE >748:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
-31D code CODE >749:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
+31B code CODE >746:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
+31C code CODE >748:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
+31C code CODE >749:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 31E code CODE >750:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 31F code CODE >751:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 320 code CODE >752:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 321 code CODE >753:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
-322 code CODE >755:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
-322 code CODE >756:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
-324 code CODE >757:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
+322 code CODE >754:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
+323 code CODE >756:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
+323 code CODE >757:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 325 code CODE >758:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 326 code CODE >759:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
-328 code CODE >760:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
+327 code CODE >760:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 329 code CODE >761:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 32A code CODE >762:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 32B code CODE >763:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
@@ -677,7 +677,7 @@ F intVect CODE >106:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\p
 330 code CODE >768:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 331 code CODE >769:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 332 code CODE >770:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
-334 code CODE >771:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
+333 code CODE >771:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 335 code CODE >772:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 336 code CODE >773:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 337 code CODE >774:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
@@ -685,62 +685,62 @@ F intVect CODE >106:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\p
 339 code CODE >776:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 33A code CODE >777:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 33B code CODE >778:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
-33C code CODE >780:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
-33C code CODE >781:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
-33E code CODE >782:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
+33C code CODE >779:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
+33D code CODE >781:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
+33D code CODE >782:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 33F code CODE >783:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 340 code CODE >784:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 341 code CODE >785:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
-343 code CODE >786:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
+342 code CODE >786:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 344 code CODE >787:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 345 code CODE >788:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
-346 code CODE >790:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
-346 code CODE >791:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
-348 code CODE >792:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
+346 code CODE >789:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
+347 code CODE >791:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
+347 code CODE >792:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 349 code CODE >793:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 34A code CODE >794:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 34B code CODE >795:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 34C code CODE >796:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 34D code CODE >797:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
-34F code CODE >798:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
+34E code CODE >798:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 350 code CODE >799:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
-351 code CODE >801:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
-351 code CODE >802:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
-353 code CODE >803:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
+351 code CODE >800:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
+352 code CODE >802:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
+352 code CODE >803:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 354 code CODE >804:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 355 code CODE >805:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 356 code CODE >806:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 357 code CODE >807:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 358 code CODE >808:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
-359 code CODE >810:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
-359 code CODE >811:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
-35B code CODE >812:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
+359 code CODE >809:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
+35A code CODE >811:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
+35A code CODE >812:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 35C code CODE >813:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 35D code CODE >814:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 35E code CODE >815:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 35F code CODE >816:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 360 code CODE >817:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 361 code CODE >818:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
-363 code CODE >819:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
+362 code CODE >819:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 364 code CODE >820:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 365 code CODE >821:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
-367 code CODE >822:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
+366 code CODE >822:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 368 code CODE >823:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
-369 code CODE >825:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
-369 code CODE >826:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
+369 code CODE >824:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
+36A code CODE >826:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 36A code CODE >827:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 36B code CODE >828:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 36C code CODE >829:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
-36D code CODE >831:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
-36D code CODE >832:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
-36F code CODE >833:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
+36D code CODE >830:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
+36E code CODE >832:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
+36E code CODE >833:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 370 code CODE >834:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 371 code CODE >835:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 372 code CODE >836:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 373 code CODE >837:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 374 code CODE >838:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
-375 code CODE >840:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
-375 code CODE >841:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
+375 code CODE >839:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
+376 code CODE >841:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 376 code CODE >842:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 377 code CODE >843:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 378 code CODE >844:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
@@ -749,6 +749,7 @@ F intVect CODE >106:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\p
 37B code CODE >847:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 37C code CODE >848:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 37D code CODE >849:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
+37E code CODE >850:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\proyecto1.s
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -761,7 +762,7 @@ F intVect CODE >106:D:\AlejandroDigital\progra_de_micros\proyecto1\proyecto1.X\p
 # was defined in a psect then <psect> will be "-". File-name
 # is the name of the object file in which the symbol was defined.
 %SYMTAB
-__Hspace_0 37E 0 ABS 0 - -
+__Hspace_0 37F 0 ABS 0 - -
 __Hspace_1 73 0 ABS 0 - -
 __Hspace_3 0 0 ABS 0 - -
 __Hspace_4 4010 0 ABS 0 - -
