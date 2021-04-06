@@ -67,6 +67,11 @@ PSECT udata_bank0           ;variable para:
     bandactual:  DS 1
     contcomp:    DS 1
     yelsign:     DS 1
+    cont_big:    DS 1
+    cont_small:  DS 1
+    cont_mini:   DS 1
+    titila:      DS 1
+    bandi:       DS 1
 PSECT udata_shr ;memoria compartida
     w_temp:      DS 1; variable para guardar w temporalmente
     s_temp:      DS 1; variable para guardar status temporalmente
@@ -94,6 +99,8 @@ isr:
     call  int_tmr0  ;llama a la subrutina del tmr0
     btfsc TMR1IF    
     call  int_tmr1
+    btfsc TMR2IF
+    call  int_tmr2
 
 pop:
     swapf s_temp, w  ;regresar el w temporal a w 
@@ -134,6 +141,7 @@ main:
     call    config_inten ; se configura el interrupt enable
     call    config_tmr0  ; se configura el tmr0
     call    config_tmr1  ; se configura el tmr1
+    call    config_tmr2
     bsf     banderas, 0  ; se inicializa el primer display
     movlw   10
     movwf   config0
@@ -145,12 +153,8 @@ main:
     movlw   1
     movwf   togglevar1
     movwf   togglevar2
-;    call    luzverde0
-;    call    luzroja1
-;    call    luzroja2
-;    bsf     PORTC, 2
-;    bsf     PORTC, 3
-;    bsf     PORTC, 6
+    movwf   titila
+    clrf    bandi
     
 ;****loop principal*****
 loop:
@@ -158,18 +162,33 @@ loop:
     call    selestado
     call    modos
     
+    bcf     STATUS, 2
     btfss   yelsign, 0
-    goto    $+7
+    goto    $+14
+    movlw   6             ; Se mueve el 20 a W
+    subwf   sem0, w   ; Se resta w a sevseg
+    btfss   STATUS, 2	   ; si la resta da 0 significa que son iguales entonces la zero flag se enciende
+    goto    $+2
+    bsf     bandi, 0
+    
     bcf     STATUS, 2
     movlw   3             ; Se mueve el 20 a W
     subwf   sem0, w   ; Se resta w a sevseg
     btfss   STATUS, 2	   ; si la resta da 0 significa que son iguales entonces la zero flag se enciende
-    goto    $+3   
+    goto    $+4
+    bcf     bandi, 0
     bsf     PORTC, 1
     bcf     PORTC, 2
     
-    btfss   yelsign, 1
-    goto    $+7
+    bcf     STATUS, 2
+    btfss   yelsign, 0
+    goto    $+13
+    movlw   6             ; Se mueve el 20 a W
+    subwf   sem1, w   ; Se resta w a sevseg
+    btfss   STATUS, 2	   ; si la resta da 0 significa que son iguales entonces la zero flag se enciende
+    goto    $+2
+    bsf     bandi, 1
+
     bcf     STATUS,2 
     movlw   3             ; Se mueve el 20 a W
     subwf   sem1, w   ; Se resta w a sevseg
@@ -340,6 +359,36 @@ int_tmr1:
     movwf   redsem1
     bcf     bandactual, 0
     return
+
+;int_tmr2:
+;    banksel PIR1   
+;    incf    titila   ;se incrementa el puerto D cada 250 ms, lo que ocasiona que
+;    ;btfss   yelsign, 0
+;;    btfsc   titila, 0
+;;    goto    amatiti0
+;;    bcf     PORTE, 1     
+;    bcf     TMR2IF  ;el bit menos significativo (donde se conecta el LED) se cambie cada int
+;    return
+;
+;amatiti0:
+;    bsf    PORTB, 7
+;    bcf    TMR2IF
+;    return
+int_tmr2:
+    banksel PIR1 
+    incf    titila   ;se incrementa el puerto D cada 250 ms, lo que ocasiona que
+    btfss   bandi, 0
+    goto    $+4
+    btfsc   titila, 0
+    goto    amatiti0
+    bcf     PORTC, 2 
+    bcf     TMR2IF  ;el bit menos significativo (donde se conecta el LED) se cambie cada int
+    return
+
+amatiti0:
+    bsf    PORTC, 2
+    bcf    TMR2IF
+    return
 ;los displays se encienden con las banderas asi: se apaga la bandera del display
 ;encendido actualmente y se enciende la bandera del siguiente display
 ;orden de los displays: 1, 0, 2, 3, 4
@@ -432,8 +481,8 @@ bajar:
     return
     
 division:                 ;operacion de division mediante resta
-    clrf    cocientedec  ;unidades
-    clrf    numerador
+    clrf  cocientedec  ;unidades
+    clrf  numerador
     bcf   STATUS, 0       ;se limpia la bandera de carry
     movwf numerador       ;numerador
     movlw 10              ;se mueve 10 al denominador 
@@ -565,12 +614,30 @@ modo_4:
     movwf dispconf0
     call  modoperm
     btfsc bestados, 1
-    call  aceptar
+    goto  aceptar
     btfsc bestados, 2
-    call  cancelar
+    goto  cancelar
     return
 
 aceptar:
+    movlw   0111110B
+    movwf   dispconf0
+    movwf   dispconf1
+    movlw   1111011B
+    movwf   dispnumsem0
+    movwf   dispnumsem1
+    movlw   0000001B
+    movwf   dispnumsem2
+    movlw   0110001B
+    movwf   dispdecsem0
+    movlw   1101101B
+    movwf   dispdecsem1
+    movlw   0000111B
+    movwf   dispdecsem2
+    call    luzroja0
+    call    luzroja1
+    call    luzroja2
+    call  delay_big
     bsf   bandactual, 0
     movf  config0, w
     movwf gresem0
@@ -594,9 +661,9 @@ aceptar:
     movwf config0
     movwf config1
     movwf config2
-    call    luzverde0
-    call    luzroja1
-    call    luzroja2
+    call  luzverde0
+    call  luzroja1
+    call  luzroja2
     return
     
 cancelar:
@@ -606,6 +673,29 @@ cancelar:
     movwf config2
     movlw 0
     movwf estadvar
+    return
+
+delay_big:
+    movlw   198
+    movwf   cont_big
+    call    delay_small
+    decfsz  cont_big, 1
+    goto    $-2
+    return
+    
+delay_small:
+    movlw   248
+    movwf   cont_small
+    call    delay_mini
+    decfsz  cont_small, 1
+    goto    $-1
+    return
+
+delay_mini:
+    movlw   200
+    movwf   cont_mini
+    decfsz  cont_mini, 1
+    goto    $-1
     return
 
 config_reloj:
@@ -626,7 +716,7 @@ config_io:
     clrf    TRISA  ;Se ponen los pines de los puertos A,C,D y E como salidas 
     clrf    TRISC  
     clrf    TRISD 
-    clrf    PORTE
+    clrf    TRISE
     bcf     OPTION_REG, 7 ;habilitar los pull ups
     bsf     WPUB, 0 ;habilitar los pullups en RB0 y RB1 como inputs
     bsf     WPUB, 1
@@ -670,6 +760,21 @@ config_tmr1:
     bsf     TMR1ON  ;timer1 habilitado
     call    rst_tmr1
     return    
+
+config_tmr2:
+    banksel T2CON
+    bsf     TMR2ON  ;Encender el tmr2
+    bsf     TOUTPS3 ;Configuración de postscaler 1:16
+    bsf     TOUTPS2 ;1111
+    bsf     TOUTPS1 ;
+    bsf     TOUTPS0 ;Configuración de prescaler 1:16 
+    bsf     T2CKPS1 ;1x
+    banksel TRISA   
+    movlw   244     ;número calculado para pasar a PR2 y que se obtenga 
+    movwf   PR2     ;250 ms
+    banksel PORTA
+    bcf     TMR2IF  ;se limpia la bandera de interrupción del tmr2
+    return    
     
 rst_tmr0:
     movlw 125     ;Valor calculado con la formula aprendida en clase
@@ -694,8 +799,9 @@ config_inten:
     bcf     TMR1IF ;pone en 0 la bandera de interrupcion de overflow de tmr1
     bsf     TMR1IE ;habilita la interrupcion del overflow del tmr1
     bsf     PEIE   ;habilita unmasked interrupts (para tmr1)
+    bsf     TMR2IE ;habilita la interrupcion del tmr2
     return
-    
+
 END
 
 
