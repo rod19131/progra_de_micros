@@ -2610,7 +2610,6 @@ loop:
     btfsc bestados, 0
     call selestado
     call modos
-
     bcf STATUS, 2
     btfss yelsign, 0
     goto $+14
@@ -2630,32 +2629,40 @@ loop:
     bcf PORTC, 2
 
     bcf STATUS, 2
-    btfss yelsign, 0
-    goto $+13
+    btfss yelsign, 1
+    goto $+14
     movlw 6 ; Se mueve el 20 a W
     subwf sem1, w ; Se resta w a sevseg
     btfss STATUS, 2 ; si la resta da 0 significa que son iguales entonces la zero flag se enciende
     goto $+2
     bsf bandi, 1
 
-    bcf STATUS,2
+    bcf STATUS, 2
     movlw 3 ; Se mueve el 20 a W
     subwf sem1, w ; Se resta w a sevseg
     btfss STATUS, 2 ; si la resta da 0 significa que son iguales entonces la zero flag se enciende
-    goto $+3
+    goto $+4
+    bcf bandi, 1
     bsf PORTC, 4
     bcf PORTC, 5
 
+    bcf STATUS, 2
     btfss yelsign, 2
-    goto $+7
+    goto $+14
+    movlw 6 ; Se mueve el 20 a W
+    subwf sem2, w ; Se resta w a sevseg
+    btfss STATUS, 2 ; si la resta da 0 significa que son iguales entonces la zero flag se enciende
+    goto $+2
+    bsf bandi, 2
+
     bcf STATUS, 2
     movlw 3 ; Se mueve el 20 a W
     subwf sem2, w ; Se resta w a sevseg
     btfss STATUS, 2 ; si la resta da 0 significa que son iguales entonces la zero flag se enciende
-    goto $+3
+    goto $+4
+    bcf bandi, 2
     bsf PORTC, 7
     bcf PORTE, 0
-    ;comparacion semaforos 6
     goto loop
 ;******subrutinas de interrupcion***********
 
@@ -2809,52 +2816,6 @@ int_tmr1:
     bcf bandactual, 0
     return
 
-;int_tmr2:
-; banksel PIR1
-; incf titila ;se incrementa el puerto D cada 250 ms, lo que ocasiona que
-; ;btfss yelsign, 0
-;; btfsc titila, 0
-;; goto amatiti0
-;; bcf PORTE, 1
-; bcf ((PIR1) and 07Fh), 1 ;el bit menos significativo (donde se conecta el LED) se cambie cada int
-; return
-;
-;amatiti0:
-; bsf PORTB, 7
-; bcf ((PIR1) and 07Fh), 1
-; return
-int_tmr2:
-    banksel PIR1
-    incf titila ;se incrementa el puerto D cada 250 ms, lo que ocasiona que
-    btfss bandi, 0
-    goto $+4
-    btfsc titila, 0
-    goto amatiti0
-    bcf PORTC, 2
-    bcf ((PIR1) and 07Fh), 1 ;el bit menos significativo (donde se conecta el LED) se cambie cada int
-    return
-
-amatiti0:
-    bsf PORTC, 2
-    bcf ((PIR1) and 07Fh), 1
-    return
-;los displays se encienden con las banderas asi: se apaga la bandera del display
-;encendido actualmente y se enciende la bandera del siguiente display
-;orden de los displays: 1, 0, 2, 3, 4
-;---------------------subrutinas------------------------------------------------
-selestado:
-    banksel PORTA
-    incf estadvar
-    bcf STATUS, 2
-    movlw 5 ; Se mueve el 20 a W
-    subwf estadvar, w ; Se resta w a sevseg
-    btfss STATUS, 2 ; si la resta da 0 significa que son iguales entonces la zero flag se enciende
-    goto $+3
-    movlw 0 ; cuando la bandera de cero se activa se llama a alarma
-    movwf estadvar
-    bcf bestados, 0
-    return
-
 luzroja0:
     movf redsem0, w
     bsf PORTC, 0
@@ -2901,6 +2862,74 @@ luzverde2:
     bcf PORTC, 7
     bsf PORTE, 0
     bsf yelsign, 2
+    return
+
+int_tmr2:
+    banksel PIR1
+    incf titila ;se incrementa el puerto D cada 250 ms, lo que ocasiona que
+    btfss bandi, 0
+    goto $+2
+    goto titi0
+    btfss bandi, 1
+    goto $+2
+    goto titi1
+    btfss bandi, 2
+    goto $+2
+    goto titi2
+    bcf ((PIR1) and 07Fh), 1 ;el bit menos significativo (donde se conecta el LED) se cambie cada int
+    return
+
+titi0:
+    btfsc titila, 0
+    goto vertiti0
+    bcf PORTC, 2
+    bcf ((PIR1) and 07Fh), 1
+    return
+
+titi1:
+    btfsc titila, 0
+    goto vertiti1
+    bcf PORTC, 5
+    bcf ((PIR1) and 07Fh), 1
+    return
+
+titi2:
+    btfsc titila, 0
+    goto vertiti2
+    bcf PORTE, 0
+    bcf ((PIR1) and 07Fh), 1
+    return
+
+vertiti0:
+    bsf PORTC, 2
+    bcf ((PIR1) and 07Fh), 1
+    return
+
+vertiti1:
+    bsf PORTC, 5
+    bcf ((PIR1) and 07Fh), 1
+    return
+
+vertiti2:
+    bsf PORTE, 0
+    bcf ((PIR1) and 07Fh), 1
+    return
+
+;los displays se encienden con las banderas asi: se apaga la bandera del display
+;encendido actualmente y se enciende la bandera del siguiente display
+;orden de los displays: 1, 0, 2, 3, 4
+;---------------------subrutinas------------------------------------------------
+selestado:
+    banksel PORTA
+    incf estadvar
+    bcf STATUS, 2
+    movlw 5 ; Se mueve el 20 a W
+    subwf estadvar, w ; Se resta w a sevseg
+    btfss STATUS, 2 ; si la resta da 0 significa que son iguales entonces la zero flag se enciende
+    goto $+3
+    movlw 0 ; cuando la bandera de cero se activa se llama a alarma
+    movwf estadvar
+    bcf bestados, 0
     return
 
 subir:
@@ -3110,9 +3139,26 @@ aceptar:
     movwf config0
     movwf config1
     movwf config2
-    call luzverde0
-    call luzroja1
-    call luzroja2
+    bcf PORTC, 0
+    bcf PORTC, 1
+    bsf PORTC, 2
+    bsf yelsign, 0
+    bsf PORTC, 3
+    bcf PORTC, 4
+    bcf PORTC, 5
+    bcf yelsign, 1
+    bsf PORTC, 6
+    bcf PORTC, 7
+    bcf PORTE, 0
+    bcf yelsign, 2
+    movlw 0
+    movwf togglevar
+    movlw 1
+    movwf togglevar1
+    movwf togglevar2
+; call luzverde0
+; call luzroja1
+; call luzroja2
     return
 
 cancelar:
