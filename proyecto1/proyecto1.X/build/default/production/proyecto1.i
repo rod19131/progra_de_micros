@@ -1,6 +1,7 @@
 # 1 "proyecto1.s"
 # 1 "<built-in>" 1
 # 1 "proyecto1.s" 2
+
 ;Archivo: proyecto1.S
 ;Dispositivo: PIC16F887
 ;Autor; Jose Alejandro Rodriguez Porras
@@ -2463,7 +2464,7 @@ stk_offset SET 0
 auto_size SET 0
 ENDM
 # 7 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\xc.inc" 2 3
-# 18 "proyecto1.s" 2
+# 19 "proyecto1.s" 2
 
 ;CONFIGURATION WORD 1
 CONFIG FOSC=INTRC_NOCLKOUT ;Oscilador interno sin salida
@@ -3116,6 +3117,7 @@ aceptar:
     call luzroja1
     call luzroja2
     call delay_big
+    call luzverde0
     bsf bandactual, 0
     movf config0, w
     movwf gresem0
