@@ -667,6 +667,7 @@ aceptar:
     call    luzroja0
     call    luzroja1
     call    luzroja2
+    clrf    bandi
     call    delay_big
     call    luzverde0
     bsf   bandactual, 0
@@ -709,6 +710,7 @@ aceptar:
     movlw   1
     movwf   togglevar1
     movwf   togglevar2
+;    clrf    bandi
 ;    call  luzverde0
 ;    call  luzroja1
 ;    call  luzroja2
