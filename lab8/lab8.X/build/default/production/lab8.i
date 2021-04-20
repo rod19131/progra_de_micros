@@ -2536,6 +2536,7 @@ void __attribute__((picinterrupt(("")))) isr(void){
             PORTC = ADRESH;
             ADCON0bits.CHS = 1;
         }
+
         else{
             c = ADRESH;
             ADCON0bits.CHS = 0;
@@ -2544,7 +2545,6 @@ void __attribute__((picinterrupt(("")))) isr(void){
         PIR1bits.ADIF = 0;
         ADCON0bits.GO = 1;
     }
-
 
      if (T0IF == 1) {
         cen = c / 100;
@@ -2597,7 +2597,7 @@ void main(void) {
     ANSELH = 0;
     ANSELbits.ANS0 = 1;
     ANSELbits.ANS1 = 1;
-    TRISA = 15;
+    TRISA = 3;
     TRISC = 0;
     TRISD = 0;
     PORTA = 0;
@@ -2625,7 +2625,6 @@ void main(void) {
     INTCONbits.T0IE = 1;
     INTCONbits.PEIE = 1;
     PIE1bits.ADIE = 1;
-
     dispvar = 0;
     while (1)
     {}

@@ -444,25 +444,25 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;lab8.c: 28:             ADCON0bits.CHS = 1;
 [p x BOR4V=BOR40V  ]
 "30
-[; ;lab8.c: 30:         else{
+[; ;lab8.c: 30: 
 [v _c `uc ~T0 @X0 1 e ]
 "31
-[; ;lab8.c: 31:             c = ADRESH;
+[; ;lab8.c: 31:         else{
 [v _d `uc ~T0 @X0 1 e ]
 "32
-[; ;lab8.c: 32:             ADCON0bits.CHS = 0;
+[; ;lab8.c: 32:             c = ADRESH;
 [v _cen `uc ~T0 @X0 1 e ]
 "33
-[; ;lab8.c: 33:         }
+[; ;lab8.c: 33:             ADCON0bits.CHS = 0;
 [v _dec `uc ~T0 @X0 1 e ]
 "34
-[; ;lab8.c: 34:         _delay((unsigned long)((50)*(4000000/4000000.0)));
+[; ;lab8.c: 34:         }
 [v _uni `uc ~T0 @X0 1 e ]
 "35
-[; ;lab8.c: 35:         PIR1bits.ADIF = 0;
+[; ;lab8.c: 35:         _delay((unsigned long)((50)*(4000000/4000000.0)));
 [v _cenres `uc ~T0 @X0 1 e ]
 "36
-[; ;lab8.c: 36:         ADCON0bits.GO = 1;
+[; ;lab8.c: 36:         PIR1bits.ADIF = 0;
 [v _dispvar `uc ~T0 @X0 1 e ]
 "39
 [; ;lab8.c: 39: 
@@ -506,31 +506,31 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;lab8.c: 59:                 break;
 }
 [e $U 141  ]
-"60
-[; ;lab8.c: 60:             case 1:
-[e :U 140 ]
-{
 "61
 [; ;lab8.c: 61:                 PORTAbits.RA4 = 0;
-[e = _c _ADRESH ]
+[e :U 140 ]
+{
 "62
 [; ;lab8.c: 62:                 PORTAbits.RA6 = 1;
-[e = . . _ADCON0bits 0 2 -> -> 0 `i `uc ]
+[e = _c _ADRESH ]
 "63
 [; ;lab8.c: 63:                 PORTAbits.RA7 = 0;
-}
-[e :U 141 ]
+[e = . . _ADCON0bits 0 2 -> -> 0 `i `uc ]
 "64
 [; ;lab8.c: 64:                 PORTD = tabla[dec];
-[e ( __delay (1 -> * -> -> 50 `i `d / -> -> 4000000 `l `d .4000000.0 `ul ]
+}
+[e :U 141 ]
 "65
 [; ;lab8.c: 65:                 dispvar = 2;
-[e = . . _PIR1bits 0 6 -> -> 0 `i `uc ]
+[e ( __delay (1 -> * -> -> 50 `i `d / -> -> 4000000 `l `d .4000000.0 `ul ]
 "66
 [; ;lab8.c: 66:                 break;
-[e = . . _ADCON0bits 1 1 -> -> 1 `i `uc ]
+[e = . . _PIR1bits 0 6 -> -> 0 `i `uc ]
 "67
 [; ;lab8.c: 67:             case 2:
+[e = . . _ADCON0bits 1 1 -> -> 1 `i `uc ]
+"68
+[; ;lab8.c: 68:                 PORTAbits.RA4 = 0;
 }
 [e :U 139 ]
 "70
@@ -596,7 +596,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;lab8.c: 90:     ANSELbits.ANS1 = 1;
 [e :U 146 ]
 "91
-[; ;lab8.c: 91:     TRISA = 15;
+[; ;lab8.c: 91:     TRISA = 3;
 [e = . . _PORTAbits 0 4 -> -> 0 `i `uc ]
 "92
 [; ;lab8.c: 92:     TRISC = 0;
@@ -678,22 +678,21 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;lab8.c: 118:     PIE1bits.ADIE = 1;
 [e = _ANSELH -> -> 0 `i `uc ]
 "119
-[; ;lab8.c: 119: 
+[; ;lab8.c: 119:     dispvar = 0;
 [e = . . _ANSELbits 0 0 -> -> 1 `i `uc ]
 "120
-[; ;lab8.c: 120:     dispvar = 0;
+[; ;lab8.c: 120:     while (1)
 [e = . . _ANSELbits 0 1 -> -> 1 `i `uc ]
 "121
-[; ;lab8.c: 121:     while (1)
-[e = _TRISA -> -> 15 `i `uc ]
+[; ;lab8.c: 121:     {}
+[e = _TRISA -> -> 3 `i `uc ]
 "122
-[; ;lab8.c: 122:     {}
+[; ;lab8.c: 122: 
 [e = _TRISC -> -> 0 `i `uc ]
 "123
-[; ;lab8.c: 123: 
+[; ;lab8.c: 123: }
 [e = _TRISD -> -> 0 `i `uc ]
 "124
-[; ;lab8.c: 124: }
 [e = _PORTA -> -> 0 `i `uc ]
 "125
 [e = _PORTC -> -> 0 `i `uc ]
@@ -735,16 +734,16 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . . _INTCONbits 0 6 -> -> 1 `i `uc ]
 "148
 [e = . . _PIE1bits 0 6 -> -> 1 `i `uc ]
-"150
+"149
 [e = _dispvar -> -> 0 `i `uc ]
-"151
+"150
 [e :U 150 ]
-"152
+"151
 {
 }
 [e :U 149 ]
 [e $U 150  ]
 [e :U 151 ]
-"154
+"153
 [e :UE 148 ]
 }

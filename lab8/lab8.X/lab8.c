@@ -51,21 +51,21 @@ unsigned char tabla[] = {0b00111111,//0
 void __interrupt() isr(void){    // only process timer-triggered interrupts
     //interrupcion del adc
     if (ADIF == 1) {
-//        PORTC = ADRESH;
-//        ADCON0bits.GO = 1;
+        //multiplexacion de canales para el adc
+        //canal LEDs
         if(ADCON0bits.CHS == 0){
-            PORTC = ADRESH;
-            ADCON0bits.CHS = 1;
+            PORTC = ADRESH;     //se actualizan los LEDs con valor de pot0
+            ADCON0bits.CHS = 1; //se cambia a canal de displays
         }
+        //canal displays
         else{
-            c = ADRESH;
-            ADCON0bits.CHS = 0;
+            c = ADRESH;        //se actualizan los displays con valor de pot1
+            ADCON0bits.CHS = 0;//se cambia a canal de LEDs
         }
-        __delay_us(50);
-        PIR1bits.ADIF = 0;
-        ADCON0bits.GO = 1;
+        __delay_us(50);   //delay de 50 ms
+        PIR1bits.ADIF = 0;//interrupcion de adc
+        ADCON0bits.GO = 1;//inicio de la siguiente conversión
     }
-        //__delay_us(50);
     //interrupcion del tmr0
      if (T0IF == 1) {
         cen = c / 100;    //se obtienen las centenas al dividir c entre 100
@@ -116,22 +116,22 @@ void main(void) {
     OSCCONbits.SCS   = 1;//reloj interno
     //configuracion in out
     ANSELH = 0; //Pines digitales
-    ANSELbits.ANS0  = 1;
+    ANSELbits.ANS0  = 1;//RA0 y RA1 como pines analogicos
     ANSELbits.ANS1  = 1;
-    TRISA  = 15;
+    TRISA  = 3; //RA0 y RA1 como inputs y los demas como outputs
     TRISC  = 0;
     TRISD  = 0;
     PORTA  = 0;//se limpian los puertos
     PORTC  = 0;
     PORTD  = 0;
     //configuracion adc
-    ADCON0bits.ADCS = 0;
-    ADCON0bits.CHS0 = 0;
-    ADCON0bits.ADON = 1;
-    ADCON0bits.GO = 1;
-    ADCON1bits.VCFG1 = 0;
-    ADCON1bits.VCFG0 = 0;
-    ADCON1bits.ADFM = 0;
+    ADCON0bits.ADCS = 0;//00 se selecciona Fosc/2 para conversion (2us full TAD)
+    ADCON0bits.CHS0 = 0;//se selecciona el canal AN0
+    ADCON0bits.ADON = 1;//se enciende el adc
+    ADCON0bits.GO = 1;  //se comienza la conversion adc
+    ADCON1bits.VCFG1 = 0;//se ponen los voltajes de referencia internos del PIC
+    ADCON1bits.VCFG0 = 0;//0V a 5V
+    ADCON1bits.ADFM = 0; //se justifica a la izquierda, vals más significativos
     //configuracion tmr0
     OPTION_REGbits.T0CS = 0; //reloj interno (low to high)
     OPTION_REGbits.PSA  = 0; //prescaler 
@@ -144,9 +144,8 @@ void main(void) {
     //configuracion interrupciones
     INTCONbits.GIE  = 1; //se habilitan las interrupciones globales
     INTCONbits.T0IE = 1; //interrupcion overflow tmr0 habilitada
-    INTCONbits.PEIE = 1;
-    PIE1bits.ADIE = 1;
-    //PIR1bits.ADIF = 0;
+    INTCONbits.PEIE = 1; //se habilitan las interrupciones de los perifericos
+    PIE1bits.ADIE = 1;   //se habilitan las interrupciones por adc
     dispvar = 0;
     while (1)
     {}
