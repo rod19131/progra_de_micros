@@ -3,7 +3,7 @@
  * Dispositivo: PIC16F887
  * Autor:       Jose Alejandro Rodriguez Porras
  * Compilador:  XC8 MPLABX V5.40
- * Programa:    Laboratorio7: LEDs y 7seg displays controlados por pots
+ * Programa:    Laboratorio8: LEDs y 7seg displays controlados por pots
  * Hardware:    2 pots y 3 transistores en puerto A, 8 LEDs en el puerto C y 
  *              7seg disps en PORTD
  * Creado:      19 de abril de 2021, 1:00 AM
@@ -110,7 +110,7 @@ void main(void) {
     d = 0;
     //configuraciones
     //configuracion reloj
-    OSCCONbits.IRCF2 = 1;//001, Frecuencia de reloj 1 MHz
+    OSCCONbits.IRCF2 = 1;//100, Frecuencia de reloj 1 MHz
     OSCCONbits.IRCF1 = 0;
     OSCCONbits.IRCF0 = 0;
     OSCCONbits.SCS   = 1;//reloj interno
