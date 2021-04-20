@@ -2507,6 +2507,7 @@ extern __bank0 __bit __timeout;
 #pragma config BOR4V=BOR40V
 
 unsigned char c;
+unsigned char d;
 unsigned char cen;
 unsigned char dec;
 unsigned char uni;
@@ -2529,15 +2530,25 @@ unsigned char tabla[] = {0b00111111,
 void __attribute__((picinterrupt(("")))) isr(void){
 
     if (ADIF == 1) {
-        PORTC = ADRESH;
-        ADCON0bits.GO = 1;
-        PIR1bits.ADIF = 0;
 
+
+        if(ADCON0bits.CHS == 0){
+            PORTC = ADRESH;
+            ADCON0bits.CHS = 1;
+        }
+        else{
+            c = ADRESH;
+            ADCON0bits.CHS = 0;
+        }
+        _delay((unsigned long)((50)*(4000000/4000000.0)));
+        PIR1bits.ADIF = 0;
+        ADCON0bits.GO = 1;
     }
 
-    if (T0IF == 1) {
-        cen = PORTC / 100;
-        cenres = PORTC % 100;
+
+     if (T0IF == 1) {
+        cen = c / 100;
+        cenres = c % 100;
         dec = cenres / 10;
         uni = cenres % 10;
         TMR0 = 100;
@@ -2575,6 +2586,7 @@ void __attribute__((picinterrupt(("")))) isr(void){
 }
 
 void main(void) {
+    d = 0;
 
 
     OSCCONbits.IRCF2 = 1;
@@ -2616,17 +2628,6 @@ void main(void) {
 
     dispvar = 0;
     while (1)
-    {if (ADCON0bits.GO == 0) {
-        if(ADCON0bits.CHS == 0){
-            PORTC = ADRESH;
-            ADCON0bits.CHS = 1;
-        }
-        else{
-            PORTD = ADRESH;
-            ADCON0bits.CHS = 0;
-        }
-        _delay((unsigned long)((50)*(500000/4000000.0)));
-        ADCON0bits.GO = 1;
-    }}
+    {}
 
 }

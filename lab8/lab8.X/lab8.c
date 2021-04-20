@@ -9,7 +9,7 @@
  * Creado:      19 de abril de 2021, 1:00 AM
  * Ultima modificacion: 19 de abril de 2021
  */
-#define _XTAL_FREQ 500000
+#define _XTAL_FREQ 4000000
 #include <xc.h>
 #pragma config FOSC=INTRC_NOCLKOUT //Oscilador interno sin salida
 #pragma config WDTE=OFF           //Reinicio repetitivo del pic
@@ -28,6 +28,7 @@
 #pragma config BOR4V=BOR40V //Reinicio abajo de 4V 
 //variables
 unsigned char c;       //contador de botones
+unsigned char d;
 unsigned char cen;     //centenas
 unsigned char dec;     //decenas
 unsigned char uni;     //unidades
@@ -50,15 +51,25 @@ unsigned char tabla[] = {0b00111111,//0
 void __interrupt() isr(void){    // only process timer-triggered interrupts
     //interrupcion del adc
     if (ADIF == 1) {
-        PORTC = ADRESH;
-        ADCON0bits.GO = 1;
+//        PORTC = ADRESH;
+//        ADCON0bits.GO = 1;
+        if(ADCON0bits.CHS == 0){
+            PORTC = ADRESH;
+            ADCON0bits.CHS = 1;
+        }
+        else{
+            c = ADRESH;
+            ADCON0bits.CHS = 0;
+        }
+        __delay_us(50);
         PIR1bits.ADIF = 0;
-        //__delay_us(50);
+        ADCON0bits.GO = 1;
     }
+        //__delay_us(50);
     //interrupcion del tmr0
-    if (T0IF == 1) {
-        cen = PORTC / 100;    //se obtienen las centenas al dividir c entre 100
-        cenres = PORTC % 100; //se obtiene el residuo de la division entre 100
+     if (T0IF == 1) {
+        cen = c / 100;    //se obtienen las centenas al dividir c entre 100
+        cenres = c % 100; //se obtiene el residuo de la division entre 100
         dec = cenres / 10;//se obtienen las decenas al dividir el residuo entre 10
         uni = cenres % 10;//se obtienen las unidades al dividir el residuo entre 10
         TMR0 = 100;
@@ -96,6 +107,7 @@ void __interrupt() isr(void){    // only process timer-triggered interrupts
 }
 
 void main(void) {
+    d = 0;
     //configuraciones
     //configuracion reloj
     OSCCONbits.IRCF2 = 1;//001, Frecuencia de reloj 1 MHz
@@ -137,17 +149,6 @@ void main(void) {
     //PIR1bits.ADIF = 0;
     dispvar = 0;
     while (1)
-    {if (ADCON0bits.GO == 0) {
-        if(ADCON0bits.CHS == 0){
-            PORTC = ADRESH;
-            ADCON0bits.CHS = 1;
-        }
-        else{
-            PORTD = ADRESH;
-            ADCON0bits.CHS = 0;
-        }
-        __delay_us(50);
-        ADCON0bits.GO = 1;
-    }}
+    {}
           
 }
