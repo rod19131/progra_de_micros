@@ -2553,9 +2553,9 @@ void __attribute__((picinterrupt(("")))) isr(void){
         uni = cenres % 10;
         TMR0 = 100;
         INTCONbits.T0IF = 0;
-        PORTBbits.RB2 = 0;
-        PORTBbits.RB3 = 0;
-        PORTBbits.RB4 = 0;
+        PORTAbits.RA4 = 0;
+        PORTAbits.RA6 = 0;
+        PORTAbits.RA7 = 0;
         PORTD = 0;
 
         switch(dispvar) {

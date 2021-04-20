@@ -74,9 +74,9 @@ void __interrupt() isr(void){    // only process timer-triggered interrupts
         uni = cenres % 10;//se obtienen las unidades al dividir el residuo entre 10
         TMR0 = 100;
         INTCONbits.T0IF = 0; //se baja la bandera de interrupcion del tmr0
-        PORTBbits.RB2 = 0;
-        PORTBbits.RB3 = 0;
-        PORTBbits.RB4 = 0;
+        PORTAbits.RA4 = 0;
+        PORTAbits.RA6 = 0;
+        PORTAbits.RA7 = 0;
         PORTD = 0;
         //multiplexacion de los displays
         switch(dispvar) {
