@@ -13,12 +13,12 @@
 %PSECTS
 $dist/default/production\lab9.X.production.o
 cinit CODE 0 F F 4 2
-text1 CODE 0 68 68 4B 2
-maintext CODE 0 13 13 55 2
+text1 CODE 0 13 13 6D 2
+maintext CODE 0 80 80 5D 2
 cstackCOMMON COMMON 1 70 70 5 1
 intentry CODE 0 4 4 8 2
 config CONFIG 4 2007 2007 2 2
-$C:\Users\AlejandroRodriguez\AppData\Local\Temp\sj4k.o
+$C:\Users\AlejandroRodriguez\AppData\Local\Temp\s12ac.o
 reset_vec CODE 0 0 0 3 2
 end_init CODE 0 C C 3 2
 config CONFIG 4 2007 2007 2 2
@@ -37,13 +37,13 @@ BANK1 A0-EF 1
 BANK2 110-16F 1
 BANK3 190-1EF 1
 CONST 3-3 2
-CONST B3-1FFF 2
+CONST DD-1FFF 2
 ENTRY 3-3 2
-ENTRY B3-1FFF 2
+ENTRY DD-1FFF 2
 IDLOC 2000-2003 2
 STACK 110-16F 1
 CODE 3-3 2
-CODE B3-1FFF 2
+CODE DD-1FFF 2
 SFR0 0-1F 1
 SFR1 80-9F 1
 SFR2 100-10F 1
@@ -51,9 +51,9 @@ SFR3 180-18F 1
 COMMON 75-7D 1
 EEDATA 2100-21FF 2
 STRCODE 3-3 2
-STRCODE B3-1FFF 2
+STRCODE DD-1FFF 2
 STRING 3-3 2
-STRING B3-1FFF 2
+STRING DD-1FFF 2
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
 # The beginning of the section is indicated by %LINETAB.
@@ -68,63 +68,68 @@ STRING B3-1FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\lab9.X.production.o
-F cinit CODE >468:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sj4k.s
-F cinit CODE >471:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sj4k.s
-F cinit CODE >477:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sj4k.s
-F cinit CODE >479:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sj4k.s
-10 cinit CODE >480:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sj4k.s
+F cinit CODE >470:C:\Users\AlejandroRodriguez\AppData\Local\Temp\s12ac.s
+F cinit CODE >473:C:\Users\AlejandroRodriguez\AppData\Local\Temp\s12ac.s
+F cinit CODE >479:C:\Users\AlejandroRodriguez\AppData\Local\Temp\s12ac.s
+F cinit CODE >481:C:\Users\AlejandroRodriguez\AppData\Local\Temp\s12ac.s
+10 cinit CODE >482:C:\Users\AlejandroRodriguez\AppData\Local\Temp\s12ac.s
 4 intentry CODE >31:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
-68 text1 CODE >31:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
-68 text1 CODE >33:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
-6E text1 CODE >36:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
-77 text1 CODE >37:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
-7D text1 CODE >38:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
-87 text1 CODE >39:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
-9B text1 CODE >40:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
-9F text1 CODE >41:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
-A0 text1 CODE >44:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
-A2 text1 CODE >45:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
-A4 text1 CODE >47:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
-A8 text1 CODE >48:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
-AB text1 CODE >49:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
-AC text1 CODE >51:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
-13 maintext CODE >53:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
-13 maintext CODE >56:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
-17 maintext CODE >57:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
-18 maintext CODE >59:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
-1B maintext CODE >60:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
-1C maintext CODE >61:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
-1D maintext CODE >62:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
-21 maintext CODE >63:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
-22 maintext CODE >64:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
-25 maintext CODE >65:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
-26 maintext CODE >67:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
-29 maintext CODE >68:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
-2A maintext CODE >69:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
-2B maintext CODE >70:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
-31 maintext CODE >71:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
-32 maintext CODE >72:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
-33 maintext CODE >73:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
-37 maintext CODE >75:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
-3A maintext CODE >76:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
-3C maintext CODE >77:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
-40 maintext CODE >78:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
-44 maintext CODE >79:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
-46 maintext CODE >80:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
-48 maintext CODE >82:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
-49 maintext CODE >83:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
-4B maintext CODE >84:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
-4C maintext CODE >85:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
-50 maintext CODE >86:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
-51 maintext CODE >87:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
-54 maintext CODE >89:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
-57 maintext CODE >90:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
-5A maintext CODE >91:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
-5B maintext CODE >92:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
-5C maintext CODE >94:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
-5F maintext CODE >95:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
-5F maintext CODE >96:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
-63 maintext CODE >97:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+13 text1 CODE >31:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+13 text1 CODE >33:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+19 text1 CODE >36:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+22 text1 CODE >37:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+28 text1 CODE >38:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+32 text1 CODE >39:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+46 text1 CODE >40:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+4A text1 CODE >41:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+4B text1 CODE >44:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+51 text1 CODE >45:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+5B text1 CODE >46:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+6F text1 CODE >47:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+71 text1 CODE >49:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+75 text1 CODE >50:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+78 text1 CODE >51:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+79 text1 CODE >53:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+80 maintext CODE >55:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+80 maintext CODE >58:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+84 maintext CODE >59:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+85 maintext CODE >61:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+88 maintext CODE >62:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+89 maintext CODE >63:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+8A maintext CODE >64:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+8E maintext CODE >65:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+8F maintext CODE >66:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+92 maintext CODE >67:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+93 maintext CODE >69:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+97 maintext CODE >70:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+98 maintext CODE >71:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+9B maintext CODE >72:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+9C maintext CODE >73:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+9D maintext CODE >74:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+A0 maintext CODE >75:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+A4 maintext CODE >78:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+A7 maintext CODE >79:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+A9 maintext CODE >80:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+AD maintext CODE >81:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+B1 maintext CODE >82:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+B3 maintext CODE >83:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+B5 maintext CODE >85:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+B8 maintext CODE >86:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+BE maintext CODE >87:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+C0 maintext CODE >88:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+C1 maintext CODE >90:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+C2 maintext CODE >91:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+C4 maintext CODE >92:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+C5 maintext CODE >93:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+C9 maintext CODE >94:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+CA maintext CODE >95:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+CD maintext CODE >96:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+CE maintext CODE >98:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+D1 maintext CODE >99:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+D4 maintext CODE >100:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+D5 maintext CODE >101:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+D6 maintext CODE >103:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
+D9 maintext CODE >104:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -138,7 +143,7 @@ AC text1 CODE >51:D:\AlejandroDigital\progra_de_micros\lab9\lab9.X\lab9.c
 # is the name of the object file in which the symbol was defined.
 %SYMTAB
 ___latbits 2 0 ABS 0 - dist/default/production\lab9.X.production.o
-__Hspace_0 B3 0 ABS 0 - -
+__Hspace_0 DD 0 ABS 0 - -
 __Hspace_1 75 0 ABS 0 - -
 __Hspace_2 0 0 ABS 0 - -
 __Hspace_3 0 0 ABS 0 - -
@@ -146,18 +151,18 @@ __Hspace_4 4010 0 ABS 0 - -
 __Heeprom_data 0 0 EEDATA 3 eeprom_data -
 __Hstrings 0 0 ABS 0 strings -
 _ADIF 66 0 ABS 0 - dist/default/production\lab9.X.production.o
-___sp 0 0 STACK 2 stack C:\Users\AlejandroRodriguez\AppData\Local\Temp\sj4k.o
-_main 26 0 CODE 0 maintext dist/default/production\lab9.X.production.o
+___sp 0 0 STACK 2 stack C:\Users\AlejandroRodriguez\AppData\Local\Temp\s12ac.o
+_main 100 0 CODE 0 maintext dist/default/production\lab9.X.production.o
 btemp 7E 0 ABS 0 - dist/default/production\lab9.X.production.o
-start 18 0 CODE 0 init C:\Users\AlejandroRodriguez\AppData\Local\Temp\sj4k.o
+start 18 0 CODE 0 init C:\Users\AlejandroRodriguez\AppData\Local\Temp\s12ac.o
 __size_of_main 0 0 ABS 0 - dist/default/production\lab9.X.production.o
 __Hpowerup 0 0 CODE 0 powerup -
-intlevel0 0 0 ENTRY 0 functab C:\Users\AlejandroRodriguez\AppData\Local\Temp\sj4k.o
-intlevel1 0 0 ENTRY 0 functab C:\Users\AlejandroRodriguez\AppData\Local\Temp\sj4k.o
-intlevel2 0 0 ENTRY 0 functab C:\Users\AlejandroRodriguez\AppData\Local\Temp\sj4k.o
-intlevel3 0 0 ENTRY 0 functab C:\Users\AlejandroRodriguez\AppData\Local\Temp\sj4k.o
-intlevel4 0 0 ENTRY 0 functab C:\Users\AlejandroRodriguez\AppData\Local\Temp\sj4k.o
-intlevel5 0 0 ENTRY 0 functab C:\Users\AlejandroRodriguez\AppData\Local\Temp\sj4k.o
+intlevel0 0 0 ENTRY 0 functab C:\Users\AlejandroRodriguez\AppData\Local\Temp\s12ac.o
+intlevel1 0 0 ENTRY 0 functab C:\Users\AlejandroRodriguez\AppData\Local\Temp\s12ac.o
+intlevel2 0 0 ENTRY 0 functab C:\Users\AlejandroRodriguez\AppData\Local\Temp\s12ac.o
+intlevel3 0 0 ENTRY 0 functab C:\Users\AlejandroRodriguez\AppData\Local\Temp\s12ac.o
+intlevel4 0 0 ENTRY 0 functab C:\Users\AlejandroRodriguez\AppData\Local\Temp\s12ac.o
+intlevel5 0 0 ENTRY 0 functab C:\Users\AlejandroRodriguez\AppData\Local\Temp\s12ac.o
 _OSCCONbits 8F 0 ABS 0 - dist/default/production\lab9.X.production.o
 wtemp0 7E 0 ABS 0 - dist/default/production\lab9.X.production.o
 __Hfunctab 0 0 ENTRY 0 functab -
@@ -166,12 +171,13 @@ _ADRESH 1E 0 ABS 0 - dist/default/production\lab9.X.production.o
 _ADRESL 9E 0 ABS 0 - dist/default/production\lab9.X.production.o
 _ANSELH 189 0 ABS 0 - dist/default/production\lab9.X.production.o
 _CCPR1L 15 0 ABS 0 - dist/default/production\lab9.X.production.o
+_CCPR2L 1B 0 ABS 0 - dist/default/production\lab9.X.production.o
 __Lmaintext 0 0 ABS 0 maintext -
-___stackhi 0 0 ABS 0 - C:\Users\AlejandroRodriguez\AppData\Local\Temp\sj4k.o
-___stacklo 0 0 ABS 0 - C:\Users\AlejandroRodriguez\AppData\Local\Temp\sj4k.o
+___stackhi 0 0 ABS 0 - C:\Users\AlejandroRodriguez\AppData\Local\Temp\s12ac.o
+___stacklo 0 0 ABS 0 - C:\Users\AlejandroRodriguez\AppData\Local\Temp\s12ac.o
 start_initialization 1E 0 CODE 0 cinit dist/default/production\lab9.X.production.o
 _TRISCbits 87 0 ABS 0 - dist/default/production\lab9.X.production.o
-___int_sp 0 0 STACK 2 stack C:\Users\AlejandroRodriguez\AppData\Local\Temp\sj4k.o
+___int_sp 0 0 STACK 2 stack C:\Users\AlejandroRodriguez\AppData\Local\Temp\s12ac.o
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 ABS 0 bank2 -
@@ -206,17 +212,17 @@ __Lsfr3 0 0 ABS 0 sfr3 -
 __Ltext 0 0 ABS 0 text -
 __HcstackCOMMON 0 0 ABS 0 cstackCOMMON -
 _PR2 92 0 ABS 0 - dist/default/production\lab9.X.production.o
-__S0 B3 0 ABS 0 - -
+__S0 DD 0 ABS 0 - -
 __S1 75 0 ABS 0 - -
 __S2 0 0 ABS 0 - -
 __S3 0 0 ABS 0 - -
-_isr D0 0 CODE 0 text1 dist/default/production\lab9.X.production.o
+_isr 26 0 CODE 0 text1 dist/default/production\lab9.X.production.o
 saved_w 7E 0 ABS 0 - dist/default/production\lab9.X.production.o
-__end_of_isr 166 0 CODE 0 text1 dist/default/production\lab9.X.production.o
+__end_of_isr 100 0 CODE 0 text1 dist/default/production\lab9.X.production.o
 __Lintentry 8 0 CODE 0 intentry -
-reset_vec 0 0 CODE 0 reset_vec C:\Users\AlejandroRodriguez\AppData\Local\Temp\sj4k.o
+reset_vec 0 0 CODE 0 reset_vec C:\Users\AlejandroRodriguez\AppData\Local\Temp\s12ac.o
 _PIE1bits 8C 0 ABS 0 - dist/default/production\lab9.X.production.o
-__pmaintext 26 0 CODE 0 maintext dist/default/production\lab9.X.production.o
+__pmaintext 100 0 CODE 0 maintext dist/default/production\lab9.X.production.o
 __Lcommon 0 0 ABS 0 common -
 __Lconfig 0 0 CONFIG 4 config -
 _ADCON0bits 1F 0 ABS 0 - dist/default/production\lab9.X.production.o
@@ -233,7 +239,7 @@ end_of_initialization 1E 0 CODE 0 cinit dist/default/production\lab9.X.productio
 __Hintentry 18 0 CODE 0 intentry -
 __Lstrings 0 0 ABS 0 strings -
 __Hreset_vec 6 0 CODE 0 reset_vec -
-__ptext1 D0 0 CODE 0 text1 dist/default/production\lab9.X.production.o
+__ptext1 26 0 CODE 0 text1 dist/default/production\lab9.X.production.o
 __Lpowerup 0 0 CODE 0 powerup -
 __Leeprom_data 0 0 EEDATA 3 eeprom_data -
 __Lreset_vec 0 0 CODE 0 reset_vec -
@@ -243,10 +249,10 @@ __Lclrtext 0 0 ABS 0 clrtext -
 _ANSELbits 188 0 ABS 0 - dist/default/production\lab9.X.production.o
 __pcstackCOMMON 70 0 COMMON 1 cstackCOMMON dist/default/production\lab9.X.production.o
 __Hend_init 1E 0 CODE 0 end_init -
-__end_of_main D0 0 CODE 0 maintext dist/default/production\lab9.X.production.o
+__end_of_main 1BA 0 CODE 0 maintext dist/default/production\lab9.X.production.o
+_CCP2CONbits 1D 0 ABS 0 - dist/default/production\lab9.X.production.o
 _PORTA 5 0 ABS 0 - dist/default/production\lab9.X.production.o
 _PORTC 7 0 ABS 0 - dist/default/production\lab9.X.production.o
-_PORTD 8 0 ABS 0 - dist/default/production\lab9.X.production.o
 _TRISA 85 0 ABS 0 - dist/default/production\lab9.X.production.o
 _TRISC 87 0 ABS 0 - dist/default/production\lab9.X.production.o
 __Hram 0 0 ABS 0 ram -
@@ -283,7 +289,7 @@ _CCP1CONbits 17 0 ABS 0 - dist/default/production\lab9.X.production.o
 # All other numeric quantities are in decimal.
 %SEGMENTS
 cstackCOMMON 1 70 70 5 1
-intentry 0 4 8 AF 2
+intentry 0 4 8 D9 2
 reset_vec 0 0 0 3 2
 # %NOTES Section
 # This section contains data of all the note-psects.  The beginning of the section

@@ -2514,14 +2514,16 @@ void __attribute__((picinterrupt(("")))) isr(void){
 
 
         if(ADCON0bits.CHS == 0){
-            CCPR1L = (ADRESH>>1)+128;
+            CCPR1L = (ADRESH>>1)+124;
             CCP1CONbits.DC1B1 = ADRESH & 0b01;
             CCP1CONbits.DC1B0 = (ADRESL>>7);
             ADCON0bits.CHS = 1;
         }
 
         else{
-            PORTD = ADRESH;
+            CCPR2L = (ADRESH>>1)+124;
+            CCP2CONbits.DC2B1 = ADRESH & 0b01;
+            CCP2CONbits.DC2B0 = (ADRESL>>7);
             ADCON0bits.CHS = 0;
         }
         _delay((unsigned long)((50)*(8000000/4000000.0)));
@@ -2544,20 +2546,26 @@ void main(void) {
     PORTA = 0;
     PORTC = 0;
 
-    ADCON1bits.ADFM = 0;
-    ADCON1bits.VCFG0 = 0;
-    ADCON1bits.VCFG1 = 0;
     ADCON0bits.ADCS = 2;
     ADCON0bits.CHS0 = 0;
+    ADCON1bits.VCFG1 = 0;
+    ADCON1bits.VCFG0 = 0;
+    ADCON1bits.ADFM = 0;
     ADCON0bits.ADON = 1;
     _delay((unsigned long)((50)*(8000000/4000000.0)));
 
+
     TRISCbits.TRISC2 = 1;
-    PR2 = 249;
+    PR2 = 250;
     CCP1CONbits.P1M = 0;
     CCP1CONbits.CCP1M = 0b1100;
     CCPR1L = 0x0f;
     CCP1CONbits.DC1B = 0;
+
+    TRISCbits.TRISC1 = 1;
+    CCP2CONbits.CCP2M = 0b1100;
+    CCPR2L = 0x0f;
+    CCP2CONbits.DC2B1 = 0;
 
     PIR1bits.TMR2IF = 0;
     T2CONbits.T2CKPS = 0b11;
@@ -2565,6 +2573,7 @@ void main(void) {
     while(PIR1bits.TMR2IF == 0);
     PIR1bits.TMR2IF = 0;
     TRISCbits.TRISC2 = 0;
+    TRISCbits.TRISC1 = 0;
 
     PIR1bits.ADIF = 0;
     PIE1bits.ADIE = 1;
@@ -2572,9 +2581,5 @@ void main(void) {
     INTCONbits.GIE = 1;
 
     ADCON0bits.GO = 1;
-    while (1)
-    {if (ADCON0bits.GO == 0){
-        ADCON0bits.GO = 1;
-    }
-    }
+    while (1){}
 }
