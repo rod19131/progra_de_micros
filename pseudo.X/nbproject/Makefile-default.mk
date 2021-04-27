@@ -57,7 +57,7 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=pseudo.s
+SOURCEFILES_QUOTED_IF_SPACED=pseudo.c
 
 # Object Files Quoted if spaced
 OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/pseudo.o
@@ -67,7 +67,7 @@ POSSIBLE_DEPFILES=${OBJECTDIR}/pseudo.o.d
 OBJECTFILES=${OBJECTDIR}/pseudo.o
 
 # Source Files
-SOURCEFILES=pseudo.s
+SOURCEFILES=pseudo.c
 
 
 
@@ -94,23 +94,7 @@ MP_PROCESSOR_OPTION=PIC16F887
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: pic-as-assembler
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
-${OBJECTDIR}/pseudo.o: pseudo.s  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/pseudo.o 
-	${MP_AS} -mcpu=PIC16F887 -c \
-	-o ${OBJECTDIR}/pseudo.o \
-	pseudo.s \
-	 -misa=std -msummary=+mem,-psect,-class,-hex,-file,-sha1,-sha256,-xml,-xmlfull -fmax-errors=20 -mwarn=0 -xassembler-with-cpp
-	
 else
-${OBJECTDIR}/pseudo.o: pseudo.s  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/pseudo.o 
-	${MP_AS} -mcpu=PIC16F887 -c \
-	-o ${OBJECTDIR}/pseudo.o \
-	pseudo.s \
-	 -misa=std -msummary=+mem,-psect,-class,-hex,-file,-sha1,-sha256,-xml,-xmlfull -fmax-errors=20 -mwarn=0 -xassembler-with-cpp
-	
 endif
 
 # ------------------------------------------------------------------------------------
