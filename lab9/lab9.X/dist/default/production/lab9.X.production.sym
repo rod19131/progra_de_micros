@@ -125,7 +125,7 @@ intentry 8 1B9 CODE 8 0
 cstackCOMMON 70 74 COMMON 70 1
 %locals
 dist/default/production\lab9.X.production.o
-C:\Users\AlejandroRodriguez\AppData\Local\Temp\s12ac.s
+C:\Users\AlejandroRodriguez\AppData\Local\Temp\s1pc.s
 470 F 0 CODE 0
 473 F 0 CODE 0
 479 F 0 CODE 0
@@ -170,8 +170,8 @@ lab9.c
 99 D1 0 CODE 0
 100 D4 0 CODE 0
 101 D5 0 CODE 0
-103 D6 0 CODE 0
-104 D9 0 CODE 0
+102 D6 0 CODE 0
+103 D9 0 CODE 0
 31 13 0 CODE 0
 33 13 0 CODE 0
 36 19 0 CODE 0

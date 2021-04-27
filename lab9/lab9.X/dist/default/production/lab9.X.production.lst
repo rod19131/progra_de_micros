@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.31 build 20201012212115 
-                                                                                               Mon Apr 26 20:08:03 2021
+                                                                                               Tue Apr 27 11:13:23 2021
 
 Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1 
      1                           	processor	16F887
@@ -374,16 +374,16 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
    360  009B  121F               	bcf	31,4	;volatile
    361  009C                     l697:
    362                           
-   363                           ;lab9.c: 73: 
+   363                           ;lab9.c: 73:     ADCON0bits.GO = 1;
    364  009C  139F               	bcf	31,7	;volatile
    365  009D                     l699:
    366                           
-   367                           ;lab9.c: 74:     ADCON0bits.GO = 1;
+   367                           ;lab9.c: 74:     while (1){}
    368  009D  1283               	bcf	3,5	;RP0=0, select bank0
    369  009E  1303               	bcf	3,6	;RP1=0, select bank0
    370  009F  141F               	bsf	31,0	;volatile
    371                           
-   372                           ;lab9.c: 75:     while (1){}
+   372                           ;lab9.c: 75: }
    373  00A0  3021               	movlw	33
    374  00A1  00F4               	movwf	??_main
    375  00A2                     u67:
@@ -816,7 +816,7 @@ DATA                 0      0       0      12        0.0%
 
 
 Microchip Technology PIC Macro Assembler V2.31 build 20201012212115 
-Symbol Table                                                                                   Mon Apr 26 20:08:03 2021
+Symbol Table                                                                                   Tue Apr 27 11:13:23 2021
 
                      l61 00C9                       l62 00D9                       l63 00D9  
                      l59 00C5                       u50 00C9                       u51 00C8  

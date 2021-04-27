@@ -2579,7 +2579,6 @@ void main(void) {
     PIE1bits.ADIE = 1;
     INTCONbits.PEIE = 1;
     INTCONbits.GIE = 1;
-
     ADCON0bits.GO = 1;
     while (1){}
 }

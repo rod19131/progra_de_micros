@@ -32,14 +32,14 @@ void __interrupt() isr(void){    // only process timer-triggered interrupts
     //interrupcion del adc
     if (ADIF == 1) {
         //multiplexacion de canales para el adc
-        //canal LEDs
+        //canal pwm1
         if(ADCON0bits.CHS == 0){
             CCPR1L = (ADRESH>>1)+124;//para que el servo1 pueda girar 180 grados
             CCP1CONbits.DC1B1 = ADRESH & 0b01; //añadir precision/resolucion
             CCP1CONbits.DC1B0 = (ADRESL>>7);
             ADCON0bits.CHS = 1; //se cambia al canal del segundo pot
         }
-        //canal displays
+        //canal pwm2
         else{
             CCPR2L = (ADRESH>>1)+124;//para que el servo0 pueda girar 180 grados
             CCP2CONbits.DC2B1 = ADRESH & 0b01;//añadir precision/resolucion
@@ -99,7 +99,6 @@ void main(void) {
     PIE1bits.ADIE = 1;   //se habilitan las interrupciones por adc
     INTCONbits.PEIE = 1; //se habilitan las interrupciones de los perifericos
     INTCONbits.GIE  = 1; //se habilitan las interrupciones globales
-    //PIE1bits.TMR2IE = 1; //se habilitan las interrupciones del tmr2
     ADCON0bits.GO = 1;  //se comienza la conversion adc
     while (1){}      
 }
