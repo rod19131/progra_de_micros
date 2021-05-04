@@ -31,7 +31,7 @@
 unsigned char dato = 103;
 //----------------------interrupciones------------------------------------------
 void __interrupt() isr(void){    // only process timer-triggered interrupts
-    //interrupcion del adc
+    //interrupcion de recepcion
     if (PIR1bits.RCIF) {
         PORTB = RCREG;
     }   

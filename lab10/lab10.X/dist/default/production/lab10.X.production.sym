@@ -126,7 +126,7 @@ intentry 8 E3 CODE 8 0
 cstackCOMMON 70 74 COMMON 70 1
 %locals
 dist/default/production\lab10.X.production.o
-C:\Users\AlejandroRodriguez\AppData\Local\Temp\scgk.s
+C:\Users\AlejandroRodriguez\AppData\Local\Temp\sjs0.s
 468 F 0 CODE 0
 471 F 0 CODE 0
 485 F 0 CODE 0

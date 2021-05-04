@@ -1,0 +1,1276 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"543 D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 543:     struct {
+[s S19 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S19 . TMR1IF TMR2IF CCP1IF SSPIF TXIF RCIF ADIF ]
+"542
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 542: typedef union {
+[u S18 `S19 1 ]
+[n S18 . . ]
+"553
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 553: extern volatile PIR1bits_t PIR1bits __attribute__((address(0x00C)));
+[v _PIR1bits `VS18 ~T0 @X0 0 e@12 ]
+"1133
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1133: extern volatile unsigned char TXREG __attribute__((address(0x019)));
+[v _TXREG `Vuc ~T0 @X0 0 e@25 ]
+[v F1256 `(v ~T0 @X0 1 tf1`ul ]
+"92 D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\pic.h
+[v __delay `JF1256 ~T0 @X0 0 e ]
+[p i __delay ]
+[t ~ __interrupt . k ]
+[t T1 __interrupt ]
+[p mainexit ]
+"1868 D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1868:     struct {
+[s S70 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 ]
+[n S70 . SCS LTS HTS OSTS IRCF ]
+"1875
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1875:     struct {
+[s S71 :4 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S71 . . IRCF0 IRCF1 IRCF2 ]
+"1867
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1867: typedef union {
+[u S69 `S70 1 `S71 1 ]
+[n S69 . . . ]
+"1882
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1882: extern volatile OSCCONbits_t OSCCONbits __attribute__((address(0x08F)));
+[v _OSCCONbits `VS69 ~T0 @X0 0 e@143 ]
+"3449
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 3449: extern volatile unsigned char ANSELH __attribute__((address(0x189)));
+[v _ANSELH `Vuc ~T0 @X0 0 e@393 ]
+"3387
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 3387: extern volatile unsigned char ANSEL __attribute__((address(0x188)));
+[v _ANSEL `Vuc ~T0 @X0 0 e@392 ]
+"1416
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1416: extern volatile unsigned char TRISA __attribute__((address(0x085)));
+[v _TRISA `Vuc ~T0 @X0 0 e@133 ]
+"1478
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1478: extern volatile unsigned char TRISB __attribute__((address(0x086)));
+[v _TRISB `Vuc ~T0 @X0 0 e@134 ]
+"166
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 166: extern volatile unsigned char PORTA __attribute__((address(0x005)));
+[v _PORTA `Vuc ~T0 @X0 0 e@5 ]
+"228
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 228: extern volatile unsigned char PORTB __attribute__((address(0x006)));
+[v _PORTB `Vuc ~T0 @X0 0 e@6 ]
+"2562
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 2562:     struct {
+[s S99 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S99 . TX9D TRMT BRGH SENDB SYNC TXEN TX9 CSRC ]
+"2572
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 2572:     struct {
+[s S100 :1 `uc 1 :5 `uc 1 :1 `uc 1 ]
+[n S100 . TXD8 . nTX8 ]
+"2577
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 2577:     struct {
+[s S101 :6 `uc 1 :1 `uc 1 ]
+[n S101 . . TX8_9 ]
+"2561
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 2561: typedef union {
+[u S98 `S99 1 `S100 1 `S101 1 ]
+[n S98 . . . . ]
+"2582
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 2582: extern volatile TXSTAbits_t TXSTAbits __attribute__((address(0x098)));
+[v _TXSTAbits `VS98 ~T0 @X0 0 e@152 ]
+"3341
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 3341:     struct {
+[s S131 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S131 . ABDEN WUE . BRG16 SCKP . RCIDL ABDOVF ]
+"3340
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 3340: typedef union {
+[u S130 `S131 1 ]
+[n S130 . . ]
+"3352
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 3352: extern volatile BAUDCTLbits_t BAUDCTLbits __attribute__((address(0x187)));
+[v _BAUDCTLbits `VS130 ~T0 @X0 0 e@391 ]
+"2642
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 2642: extern volatile unsigned char SPBRG __attribute__((address(0x099)));
+[v _SPBRG `Vuc ~T0 @X0 0 e@153 ]
+"2704
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 2704: extern volatile unsigned char SPBRGH __attribute__((address(0x09A)));
+[v _SPBRGH `Vuc ~T0 @X0 0 e@154 ]
+"1044
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1044:     struct {
+[s S37 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S37 . RX9D OERR FERR ADDEN CREN SREN RX9 SPEN ]
+"1054
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1054:     struct {
+[s S38 :1 `uc 1 :5 `uc 1 :1 `uc 1 ]
+[n S38 . RCD8 . RC9 ]
+"1059
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1059:     struct {
+[s S39 :6 `uc 1 :1 `uc 1 ]
+[n S39 . . nRC8 ]
+"1063
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1063:     struct {
+[s S40 :6 `uc 1 :1 `uc 1 ]
+[n S40 . . RC8_9 ]
+"1043
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1043: typedef union {
+[u S36 `S37 1 `S38 1 `S39 1 `S40 1 ]
+[n S36 . . . . . ]
+"1068
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1068: extern volatile RCSTAbits_t RCSTAbits __attribute__((address(0x018)));
+[v _RCSTAbits `VS36 ~T0 @X0 0 e@24 ]
+"1708
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1708:     struct {
+[s S63 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S63 . TMR1IE TMR2IE CCP1IE SSPIE TXIE RCIE ADIE ]
+"1707
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1707: typedef union {
+[u S62 `S63 1 ]
+[n S62 . . ]
+"1718
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1718: extern volatile PIE1bits_t PIE1bits __attribute__((address(0x08C)));
+[v _PIE1bits `VS62 ~T0 @X0 0 e@140 ]
+"465
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 465:     struct {
+[s S16 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S16 . RBIF INTF T0IF RBIE INTE T0IE PEIE GIE ]
+"475
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 475:     struct {
+[s S17 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S17 . . TMR0IF . TMR0IE ]
+"464
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 464: typedef union {
+[u S15 `S16 1 `S17 1 ]
+[n S15 . . . ]
+"482
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 482: extern volatile INTCONbits_t INTCONbits __attribute__((address(0x00B)));
+[v _INTCONbits `VS15 ~T0 @X0 0 e@11 ]
+"54 D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 54: __asm("INDF equ 00h");
+[; <" INDF equ 00h ;# ">
+"61
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 61: __asm("TMR0 equ 01h");
+[; <" TMR0 equ 01h ;# ">
+"68
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 68: __asm("PCL equ 02h");
+[; <" PCL equ 02h ;# ">
+"75
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 75: __asm("STATUS equ 03h");
+[; <" STATUS equ 03h ;# ">
+"161
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 161: __asm("FSR equ 04h");
+[; <" FSR equ 04h ;# ">
+"168
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 168: __asm("PORTA equ 05h");
+[; <" PORTA equ 05h ;# ">
+"230
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 230: __asm("PORTB equ 06h");
+[; <" PORTB equ 06h ;# ">
+"292
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 292: __asm("PORTC equ 07h");
+[; <" PORTC equ 07h ;# ">
+"354
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 354: __asm("PORTD equ 08h");
+[; <" PORTD equ 08h ;# ">
+"416
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 416: __asm("PORTE equ 09h");
+[; <" PORTE equ 09h ;# ">
+"454
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 454: __asm("PCLATH equ 0Ah");
+[; <" PCLATH equ 0Ah ;# ">
+"461
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 461: __asm("INTCON equ 0Bh");
+[; <" INTCON equ 0Bh ;# ">
+"539
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 539: __asm("PIR1 equ 0Ch");
+[; <" PIR1 equ 0Ch ;# ">
+"595
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 595: __asm("PIR2 equ 0Dh");
+[; <" PIR2 equ 0Dh ;# ">
+"652
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 652: __asm("TMR1 equ 0Eh");
+[; <" TMR1 equ 0Eh ;# ">
+"659
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 659: __asm("TMR1L equ 0Eh");
+[; <" TMR1L equ 0Eh ;# ">
+"666
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 666: __asm("TMR1H equ 0Fh");
+[; <" TMR1H equ 0Fh ;# ">
+"673
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 673: __asm("T1CON equ 010h");
+[; <" T1CON equ 010h ;# ">
+"767
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 767: __asm("TMR2 equ 011h");
+[; <" TMR2 equ 011h ;# ">
+"774
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 774: __asm("T2CON equ 012h");
+[; <" T2CON equ 012h ;# ">
+"845
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 845: __asm("SSPBUF equ 013h");
+[; <" SSPBUF equ 013h ;# ">
+"852
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 852: __asm("SSPCON equ 014h");
+[; <" SSPCON equ 014h ;# ">
+"922
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 922: __asm("CCPR1 equ 015h");
+[; <" CCPR1 equ 015h ;# ">
+"929
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 929: __asm("CCPR1L equ 015h");
+[; <" CCPR1L equ 015h ;# ">
+"936
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 936: __asm("CCPR1H equ 016h");
+[; <" CCPR1H equ 016h ;# ">
+"943
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 943: __asm("CCP1CON equ 017h");
+[; <" CCP1CON equ 017h ;# ">
+"1040
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1040: __asm("RCSTA equ 018h");
+[; <" RCSTA equ 018h ;# ">
+"1135
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1135: __asm("TXREG equ 019h");
+[; <" TXREG equ 019h ;# ">
+"1142
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1142: __asm("RCREG equ 01Ah");
+[; <" RCREG equ 01Ah ;# ">
+"1149
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1149: __asm("CCPR2 equ 01Bh");
+[; <" CCPR2 equ 01Bh ;# ">
+"1156
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1156: __asm("CCPR2L equ 01Bh");
+[; <" CCPR2L equ 01Bh ;# ">
+"1163
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1163: __asm("CCPR2H equ 01Ch");
+[; <" CCPR2H equ 01Ch ;# ">
+"1170
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1170: __asm("CCP2CON equ 01Dh");
+[; <" CCP2CON equ 01Dh ;# ">
+"1240
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1240: __asm("ADRESH equ 01Eh");
+[; <" ADRESH equ 01Eh ;# ">
+"1247
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1247: __asm("ADCON0 equ 01Fh");
+[; <" ADCON0 equ 01Fh ;# ">
+"1348
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1348: __asm("OPTION_REG equ 081h");
+[; <" OPTION_REG equ 081h ;# ">
+"1418
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1418: __asm("TRISA equ 085h");
+[; <" TRISA equ 085h ;# ">
+"1480
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1480: __asm("TRISB equ 086h");
+[; <" TRISB equ 086h ;# ">
+"1542
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1542: __asm("TRISC equ 087h");
+[; <" TRISC equ 087h ;# ">
+"1604
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1604: __asm("TRISD equ 088h");
+[; <" TRISD equ 088h ;# ">
+"1666
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1666: __asm("TRISE equ 089h");
+[; <" TRISE equ 089h ;# ">
+"1704
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1704: __asm("PIE1 equ 08Ch");
+[; <" PIE1 equ 08Ch ;# ">
+"1760
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1760: __asm("PIE2 equ 08Dh");
+[; <" PIE2 equ 08Dh ;# ">
+"1817
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1817: __asm("PCON equ 08Eh");
+[; <" PCON equ 08Eh ;# ">
+"1864
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1864: __asm("OSCCON equ 08Fh");
+[; <" OSCCON equ 08Fh ;# ">
+"1929
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1929: __asm("OSCTUNE equ 090h");
+[; <" OSCTUNE equ 090h ;# ">
+"1981
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1981: __asm("SSPCON2 equ 091h");
+[; <" SSPCON2 equ 091h ;# ">
+"2043
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 2043: __asm("PR2 equ 092h");
+[; <" PR2 equ 092h ;# ">
+"2050
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 2050: __asm("SSPADD equ 093h");
+[; <" SSPADD equ 093h ;# ">
+"2057
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 2057: __asm("SSPMSK equ 093h");
+[; <" SSPMSK equ 093h ;# ">
+"2062
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 2062: __asm("MSK equ 093h");
+[; <" MSK equ 093h ;# ">
+"2179
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 2179: __asm("SSPSTAT equ 094h");
+[; <" SSPSTAT equ 094h ;# ">
+"2348
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 2348: __asm("WPUB equ 095h");
+[; <" WPUB equ 095h ;# ">
+"2418
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 2418: __asm("IOCB equ 096h");
+[; <" IOCB equ 096h ;# ">
+"2488
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 2488: __asm("VRCON equ 097h");
+[; <" VRCON equ 097h ;# ">
+"2558
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 2558: __asm("TXSTA equ 098h");
+[; <" TXSTA equ 098h ;# ">
+"2644
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 2644: __asm("SPBRG equ 099h");
+[; <" SPBRG equ 099h ;# ">
+"2706
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 2706: __asm("SPBRGH equ 09Ah");
+[; <" SPBRGH equ 09Ah ;# ">
+"2776
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 2776: __asm("PWM1CON equ 09Bh");
+[; <" PWM1CON equ 09Bh ;# ">
+"2846
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 2846: __asm("ECCPAS equ 09Ch");
+[; <" ECCPAS equ 09Ch ;# ">
+"2928
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 2928: __asm("PSTRCON equ 09Dh");
+[; <" PSTRCON equ 09Dh ;# ">
+"2972
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 2972: __asm("ADRESL equ 09Eh");
+[; <" ADRESL equ 09Eh ;# ">
+"2979
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 2979: __asm("ADCON1 equ 09Fh");
+[; <" ADCON1 equ 09Fh ;# ">
+"3013
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 3013: __asm("WDTCON equ 0105h");
+[; <" WDTCON equ 0105h ;# ">
+"3066
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 3066: __asm("CM1CON0 equ 0107h");
+[; <" CM1CON0 equ 0107h ;# ">
+"3131
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 3131: __asm("CM2CON0 equ 0108h");
+[; <" CM2CON0 equ 0108h ;# ">
+"3196
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 3196: __asm("CM2CON1 equ 0109h");
+[; <" CM2CON1 equ 0109h ;# ">
+"3247
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 3247: __asm("EEDATA equ 010Ch");
+[; <" EEDATA equ 010Ch ;# ">
+"3252
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 3252: __asm("EEDAT equ 010Ch");
+[; <" EEDAT equ 010Ch ;# ">
+"3259
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 3259: __asm("EEADR equ 010Dh");
+[; <" EEADR equ 010Dh ;# ">
+"3266
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 3266: __asm("EEDATH equ 010Eh");
+[; <" EEDATH equ 010Eh ;# ">
+"3273
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 3273: __asm("EEADRH equ 010Fh");
+[; <" EEADRH equ 010Fh ;# ">
+"3280
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 3280: __asm("SRCON equ 0185h");
+[; <" SRCON equ 0185h ;# ">
+"3337
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 3337: __asm("BAUDCTL equ 0187h");
+[; <" BAUDCTL equ 0187h ;# ">
+"3389
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 3389: __asm("ANSEL equ 0188h");
+[; <" ANSEL equ 0188h ;# ">
+"3451
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 3451: __asm("ANSELH equ 0189h");
+[; <" ANSELH equ 0189h ;# ">
+"3501
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 3501: __asm("EECON1 equ 018Ch");
+[; <" EECON1 equ 018Ch ;# ">
+"3546
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 3546: __asm("EECON2 equ 018Dh");
+[; <" EECON2 equ 018Dh ;# ">
+"15 lab10canvas.c
+[; ;lab10canvas.c: 15:      TXREG = 100;
+[p x FOSC=INTRC_NOCLKOUT  ]
+"16
+[; ;lab10canvas.c: 16:      TXREG = 97;
+[p x WDTE=OFF            ]
+"17
+[; ;lab10canvas.c: 17:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[p x PWRTE=ON            ]
+"18
+[; ;lab10canvas.c: 18:      TXREG = 32;
+[p x MCLRE=OFF           ]
+"19
+[; ;lab10canvas.c: 19:      TXREG = 115;
+[p x CP=OFF              ]
+"20
+[; ;lab10canvas.c: 20:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[p x CPD=OFF             ]
+"22
+[; ;lab10canvas.c: 22:      TXREG = 98;
+[p x BOREN=OFF  ]
+"23
+[; ;lab10canvas.c: 23:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[p x IESO=OFF   ]
+"24
+[; ;lab10canvas.c: 24:      TXREG = 101;
+[p x FCMEN=OFF  ]
+"25
+[; ;lab10canvas.c: 25:      TXREG = 32;
+[p x LVP=ON     ]
+"28
+[; ;lab10canvas.c: 28:      TXREG = 32;
+[p x WRT=OFF  ]
+"29
+[; ;lab10canvas.c: 29:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[p x BOR4V=BOR40V  ]
+"31
+[; ;lab10canvas.c: 31:      TXREG = 111;
+[v _datomenu `uc ~T0 @X0 1 e ]
+"32
+[; ;lab10canvas.c: 32:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[v _caracteres `(v ~T0 @X0 1 ef ]
+{
+[e :U _caracteres ]
+[f ]
+"33
+[; ;lab10canvas.c: 33:      TXREG = 109;
+[e $ ! != -> . . _PIR1bits 0 4 `i -> 0 `i 139  ]
+"34
+[; ;lab10canvas.c: 34:      TXREG = 105;
+{
+[e = _TXREG -> -> 0 `i `uc ]
+"35
+[; ;lab10canvas.c: 35:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 76 `i `uc ]
+"36
+[; ;lab10canvas.c: 36:      TXREG = 100;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"37
+[; ;lab10canvas.c: 37:      TXREG = 97;
+[e = _TXREG -> -> 97 `i `uc ]
+"38
+[; ;lab10canvas.c: 38:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 32 `i `uc ]
+"39
+[; ;lab10canvas.c: 39:      TXREG = 46;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"40
+[; ;lab10canvas.c: 40:      TXREG = 13;
+[e = _TXREG -> -> 99 `i `uc ]
+"41
+[; ;lab10canvas.c: 41:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 111 `i `uc ]
+"42
+[; ;lab10canvas.c: 42:      TXREG = 45;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"43
+[; ;lab10canvas.c: 43:      TXREG = 97;
+[e = _TXREG -> -> 109 `i `uc ]
+"44
+[; ;lab10canvas.c: 44:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 105 `i `uc ]
+"45
+[; ;lab10canvas.c: 45:      TXREG = 115;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"46
+[; ;lab10canvas.c: 46:      TXREG = 105;
+[e = _TXREG -> -> 100 `i `uc ]
+"47
+[; ;lab10canvas.c: 47:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 97 `i `uc ]
+"48
+[; ;lab10canvas.c: 48:      TXREG = 116;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"49
+[; ;lab10canvas.c: 49:      TXREG = 116;
+[e = _TXREG -> -> 32 `i `uc ]
+"50
+[; ;lab10canvas.c: 50:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 115 `i `uc ]
+"51
+[; ;lab10canvas.c: 51:      TXREG = 105;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"52
+[; ;lab10canvas.c: 52:      TXREG = 110;
+[e = _TXREG -> -> 97 `i `uc ]
+"53
+[; ;lab10canvas.c: 53:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 98 `i `uc ]
+"54
+[; ;lab10canvas.c: 54:      TXREG = 103;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"55
+[; ;lab10canvas.c: 55:      TXREG = 102;
+[e = _TXREG -> -> 101 `i `uc ]
+"56
+[; ;lab10canvas.c: 56:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 32 `i `uc ]
+"57
+[; ;lab10canvas.c: 57:      TXREG = 114;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"58
+[; ;lab10canvas.c: 58:      TXREG = 111;
+[e = _TXREG -> -> 97 `i `uc ]
+"59
+[; ;lab10canvas.c: 59:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 32 `i `uc ]
+"60
+[; ;lab10canvas.c: 60:      TXREG = 103;}
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"61
+[; ;lab10canvas.c: 61: }
+[e = _TXREG -> -> 99 `i `uc ]
+"62
+[; ;lab10canvas.c: 62: void nuevocaracter(void){
+[e = _TXREG -> -> 111 `i `uc ]
+"63
+[; ;lab10canvas.c: 63:     if (PIR1bits.TXIF)
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"64
+[; ;lab10canvas.c: 64:     {TXREG = 73;
+[e = _TXREG -> -> 109 `i `uc ]
+"65
+[; ;lab10canvas.c: 65:      TXREG = 110;
+[e = _TXREG -> -> 105 `i `uc ]
+"66
+[; ;lab10canvas.c: 66:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"67
+[; ;lab10canvas.c: 67:      TXREG = 103;
+[e = _TXREG -> -> 100 `i `uc ]
+"68
+[; ;lab10canvas.c: 68:      TXREG = 114;
+[e = _TXREG -> -> 97 `i `uc ]
+"69
+[; ;lab10canvas.c: 69:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"70
+[; ;lab10canvas.c: 70:      TXREG = 101;
+[e = _TXREG -> -> 46 `i `uc ]
+"71
+[; ;lab10canvas.c: 71:      TXREG = 115;
+[e = _TXREG -> -> 13 `i `uc ]
+"72
+[; ;lab10canvas.c: 72:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"73
+[; ;lab10canvas.c: 73:      TXREG = 101;
+[e = _TXREG -> -> 45 `i `uc ]
+"74
+[; ;lab10canvas.c: 74:      TXREG = 32;
+[e = _TXREG -> -> 97 `i `uc ]
+"75
+[; ;lab10canvas.c: 75:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"76
+[; ;lab10canvas.c: 76:      TXREG = 110;
+[e = _TXREG -> -> 115 `i `uc ]
+"77
+[; ;lab10canvas.c: 77:      TXREG = 117;
+[e = _TXREG -> -> 105 `i `uc ]
+"78
+[; ;lab10canvas.c: 78:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"79
+[; ;lab10canvas.c: 79:      TXREG = 101;
+[e = _TXREG -> -> 116 `i `uc ]
+"80
+[; ;lab10canvas.c: 80:      TXREG = 118;
+[e = _TXREG -> -> 116 `i `uc ]
+"81
+[; ;lab10canvas.c: 81:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"82
+[; ;lab10canvas.c: 82:      TXREG = 111;
+[e = _TXREG -> -> 105 `i `uc ]
+"83
+[; ;lab10canvas.c: 83:      TXREG = 32;
+[e = _TXREG -> -> 110 `i `uc ]
+"84
+[; ;lab10canvas.c: 84:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"85
+[; ;lab10canvas.c: 85:      TXREG = 99;
+[e = _TXREG -> -> 103 `i `uc ]
+"86
+[; ;lab10canvas.c: 86:      TXREG = 97;
+[e = _TXREG -> -> 102 `i `uc ]
+"87
+[; ;lab10canvas.c: 87:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"88
+[; ;lab10canvas.c: 88:      TXREG = 114;
+[e = _TXREG -> -> 114 `i `uc ]
+"89
+[; ;lab10canvas.c: 89:      TXREG = 97;
+[e = _TXREG -> -> 111 `i `uc ]
+"90
+[; ;lab10canvas.c: 90:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"91
+[; ;lab10canvas.c: 91:      TXREG = 99;
+[e = _TXREG -> -> 103 `i `uc ]
+}
+[e :U 139 ]
+"92
+[; ;lab10canvas.c: 92:      TXREG = 116;
+[e :UE 138 ]
+}
+"93
+[; ;lab10canvas.c: 93:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[v _nuevocaracter `(v ~T0 @X0 1 ef ]
+{
+[e :U _nuevocaracter ]
+[f ]
+"94
+[; ;lab10canvas.c: 94:      TXREG = 101;
+[e $ ! != -> . . _PIR1bits 0 4 `i -> 0 `i 141  ]
+"95
+[; ;lab10canvas.c: 95:      TXREG = 114;
+{
+[e = _TXREG -> -> 73 `i `uc ]
+"96
+[; ;lab10canvas.c: 96:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 110 `i `uc ]
+"97
+[; ;lab10canvas.c: 97:      TXREG = 58;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"98
+[; ;lab10canvas.c: 98:      TXREG = 13;}
+[e = _TXREG -> -> 103 `i `uc ]
+"99
+[; ;lab10canvas.c: 99: }
+[e = _TXREG -> -> 114 `i `uc ]
+"100
+[; ;lab10canvas.c: 100: 
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"101
+[; ;lab10canvas.c: 101: void menu(void){
+[e = _TXREG -> -> 101 `i `uc ]
+"102
+[; ;lab10canvas.c: 102:     if (PIR1bits.TXIF)
+[e = _TXREG -> -> 115 `i `uc ]
+"103
+[; ;lab10canvas.c: 103:     {TXREG = 81;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"104
+[; ;lab10canvas.c: 104:      TXREG = 117;
+[e = _TXREG -> -> 101 `i `uc ]
+"105
+[; ;lab10canvas.c: 105:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 32 `i `uc ]
+"106
+[; ;lab10canvas.c: 106:      TXREG = 101;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"107
+[; ;lab10canvas.c: 107:      TXREG = 32;
+[e = _TXREG -> -> 110 `i `uc ]
+"108
+[; ;lab10canvas.c: 108:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 117 `i `uc ]
+"109
+[; ;lab10canvas.c: 109:      TXREG = 97;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"110
+[; ;lab10canvas.c: 110:      TXREG = 99;
+[e = _TXREG -> -> 101 `i `uc ]
+"111
+[; ;lab10canvas.c: 111:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 118 `i `uc ]
+"112
+[; ;lab10canvas.c: 112:      TXREG = 99;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"113
+[; ;lab10canvas.c: 113:      TXREG = 105;
+[e = _TXREG -> -> 111 `i `uc ]
+"114
+[; ;lab10canvas.c: 114:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 32 `i `uc ]
+"115
+[; ;lab10canvas.c: 115:      TXREG = 111;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"116
+[; ;lab10canvas.c: 116:      TXREG = 110;
+[e = _TXREG -> -> 99 `i `uc ]
+"117
+[; ;lab10canvas.c: 117:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 97 `i `uc ]
+"118
+[; ;lab10canvas.c: 118:      TXREG = 32;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"119
+[; ;lab10canvas.c: 119:      TXREG = 100;
+[e = _TXREG -> -> 114 `i `uc ]
+"120
+[; ;lab10canvas.c: 120:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 97 `i `uc ]
+"121
+[; ;lab10canvas.c: 121:      TXREG = 101;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"122
+[; ;lab10canvas.c: 122:      TXREG = 115;
+[e = _TXREG -> -> 99 `i `uc ]
+"123
+[; ;lab10canvas.c: 123:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 116 `i `uc ]
+"124
+[; ;lab10canvas.c: 124:      TXREG = 101;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"125
+[; ;lab10canvas.c: 125:      TXREG = 97;
+[e = _TXREG -> -> 101 `i `uc ]
+"126
+[; ;lab10canvas.c: 126:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 114 `i `uc ]
+"127
+[; ;lab10canvas.c: 127:      TXREG = 32;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"128
+[; ;lab10canvas.c: 128:      TXREG = 101;
+[e = _TXREG -> -> 58 `i `uc ]
+"129
+[; ;lab10canvas.c: 129:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 13 `i `uc ]
+}
+[e :U 141 ]
+"130
+[; ;lab10canvas.c: 130:      TXREG = 106;
+[e :UE 140 ]
+}
+"132
+[; ;lab10canvas.c: 132:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[v _menu `(v ~T0 @X0 1 ef ]
+{
+[e :U _menu ]
+[f ]
+"133
+[; ;lab10canvas.c: 133:      TXREG = 99;
+[e $ ! != -> . . _PIR1bits 0 4 `i -> 0 `i 143  ]
+"134
+[; ;lab10canvas.c: 134:      TXREG = 117;
+{
+[e = _TXREG -> -> 81 `i `uc ]
+"135
+[; ;lab10canvas.c: 135:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 117 `i `uc ]
+"136
+[; ;lab10canvas.c: 136:      TXREG = 116;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"137
+[; ;lab10canvas.c: 137:      TXREG = 97;
+[e = _TXREG -> -> 101 `i `uc ]
+"138
+[; ;lab10canvas.c: 138:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 32 `i `uc ]
+"139
+[; ;lab10canvas.c: 139:      TXREG = 114;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"140
+[; ;lab10canvas.c: 140:      TXREG = 63;
+[e = _TXREG -> -> 97 `i `uc ]
+"141
+[; ;lab10canvas.c: 141:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 99 `i `uc ]
+"142
+[; ;lab10canvas.c: 142:      TXREG = 13;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"143
+[; ;lab10canvas.c: 143:      TXREG = 40;
+[e = _TXREG -> -> 99 `i `uc ]
+"144
+[; ;lab10canvas.c: 144:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 105 `i `uc ]
+"145
+[; ;lab10canvas.c: 145:      TXREG = 49;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"146
+[; ;lab10canvas.c: 146:      TXREG = 41;
+[e = _TXREG -> -> 111 `i `uc ]
+"147
+[; ;lab10canvas.c: 147:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 110 `i `uc ]
+"148
+[; ;lab10canvas.c: 148:      TXREG = 32;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"149
+[; ;lab10canvas.c: 149:      TXREG = 68;
+[e = _TXREG -> -> 32 `i `uc ]
+"150
+[; ;lab10canvas.c: 150:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 100 `i `uc ]
+"151
+[; ;lab10canvas.c: 151:      TXREG = 101;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"152
+[; ;lab10canvas.c: 152:      TXREG = 115;
+[e = _TXREG -> -> 101 `i `uc ]
+"153
+[; ;lab10canvas.c: 153:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 115 `i `uc ]
+"154
+[; ;lab10canvas.c: 154:      TXREG = 112;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"155
+[; ;lab10canvas.c: 155:      TXREG = 108;
+[e = _TXREG -> -> 101 `i `uc ]
+"156
+[; ;lab10canvas.c: 156:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 97 `i `uc ]
+"157
+[; ;lab10canvas.c: 157:      TXREG = 101;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"158
+[; ;lab10canvas.c: 158:      TXREG = 103;
+[e = _TXREG -> -> 32 `i `uc ]
+"159
+[; ;lab10canvas.c: 159:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 101 `i `uc ]
+"160
+[; ;lab10canvas.c: 160:      TXREG = 97;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"161
+[; ;lab10canvas.c: 161:      TXREG = 114;
+[e = _TXREG -> -> 106 `i `uc ]
+"162
+[; ;lab10canvas.c: 162:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 101 `i `uc ]
+"163
+[; ;lab10canvas.c: 163:      TXREG = 32;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"164
+[; ;lab10canvas.c: 164:      TXREG = 99;
+[e = _TXREG -> -> 99 `i `uc ]
+"165
+[; ;lab10canvas.c: 165:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 117 `i `uc ]
+"166
+[; ;lab10canvas.c: 166:      TXREG = 97;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"167
+[; ;lab10canvas.c: 167:      TXREG = 100;
+[e = _TXREG -> -> 116 `i `uc ]
+"168
+[; ;lab10canvas.c: 168:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 97 `i `uc ]
+"169
+[; ;lab10canvas.c: 169:      TXREG = 101;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"170
+[; ;lab10canvas.c: 170:      TXREG = 110;
+[e = _TXREG -> -> 114 `i `uc ]
+"171
+[; ;lab10canvas.c: 171:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 63 `i `uc ]
+"172
+[; ;lab10canvas.c: 172:      TXREG = 97;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"173
+[; ;lab10canvas.c: 173:      TXREG = 32;
+[e = _TXREG -> -> 13 `i `uc ]
+"174
+[; ;lab10canvas.c: 174:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 40 `i `uc ]
+"175
+[; ;lab10canvas.c: 175:      TXREG = 100;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"176
+[; ;lab10canvas.c: 176:      TXREG = 101;
+[e = _TXREG -> -> 49 `i `uc ]
+"177
+[; ;lab10canvas.c: 177:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 41 `i `uc ]
+"178
+[; ;lab10canvas.c: 178:      TXREG = 32;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"179
+[; ;lab10canvas.c: 179:      TXREG = 99;
+[e = _TXREG -> -> 32 `i `uc ]
+"180
+[; ;lab10canvas.c: 180:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 68 `i `uc ]
+"181
+[; ;lab10canvas.c: 181:      TXREG = 97;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"182
+[; ;lab10canvas.c: 182:      TXREG = 114;
+[e = _TXREG -> -> 101 `i `uc ]
+"183
+[; ;lab10canvas.c: 183:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 115 `i `uc ]
+"184
+[; ;lab10canvas.c: 184:      TXREG = 97;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"185
+[; ;lab10canvas.c: 185:      TXREG = 99;
+[e = _TXREG -> -> 112 `i `uc ]
+"186
+[; ;lab10canvas.c: 186:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 108 `i `uc ]
+"187
+[; ;lab10canvas.c: 187:      TXREG = 116;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"188
+[; ;lab10canvas.c: 188:      TXREG = 101;
+[e = _TXREG -> -> 101 `i `uc ]
+"189
+[; ;lab10canvas.c: 189:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 103 `i `uc ]
+"190
+[; ;lab10canvas.c: 190:      TXREG = 114;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"191
+[; ;lab10canvas.c: 191:      TXREG = 101;
+[e = _TXREG -> -> 97 `i `uc ]
+"192
+[; ;lab10canvas.c: 192:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 114 `i `uc ]
+"193
+[; ;lab10canvas.c: 193:      TXREG = 115;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"194
+[; ;lab10canvas.c: 194:      TXREG = 13;
+[e = _TXREG -> -> 32 `i `uc ]
+"195
+[; ;lab10canvas.c: 195:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 99 `i `uc ]
+"196
+[; ;lab10canvas.c: 196:      TXREG = 40;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"197
+[; ;lab10canvas.c: 197:      TXREG = 50;
+[e = _TXREG -> -> 97 `i `uc ]
+"198
+[; ;lab10canvas.c: 198:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 100 `i `uc ]
+"199
+[; ;lab10canvas.c: 199:      TXREG = 41;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"200
+[; ;lab10canvas.c: 200:      TXREG = 32;
+[e = _TXREG -> -> 101 `i `uc ]
+"201
+[; ;lab10canvas.c: 201:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 110 `i `uc ]
+"202
+[; ;lab10canvas.c: 202:      TXREG = 67;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"203
+[; ;lab10canvas.c: 203:      TXREG = 97;
+[e = _TXREG -> -> 97 `i `uc ]
+"204
+[; ;lab10canvas.c: 204:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 32 `i `uc ]
+"205
+[; ;lab10canvas.c: 205:      TXREG = 109;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"206
+[; ;lab10canvas.c: 206:      TXREG = 98;
+[e = _TXREG -> -> 100 `i `uc ]
+"207
+[; ;lab10canvas.c: 207:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 101 `i `uc ]
+"208
+[; ;lab10canvas.c: 208:      TXREG = 105;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"209
+[; ;lab10canvas.c: 209:      TXREG = 97;
+[e = _TXREG -> -> 32 `i `uc ]
+"210
+[; ;lab10canvas.c: 210:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 99 `i `uc ]
+"211
+[; ;lab10canvas.c: 211:      TXREG = 114;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"212
+[; ;lab10canvas.c: 212:      TXREG = 32;
+[e = _TXREG -> -> 97 `i `uc ]
+"213
+[; ;lab10canvas.c: 213:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 114 `i `uc ]
+"214
+[; ;lab10canvas.c: 214:      TXREG = 80;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"215
+[; ;lab10canvas.c: 215:      TXREG = 79;
+[e = _TXREG -> -> 97 `i `uc ]
+"216
+[; ;lab10canvas.c: 216:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 99 `i `uc ]
+"217
+[; ;lab10canvas.c: 217:      TXREG = 82;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"218
+[; ;lab10canvas.c: 218:      TXREG = 84;
+[e = _TXREG -> -> 116 `i `uc ]
+"219
+[; ;lab10canvas.c: 219:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 101 `i `uc ]
+"220
+[; ;lab10canvas.c: 220:      TXREG = 65;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"221
+[; ;lab10canvas.c: 221:      TXREG = 13;
+[e = _TXREG -> -> 114 `i `uc ]
+"222
+[; ;lab10canvas.c: 222:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 101 `i `uc ]
+"223
+[; ;lab10canvas.c: 223:      TXREG = 40;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"224
+[; ;lab10canvas.c: 224:      TXREG = 51;
+[e = _TXREG -> -> 115 `i `uc ]
+"225
+[; ;lab10canvas.c: 225:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 13 `i `uc ]
+"226
+[; ;lab10canvas.c: 226:      TXREG = 41;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"227
+[; ;lab10canvas.c: 227:      TXREG = 32;
+[e = _TXREG -> -> 40 `i `uc ]
+"228
+[; ;lab10canvas.c: 228:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 50 `i `uc ]
+"229
+[; ;lab10canvas.c: 229:      TXREG = 67;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"230
+[; ;lab10canvas.c: 230:      TXREG = 97;
+[e = _TXREG -> -> 41 `i `uc ]
+"231
+[; ;lab10canvas.c: 231:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 32 `i `uc ]
+"232
+[; ;lab10canvas.c: 232:      TXREG = 109;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"233
+[; ;lab10canvas.c: 233:      TXREG = 98;
+[e = _TXREG -> -> 67 `i `uc ]
+"234
+[; ;lab10canvas.c: 234:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 97 `i `uc ]
+"235
+[; ;lab10canvas.c: 235:      TXREG = 105;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"236
+[; ;lab10canvas.c: 236:      TXREG = 97;
+[e = _TXREG -> -> 109 `i `uc ]
+"237
+[; ;lab10canvas.c: 237:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 98 `i `uc ]
+"238
+[; ;lab10canvas.c: 238:      TXREG = 114;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"239
+[; ;lab10canvas.c: 239:      TXREG = 32;
+[e = _TXREG -> -> 105 `i `uc ]
+"240
+[; ;lab10canvas.c: 240:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 97 `i `uc ]
+"241
+[; ;lab10canvas.c: 241:      TXREG = 80;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"242
+[; ;lab10canvas.c: 242:      TXREG = 79;
+[e = _TXREG -> -> 114 `i `uc ]
+"243
+[; ;lab10canvas.c: 243:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 32 `i `uc ]
+"244
+[; ;lab10canvas.c: 244:      TXREG = 82;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"245
+[; ;lab10canvas.c: 245:      TXREG = 84;
+[e = _TXREG -> -> 80 `i `uc ]
+"246
+[; ;lab10canvas.c: 246:      _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _TXREG -> -> 79 `i `uc ]
+"247
+[; ;lab10canvas.c: 247:      TXREG = 66;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"248
+[; ;lab10canvas.c: 248:      TXREG = 13;}
+[e = _TXREG -> -> 82 `i `uc ]
+"249
+[; ;lab10canvas.c: 249: }
+[e = _TXREG -> -> 84 `i `uc ]
+"250
+[; ;lab10canvas.c: 250: 
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"251
+[; ;lab10canvas.c: 251: void __attribute__((picinterrupt(("")))) isr(void){
+[e = _TXREG -> -> 65 `i `uc ]
+"252
+[; ;lab10canvas.c: 252: 
+[e = _TXREG -> -> 13 `i `uc ]
+"253
+[; ;lab10canvas.c: 253:     if (PIR1bits.RCIF) {
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"254
+[; ;lab10canvas.c: 254: 
+[e = _TXREG -> -> 40 `i `uc ]
+"255
+[; ;lab10canvas.c: 255:     }
+[e = _TXREG -> -> 51 `i `uc ]
+"256
+[; ;lab10canvas.c: 256: }
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"257
+[; ;lab10canvas.c: 257: 
+[e = _TXREG -> -> 41 `i `uc ]
+"258
+[; ;lab10canvas.c: 258: void main(void) {
+[e = _TXREG -> -> 32 `i `uc ]
+"259
+[; ;lab10canvas.c: 259: 
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"260
+[; ;lab10canvas.c: 260: 
+[e = _TXREG -> -> 67 `i `uc ]
+"261
+[; ;lab10canvas.c: 261:     OSCCONbits.IRCF = 0b100;
+[e = _TXREG -> -> 97 `i `uc ]
+"262
+[; ;lab10canvas.c: 262:     OSCCONbits.SCS = 1;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"263
+[; ;lab10canvas.c: 263: 
+[e = _TXREG -> -> 109 `i `uc ]
+"264
+[; ;lab10canvas.c: 264:     ANSELH = 0;
+[e = _TXREG -> -> 98 `i `uc ]
+"265
+[; ;lab10canvas.c: 265:     ANSEL = 0;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"266
+[; ;lab10canvas.c: 266:     TRISA = 0;
+[e = _TXREG -> -> 105 `i `uc ]
+"267
+[; ;lab10canvas.c: 267:     TRISB = 0;
+[e = _TXREG -> -> 97 `i `uc ]
+"268
+[; ;lab10canvas.c: 268:     PORTA = 0;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"269
+[; ;lab10canvas.c: 269:     PORTB = 0;
+[e = _TXREG -> -> 114 `i `uc ]
+"270
+[; ;lab10canvas.c: 270: 
+[e = _TXREG -> -> 32 `i `uc ]
+"271
+[; ;lab10canvas.c: 271:     TXSTAbits.SYNC = 0;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"272
+[; ;lab10canvas.c: 272:     TXSTAbits.BRGH = 1;
+[e = _TXREG -> -> 80 `i `uc ]
+"273
+[; ;lab10canvas.c: 273:     BAUDCTLbits.BRG16 = 1;
+[e = _TXREG -> -> 79 `i `uc ]
+"274
+[; ;lab10canvas.c: 274:     SPBRG = 25;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"275
+[; ;lab10canvas.c: 275:     SPBRGH = 0;
+[e = _TXREG -> -> 82 `i `uc ]
+"276
+[; ;lab10canvas.c: 276:     RCSTAbits.SPEN = 1;
+[e = _TXREG -> -> 84 `i `uc ]
+"277
+[; ;lab10canvas.c: 277:     RCSTAbits.RX9 = 0;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"278
+[; ;lab10canvas.c: 278:     RCSTAbits.CREN = 1;
+[e = _TXREG -> -> 66 `i `uc ]
+"279
+[; ;lab10canvas.c: 279:     TXSTAbits.TXEN = 1;
+[e = _TXREG -> -> 13 `i `uc ]
+}
+[e :U 143 ]
+"280
+[; ;lab10canvas.c: 280: 
+[e :UE 142 ]
+}
+[v $root$_isr `(v ~T0 @X0 0 e ]
+"282
+[; ;lab10canvas.c: 282:     PIE1bits.RCIE = 1;
+[v _isr `(v ~T1 @X0 1 ef ]
+{
+[e :U _isr ]
+[f ]
+"284
+[; ;lab10canvas.c: 284:     PIR1bits.ADIF = 0;
+[e $ ! != -> . . _PIR1bits 0 5 `i -> 0 `i 145  ]
+{
+"286
+[; ;lab10canvas.c: 286:     INTCONbits.PEIE = 1;
+}
+[e :U 145 ]
+"287
+[; ;lab10canvas.c: 287:     INTCONbits.GIE = 1;
+[e :UE 144 ]
+}
+[v $root$_main `(v ~T0 @X0 0 e ]
+"289
+[; ;lab10canvas.c: 289:     _delay((unsigned long)((5)*(1000000/4000.0)));
+[v _main `(v ~T0 @X0 1 ef ]
+{
+[e :U _main ]
+[f ]
+"292
+[; ;lab10canvas.c: 292:     caracteres();
+[e = . . _OSCCONbits 0 4 -> -> 4 `i `uc ]
+"293
+[; ;lab10canvas.c: 293:     while (1){
+[e = . . _OSCCONbits 0 0 -> -> 1 `i `uc ]
+"295
+[; ;lab10canvas.c: 295: 
+[e = _ANSELH -> -> 0 `i `uc ]
+"296
+[; ;lab10canvas.c: 296:     }
+[e = _ANSEL -> -> 0 `i `uc ]
+"297
+[; ;lab10canvas.c: 297: }
+[e = _TRISA -> -> 0 `i `uc ]
+"298
+[e = _TRISB -> -> 0 `i `uc ]
+"299
+[e = _PORTA -> -> 0 `i `uc ]
+"300
+[e = _PORTB -> -> 0 `i `uc ]
+"302
+[e = . . _TXSTAbits 0 4 -> -> 0 `i `uc ]
+"303
+[e = . . _TXSTAbits 0 2 -> -> 1 `i `uc ]
+"304
+[e = . . _BAUDCTLbits 0 3 -> -> 1 `i `uc ]
+"305
+[e = _SPBRG -> -> 25 `i `uc ]
+"306
+[e = _SPBRGH -> -> 0 `i `uc ]
+"307
+[e = . . _RCSTAbits 0 7 -> -> 1 `i `uc ]
+"308
+[e = . . _RCSTAbits 0 6 -> -> 0 `i `uc ]
+"309
+[e = . . _RCSTAbits 0 4 -> -> 1 `i `uc ]
+"310
+[e = . . _TXSTAbits 0 5 -> -> 1 `i `uc ]
+"312
+[e = . . _PIR1bits 0 5 -> -> 0 `i `uc ]
+"313
+[e = . . _PIE1bits 0 5 -> -> 1 `i `uc ]
+"315
+[e = . . _PIR1bits 0 6 -> -> 0 `i `uc ]
+"316
+[e = . . _PIE1bits 0 6 -> -> 1 `i `uc ]
+"317
+[e = . . _INTCONbits 0 6 -> -> 1 `i `uc ]
+"318
+[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+"319
+[e ( _menu ..  ]
+"320
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"321
+[e ( _nuevocaracter ..  ]
+"322
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"323
+[e ( _caracteres ..  ]
+"324
+[e :U 148 ]
+{
+"327
+}
+[e :U 147 ]
+[e $U 148  ]
+[e :U 149 ]
+"328
+[e :UE 146 ]
+}
