@@ -33,7 +33,7 @@ unsigned char dato = 103;
 void __interrupt() isr(void){    // only process timer-triggered interrupts
     //interrupcion de recepcion
     if (PIR1bits.RCIF) {
-        PORTB = RCREG;
+        PORTB = RCREG; //caracter a puertob
     }   
 }
 
@@ -70,5 +70,5 @@ void main(void) {
     while (1){
     __delay_ms(500);
     if (PIR1bits.TXIF)
-    {TXREG = dato;}}      
+    {TXREG = dato;}}//se pasa el caracter a la terminal      
 }

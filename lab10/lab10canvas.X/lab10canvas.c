@@ -28,9 +28,9 @@
 #pragma config WRT=OFF //Proteccion de autoescritura por el programa desactivada
 #pragma config BOR4V=BOR40V //Reinicio abajo de 4V 
 //variables
-unsigned char datomenu;
-void caracteres(void){
-    if (PIR1bits.TXIF)
+unsigned char centinela = 0; //valor centinela
+void caracteres(void){       //cadena de caracteres: "La comida sabe a comida.\n
+    if (PIR1bits.TXIF)       //-asittingfrog 
     {TXREG = 0;
      TXREG = 76;
      __delay_ms(5);
@@ -90,7 +90,7 @@ void caracteres(void){
      __delay_ms(5);
      TXREG = 103;}
 }
-void nuevocaracter(void){
+void nuevocaracter(void){ //cadena de caracteres: "Ingrese nuevo caracter:"
     if (PIR1bits.TXIF)
     {TXREG = 73;
      TXREG = 110;
@@ -129,9 +129,9 @@ void nuevocaracter(void){
      TXREG = 13;}
 }
     
-void menu(void){
-    if (PIR1bits.TXIF)
-    {TXREG = 81;
+void menu(void){       //cadena de caracteres: "Que accion desea ejecutar?\n(1)
+    if (PIR1bits.TXIF) //Desplegar cadena de caracteres\n(2)Cambiar PORTA\n(3)
+    {TXREG = 81;       //Cambiar PORTB\n
      TXREG = 117;
      __delay_ms(5);
      TXREG = 101;
@@ -282,7 +282,61 @@ void menu(void){
 void __interrupt() isr(void){    // only process timer-triggered interrupts
     //interrupcion de recepcion
     if (PIR1bits.RCIF) {
+    switch (RCREG){
+        case 49: //Opcion 1: Desplegar cadena de caracteres  
+        caracteres();
+        if (PIR1bits.TXIF){
+            TXREG = 13;
+        }
+        __delay_ms(5);
+        menu();
+        break;
         
+        case 50: //Opcion 2: Pasar caracter presionado al puerto A
+        nuevocaracter();
+        do
+        {
+        if (PIR1bits.RCIF){
+            PORTA = RCREG;
+            centinela = 255;
+            }
+        
+        }
+        while (centinela == 0);
+            __delay_ms(5);
+            if (PIR1bits.TXIF)
+                {TXREG = 13;}
+            __delay_ms(5);
+            if (PIR1bits.TXIF)
+                {TXREG = 13;}
+            __delay_ms(5);
+            menu();
+            __delay_ms(5);
+            centinela = 0;
+            break;
+            
+        case 51: //Opcion 3: Pasar caracter presionado al puerto B
+        nuevocaracter();
+        do
+        {
+        if (PIR1bits.RCIF){
+            PORTB = RCREG;
+            centinela = 255;
+            }
+        
+        }
+        while (centinela == 0);
+            __delay_ms(5);
+            if (PIR1bits.TXIF)
+                {TXREG = 13;}
+            __delay_ms(5);
+            if (PIR1bits.TXIF)
+                {TXREG = 13;}
+            __delay_ms(5);
+            menu();
+            centinela = 0;
+            break;
+        }    
     }   
 }
 
@@ -316,13 +370,7 @@ void main(void) {
     PIE1bits.ADIE = 1;   //se habilitan las interrupciones por adc
     INTCONbits.PEIE = 1; //se habilitan las interrupciones de los perifericos
     INTCONbits.GIE  = 1; //se habilitan las interrupciones globales
-    menu();
+    menu();              //despliegue del menu
     __delay_ms(5);
-    nuevocaracter();
-    __delay_ms(5);
-    caracteres();
-    while (1){
-//        if (RCREG == 49){
-//            caracteres();}
-    }      
+    while (1){}      
 }

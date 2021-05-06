@@ -19,8 +19,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 [p i __delay ]
 [t ~ __interrupt . k ]
 [t T1 __interrupt ]
+"166 D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 166: extern volatile unsigned char PORTA __attribute__((address(0x005)));
+[v _PORTA `Vuc ~T0 @X0 0 e@5 ]
+"1140
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1140: extern volatile unsigned char RCREG __attribute__((address(0x01A)));
+[v _RCREG `Vuc ~T0 @X0 0 e@26 ]
+"228
+[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 228: extern volatile unsigned char PORTB __attribute__((address(0x006)));
+[v _PORTB `Vuc ~T0 @X0 0 e@6 ]
 [p mainexit ]
-"1868 D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
+"1868
 [; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1868:     struct {
 [s S70 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 ]
 [n S70 . SCS LTS HTS OSTS IRCF ]
@@ -47,12 +56,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "1478
 [; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1478: extern volatile unsigned char TRISB __attribute__((address(0x086)));
 [v _TRISB `Vuc ~T0 @X0 0 e@134 ]
-"166
-[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 166: extern volatile unsigned char PORTA __attribute__((address(0x005)));
-[v _PORTA `Vuc ~T0 @X0 0 e@5 ]
-"228
-[; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 228: extern volatile unsigned char PORTB __attribute__((address(0x006)));
-[v _PORTB `Vuc ~T0 @X0 0 e@6 ]
 "2562
 [; ;D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 2562:     struct {
 [s S99 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -410,7 +413,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 [p x BOR4V=BOR40V  ]
 "31
 [; ;lab10canvas.c: 31:      TXREG = 111;
-[v _datomenu `uc ~T0 @X0 1 e ]
+[v _centinela `uc ~T0 @X0 1 e ]
+[i _centinela
+-> -> 0 `i `uc
+]
 "32
 [; ;lab10canvas.c: 32:      _delay((unsigned long)((5)*(1000000/4000.0)));
 [v _caracteres `(v ~T0 @X0 1 ef ]
@@ -1093,184 +1099,349 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;lab10canvas.c: 253:     if (PIR1bits.RCIF) {
 [e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
 "254
-[; ;lab10canvas.c: 254: 
+[; ;lab10canvas.c: 254:     switch (RCREG){
 [e = _TXREG -> -> 40 `i `uc ]
 "255
-[; ;lab10canvas.c: 255:     }
+[; ;lab10canvas.c: 255:         case 49:
 [e = _TXREG -> -> 51 `i `uc ]
 "256
-[; ;lab10canvas.c: 256: }
+[; ;lab10canvas.c: 256:         caracteres();
 [e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
 "257
-[; ;lab10canvas.c: 257: 
+[; ;lab10canvas.c: 257:         if (PIR1bits.TXIF){
 [e = _TXREG -> -> 41 `i `uc ]
 "258
-[; ;lab10canvas.c: 258: void main(void) {
+[; ;lab10canvas.c: 258:             TXREG = 13;
 [e = _TXREG -> -> 32 `i `uc ]
 "259
-[; ;lab10canvas.c: 259: 
+[; ;lab10canvas.c: 259:         }
 [e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
 "260
-[; ;lab10canvas.c: 260: 
+[; ;lab10canvas.c: 260:         _delay((unsigned long)((5)*(1000000/4000.0)));
 [e = _TXREG -> -> 67 `i `uc ]
 "261
-[; ;lab10canvas.c: 261:     OSCCONbits.IRCF = 0b100;
+[; ;lab10canvas.c: 261:         menu();
 [e = _TXREG -> -> 97 `i `uc ]
 "262
-[; ;lab10canvas.c: 262:     OSCCONbits.SCS = 1;
+[; ;lab10canvas.c: 262:         break;
 [e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
 "263
 [; ;lab10canvas.c: 263: 
 [e = _TXREG -> -> 109 `i `uc ]
 "264
-[; ;lab10canvas.c: 264:     ANSELH = 0;
+[; ;lab10canvas.c: 264:         case 50:
 [e = _TXREG -> -> 98 `i `uc ]
 "265
-[; ;lab10canvas.c: 265:     ANSEL = 0;
+[; ;lab10canvas.c: 265:         nuevocaracter();
 [e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
 "266
-[; ;lab10canvas.c: 266:     TRISA = 0;
+[; ;lab10canvas.c: 266:         do
 [e = _TXREG -> -> 105 `i `uc ]
 "267
-[; ;lab10canvas.c: 267:     TRISB = 0;
+[; ;lab10canvas.c: 267:         {
 [e = _TXREG -> -> 97 `i `uc ]
 "268
-[; ;lab10canvas.c: 268:     PORTA = 0;
+[; ;lab10canvas.c: 268:         if (PIR1bits.RCIF){
 [e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
 "269
-[; ;lab10canvas.c: 269:     PORTB = 0;
+[; ;lab10canvas.c: 269:             PORTA = RCREG;
 [e = _TXREG -> -> 114 `i `uc ]
 "270
-[; ;lab10canvas.c: 270: 
+[; ;lab10canvas.c: 270:             centinela = 255;
 [e = _TXREG -> -> 32 `i `uc ]
 "271
-[; ;lab10canvas.c: 271:     TXSTAbits.SYNC = 0;
+[; ;lab10canvas.c: 271:             }
 [e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
 "272
-[; ;lab10canvas.c: 272:     TXSTAbits.BRGH = 1;
+[; ;lab10canvas.c: 272: 
 [e = _TXREG -> -> 80 `i `uc ]
 "273
-[; ;lab10canvas.c: 273:     BAUDCTLbits.BRG16 = 1;
+[; ;lab10canvas.c: 273:         }
 [e = _TXREG -> -> 79 `i `uc ]
 "274
-[; ;lab10canvas.c: 274:     SPBRG = 25;
+[; ;lab10canvas.c: 274:         while (centinela == 0);
 [e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
 "275
-[; ;lab10canvas.c: 275:     SPBRGH = 0;
+[; ;lab10canvas.c: 275:             _delay((unsigned long)((5)*(1000000/4000.0)));
 [e = _TXREG -> -> 82 `i `uc ]
 "276
-[; ;lab10canvas.c: 276:     RCSTAbits.SPEN = 1;
+[; ;lab10canvas.c: 276:             if (PIR1bits.TXIF)
 [e = _TXREG -> -> 84 `i `uc ]
 "277
-[; ;lab10canvas.c: 277:     RCSTAbits.RX9 = 0;
+[; ;lab10canvas.c: 277:                 {TXREG = 13;}
 [e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
 "278
-[; ;lab10canvas.c: 278:     RCSTAbits.CREN = 1;
+[; ;lab10canvas.c: 278:             _delay((unsigned long)((5)*(1000000/4000.0)));
 [e = _TXREG -> -> 66 `i `uc ]
 "279
-[; ;lab10canvas.c: 279:     TXSTAbits.TXEN = 1;
+[; ;lab10canvas.c: 279:             if (PIR1bits.TXIF)
 [e = _TXREG -> -> 13 `i `uc ]
 }
 [e :U 143 ]
 "280
-[; ;lab10canvas.c: 280: 
+[; ;lab10canvas.c: 280:                 {TXREG = 13;}
 [e :UE 142 ]
 }
 [v $root$_isr `(v ~T0 @X0 0 e ]
 "282
-[; ;lab10canvas.c: 282:     PIE1bits.RCIE = 1;
+[; ;lab10canvas.c: 282:             menu();
 [v _isr `(v ~T1 @X0 1 ef ]
 {
 [e :U _isr ]
 [f ]
 "284
-[; ;lab10canvas.c: 284:     PIR1bits.ADIF = 0;
+[; ;lab10canvas.c: 284:             centinela = 0;
 [e $ ! != -> . . _PIR1bits 0 5 `i -> 0 `i 145  ]
 {
+"285
+[; ;lab10canvas.c: 285:             break;
+[e $U 147  ]
+{
 "286
-[; ;lab10canvas.c: 286:     INTCONbits.PEIE = 1;
+[; ;lab10canvas.c: 286: 
+[e :U 148 ]
+"287
+[; ;lab10canvas.c: 287:         case 51:
+[e ( _caracteres ..  ]
+"288
+[; ;lab10canvas.c: 288:         nuevocaracter();
+[e $ ! != -> . . _PIR1bits 0 4 `i -> 0 `i 149  ]
+{
+"289
+[; ;lab10canvas.c: 289:         do
+[e = _TXREG -> -> 13 `i `uc ]
+"290
+[; ;lab10canvas.c: 290:         {
+}
+[e :U 149 ]
+"291
+[; ;lab10canvas.c: 291:         if (PIR1bits.RCIF){
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"292
+[; ;lab10canvas.c: 292:             PORTB = RCREG;
+[e ( _menu ..  ]
+"293
+[; ;lab10canvas.c: 293:             centinela = 255;
+[e $U 146  ]
+"295
+[; ;lab10canvas.c: 295: 
+[e :U 150 ]
+"296
+[; ;lab10canvas.c: 296:         }
+[e ( _nuevocaracter ..  ]
+"297
+[; ;lab10canvas.c: 297:         while (centinela == 0);
+[e :U 153 ]
+"298
+[; ;lab10canvas.c: 298:             _delay((unsigned long)((5)*(1000000/4000.0)));
+{
+"299
+[; ;lab10canvas.c: 299:             if (PIR1bits.TXIF)
+[e $ ! != -> . . _PIR1bits 0 5 `i -> 0 `i 154  ]
+{
+"300
+[; ;lab10canvas.c: 300:                 {TXREG = 13;}
+[e = _PORTA _RCREG ]
+"301
+[; ;lab10canvas.c: 301:             _delay((unsigned long)((5)*(1000000/4000.0)));
+[e = _centinela -> -> 255 `i `uc ]
+"302
+[; ;lab10canvas.c: 302:             if (PIR1bits.TXIF)
+}
+[e :U 154 ]
+"304
+[; ;lab10canvas.c: 304:             _delay((unsigned long)((5)*(1000000/4000.0)));
+}
+[e $ == -> _centinela `i -> 0 `i 153  ]
+[e :U 152 ]
+"306
+[; ;lab10canvas.c: 306:             centinela = 0;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"307
+[; ;lab10canvas.c: 307:             break;
+[e $ ! != -> . . _PIR1bits 0 4 `i -> 0 `i 155  ]
+"308
+[; ;lab10canvas.c: 308:         }
+{
+[e = _TXREG -> -> 13 `i `uc ]
+}
+[e :U 155 ]
+"309
+[; ;lab10canvas.c: 309:     }
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"310
+[; ;lab10canvas.c: 310: }
+[e $ ! != -> . . _PIR1bits 0 4 `i -> 0 `i 156  ]
+"311
+[; ;lab10canvas.c: 311: 
+{
+[e = _TXREG -> -> 13 `i `uc ]
+}
+[e :U 156 ]
+"312
+[; ;lab10canvas.c: 312: void main(void) {
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"313
+[; ;lab10canvas.c: 313: 
+[e ( _menu ..  ]
+"314
+[; ;lab10canvas.c: 314: 
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"315
+[; ;lab10canvas.c: 315:     OSCCONbits.IRCF = 0b100;
+[e = _centinela -> -> 0 `i `uc ]
+"316
+[; ;lab10canvas.c: 316:     OSCCONbits.SCS = 1;
+[e $U 146  ]
+"318
+[; ;lab10canvas.c: 318:     ANSELH = 0;
+[e :U 157 ]
+"319
+[; ;lab10canvas.c: 319:     ANSEL = 0;
+[e ( _nuevocaracter ..  ]
+"320
+[; ;lab10canvas.c: 320:     TRISA = 0;
+[e :U 160 ]
+"321
+[; ;lab10canvas.c: 321:     TRISB = 0;
+{
+"322
+[; ;lab10canvas.c: 322:     PORTA = 0;
+[e $ ! != -> . . _PIR1bits 0 5 `i -> 0 `i 161  ]
+{
+"323
+[; ;lab10canvas.c: 323:     PORTB = 0;
+[e = _PORTB _RCREG ]
+"324
+[; ;lab10canvas.c: 324: 
+[e = _centinela -> -> 255 `i `uc ]
+"325
+[; ;lab10canvas.c: 325:     TXSTAbits.SYNC = 0;
+}
+[e :U 161 ]
+"327
+[; ;lab10canvas.c: 327:     BAUDCTLbits.BRG16 = 1;
+}
+[e $ == -> _centinela `i -> 0 `i 160  ]
+[e :U 159 ]
+"329
+[; ;lab10canvas.c: 329:     SPBRGH = 0;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"330
+[; ;lab10canvas.c: 330:     RCSTAbits.SPEN = 1;
+[e $ ! != -> . . _PIR1bits 0 4 `i -> 0 `i 162  ]
+"331
+[; ;lab10canvas.c: 331:     RCSTAbits.RX9 = 0;
+{
+[e = _TXREG -> -> 13 `i `uc ]
+}
+[e :U 162 ]
+"332
+[; ;lab10canvas.c: 332:     RCSTAbits.CREN = 1;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"333
+[; ;lab10canvas.c: 333:     TXSTAbits.TXEN = 1;
+[e $ ! != -> . . _PIR1bits 0 4 `i -> 0 `i 163  ]
+"334
+[; ;lab10canvas.c: 334: 
+{
+[e = _TXREG -> -> 13 `i `uc ]
+}
+[e :U 163 ]
+"335
+[; ;lab10canvas.c: 335:     PIR1bits.RCIF = 0;
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+"336
+[; ;lab10canvas.c: 336:     PIE1bits.RCIE = 1;
+[e ( _menu ..  ]
+"337
+[; ;lab10canvas.c: 337: 
+[e = _centinela -> -> 0 `i `uc ]
+"338
+[; ;lab10canvas.c: 338:     PIR1bits.ADIF = 0;
+[e $U 146  ]
+"339
+[; ;lab10canvas.c: 339:     PIE1bits.ADIE = 1;
+}
+[e $U 146  ]
+[e :U 147 ]
+[e [\ -> _RCREG `i , $ -> 49 `i 148
+ , $ -> 50 `i 150
+ , $ -> 51 `i 157
+ 146 ]
+[e :U 146 ]
+"340
+[; ;lab10canvas.c: 340:     INTCONbits.PEIE = 1;
 }
 [e :U 145 ]
-"287
-[; ;lab10canvas.c: 287:     INTCONbits.GIE = 1;
+"341
+[; ;lab10canvas.c: 341:     INTCONbits.GIE = 1;
 [e :UE 144 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"289
-[; ;lab10canvas.c: 289:     _delay((unsigned long)((5)*(1000000/4000.0)));
+"343
+[; ;lab10canvas.c: 343:     _delay((unsigned long)((5)*(1000000/4000.0)));
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"292
-[; ;lab10canvas.c: 292:     caracteres();
+"346
 [e = . . _OSCCONbits 0 4 -> -> 4 `i `uc ]
-"293
-[; ;lab10canvas.c: 293:     while (1){
+"347
 [e = . . _OSCCONbits 0 0 -> -> 1 `i `uc ]
-"295
-[; ;lab10canvas.c: 295: 
+"349
 [e = _ANSELH -> -> 0 `i `uc ]
-"296
-[; ;lab10canvas.c: 296:     }
+"350
 [e = _ANSEL -> -> 0 `i `uc ]
-"297
-[; ;lab10canvas.c: 297: }
+"351
 [e = _TRISA -> -> 0 `i `uc ]
-"298
+"352
 [e = _TRISB -> -> 0 `i `uc ]
-"299
+"353
 [e = _PORTA -> -> 0 `i `uc ]
-"300
+"354
 [e = _PORTB -> -> 0 `i `uc ]
-"302
+"356
 [e = . . _TXSTAbits 0 4 -> -> 0 `i `uc ]
-"303
+"357
 [e = . . _TXSTAbits 0 2 -> -> 1 `i `uc ]
-"304
+"358
 [e = . . _BAUDCTLbits 0 3 -> -> 1 `i `uc ]
-"305
+"359
 [e = _SPBRG -> -> 25 `i `uc ]
-"306
+"360
 [e = _SPBRGH -> -> 0 `i `uc ]
-"307
+"361
 [e = . . _RCSTAbits 0 7 -> -> 1 `i `uc ]
-"308
+"362
 [e = . . _RCSTAbits 0 6 -> -> 0 `i `uc ]
-"309
+"363
 [e = . . _RCSTAbits 0 4 -> -> 1 `i `uc ]
-"310
+"364
 [e = . . _TXSTAbits 0 5 -> -> 1 `i `uc ]
-"312
+"366
 [e = . . _PIR1bits 0 5 -> -> 0 `i `uc ]
-"313
+"367
 [e = . . _PIE1bits 0 5 -> -> 1 `i `uc ]
-"315
+"369
 [e = . . _PIR1bits 0 6 -> -> 0 `i `uc ]
-"316
+"370
 [e = . . _PIE1bits 0 6 -> -> 1 `i `uc ]
-"317
+"371
 [e = . . _INTCONbits 0 6 -> -> 1 `i `uc ]
-"318
+"372
 [e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
-"319
+"373
 [e ( _menu ..  ]
-"320
+"374
 [e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
-"321
-[e ( _nuevocaracter ..  ]
-"322
-[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
-"323
-[e ( _caracteres ..  ]
-"324
-[e :U 148 ]
+"375
+[e :U 166 ]
 {
-"327
 }
-[e :U 147 ]
-[e $U 148  ]
-[e :U 149 ]
-"328
-[e :UE 146 ]
+[e :U 165 ]
+[e $U 166  ]
+[e :U 167 ]
+"376
+[e :UE 164 ]
 }

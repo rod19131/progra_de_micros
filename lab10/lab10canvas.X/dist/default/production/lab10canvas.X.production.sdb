@@ -17,15 +17,16 @@
 [v _nuevocaracter nuevocaracter `(v  1 e 1 0 ]
 "132
 [v _menu menu `(v  1 e 1 0 ]
+[v i1_menu menu `(v  1 e 1 0 ]
 "282
 [v _isr isr `II(v  1 e 1 0 ]
-"289
+"343
 [v _main main `(v  1 e 1 0 ]
 "166 D:/progr/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [v _PORTA PORTA `VEuc  1 e 1 @5 ]
 "228
 [v _PORTB PORTB `VEuc  1 e 1 @6 ]
-[s S203 . 1 `uc 1 RBIF 1 0 :1:0 
+[s S204 . 1 `uc 1 RBIF 1 0 :1:0 
 `uc 1 INTF 1 0 :1:1 
 `uc 1 T0IF 1 0 :1:2 
 `uc 1 RBIE 1 0 :1:3 
@@ -35,13 +36,13 @@
 `uc 1 GIE 1 0 :1:7 
 ]
 "482
-[s S212 . 1 `uc 1 . 1 0 :2:0 
+[s S213 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 TMR0IF 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 TMR0IE 1 0 :1:5 
 ]
-[u S217 . 1 `S203 1 . 1 0 `S212 1 . 1 0 ]
-[v _INTCONbits INTCONbits `VES217  1 e 1 @11 ]
+[u S218 . 1 `S204 1 . 1 0 `S213 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES218  1 e 1 @11 ]
 [s S22 . 1 `uc 1 TMR1IF 1 0 :1:0 
 `uc 1 TMR2IF 1 0 :1:1 
 `uc 1 CCP1IF 1 0 :1:2 
@@ -53,7 +54,7 @@
 "553
 [u S30 . 1 `S22 1 . 1 0 ]
 [v _PIR1bits PIR1bits `VES30  1 e 1 @12 ]
-[s S140 . 1 `uc 1 RX9D 1 0 :1:0 
+[s S141 . 1 `uc 1 RX9D 1 0 :1:0 
 `uc 1 OERR 1 0 :1:1 
 `uc 1 FERR 1 0 :1:2 
 `uc 1 ADDEN 1 0 :1:3 
@@ -63,25 +64,27 @@
 `uc 1 SPEN 1 0 :1:7 
 ]
 "1068
-[s S149 . 1 `uc 1 RCD8 1 0 :1:0 
+[s S150 . 1 `uc 1 RCD8 1 0 :1:0 
 `uc 1 . 1 0 :5:1 
 `uc 1 RC9 1 0 :1:6 
 ]
-[s S153 . 1 `uc 1 . 1 0 :6:0 
+[s S154 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 nRC8 1 0 :1:6 
 ]
-[s S156 . 1 `uc 1 . 1 0 :6:0 
+[s S157 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 RC8_9 1 0 :1:6 
 ]
-[u S159 . 1 `S140 1 . 1 0 `S149 1 . 1 0 `S153 1 . 1 0 `S156 1 . 1 0 ]
-[v _RCSTAbits RCSTAbits `VES159  1 e 1 @24 ]
+[u S160 . 1 `S141 1 . 1 0 `S150 1 . 1 0 `S154 1 . 1 0 `S157 1 . 1 0 ]
+[v _RCSTAbits RCSTAbits `VES160  1 e 1 @24 ]
 "1133
 [v _TXREG TXREG `VEuc  1 e 1 @25 ]
+"1140
+[v _RCREG RCREG `VEuc  1 e 1 @26 ]
 "1416
 [v _TRISA TRISA `VEuc  1 e 1 @133 ]
 "1478
 [v _TRISB TRISB `VEuc  1 e 1 @134 ]
-[s S184 . 1 `uc 1 TMR1IE 1 0 :1:0 
+[s S185 . 1 `uc 1 TMR1IE 1 0 :1:0 
 `uc 1 TMR2IE 1 0 :1:1 
 `uc 1 CCP1IE 1 0 :1:2 
 `uc 1 SSPIE 1 0 :1:3 
@@ -90,23 +93,23 @@
 `uc 1 ADIE 1 0 :1:6 
 ]
 "1718
-[u S192 . 1 `S184 1 . 1 0 ]
-[v _PIE1bits PIE1bits `VES192  1 e 1 @140 ]
-[s S48 . 1 `uc 1 SCS 1 0 :1:0 
+[u S193 . 1 `S185 1 . 1 0 ]
+[v _PIE1bits PIE1bits `VES193  1 e 1 @140 ]
+[s S51 . 1 `uc 1 SCS 1 0 :1:0 
 `uc 1 LTS 1 0 :1:1 
 `uc 1 HTS 1 0 :1:2 
 `uc 1 OSTS 1 0 :1:3 
 `uc 1 IRCF 1 0 :3:4 
 ]
 "1882
-[s S54 . 1 `uc 1 . 1 0 :4:0 
+[s S57 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 IRCF0 1 0 :1:4 
 `uc 1 IRCF1 1 0 :1:5 
 `uc 1 IRCF2 1 0 :1:6 
 ]
-[u S59 . 1 `S48 1 . 1 0 `S54 1 . 1 0 ]
-[v _OSCCONbits OSCCONbits `VES59  1 e 1 @143 ]
-[s S80 . 1 `uc 1 TX9D 1 0 :1:0 
+[u S62 . 1 `S51 1 . 1 0 `S57 1 . 1 0 ]
+[v _OSCCONbits OSCCONbits `VES62  1 e 1 @143 ]
+[s S81 . 1 `uc 1 TX9D 1 0 :1:0 
 `uc 1 TRMT 1 0 :1:1 
 `uc 1 BRGH 1 0 :1:2 
 `uc 1 SENDB 1 0 :1:3 
@@ -116,20 +119,20 @@
 `uc 1 CSRC 1 0 :1:7 
 ]
 "2582
-[s S89 . 1 `uc 1 TXD8 1 0 :1:0 
+[s S90 . 1 `uc 1 TXD8 1 0 :1:0 
 `uc 1 . 1 0 :5:1 
 `uc 1 nTX8 1 0 :1:6 
 ]
-[s S93 . 1 `uc 1 . 1 0 :6:0 
+[s S94 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 TX8_9 1 0 :1:6 
 ]
-[u S96 . 1 `S80 1 . 1 0 `S89 1 . 1 0 `S93 1 . 1 0 ]
-[v _TXSTAbits TXSTAbits `VES96  1 e 1 @152 ]
+[u S97 . 1 `S81 1 . 1 0 `S90 1 . 1 0 `S94 1 . 1 0 ]
+[v _TXSTAbits TXSTAbits `VES97  1 e 1 @152 ]
 "2642
 [v _SPBRG SPBRG `VEuc  1 e 1 @153 ]
 "2704
 [v _SPBRGH SPBRGH `VEuc  1 e 1 @154 ]
-[s S117 . 1 `uc 1 ABDEN 1 0 :1:0 
+[s S118 . 1 `uc 1 ABDEN 1 0 :1:0 
 `uc 1 WUE 1 0 :1:1 
 `uc 1 . 1 0 :1:2 
 `uc 1 BRG16 1 0 :1:3 
@@ -139,34 +142,41 @@
 `uc 1 ABDOVF 1 0 :1:7 
 ]
 "3352
-[u S126 . 1 `S117 1 . 1 0 ]
-[v _BAUDCTLbits BAUDCTLbits `VES126  1 e 1 @391 ]
+[u S127 . 1 `S118 1 . 1 0 ]
+[v _BAUDCTLbits BAUDCTLbits `VES127  1 e 1 @391 ]
 "3387
 [v _ANSEL ANSEL `VEuc  1 e 1 @392 ]
 "3449
 [v _ANSELH ANSELH `VEuc  1 e 1 @393 ]
-"289 D:\AlejandroDigital\progra_de_micros\lab10\lab10canvas.X\lab10canvas.c
+"31 D:\AlejandroDigital\progra_de_micros\lab10\lab10canvas.X\lab10canvas.c
+[v _centinela centinela `uc  1 e 1 0 ]
+"343
 [v _main main `(v  1 e 1 0 ]
 {
-"328
-} 0
-"93
-[v _nuevocaracter nuevocaracter `(v  1 e 1 0 ]
-{
-"130
+"376
 } 0
 "132
 [v _menu menu `(v  1 e 1 0 ]
 {
 "280
 } 0
+"282
+[v _isr isr `II(v  1 e 1 0 ]
+{
+"341
+} 0
+"132
+[v i1_menu menu `(v  1 e 1 0 ]
+{
+"280
+} 0
+"93
+[v _nuevocaracter nuevocaracter `(v  1 e 1 0 ]
+{
+"130
+} 0
 "32
 [v _caracteres caracteres `(v  1 e 1 0 ]
 {
 "92
-} 0
-"282
-[v _isr isr `II(v  1 e 1 0 ]
-{
-"287
 } 0

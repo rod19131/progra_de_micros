@@ -20,7 +20,7 @@ cstackCOMMON COMMON 1 70 70 4 1
 intentry CODE 0 4 4 8 2
 dataCOMMON COMMON 1 74 74 1 1
 config CONFIG 4 2007 2007 2 2
-$C:\Users\AlejandroRodriguez\AppData\Local\Temp\sjs0.o
+$C:\Users\AlejandroRodriguez\AppData\Local\Temp\sjqg.o
 reset_vec CODE 0 0 0 3 2
 end_init CODE 0 C C 3 2
 config CONFIG 4 2007 2007 2 2
@@ -70,13 +70,13 @@ STRING 72-1FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\lab10.X.production.o
-F cinit CODE >468:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sjs0.s
-F cinit CODE >471:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sjs0.s
-F cinit CODE >485:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sjs0.s
-14 cinit CODE >486:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sjs0.s
-15 cinit CODE >492:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sjs0.s
-15 cinit CODE >494:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sjs0.s
-16 cinit CODE >495:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sjs0.s
+F cinit CODE >468:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sjqg.s
+F cinit CODE >471:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sjqg.s
+F cinit CODE >485:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sjqg.s
+14 cinit CODE >486:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sjqg.s
+15 cinit CODE >492:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sjqg.s
+15 cinit CODE >494:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sjqg.s
+16 cinit CODE >495:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sjqg.s
 4 intentry CODE >33:D:\AlejandroDigital\progra_de_micros\lab10\lab10.X\lab10.c
 62 text1 CODE >33:D:\AlejandroDigital\progra_de_micros\lab10\lab10.X\lab10.c
 62 text1 CODE >35:D:\AlejandroDigital\progra_de_micros\lab10\lab10.X\lab10.c
@@ -129,19 +129,19 @@ __Hspace_3 0 0 ABS 0 - -
 __Hspace_4 4010 0 ABS 0 - -
 __Heeprom_data 0 0 EEDATA 3 eeprom_data -
 __Hstrings 0 0 ABS 0 strings -
-___sp 0 0 STACK 2 stack C:\Users\AlejandroRodriguez\AppData\Local\Temp\sjs0.o
+___sp 0 0 STACK 2 stack C:\Users\AlejandroRodriguez\AppData\Local\Temp\sjqg.o
 _main 32 0 CODE 0 maintext dist/default/production\lab10.X.production.o
 btemp 7E 0 ABS 0 - dist/default/production\lab10.X.production.o
-start 18 0 CODE 0 init C:\Users\AlejandroRodriguez\AppData\Local\Temp\sjs0.o
+start 18 0 CODE 0 init C:\Users\AlejandroRodriguez\AppData\Local\Temp\sjqg.o
 __size_of_main 0 0 ABS 0 - dist/default/production\lab10.X.production.o
 __Hpowerup 0 0 CODE 0 powerup -
 __HdataCOMMON 0 0 ABS 0 dataCOMMON -
-intlevel0 0 0 ENTRY 0 functab C:\Users\AlejandroRodriguez\AppData\Local\Temp\sjs0.o
-intlevel1 0 0 ENTRY 0 functab C:\Users\AlejandroRodriguez\AppData\Local\Temp\sjs0.o
-intlevel2 0 0 ENTRY 0 functab C:\Users\AlejandroRodriguez\AppData\Local\Temp\sjs0.o
-intlevel3 0 0 ENTRY 0 functab C:\Users\AlejandroRodriguez\AppData\Local\Temp\sjs0.o
-intlevel4 0 0 ENTRY 0 functab C:\Users\AlejandroRodriguez\AppData\Local\Temp\sjs0.o
-intlevel5 0 0 ENTRY 0 functab C:\Users\AlejandroRodriguez\AppData\Local\Temp\sjs0.o
+intlevel0 0 0 ENTRY 0 functab C:\Users\AlejandroRodriguez\AppData\Local\Temp\sjqg.o
+intlevel1 0 0 ENTRY 0 functab C:\Users\AlejandroRodriguez\AppData\Local\Temp\sjqg.o
+intlevel2 0 0 ENTRY 0 functab C:\Users\AlejandroRodriguez\AppData\Local\Temp\sjqg.o
+intlevel3 0 0 ENTRY 0 functab C:\Users\AlejandroRodriguez\AppData\Local\Temp\sjqg.o
+intlevel4 0 0 ENTRY 0 functab C:\Users\AlejandroRodriguez\AppData\Local\Temp\sjqg.o
+intlevel5 0 0 ENTRY 0 functab C:\Users\AlejandroRodriguez\AppData\Local\Temp\sjqg.o
 _OSCCONbits 8F 0 ABS 0 - dist/default/production\lab10.X.production.o
 wtemp0 7E 0 ABS 0 - dist/default/production\lab10.X.production.o
 __Hfunctab 0 0 ENTRY 0 functab -
@@ -150,13 +150,13 @@ __pidataCOMMON E2 0 CODE 0 idataCOMMON dist/default/production\lab10.X.productio
 _ANSELH 189 0 ABS 0 - dist/default/production\lab10.X.production.o
 __LdataCOMMON 0 0 ABS 0 dataCOMMON -
 __Lmaintext 0 0 ABS 0 maintext -
-___stackhi 0 0 ABS 0 - C:\Users\AlejandroRodriguez\AppData\Local\Temp\sjs0.o
-___stacklo 0 0 ABS 0 - C:\Users\AlejandroRodriguez\AppData\Local\Temp\sjs0.o
+___stackhi 0 0 ABS 0 - C:\Users\AlejandroRodriguez\AppData\Local\Temp\sjqg.o
+___stacklo 0 0 ABS 0 - C:\Users\AlejandroRodriguez\AppData\Local\Temp\sjqg.o
 _BAUDCTLbits 187 0 ABS 0 - dist/default/production\lab10.X.production.o
 __LidataCOMMON 0 0 ABS 0 idataCOMMON -
 start_initialization 1E 0 CODE 0 cinit dist/default/production\lab10.X.production.o
 _SPBRGH 9A 0 ABS 0 - dist/default/production\lab10.X.production.o
-___int_sp 0 0 STACK 2 stack C:\Users\AlejandroRodriguez\AppData\Local\Temp\sjs0.o
+___int_sp 0 0 STACK 2 stack C:\Users\AlejandroRodriguez\AppData\Local\Temp\sjqg.o
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 ABS 0 bank2 -
@@ -199,7 +199,7 @@ saved_w 7E 0 ABS 0 - dist/default/production\lab10.X.production.o
 __HidataCOMMON 0 0 ABS 0 idataCOMMON -
 __end_of_isr E2 0 CODE 0 text1 dist/default/production\lab10.X.production.o
 __Lintentry 8 0 CODE 0 intentry -
-reset_vec 0 0 CODE 0 reset_vec C:\Users\AlejandroRodriguez\AppData\Local\Temp\sjs0.o
+reset_vec 0 0 CODE 0 reset_vec C:\Users\AlejandroRodriguez\AppData\Local\Temp\sjqg.o
 _RCSTAbits 18 0 ABS 0 - dist/default/production\lab10.X.production.o
 _PIE1bits 8C 0 ABS 0 - dist/default/production\lab10.X.production.o
 __pmaintext 32 0 CODE 0 maintext dist/default/production\lab10.X.production.o

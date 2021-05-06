@@ -2642,7 +2642,7 @@ typedef uint16_t uintptr_t;
 #pragma config WRT=OFF
 #pragma config BOR4V=BOR40V
 
-unsigned char datomenu;
+unsigned char centinela = 0;
 void caracteres(void){
     if (PIR1bits.TXIF)
     {TXREG = 0;
@@ -2896,7 +2896,61 @@ void menu(void){
 void __attribute__((picinterrupt(("")))) isr(void){
 
     if (PIR1bits.RCIF) {
+    switch (RCREG){
+        case 49:
+        caracteres();
+        if (PIR1bits.TXIF){
+            TXREG = 13;
+        }
+        _delay((unsigned long)((5)*(1000000/4000.0)));
+        menu();
+        break;
 
+        case 50:
+        nuevocaracter();
+        do
+        {
+        if (PIR1bits.RCIF){
+            PORTA = RCREG;
+            centinela = 255;
+            }
+
+        }
+        while (centinela == 0);
+            _delay((unsigned long)((5)*(1000000/4000.0)));
+            if (PIR1bits.TXIF)
+                {TXREG = 13;}
+            _delay((unsigned long)((5)*(1000000/4000.0)));
+            if (PIR1bits.TXIF)
+                {TXREG = 13;}
+            _delay((unsigned long)((5)*(1000000/4000.0)));
+            menu();
+            _delay((unsigned long)((5)*(1000000/4000.0)));
+            centinela = 0;
+            break;
+
+        case 51:
+        nuevocaracter();
+        do
+        {
+        if (PIR1bits.RCIF){
+            PORTB = RCREG;
+            centinela = 255;
+            }
+
+        }
+        while (centinela == 0);
+            _delay((unsigned long)((5)*(1000000/4000.0)));
+            if (PIR1bits.TXIF)
+                {TXREG = 13;}
+            _delay((unsigned long)((5)*(1000000/4000.0)));
+            if (PIR1bits.TXIF)
+                {TXREG = 13;}
+            _delay((unsigned long)((5)*(1000000/4000.0)));
+            menu();
+            centinela = 0;
+            break;
+        }
     }
 }
 
@@ -2932,11 +2986,5 @@ void main(void) {
     INTCONbits.GIE = 1;
     menu();
     _delay((unsigned long)((5)*(1000000/4000.0)));
-    nuevocaracter();
-    _delay((unsigned long)((5)*(1000000/4000.0)));
-    caracteres();
-    while (1){
-
-
-    }
+    while (1){}
 }
