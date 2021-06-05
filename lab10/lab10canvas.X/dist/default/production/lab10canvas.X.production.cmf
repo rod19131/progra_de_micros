@@ -23,7 +23,7 @@ cstackCOMMON COMMON 1 70 70 8 1
 intentry CODE 0 4 4 A 2
 bssCOMMON COMMON 1 78 78 1 1
 config CONFIG 4 2007 2007 2 2
-$C:\Users\AlejandroRodriguez\AppData\Local\Temp\sl0o.o
+$C:\Users\AlejandroRodriguez\AppData\Local\Temp\s3nc.o
 reset_vec CODE 0 0 0 3 2
 end_init CODE 0 E E 3 2
 config CONFIG 4 2007 2007 2 2
@@ -73,12 +73,12 @@ STRING 7B1-1FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\lab10canvas.X.production.o
-11 cinit CODE >465:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sl0o.s
-11 cinit CODE >468:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sl0o.s
-11 cinit CODE >479:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sl0o.s
-12 cinit CODE >485:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sl0o.s
-12 cinit CODE >487:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sl0o.s
-13 cinit CODE >488:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sl0o.s
+11 cinit CODE >465:C:\Users\AlejandroRodriguez\AppData\Local\Temp\s3nc.s
+11 cinit CODE >468:C:\Users\AlejandroRodriguez\AppData\Local\Temp\s3nc.s
+11 cinit CODE >479:C:\Users\AlejandroRodriguez\AppData\Local\Temp\s3nc.s
+12 cinit CODE >485:C:\Users\AlejandroRodriguez\AppData\Local\Temp\s3nc.s
+12 cinit CODE >487:C:\Users\AlejandroRodriguez\AppData\Local\Temp\s3nc.s
+13 cinit CODE >488:C:\Users\AlejandroRodriguez\AppData\Local\Temp\s3nc.s
 4 intentry CODE >282:D:\AlejandroDigital\progra_de_micros\lab10\lab10canvas.X\lab10canvas.c
 50C text5 CODE >32:D:\AlejandroDigital\progra_de_micros\lab10\lab10canvas.X\lab10canvas.c
 50C text5 CODE >33:D:\AlejandroDigital\progra_de_micros\lab10\lab10canvas.X\lab10canvas.c
@@ -564,24 +564,24 @@ __Hspace_3 0 0 ABS 0 - -
 __Hspace_4 4010 0 ABS 0 - -
 __Heeprom_data 0 0 EEDATA 3 eeprom_data -
 __Hstrings 0 0 ABS 0 strings -
-___sp 0 0 STACK 2 stack C:\Users\AlejandroRodriguez\AppData\Local\Temp\sl0o.o
+___sp 0 0 STACK 2 stack C:\Users\AlejandroRodriguez\AppData\Local\Temp\s3nc.o
 _main ED8 0 CODE 0 maintext dist/default/production\lab10canvas.X.production.o
 _menu 2C 0 CODE 0 text1 dist/default/production\lab10canvas.X.production.o
 btemp 7E 0 ABS 0 - dist/default/production\lab10canvas.X.production.o
 i1_menu 522 0 CODE 0 text3 dist/default/production\lab10canvas.X.production.o
-start 1C 0 CODE 0 init C:\Users\AlejandroRodriguez\AppData\Local\Temp\sl0o.o
+start 1C 0 CODE 0 init C:\Users\AlejandroRodriguez\AppData\Local\Temp\s3nc.o
 __size_of_main 0 0 ABS 0 - dist/default/production\lab10canvas.X.production.o
 __size_of_menu 0 0 ABS 0 - dist/default/production\lab10canvas.X.production.o
 __HbssCOMMON 0 0 ABS 0 bssCOMMON -
 _nuevocaracter DA4 0 CODE 0 text4 dist/default/production\lab10canvas.X.production.o
 __Hpowerup 0 0 CODE 0 powerup -
 _centinela 78 0 COMMON 1 bssCOMMON dist/default/production\lab10canvas.X.production.o
-intlevel0 0 0 ENTRY 0 functab C:\Users\AlejandroRodriguez\AppData\Local\Temp\sl0o.o
-intlevel1 0 0 ENTRY 0 functab C:\Users\AlejandroRodriguez\AppData\Local\Temp\sl0o.o
-intlevel2 0 0 ENTRY 0 functab C:\Users\AlejandroRodriguez\AppData\Local\Temp\sl0o.o
-intlevel3 0 0 ENTRY 0 functab C:\Users\AlejandroRodriguez\AppData\Local\Temp\sl0o.o
-intlevel4 0 0 ENTRY 0 functab C:\Users\AlejandroRodriguez\AppData\Local\Temp\sl0o.o
-intlevel5 0 0 ENTRY 0 functab C:\Users\AlejandroRodriguez\AppData\Local\Temp\sl0o.o
+intlevel0 0 0 ENTRY 0 functab C:\Users\AlejandroRodriguez\AppData\Local\Temp\s3nc.o
+intlevel1 0 0 ENTRY 0 functab C:\Users\AlejandroRodriguez\AppData\Local\Temp\s3nc.o
+intlevel2 0 0 ENTRY 0 functab C:\Users\AlejandroRodriguez\AppData\Local\Temp\s3nc.o
+intlevel3 0 0 ENTRY 0 functab C:\Users\AlejandroRodriguez\AppData\Local\Temp\s3nc.o
+intlevel4 0 0 ENTRY 0 functab C:\Users\AlejandroRodriguez\AppData\Local\Temp\s3nc.o
+intlevel5 0 0 ENTRY 0 functab C:\Users\AlejandroRodriguez\AppData\Local\Temp\s3nc.o
 __LbssCOMMON 0 0 ABS 0 bssCOMMON -
 _OSCCONbits 8F 0 ABS 0 - dist/default/production\lab10canvas.X.production.o
 wtemp0 7E 0 ABS 0 - dist/default/production\lab10canvas.X.production.o
@@ -590,14 +590,14 @@ __size_ofi1_menu 0 0 ABS 0 - dist/default/production\lab10canvas.X.production.o
 __Hclrtext 0 0 ABS 0 clrtext -
 _ANSELH 189 0 ABS 0 - dist/default/production\lab10canvas.X.production.o
 __Lmaintext 0 0 ABS 0 maintext -
-___stackhi 0 0 ABS 0 - C:\Users\AlejandroRodriguez\AppData\Local\Temp\sl0o.o
-___stacklo 0 0 ABS 0 - C:\Users\AlejandroRodriguez\AppData\Local\Temp\sl0o.o
+___stackhi 0 0 ABS 0 - C:\Users\AlejandroRodriguez\AppData\Local\Temp\s3nc.o
+___stacklo 0 0 ABS 0 - C:\Users\AlejandroRodriguez\AppData\Local\Temp\s3nc.o
 _BAUDCTLbits 187 0 ABS 0 - dist/default/production\lab10canvas.X.production.o
 __size_of_nuevocaracter 0 0 ABS 0 - dist/default/production\lab10canvas.X.production.o
 start_initialization 22 0 CODE 0 cinit dist/default/production\lab10canvas.X.production.o
 _SPBRGH 9A 0 ABS 0 - dist/default/production\lab10canvas.X.production.o
 __end_of_nuevocaracter ED8 0 CODE 0 text4 dist/default/production\lab10canvas.X.production.o
-___int_sp 0 0 STACK 2 stack C:\Users\AlejandroRodriguez\AppData\Local\Temp\sl0o.o
+___int_sp 0 0 STACK 2 stack C:\Users\AlejandroRodriguez\AppData\Local\Temp\s3nc.o
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 ABS 0 bank2 -
@@ -641,7 +641,7 @@ saved_w 7E 0 ABS 0 - dist/default/production\lab10canvas.X.production.o
 __end_of_isr DA4 0 CODE 0 text2 dist/default/production\lab10canvas.X.production.o
 __end_of_caracteres C16 0 CODE 0 text5 dist/default/production\lab10canvas.X.production.o
 __Lintentry 8 0 CODE 0 intentry -
-reset_vec 0 0 CODE 0 reset_vec C:\Users\AlejandroRodriguez\AppData\Local\Temp\sl0o.o
+reset_vec 0 0 CODE 0 reset_vec C:\Users\AlejandroRodriguez\AppData\Local\Temp\s3nc.o
 _RCSTAbits 18 0 ABS 0 - dist/default/production\lab10canvas.X.production.o
 _PIE1bits 8C 0 ABS 0 - dist/default/production\lab10canvas.X.production.o
 __pmaintext ED8 0 CODE 0 maintext dist/default/production\lab10canvas.X.production.o

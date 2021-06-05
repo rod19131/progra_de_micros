@@ -1,0 +1,671 @@
+%CMF
+# %PSECTS Section
+# For each object file, details of its psects are enumerated here.
+# The begining of the section is indicated by %PSECTS.  The first
+# line indicates the name of the first object file, e.g.
+#    $foo.obj
+# Each line that follows describes a psect in that object file, until
+# the next object file.  The lines that describe a psect have the
+# format:
+#    <psect name> <class name> <space> <link address> <load addresses> <length> <delta>
+# All addresses and the length are given in unqualified hexadecimal
+# in delta units.  Any other numeric values are decimal.
+%PSECTS
+$dist/default/production\pseudopro2.X.production.o
+cinit CODE 0 11 11 21 2
+text1 CODE 0 5DE 5DE 23 2
+text2 CODE 0 32 32 214 2
+text3 CODE 0 61A 61A 15 2
+text4 CODE 0 456 456 F1 2
+text5 CODE 0 547 547 97 2
+maintext CODE 0 246 246 210 2
+cstackCOMMON COMMON 1 70 70 7 1
+cstackBANK0 BANK0 1 45 45 8 1
+inittext CODE 0 62F 62F 13 2
+intentry CODE 0 4 4 A 2
+bssBANK0 BANK0 1 39 39 C 1
+idataBANK0 CODE 0 601 601 19 2
+dataBANK0 BANK0 1 20 20 19 1
+bssCOMMON COMMON 1 77 77 3 1
+config CONFIG 4 2007 2007 2 2
+$C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.o
+reset_vec CODE 0 0 0 3 2
+end_init CODE 0 E E 3 2
+config CONFIG 4 2007 2007 2 2
+# %UNUSED Section
+# This section enumerates the unused ranges of each CLASS. Each entry
+# is described on a single line as follows:
+#    <class name> <range> <delta>
+# Addresses given in the range are in hexadecimal and units of delta.
+%UNUSED
+RAM 4D-6F 1
+RAM A0-EF 1
+RAM 110-16F 1
+RAM 190-1EF 1
+BANK0 4D-6F 1
+BANK1 A0-EF 1
+BANK2 110-16F 1
+BANK3 190-1EF 1
+CONST 3-3 2
+CONST 642-1FFF 2
+ENTRY 3-3 2
+ENTRY 642-1FFF 2
+IDLOC 2000-2003 2
+STACK 110-16F 1
+CODE 3-3 2
+CODE 642-1FFF 2
+SFR0 0-1F 1
+SFR1 80-9F 1
+SFR2 100-10F 1
+SFR3 180-18F 1
+COMMON 7A-7D 1
+EEDATA 2100-21FF 2
+STRCODE 3-3 2
+STRCODE 642-1FFF 2
+STRING 3-3 2
+STRING 642-1FFF 2
+# %LINETAB Section
+# This section enumerates the file/line to address mappings.
+# The beginning of the section is indicated by %LINETAB.
+# The first line indicates the name of the first object file, e.g.
+#   $foo.obj
+# Each line that follows describes a single mapping until the next
+# object file.  Mappings have the following format:
+#    <address> <psect name> <class name> ><line number>:<file name>
+# The address is absolute and given given in unqualified hex 
+# in delta units of the psect. All mappings within an object file
+# are in ascending order of addresses.
+# All other numeric values are in decimal.
+%LINETAB
+$dist/default/production\pseudopro2.X.production.o
+11 cinit CODE >580:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.s
+11 cinit CODE >583:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.s
+11 cinit CODE >699:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.s
+12 cinit CODE >700:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.s
+13 cinit CODE >701:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.s
+14 cinit CODE >702:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.s
+15 cinit CODE >703:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.s
+16 cinit CODE >704:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.s
+17 cinit CODE >705:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.s
+18 cinit CODE >706:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.s
+19 cinit CODE >707:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.s
+1A cinit CODE >708:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.s
+1F cinit CODE >712:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.s
+20 cinit CODE >713:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.s
+21 cinit CODE >714:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.s
+22 cinit CODE >715:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.s
+23 cinit CODE >716:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.s
+24 cinit CODE >717:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.s
+25 cinit CODE >718:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.s
+26 cinit CODE >719:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.s
+27 cinit CODE >720:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.s
+28 cinit CODE >721:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.s
+29 cinit CODE >722:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.s
+2A cinit CODE >723:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.s
+2B cinit CODE >726:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.s
+2C cinit CODE >727:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.s
+2D cinit CODE >728:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.s
+2E cinit CODE >734:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.s
+2E cinit CODE >736:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.s
+2F cinit CODE >737:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.s
+4 intentry CODE >213:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+547 text5 CODE >55:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+548 text5 CODE >57:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+54E text5 CODE >59:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+550 text5 CODE >61:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+55C text5 CODE >63:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+55E text5 CODE >65:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+56A text5 CODE >67:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+56C text5 CODE >69:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+578 text5 CODE >71:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+57A text5 CODE >73:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+586 text5 CODE >75:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+588 text5 CODE >77:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+594 text5 CODE >79:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+596 text5 CODE >81:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+5A2 text5 CODE >83:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+5A4 text5 CODE >85:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+5B0 text5 CODE >87:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+5B2 text5 CODE >89:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+5BE text5 CODE >91:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+5C0 text5 CODE >93:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+5CC text5 CODE >95:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+5CE text5 CODE >97:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+5DA text5 CODE >99:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+5DC text5 CODE >103:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+5DD text5 CODE >105:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+456 text4 CODE >213:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+456 text4 CODE >216:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+45C text4 CODE >217:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+467 text4 CODE >220:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+472 text4 CODE >221:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+476 text4 CODE >222:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+477 text4 CODE >225:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+482 text4 CODE >226:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+486 text4 CODE >227:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+487 text4 CODE >230:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+492 text4 CODE >231:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+496 text4 CODE >232:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+497 text4 CODE >235:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+49D text4 CODE >236:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+4A7 text4 CODE >237:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+4BB text4 CODE >238:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+4BD text4 CODE >239:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+4BE text4 CODE >240:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+4D7 text4 CODE >242:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+4DB text4 CODE >243:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+4DE text4 CODE >244:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+4DF text4 CODE >247:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+4E3 text4 CODE >248:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+4E5 text4 CODE >249:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+4EB text4 CODE >250:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+4EC text4 CODE >251:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+4ED text4 CODE >252:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+4EE text4 CODE >254:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+4F4 text4 CODE >255:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+4F5 text4 CODE >256:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+4F6 text4 CODE >257:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+4F7 text4 CODE >259:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+4FD text4 CODE >260:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+4FE text4 CODE >261:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+4FF text4 CODE >262:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+500 text4 CODE >264:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+505 text4 CODE >265:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+509 text4 CODE >266:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+509 text4 CODE >267:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+50E text4 CODE >268:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+512 text4 CODE >269:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+512 text4 CODE >270:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+517 text4 CODE >271:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+51B text4 CODE >273:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+51C text4 CODE >276:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+520 text4 CODE >277:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+522 text4 CODE >278:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+524 text4 CODE >279:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+529 text4 CODE >280:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+52B text4 CODE >281:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+52D text4 CODE >282:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+52F text4 CODE >285:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+535 text4 CODE >286:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+536 text4 CODE >287:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+537 text4 CODE >288:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+538 text4 CODE >289:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+539 text4 CODE >291:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+53D text4 CODE >292:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+53E text4 CODE >294:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+61A text3 CODE >128:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+61D text3 CODE >129:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+621 text3 CODE >130:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+624 text3 CODE >131:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+625 text3 CODE >132:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+62D text3 CODE >133:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+62E text3 CODE >134:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+32 text2 CODE >136:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+32 text2 CODE >137:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+35 text2 CODE >138:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+37 text2 CODE >139:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+38 text2 CODE >142:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+41 text2 CODE >143:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+52 text2 CODE >144:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+62 text2 CODE >145:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+6D text2 CODE >146:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+78 text2 CODE >147:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+83 text2 CODE >148:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+84 text2 CODE >149:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+85 text2 CODE >150:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+86 text2 CODE >151:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+87 text2 CODE >152:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+88 text2 CODE >153:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+97 text2 CODE >154:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+9B text2 CODE >155:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+9C text2 CODE >158:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+A5 text2 CODE >159:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+B6 text2 CODE >160:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+C6 text2 CODE >161:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+D1 text2 CODE >162:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+DC text2 CODE >163:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+E7 text2 CODE >164:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+E8 text2 CODE >165:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+F7 text2 CODE >166:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+FD text2 CODE >167:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+FE text2 CODE >170:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+107 text2 CODE >171:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+118 text2 CODE >172:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+128 text2 CODE >173:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+133 text2 CODE >174:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+13E text2 CODE >175:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+149 text2 CODE >176:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+14A text2 CODE >177:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+159 text2 CODE >178:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+15F text2 CODE >179:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+160 text2 CODE >181:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+169 text2 CODE >182:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+17A text2 CODE >183:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+18A text2 CODE >184:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+195 text2 CODE >185:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+1A0 text2 CODE >186:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+1AB text2 CODE >187:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+1AC text2 CODE >188:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+1BB text2 CODE >189:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+1C1 text2 CODE >190:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+1C2 text2 CODE >193:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+1CB text2 CODE >194:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+1DC text2 CODE >195:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+1EC text2 CODE >196:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+1F7 text2 CODE >197:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+202 text2 CODE >198:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+20D text2 CODE >199:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+20E text2 CODE >200:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+21D text2 CODE >201:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+223 text2 CODE >202:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+224 text2 CODE >203:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+23D text2 CODE >139:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+243 text2 CODE >205:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+244 text2 CODE >206:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+245 text2 CODE >208:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+5DE text1 CODE >107:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+5E1 text1 CODE >108:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+5E5 text1 CODE >109:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+5EB text1 CODE >111:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+5EE text1 CODE >112:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+5EF text1 CODE >114:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+5F0 text1 CODE >116:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+5F2 text1 CODE >117:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+5F4 text1 CODE >118:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+5F5 text1 CODE >120:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+5FB text1 CODE >121:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+5FC text1 CODE >123:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+5FD text1 CODE >124:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+600 text1 CODE >127:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+246 maintext CODE >298:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+246 maintext CODE >304:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+24A maintext CODE >305:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+24B maintext CODE >309:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+24E maintext CODE >310:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+24F maintext CODE >311:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+250 maintext CODE >312:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+251 maintext CODE >313:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+252 maintext CODE >314:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+256 maintext CODE >315:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+257 maintext CODE >316:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+258 maintext CODE >317:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+25A maintext CODE >318:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+25B maintext CODE >319:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+25C maintext CODE >320:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+25D maintext CODE >321:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+25E maintext CODE >322:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+261 maintext CODE >323:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+262 maintext CODE >324:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+264 maintext CODE >325:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+265 maintext CODE >326:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+266 maintext CODE >327:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+267 maintext CODE >328:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+268 maintext CODE >329:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+269 maintext CODE >330:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+26A maintext CODE >331:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+26B maintext CODE >332:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+26C maintext CODE >333:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+26D maintext CODE >337:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+271 maintext CODE >338:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+272 maintext CODE >339:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+275 maintext CODE >340:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+276 maintext CODE >341:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+277 maintext CODE >342:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+27A maintext CODE >343:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+281 maintext CODE >347:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+284 maintext CODE >348:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+286 maintext CODE >349:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+28A maintext CODE >350:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+28E maintext CODE >351:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+290 maintext CODE >352:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+292 maintext CODE >355:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+293 maintext CODE >356:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+295 maintext CODE >357:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+296 maintext CODE >358:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+29A maintext CODE >359:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+29B maintext CODE >360:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+29E maintext CODE >361:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+29F maintext CODE >364:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+2A0 maintext CODE >365:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+2A1 maintext CODE >366:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+2A2 maintext CODE >367:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+2A3 maintext CODE >368:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+2A4 maintext CODE >369:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+2A8 maintext CODE >370:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+2A9 maintext CODE >373:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+2AA maintext CODE >374:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+2AB maintext CODE >375:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+2AC maintext CODE >376:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+2AD maintext CODE >377:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+2AE maintext CODE >378:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+2B0 maintext CODE >379:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+2B2 maintext CODE >380:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+2B3 maintext CODE >400:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+2B4 maintext CODE >401:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+2B7 maintext CODE >402:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+2B8 maintext CODE >403:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+2B9 maintext CODE >404:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+2BA maintext CODE >405:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+2BB maintext CODE >406:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+2BE maintext CODE >408:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+2C2 maintext CODE >409:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+2C4 maintext CODE >411:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+2C8 maintext CODE >412:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+2CA maintext CODE >414:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+2D9 maintext CODE >417:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+2E3 maintext CODE >418:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+2EF maintext CODE >419:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+2FB maintext CODE >420:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+307 maintext CODE >421:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+313 maintext CODE >422:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+317 maintext CODE >423:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+318 maintext CODE >424:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+319 maintext CODE >425:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+31A maintext CODE >426:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+31B maintext CODE >427:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+31C maintext CODE >428:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+31D maintext CODE >431:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+327 maintext CODE >432:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+333 maintext CODE >433:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+33F maintext CODE >434:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+34B maintext CODE >435:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+357 maintext CODE >436:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+35D maintext CODE >437:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+35E maintext CODE >438:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+35F maintext CODE >441:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+369 maintext CODE >442:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+375 maintext CODE >443:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+381 maintext CODE >444:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+38D maintext CODE >445:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+399 maintext CODE >446:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+39F maintext CODE >447:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+3A0 maintext CODE >448:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+3A1 maintext CODE >451:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+3AB maintext CODE >452:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+3B7 maintext CODE >453:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+3C3 maintext CODE >454:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+3CF maintext CODE >455:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+3DB maintext CODE >456:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+3E1 maintext CODE >457:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+3E2 maintext CODE >458:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+3E3 maintext CODE >461:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+3ED maintext CODE >462:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+3F9 maintext CODE >463:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+405 maintext CODE >464:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+411 maintext CODE >465:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+41D maintext CODE >466:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+420 maintext CODE >467:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+421 maintext CODE >468:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+422 maintext CODE >469:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+43B maintext CODE >470:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+43C maintext CODE >473:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+44A maintext CODE >474:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+44F maintext CODE >475:D:\AlejandroDigital\progra_de_micros\pseudopro2.X\pseudopro2.c
+62F inittext CODE >673:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.s
+62F inittext CODE >674:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.s
+630 inittext CODE >675:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.s
+631 inittext CODE >676:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.s
+632 inittext CODE >677:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.s
+633 inittext CODE >684:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.s
+633 inittext CODE >685:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.s
+638 inittext CODE >686:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.s
+639 inittext CODE >687:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.s
+63A inittext CODE >688:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.s
+63B inittext CODE >689:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.s
+63C inittext CODE >690:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.s
+63D inittext CODE >691:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.s
+63E inittext CODE >692:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.s
+63F inittext CODE >693:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.s
+640 inittext CODE >694:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.s
+641 inittext CODE >695:C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.s
+# %SYMTAB Section
+# An enumeration of all symbols in the program.
+# The beginning of the section is indicated by %SYMTAB.
+# Each line describes a single symbol as follows:
+#    <label> <value> [-]<load-adj> <class> <space> <psect> <file-name>
+# The value and load-adj are both in unqualified hexadecimal.
+# All other numeric values are in decimal.  The load-adj is the
+# quantity one needs to add to the symbol value in order to obtain the load
+# address of the symbol.  This value may be signed. If the symbol
+# was defined in a psect then <psect> will be "-". File-name
+# is the name of the object file in which the symbol was defined.
+%SYMTAB
+___latbits 2 0 ABS 0 - dist/default/production\pseudopro2.X.production.o
+__LdataBANK0 0 0 ABS 0 dataBANK0 -
+__Hspace_0 642 0 ABS 0 - -
+__Hspace_1 7A 0 ABS 0 - -
+__Hspace_2 0 0 ABS 0 - -
+__Hspace_3 0 0 ABS 0 - -
+__Hspace_4 4010 0 ABS 0 - -
+__HidataBANK0 0 0 ABS 0 idataBANK0 -
+__Heeprom_data 0 0 EEDATA 3 eeprom_data -
+__size_of_NumIteraciones 0 0 ABS 0 - dist/default/production\pseudopro2.X.production.o
+__end_of_writeToEEPROM C02 0 CODE 0 text1 dist/default/production\pseudopro2.X.production.o
+_T1CONbits 10 0 ABS 0 - dist/default/production\pseudopro2.X.production.o
+__Hstrings 0 0 ABS 0 strings -
+_ADIF 66 0 ABS 0 - dist/default/production\pseudopro2.X.production.o
+_POT0 44 0 BANK0 1 bssBANK0 dist/default/production\pseudopro2.X.production.o
+_POT1 43 0 BANK0 1 bssBANK0 dist/default/production\pseudopro2.X.production.o
+_POT2 42 0 BANK0 1 bssBANK0 dist/default/production\pseudopro2.X.production.o
+_T0IF 5A 0 ABS 0 - dist/default/production\pseudopro2.X.production.o
+_TMR0 1 0 ABS 0 - dist/default/production\pseudopro2.X.production.o
+___sp 0 0 STACK 2 stack C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.o
+_main 48C 0 CODE 0 maintext dist/default/production\pseudopro2.X.production.o
+btemp 7E 0 ABS 0 - dist/default/production\pseudopro2.X.production.o
+start 1C 0 CODE 0 init C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.o
+_ENTM0Pot0 79 0 COMMON 1 bssCOMMON dist/default/production\pseudopro2.X.production.o
+_ENTM0Pot1 78 0 COMMON 1 bssCOMMON dist/default/production\pseudopro2.X.production.o
+_ENTM0Pot2 77 0 COMMON 1 bssCOMMON dist/default/production\pseudopro2.X.production.o
+__size_of_main 0 0 ABS 0 - dist/default/production\pseudopro2.X.production.o
+__HbssCOMMON 0 0 ABS 0 bssCOMMON -
+_OPTION_REGbits 81 0 ABS 0 - dist/default/production\pseudopro2.X.production.o
+__LidataBANK0 0 0 ABS 0 idataBANK0 -
+__Hpowerup 0 0 CODE 0 powerup -
+intlevel0 0 0 ENTRY 0 functab C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.o
+intlevel1 0 0 ENTRY 0 functab C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.o
+intlevel2 0 0 ENTRY 0 functab C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.o
+intlevel3 0 0 ENTRY 0 functab C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.o
+intlevel4 0 0 ENTRY 0 functab C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.o
+intlevel5 0 0 ENTRY 0 functab C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.o
+__LbssCOMMON 0 0 ABS 0 bssCOMMON -
+_OSCCONbits 8F 0 ABS 0 - dist/default/production\pseudopro2.X.production.o
+wtemp0 7E 0 ABS 0 - dist/default/production\pseudopro2.X.production.o
+__Hfunctab 0 0 ENTRY 0 functab -
+__Hclrtext 0 0 ABS 0 clrtext -
+readFromEEPROM@data 47 0 BANK0 1 cstackBANK0 dist/default/production\pseudopro2.X.production.o
+_ADRESH 1E 0 ABS 0 - dist/default/production\pseudopro2.X.production.o
+_ADRESL 9E 0 ABS 0 - dist/default/production\pseudopro2.X.production.o
+_ANSELH 189 0 ABS 0 - dist/default/production\pseudopro2.X.production.o
+_EECON1bits 18C 0 ABS 0 - dist/default/production\pseudopro2.X.production.o
+_CCPR1L 15 0 ABS 0 - dist/default/production\pseudopro2.X.production.o
+_EECON2 18D 0 ABS 0 - dist/default/production\pseudopro2.X.production.o
+__Lmaintext 0 0 ABS 0 maintext -
+_ADD_POT0 34 0 BANK0 1 dataBANK0 dist/default/production\pseudopro2.X.production.o
+_ADD_POT1 2F 0 BANK0 1 dataBANK0 dist/default/production\pseudopro2.X.production.o
+_ADD_POT2 2A 0 BANK0 1 dataBANK0 dist/default/production\pseudopro2.X.production.o
+_ADD_POT3 25 0 BANK0 1 dataBANK0 dist/default/production\pseudopro2.X.production.o
+___stackhi 0 0 ABS 0 - C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.o
+___stacklo 0 0 ABS 0 - C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.o
+_ItPOT0 41 0 BANK0 1 bssBANK0 dist/default/production\pseudopro2.X.production.o
+_ItPOT1 40 0 BANK0 1 bssBANK0 dist/default/production\pseudopro2.X.production.o
+_ItPOT2 3F 0 BANK0 1 bssBANK0 dist/default/production\pseudopro2.X.production.o
+_WPUBbits 95 0 ABS 0 - dist/default/production\pseudopro2.X.production.o
+start_initialization 22 0 CODE 0 cinit dist/default/production\pseudopro2.X.production.o
+_TRISCbits 87 0 ABS 0 - dist/default/production\pseudopro2.X.production.o
+_ConTMR1 3E 0 BANK0 1 bssBANK0 dist/default/production\pseudopro2.X.production.o
+__pcstackBANK0 45 0 BANK0 1 cstackBANK0 dist/default/production\pseudopro2.X.production.o
+_TMR1IF 60 0 ABS 0 - dist/default/production\pseudopro2.X.production.o
+_readFromEEPROM C34 0 CODE 0 text3 dist/default/production\pseudopro2.X.production.o
+__end_of_readFromEEPROMPOTS 48C 0 CODE 0 text2 dist/default/production\pseudopro2.X.production.o
+_ConTEEPROM 3D 0 BANK0 1 bssBANK0 dist/default/production\pseudopro2.X.production.o
+___int_sp 0 0 STACK 2 stack C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.o
+__Hbank0 0 0 ABS 0 bank0 -
+__Hbank1 0 0 ABS 0 bank1 -
+__Hbank2 0 0 ABS 0 bank2 -
+__Hbank3 0 0 ABS 0 bank3 -
+__Hcinit 64 0 CODE 0 cinit -
+__Hstack 0 0 STACK 2 stack -
+NumIteraciones@ValorPot 70 0 COMMON 1 cstackCOMMON dist/default/production\pseudopro2.X.production.o
+__Hmaintext 0 0 ABS 0 maintext -
+_RB0_old 3C 0 BANK0 1 bssBANK0 dist/default/production\pseudopro2.X.production.o
+_RB1_old 3B 0 BANK0 1 bssBANK0 dist/default/production\pseudopro2.X.production.o
+__Hcommon 0 0 ABS 0 common -
+__Hconfig 4012 0 CONFIG 4 config -
+__Lbank0 0 0 ABS 0 bank0 -
+__Lbank1 0 0 ABS 0 bank1 -
+__Lbank2 0 0 ABS 0 bank2 -
+__Lbank3 0 0 ABS 0 bank3 -
+__Lcinit 22 0 CODE 0 cinit -
+__Lstack 0 0 STACK 2 stack -
+__Linittext 0 0 ABS 0 inittext -
+_PORTDbits 8 0 ABS 0 - dist/default/production\pseudopro2.X.production.o
+_INTCONbits B 0 ABS 0 - dist/default/production\pseudopro2.X.production.o
+_readFromEEPROMPOTS 64 0 CODE 0 text2 dist/default/production\pseudopro2.X.production.o
+__Habs1 0 0 ABS 0 abs1 -
+__Hcode 0 0 ABS 0 code -
+__Hinit 1C 0 CODE 0 init -
+__Hsfr0 0 0 ABS 0 sfr0 -
+__Hsfr1 0 0 ABS 0 sfr1 -
+__Hsfr2 0 0 ABS 0 sfr2 -
+__Hsfr3 0 0 ABS 0 sfr3 -
+__Htext 0 0 ABS 0 text -
+__Labs1 0 0 ABS 0 abs1 -
+__Lcode 0 0 ABS 0 code -
+__Linit 1C 0 CODE 0 init -
+__Lsfr0 0 0 ABS 0 sfr0 -
+__Lsfr1 0 0 ABS 0 sfr1 -
+__Lsfr2 0 0 ABS 0 sfr2 -
+__Lsfr3 0 0 ABS 0 sfr3 -
+__Ltext 0 0 ABS 0 text -
+__LcstackBANK0 0 0 ABS 0 cstackBANK0 -
+__HcstackCOMMON 0 0 ABS 0 cstackCOMMON -
+_NumIteraciones A8E 0 CODE 0 text5 dist/default/production\pseudopro2.X.production.o
+_PR2 92 0 ABS 0 - dist/default/production\pseudopro2.X.production.o
+_RB0 30 0 ABS 0 - dist/default/production\pseudopro2.X.production.o
+_RB1 31 0 ABS 0 - dist/default/production\pseudopro2.X.production.o
+__S0 642 0 ABS 0 - -
+__S1 7A 0 ABS 0 - -
+__S2 0 0 ABS 0 - -
+__S3 0 0 ABS 0 - -
+_isr 8AC 0 CODE 0 text4 dist/default/production\pseudopro2.X.production.o
+__end_of_readFromEEPROM C5E 0 CODE 0 text3 dist/default/production\pseudopro2.X.production.o
+saved_w 7E 0 ABS 0 - dist/default/production\pseudopro2.X.production.o
+__end_of_isr A8E 0 CODE 0 text4 dist/default/production\pseudopro2.X.production.o
+__Lintentry 8 0 CODE 0 intentry -
+reset_vec 0 0 CODE 0 reset_vec C:\Users\AlejandroRodriguez\AppData\Local\Temp\sdio.o
+__pdataBANK0 20 0 BANK0 1 dataBANK0 dist/default/production\pseudopro2.X.production.o
+__LbssBANK0 0 0 ABS 0 bssBANK0 -
+_PIE1bits 8C 0 ABS 0 - dist/default/production\pseudopro2.X.production.o
+__end_of_NumIteraciones BBC 0 CODE 0 text5 dist/default/production\pseudopro2.X.production.o
+__pmaintext 48C 0 CODE 0 maintext dist/default/production\pseudopro2.X.production.o
+__Lcommon 0 0 ABS 0 common -
+__Lconfig 0 0 CONFIG 4 config -
+__Hinittext 0 0 ABS 0 inittext -
+writeToEEPROM@data 46 0 BANK0 1 cstackBANK0 dist/default/production\pseudopro2.X.production.o
+_ADCON0bits 1F 0 ABS 0 - dist/default/production\pseudopro2.X.production.o
+_ADCON1bits 9F 0 ABS 0 - dist/default/production\pseudopro2.X.production.o
+__Lspace_0 0 0 ABS 0 - -
+__Lspace_1 0 0 ABS 0 - -
+__Lspace_2 0 0 ABS 0 - -
+__Lspace_3 0 0 ABS 0 - -
+__Lspace_4 0 0 ABS 0 - -
+__pbssCOMMON 77 0 COMMON 1 bssCOMMON dist/default/production\pseudopro2.X.production.o
+init_fetch0 C5E 0 CODE 0 inittext dist/default/production\pseudopro2.X.production.o
+__HcstackBANK0 0 0 ABS 0 cstackBANK0 -
+_PIR1bits C 0 ABS 0 - dist/default/production\pseudopro2.X.production.o
+_PIR2bits D 0 ABS 0 - dist/default/production\pseudopro2.X.production.o
+__Lend_init 1C 0 CODE 0 end_init -
+__LcstackCOMMON 0 0 ABS 0 cstackCOMMON -
+end_of_initialization 5C 0 CODE 0 cinit dist/default/production\pseudopro2.X.production.o
+__Hintentry 1C 0 CODE 0 intentry -
+__Lstrings 0 0 ABS 0 strings -
+__Hreset_vec 6 0 CODE 0 reset_vec -
+__HbssBANK0 0 0 ABS 0 bssBANK0 -
+_Reading 3A 0 BANK0 1 bssBANK0 dist/default/production\pseudopro2.X.production.o
+_writeToEEPROM BBC 0 CODE 0 text1 dist/default/production\pseudopro2.X.production.o
+__ptext1 BBC 0 CODE 0 text1 dist/default/production\pseudopro2.X.production.o
+__ptext2 64 0 CODE 0 text2 dist/default/production\pseudopro2.X.production.o
+__ptext3 C34 0 CODE 0 text3 dist/default/production\pseudopro2.X.production.o
+__ptext4 8AC 0 CODE 0 text4 dist/default/production\pseudopro2.X.production.o
+__ptext5 A8E 0 CODE 0 text5 dist/default/production\pseudopro2.X.production.o
+__Lpowerup 0 0 CODE 0 powerup -
+__Leeprom_data 0 0 EEDATA 3 eeprom_data -
+__Lreset_vec 0 0 CODE 0 reset_vec -
+__size_of_readFromEEPROMPOTS 0 0 ABS 0 - dist/default/production\pseudopro2.X.production.o
+_DC1B1POT3 20 0 BANK0 1 dataBANK0 dist/default/production\pseudopro2.X.production.o
+__end_of__initialization 5C 0 CODE 0 cinit dist/default/production\pseudopro2.X.production.o
+__Lfunctab 0 0 ENTRY 0 functab -
+__pidataBANK0 C02 0 CODE 0 idataBANK0 dist/default/production\pseudopro2.X.production.o
+__Lclrtext 0 0 ABS 0 clrtext -
+_ANSELbits 188 0 ABS 0 - dist/default/production\pseudopro2.X.production.o
+__pcstackCOMMON 70 0 COMMON 1 cstackCOMMON dist/default/production\pseudopro2.X.production.o
+__Hend_init 22 0 CODE 0 end_init -
+init_ram0 C66 0 CODE 0 inittext dist/default/production\pseudopro2.X.production.o
+__end_of_main 8AC 0 CODE 0 maintext dist/default/production\pseudopro2.X.production.o
+_EEADR 10D 0 ABS 0 - dist/default/production\pseudopro2.X.production.o
+_EEDAT 10C 0 ABS 0 - dist/default/production\pseudopro2.X.production.o
+_PC_MN 39 0 BANK0 1 bssBANK0 dist/default/production\pseudopro2.X.production.o
+_PORTA 5 0 ABS 0 - dist/default/production\pseudopro2.X.production.o
+_PORTB 6 0 ABS 0 - dist/default/production\pseudopro2.X.production.o
+_PORTC 7 0 ABS 0 - dist/default/production\pseudopro2.X.production.o
+_PORTD 8 0 ABS 0 - dist/default/production\pseudopro2.X.production.o
+_PORTE 9 0 ABS 0 - dist/default/production\pseudopro2.X.production.o
+_TMR1H F 0 ABS 0 - dist/default/production\pseudopro2.X.production.o
+_TMR1L E 0 ABS 0 - dist/default/production\pseudopro2.X.production.o
+_TRISA 85 0 ABS 0 - dist/default/production\pseudopro2.X.production.o
+_TRISB 86 0 ABS 0 - dist/default/production\pseudopro2.X.production.o
+_TRISC 87 0 ABS 0 - dist/default/production\pseudopro2.X.production.o
+_TRISD 88 0 ABS 0 - dist/default/production\pseudopro2.X.production.o
+_TRISE 89 0 ABS 0 - dist/default/production\pseudopro2.X.production.o
+__Hram 0 0 ABS 0 ram -
+__Lram 0 0 ABS 0 ram -
+__size_of_readFromEEPROM 0 0 ABS 0 - dist/default/production\pseudopro2.X.production.o
+interrupt_function 8 0 CODE 0 intentry dist/default/production\pseudopro2.X.production.o
+readFromEEPROM@address 46 0 BANK0 1 cstackBANK0 dist/default/production\pseudopro2.X.production.o
+_CCP1CON 17 0 ABS 0 - dist/default/production\pseudopro2.X.production.o
+__pintentry 8 0 CODE 0 intentry dist/default/production\pseudopro2.X.production.o
+__size_of_isr 0 0 ABS 0 - dist/default/production\pseudopro2.X.production.o
+__HdataBANK0 0 0 ABS 0 dataBANK0 -
+writeToEEPROM@address 45 0 BANK0 1 cstackBANK0 dist/default/production\pseudopro2.X.production.o
+__initialization 22 0 CODE 0 cinit dist/default/production\pseudopro2.X.production.o
+__pbssBANK0 39 0 BANK0 1 bssBANK0 dist/default/production\pseudopro2.X.production.o
+__size_of_writeToEEPROM 0 0 ABS 0 - dist/default/production\pseudopro2.X.production.o
+_T2CONbits 12 0 ABS 0 - dist/default/production\pseudopro2.X.production.o
+_CCP1CONbits 17 0 ABS 0 - dist/default/production\pseudopro2.X.production.o
+# %SPLITSTAB Section
+# This section enumerates all the psect splits performed by the assembler.
+# The beginning of the section is indicated by %SPLITSTAB.
+# Each line is a record a particular split, where the parent psect is on
+# the left and the child on the right.  Note that a child psect is always
+# split form the top of the parent psect. All splits from a given parent
+# are listed in the order in which they occurred.
+%SPLITSTAB
+# %DABS Section
+# This section contains a table of all usuage of the assember
+# directive DABS in the program. Each line has the following format:
+#   <name> <space> <address> <size>
+# If the DABS was originally labelled then that shall be <name>,
+# otherwise name will be "-".  The <space> number is in decimal.
+# <address> and <size> are in byte units as unqaulified hexadecimal
+%DABS
+- 1 7E 2
+# %SEGMENTS Section
+# This sections enumerates the segments of the program.  Each segment
+# is described on a single line as follows:
+#    <name> <space> <link address> <file address> <size> <delta>
+# Addresses and size are in unqualified hexadecimal.  The link address
+# and size are in units of delta. The file address is in units of bytes.
+# All other numeric quantities are in decimal.
+%SEGMENTS
+cstackCOMMON 1 70 70 A 1
+intentry 0 4 8 63E 2
+reset_vec 0 0 0 3 2
+dataBANK0 1 20 20 2D 1
+# %NOTES Section
+# This section contains data of all the note-psects.  The beginning of the section
+# is indicated by %NOTES. The first line indicates the name and decimal
+# byte-length of the first note-psect, e.g.
+#   $codecov_info_hdr 16
+# Each line that follows contains the byte-data of the psect in hexadecimal as a
+# space-separated list. These lines are limited to 16 bytes of data.
+%NOTES

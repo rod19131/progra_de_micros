@@ -1,0 +1,3234 @@
+
+
+Microchip MPLAB XC8 Assembler V2.31 build 20201012212115 
+                                                                                               Wed Jun 02 18:55:35 2021
+
+Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1 
+     1                           	processor	16F887
+     2                           	pagewidth 120
+     3                           	opt	flic
+     4                           	psect	idataBANK0,global,class=CODE,delta=2,noexec
+     5                           	psect	cinit,global,class=CODE,merge=1,delta=2
+     6                           	psect	bssCOMMON,global,class=COMMON,space=1,delta=1,noexec
+     7                           	psect	bssBANK0,global,class=BANK0,space=1,delta=1,noexec
+     8                           	psect	dataBANK0,global,class=BANK0,space=1,delta=1,noexec
+     9                           	psect	inittext,global,class=CODE,delta=2
+    10                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1,noexec
+    11                           	psect	cstackBANK0,global,class=BANK0,space=1,delta=1,noexec
+    12                           	psect	maintext,global,class=CODE,split=1,delta=2
+    13                           	psect	text1,local,class=CODE,merge=1,delta=2
+    14                           	psect	text2,local,class=CODE,merge=1,delta=2
+    15                           	psect	text3,local,class=CODE,merge=1,delta=2
+    16                           	psect	text4,local,class=CODE,merge=1,delta=2
+    17                           	psect	intentry,global,class=CODE,delta=2
+    18                           	psect	text5,local,class=CODE,merge=1,delta=2
+    19                           	psect	config,global,abs,ovrld,class=CONFIG,space=4,delta=2,noexec
+    20                           	dabs	1,0x7E,2
+    21  0000                     
+    22                           ; Version 2.20
+    23                           ; Generated 12/02/2020 GMT
+    24                           ; 
+    25                           ; Copyright © 2020, Microchip Technology Inc. and its subsidiaries ("Microchip")
+    26                           ; All rights reserved.
+    27                           ; 
+    28                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
+      +                          ip").
+    29                           ; 
+    30                           ; Redistribution and use in source and binary forms, with or without modification, are
+    31                           ; permitted provided that the following conditions are met:
+    32                           ; 
+    33                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
+      +                          t of
+    34                           ;        conditions and the following disclaimer.
+    35                           ; 
+    36                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
+      +                          list
+    37                           ;        of conditions and the following disclaimer in the documentation and/or other
+    38                           ;        materials provided with the distribution.
+    39                           ; 
+    40                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
+      +                          is
+    41                           ;        software without specific prior written permission.
+    42                           ; 
+    43                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+    44                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
+      +                          OR
+    45                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
+      +                          T,
+    46                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+    47                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
+    48                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
+      +                          RICT
+    49                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
+      +                          SE OF
+    50                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    51                           ; 
+    52                           ; 
+    53                           ; Code-generator required, PIC16F887 Definitions
+    54                           ; 
+    55                           ; SFR Addresses
+    56  0000                     	;# 
+    57  0001                     	;# 
+    58  0002                     	;# 
+    59  0003                     	;# 
+    60  0004                     	;# 
+    61  0005                     	;# 
+    62  0006                     	;# 
+    63  0007                     	;# 
+    64  0008                     	;# 
+    65  0009                     	;# 
+    66  000A                     	;# 
+    67  000B                     	;# 
+    68  000C                     	;# 
+    69  000D                     	;# 
+    70  000E                     	;# 
+    71  000E                     	;# 
+    72  000F                     	;# 
+    73  0010                     	;# 
+    74  0011                     	;# 
+    75  0012                     	;# 
+    76  0013                     	;# 
+    77  0014                     	;# 
+    78  0015                     	;# 
+    79  0015                     	;# 
+    80  0016                     	;# 
+    81  0017                     	;# 
+    82  0018                     	;# 
+    83  0019                     	;# 
+    84  001A                     	;# 
+    85  001B                     	;# 
+    86  001B                     	;# 
+    87  001C                     	;# 
+    88  001D                     	;# 
+    89  001E                     	;# 
+    90  001F                     	;# 
+    91  0081                     	;# 
+    92  0085                     	;# 
+    93  0086                     	;# 
+    94  0087                     	;# 
+    95  0088                     	;# 
+    96  0089                     	;# 
+    97  008C                     	;# 
+    98  008D                     	;# 
+    99  008E                     	;# 
+   100  008F                     	;# 
+   101  0090                     	;# 
+   102  0091                     	;# 
+   103  0092                     	;# 
+   104  0093                     	;# 
+   105  0093                     	;# 
+   106  0093                     	;# 
+   107  0094                     	;# 
+   108  0095                     	;# 
+   109  0096                     	;# 
+   110  0097                     	;# 
+   111  0098                     	;# 
+   112  0099                     	;# 
+   113  009A                     	;# 
+   114  009B                     	;# 
+   115  009C                     	;# 
+   116  009D                     	;# 
+   117  009E                     	;# 
+   118  009F                     	;# 
+   119  0105                     	;# 
+   120  0107                     	;# 
+   121  0108                     	;# 
+   122  0109                     	;# 
+   123  010C                     	;# 
+   124  010C                     	;# 
+   125  010D                     	;# 
+   126  010E                     	;# 
+   127  010F                     	;# 
+   128  0185                     	;# 
+   129  0187                     	;# 
+   130  0188                     	;# 
+   131  0189                     	;# 
+   132  018C                     	;# 
+   133  018D                     	;# 
+   134  0000                     	;# 
+   135  0001                     	;# 
+   136  0002                     	;# 
+   137  0003                     	;# 
+   138  0004                     	;# 
+   139  0005                     	;# 
+   140  0006                     	;# 
+   141  0007                     	;# 
+   142  0008                     	;# 
+   143  0009                     	;# 
+   144  000A                     	;# 
+   145  000B                     	;# 
+   146  000C                     	;# 
+   147  000D                     	;# 
+   148  000E                     	;# 
+   149  000E                     	;# 
+   150  000F                     	;# 
+   151  0010                     	;# 
+   152  0011                     	;# 
+   153  0012                     	;# 
+   154  0013                     	;# 
+   155  0014                     	;# 
+   156  0015                     	;# 
+   157  0015                     	;# 
+   158  0016                     	;# 
+   159  0017                     	;# 
+   160  0018                     	;# 
+   161  0019                     	;# 
+   162  001A                     	;# 
+   163  001B                     	;# 
+   164  001B                     	;# 
+   165  001C                     	;# 
+   166  001D                     	;# 
+   167  001E                     	;# 
+   168  001F                     	;# 
+   169  0081                     	;# 
+   170  0085                     	;# 
+   171  0086                     	;# 
+   172  0087                     	;# 
+   173  0088                     	;# 
+   174  0089                     	;# 
+   175  008C                     	;# 
+   176  008D                     	;# 
+   177  008E                     	;# 
+   178  008F                     	;# 
+   179  0090                     	;# 
+   180  0091                     	;# 
+   181  0092                     	;# 
+   182  0093                     	;# 
+   183  0093                     	;# 
+   184  0093                     	;# 
+   185  0094                     	;# 
+   186  0095                     	;# 
+   187  0096                     	;# 
+   188  0097                     	;# 
+   189  0098                     	;# 
+   190  0099                     	;# 
+   191  009A                     	;# 
+   192  009B                     	;# 
+   193  009C                     	;# 
+   194  009D                     	;# 
+   195  009E                     	;# 
+   196  009F                     	;# 
+   197  0105                     	;# 
+   198  0107                     	;# 
+   199  0108                     	;# 
+   200  0109                     	;# 
+   201  010C                     	;# 
+   202  010C                     	;# 
+   203  010D                     	;# 
+   204  010E                     	;# 
+   205  010F                     	;# 
+   206  0185                     	;# 
+   207  0187                     	;# 
+   208  0188                     	;# 
+   209  0189                     	;# 
+   210  018C                     	;# 
+   211  018D                     	;# 
+   212                           
+   213                           	psect	idataBANK0
+   214  0601                     __pidataBANK0:
+   215                           
+   216                           ;initializer for _DC1B1POT3
+   217  0601  3418               	retlw	24
+   218  0602  3419               	retlw	25
+   219  0603  341A               	retlw	26
+   220  0604  341B               	retlw	27
+   221  0605  341C               	retlw	28
+   222                           
+   223                           ;initializer for _ADD_POT3
+   224  0606  3413               	retlw	19
+   225  0607  3414               	retlw	20
+   226  0608  3415               	retlw	21
+   227  0609  3416               	retlw	22
+   228  060A  3417               	retlw	23
+   229                           
+   230                           ;initializer for _ADD_POT2
+   231  060B  340E               	retlw	14
+   232  060C  340F               	retlw	15
+   233  060D  3410               	retlw	16
+   234  060E  3411               	retlw	17
+   235  060F  3412               	retlw	18
+   236                           
+   237                           ;initializer for _ADD_POT1
+   238  0610  3409               	retlw	9
+   239  0611  340A               	retlw	10
+   240  0612  340B               	retlw	11
+   241  0613  340C               	retlw	12
+   242  0614  340D               	retlw	13
+   243                           
+   244                           ;initializer for _ADD_POT0
+   245  0615  3404               	retlw	4
+   246  0616  3405               	retlw	5
+   247  0617  3406               	retlw	6
+   248  0618  3407               	retlw	7
+   249  0619  3408               	retlw	8
+   250  0017                     _CCP1CON	set	23
+   251  0010                     _T1CONbits	set	16
+   252  0012                     _T2CONbits	set	18
+   253  0009                     _PORTE	set	9
+   254  0007                     _PORTC	set	7
+   255  0006                     _PORTB	set	6
+   256  0008                     _PORTD	set	8
+   257  0005                     _PORTA	set	5
+   258  000E                     _TMR1L	set	14
+   259  000F                     _TMR1H	set	15
+   260  0001                     _TMR0	set	1
+   261  000C                     _PIR1bits	set	12
+   262  001F                     _ADCON0bits	set	31
+   263  001E                     _ADRESH	set	30
+   264  0008                     _PORTDbits	set	8
+   265  0017                     _CCP1CONbits	set	23
+   266  0015                     _CCPR1L	set	21
+   267  000D                     _PIR2bits	set	13
+   268  000B                     _INTCONbits	set	11
+   269  0031                     _RB1	set	49
+   270  0030                     _RB0	set	48
+   271  0060                     _TMR1IF	set	96
+   272  005A                     _T0IF	set	90
+   273  0066                     _ADIF	set	102
+   274  008C                     _PIE1bits	set	140
+   275  0092                     _PR2	set	146
+   276  0087                     _TRISCbits	set	135
+   277  009F                     _ADCON1bits	set	159
+   278  0087                     _TRISC	set	135
+   279  0095                     _WPUBbits	set	149
+   280  0081                     _OPTION_REGbits	set	129
+   281  0086                     _TRISB	set	134
+   282  0089                     _TRISE	set	137
+   283  0088                     _TRISD	set	136
+   284  0085                     _TRISA	set	133
+   285  008F                     _OSCCONbits	set	143
+   286  009E                     _ADRESL	set	158
+   287  010C                     _EEDAT	set	268
+   288  010D                     _EEADR	set	269
+   289  0188                     _ANSELbits	set	392
+   290  0189                     _ANSELH	set	393
+   291  018D                     _EECON2	set	397
+   292  018C                     _EECON1bits	set	396
+   293                           
+   294                           	psect	cinit
+   295  0011                     start_initialization:	
+   296                           ; #config settings
+   297                           
+   298  0011                     __initialization:
+   299                           
+   300                           ; Initialize objects allocated to BANK0
+   301  0011  1383               	bcf	3,7	;select IRP bank0
+   302  0012  3039               	movlw	low (__pdataBANK0+25)
+   303  0013  00FD               	movwf	btemp+-1
+   304  0014  3006               	movlw	high __pidataBANK0
+   305  0015  00FE               	movwf	btemp
+   306  0016  3001               	movlw	low __pidataBANK0
+   307  0017  00FF               	movwf	btemp+1
+   308  0018  3020               	movlw	low __pdataBANK0
+   309  0019  0084               	movwf	4
+   310  001A  120A  118A  2633  120A  118A  	fcall	init_ram0
+   311                           
+   312                           ; Clear objects allocated to BANK0
+   313  001F  01B9               	clrf	__pbssBANK0& (0+127)
+   314  0020  01BA               	clrf	(__pbssBANK0+1)& (0+127)
+   315  0021  01BB               	clrf	(__pbssBANK0+2)& (0+127)
+   316  0022  01BC               	clrf	(__pbssBANK0+3)& (0+127)
+   317  0023  01BD               	clrf	(__pbssBANK0+4)& (0+127)
+   318  0024  01BE               	clrf	(__pbssBANK0+5)& (0+127)
+   319  0025  01BF               	clrf	(__pbssBANK0+6)& (0+127)
+   320  0026  01C0               	clrf	(__pbssBANK0+7)& (0+127)
+   321  0027  01C1               	clrf	(__pbssBANK0+8)& (0+127)
+   322  0028  01C2               	clrf	(__pbssBANK0+9)& (0+127)
+   323  0029  01C3               	clrf	(__pbssBANK0+10)& (0+127)
+   324  002A  01C4               	clrf	(__pbssBANK0+11)& (0+127)
+   325                           
+   326                           ; Clear objects allocated to COMMON
+   327  002B  01F7               	clrf	__pbssCOMMON& (0+127)
+   328  002C  01F8               	clrf	(__pbssCOMMON+1)& (0+127)
+   329  002D  01F9               	clrf	(__pbssCOMMON+2)& (0+127)
+   330  002E                     end_of_initialization:	
+   331                           ;End of C runtime variable initialization code
+   332                           
+   333  002E                     __end_of__initialization:
+   334  002E  0183               	clrf	3
+   335  002F  120A  118A  2A46   	ljmp	_main	;jump to C main() function
+   336                           
+   337                           	psect	bssCOMMON
+   338  0077                     __pbssCOMMON:
+   339  0077                     _ENTM0Pot2:
+   340  0077                     	ds	1
+   341  0078                     _ENTM0Pot1:
+   342  0078                     	ds	1
+   343  0079                     _ENTM0Pot0:
+   344  0079                     	ds	1
+   345                           
+   346                           	psect	bssBANK0
+   347  0039                     __pbssBANK0:
+   348  0039                     _PC_MN:
+   349  0039                     	ds	1
+   350  003A                     _Reading:
+   351  003A                     	ds	1
+   352  003B                     _RB1_old:
+   353  003B                     	ds	1
+   354  003C                     _RB0_old:
+   355  003C                     	ds	1
+   356  003D                     _ConTEEPROM:
+   357  003D                     	ds	1
+   358  003E                     _ConTMR1:
+   359  003E                     	ds	1
+   360  003F                     _ItPOT2:
+   361  003F                     	ds	1
+   362  0040                     _ItPOT1:
+   363  0040                     	ds	1
+   364  0041                     _ItPOT0:
+   365  0041                     	ds	1
+   366  0042                     _POT2:
+   367  0042                     	ds	1
+   368  0043                     _POT1:
+   369  0043                     	ds	1
+   370  0044                     _POT0:
+   371  0044                     	ds	1
+   372                           
+   373                           	psect	dataBANK0
+   374  0020                     __pdataBANK0:
+   375  0020                     _DC1B1POT3:
+   376  0020                     	ds	5
+   377  0025                     _ADD_POT3:
+   378  0025                     	ds	5
+   379  002A                     _ADD_POT2:
+   380  002A                     	ds	5
+   381  002F                     _ADD_POT1:
+   382  002F                     	ds	5
+   383  0034                     _ADD_POT0:
+   384  0034                     	ds	5
+   385                           
+   386                           	psect	inittext
+   387  062F                     init_fetch0:	
+   388                           ;	Called with low address in FSR and high address in W
+   389                           
+   390  062F  087E               	movf	btemp,w
+   391  0630  008A               	movwf	10
+   392  0631  087F               	movf	btemp+1,w
+   393  0632  0082               	movwf	2
+   394  0633                     init_ram0:	
+   395                           ;Called with:
+   396                           ;	high address of idata address in btemp 
+   397                           ;	low address of idata address in btemp+1 
+   398                           ;	low address of data in FSR
+   399                           ;	high address + 1 of data in btemp-1
+   400                           
+   401  0633  120A  118A  262F  120A  118A  	fcall	init_fetch0
+   402  0638  0080               	movwf	0
+   403  0639  0A84               	incf	4,f
+   404  063A  0804               	movf	4,w
+   405  063B  067D               	xorwf	btemp+-1,w
+   406  063C  1903               	btfsc	3,2
+   407  063D  3400               	retlw	0
+   408  063E  0AFF               	incf	btemp+1,f
+   409  063F  1903               	btfsc	3,2
+   410  0640  0AFE               	incf	btemp,f
+   411  0641  2E33               	goto	init_ram0
+   412                           
+   413                           	psect	cstackCOMMON
+   414  0070                     __pcstackCOMMON:
+   415  0070                     ?_NumIteraciones:
+   416  0070                     ??_NumIteraciones:	
+   417                           ; 1 bytes @ 0x0
+   418                           
+   419  0070                     ?_readFromEEPROM:	
+   420                           ; 1 bytes @ 0x0
+   421                           
+   422  0070                     ?_readFromEEPROMPOTS:	
+   423                           ; 1 bytes @ 0x0
+   424                           
+   425  0070                     ?_isr:	
+   426                           ; 1 bytes @ 0x0
+   427                           
+   428  0070                     ?_main:	
+   429                           ; 1 bytes @ 0x0
+   430                           
+   431  0070                     NumIteraciones@ValorPot:	
+   432                           ; 1 bytes @ 0x0
+   433                           
+   434                           
+   435                           ; 1 bytes @ 0x0
+   436  0070                     	ds	1
+   437  0071                     ??_isr:
+   438                           
+   439                           ; 1 bytes @ 0x1
+   440  0071                     	ds	6
+   441                           
+   442                           	psect	cstackBANK0
+   443  0045                     __pcstackBANK0:
+   444  0045                     ?_writeToEEPROM:
+   445  0045                     ??_readFromEEPROM:	
+   446                           ; 1 bytes @ 0x0
+   447                           
+   448  0045                     writeToEEPROM@address:	
+   449                           ; 1 bytes @ 0x0
+   450                           
+   451                           
+   452                           ; 1 bytes @ 0x0
+   453  0045                     	ds	1
+   454  0046                     ??_writeToEEPROM:
+   455  0046                     writeToEEPROM@data:	
+   456                           ; 1 bytes @ 0x1
+   457                           
+   458  0046                     readFromEEPROM@address:	
+   459                           ; 1 bytes @ 0x1
+   460                           
+   461                           
+   462                           ; 1 bytes @ 0x1
+   463  0046                     	ds	1
+   464  0047                     readFromEEPROM@data:
+   465                           
+   466                           ; 1 bytes @ 0x2
+   467  0047                     	ds	1
+   468  0048                     ??_readFromEEPROMPOTS:
+   469                           
+   470                           ; 1 bytes @ 0x3
+   471  0048                     	ds	3
+   472  004B                     ??_main:
+   473                           
+   474                           ; 1 bytes @ 0x6
+   475  004B                     	ds	2
+   476                           
+   477                           	psect	maintext
+   478  0246                     __pmaintext:	
+   479 ;;
+   480 ;;Main: autosize = 0, tempsize = 2, incstack = 0, save=0
+   481 ;;
+   482 ;; *************** function _main *****************
+   483 ;; Defined at:
+   484 ;;		line 298 in file "pseudopro2.c"
+   485 ;; Parameters:    Size  Location     Type
+   486 ;;		None
+   487 ;; Auto vars:     Size  Location     Type
+   488 ;;		None
+   489 ;; Return value:  Size  Location     Type
+   490 ;;                  1    wreg      void 
+   491 ;; Registers used:
+   492 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+   493 ;; Tracked objects:
+   494 ;;		On entry : B00/0
+   495 ;;		On exit  : 0/0
+   496 ;;		Unchanged: 0/0
+   497 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   498 ;;      Params:         0       0       0       0       0
+   499 ;;      Locals:         0       0       0       0       0
+   500 ;;      Temps:          0       2       0       0       0
+   501 ;;      Totals:         0       2       0       0       0
+   502 ;;Total ram usage:        2 bytes
+   503 ;; Hardware stack levels required when called:    4
+   504 ;; This function calls:
+   505 ;;		_readFromEEPROMPOTS
+   506 ;;		_writeToEEPROM
+   507 ;; This function is called by:
+   508 ;;		Startup code after reset
+   509 ;; This function uses a non-reentrant model
+   510 ;;
+   511                           
+   512                           
+   513                           ;psect for function _main
+   514  0246                     _main:
+   515  0246                     l1946:	
+   516                           ;incstack = 0
+   517                           ; Regs used in _main: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+   518                           
+   519                           
+   520                           ;pseudopro2.c: 304:     POT0 = 0;
+   521  0246  3070               	movlw	112
+   522  0247  1683               	bsf	3,5	;RP0=1, select bank1
+   523  0248  1303               	bcf	3,6	;RP1=0, select bank1
+   524  0249  048F               	iorwf	15,f	;volatile
+   525  024A                     l1948:
+   526                           
+   527                           ;pseudopro2.c: 305:     POT1 = 0;
+   528  024A  140F               	bsf	15,0	;volatile
+   529  024B                     l1950:
+   530                           
+   531                           ;pseudopro2.c: 309: 
+   532  024B  1683               	bsf	3,5	;RP0=1, select bank3
+   533  024C  1703               	bsf	3,6	;RP1=1, select bank3
+   534  024D  0189               	clrf	9	;volatile
+   535  024E                     l1952:
+   536                           
+   537                           ;pseudopro2.c: 310: 
+   538  024E  1408               	bsf	8,0	;volatile
+   539  024F                     l1954:
+   540                           
+   541                           ;pseudopro2.c: 311:     ADCON0bits.ADCS = 2;
+   542  024F  1488               	bsf	8,1	;volatile
+   543  0250                     l1956:
+   544                           
+   545                           ;pseudopro2.c: 312:     ADCON0bits.CHS0 = 0;
+   546  0250  1508               	bsf	8,2	;volatile
+   547  0251                     l1958:
+   548                           
+   549                           ;pseudopro2.c: 313:     ADCON1bits.VCFG1 = 0;
+   550  0251  1588               	bsf	8,3	;volatile
+   551  0252                     l1960:
+   552                           
+   553                           ;pseudopro2.c: 314:     ADCON1bits.VCFG0 = 0;
+   554  0252  30FF               	movlw	255
+   555  0253  1683               	bsf	3,5	;RP0=1, select bank1
+   556  0254  1303               	bcf	3,6	;RP1=0, select bank1
+   557  0255  0085               	movwf	5	;volatile
+   558  0256                     l1962:
+   559                           
+   560                           ;pseudopro2.c: 315:     ADCON1bits.ADFM = 0;
+   561  0256  0188               	clrf	8	;volatile
+   562  0257                     l1964:
+   563                           
+   564                           ;pseudopro2.c: 316:     ADCON0bits.ADON = 1;
+   565  0257  0189               	clrf	9	;volatile
+   566  0258                     l1966:
+   567                           
+   568                           ;pseudopro2.c: 317:     _delay((unsigned long)((20)*(8000000/4000000.0)));
+   569  0258  3003               	movlw	3
+   570  0259  0086               	movwf	6	;volatile
+   571  025A                     l1968:
+   572                           
+   573                           ;pseudopro2.c: 318: 
+   574  025A  1381               	bcf	1,7	;volatile
+   575  025B                     l1970:
+   576                           
+   577                           ;pseudopro2.c: 319: 
+   578  025B  1415               	bsf	21,0	;volatile
+   579  025C                     l1972:
+   580                           
+   581                           ;pseudopro2.c: 320: 
+   582  025C  1495               	bsf	21,1	;volatile
+   583  025D                     l1974:
+   584                           
+   585                           ;pseudopro2.c: 321:     TRISCbits.TRISC2 = 1;
+   586  025D  0187               	clrf	7	;volatile
+   587  025E                     l1976:
+   588                           
+   589                           ;pseudopro2.c: 322:     PR2 = 250;
+   590  025E  1283               	bcf	3,5	;RP0=0, select bank0
+   591  025F  1303               	bcf	3,6	;RP1=0, select bank0
+   592  0260  0185               	clrf	5	;volatile
+   593  0261                     l1978:
+   594                           
+   595                           ;pseudopro2.c: 323:     CCP1CONbits.P1M = 0;
+   596  0261  0188               	clrf	8	;volatile
+   597  0262                     l1980:
+   598                           
+   599                           ;pseudopro2.c: 324:     CCP1CONbits.CCP1M = 0b1100;
+   600  0262  3003               	movlw	3
+   601  0263  0086               	movwf	6	;volatile
+   602  0264                     l1982:
+   603                           
+   604                           ;pseudopro2.c: 325:     CCPR1L = 0x0f;
+   605  0264  0187               	clrf	7	;volatile
+   606  0265                     l1984:
+   607                           
+   608                           ;pseudopro2.c: 326:     CCP1CONbits.DC1B = 0;
+   609  0265  0189               	clrf	9	;volatile
+   610  0266                     l1986:
+   611                           
+   612                           ;pseudopro2.c: 327: 
+   613  0266  01C1               	clrf	_ItPOT0
+   614  0267                     l1988:
+   615                           
+   616                           ;pseudopro2.c: 328: 
+   617  0267  01C0               	clrf	_ItPOT1
+   618  0268                     l1990:
+   619                           
+   620                           ;pseudopro2.c: 329:     PIR1bits.TMR2IF = 0;
+   621  0268  01BF               	clrf	_ItPOT2
+   622  0269                     l1992:
+   623                           
+   624                           ;pseudopro2.c: 330:     T2CONbits.T2CKPS = 0b11;
+   625  0269  01C4               	clrf	_POT0
+   626  026A                     l1994:
+   627                           
+   628                           ;pseudopro2.c: 331:     T2CONbits.TMR2ON = 1;
+   629  026A  01C3               	clrf	_POT1
+   630  026B                     l1996:
+   631                           
+   632                           ;pseudopro2.c: 332:     while(PIR1bits.TMR2IF == 0);
+   633  026B  01C2               	clrf	_POT2
+   634  026C                     l1998:
+   635                           
+   636                           ;pseudopro2.c: 333:     PIR1bits.TMR2IF = 0;
+   637  026C  01BE               	clrf	_ConTMR1
+   638  026D                     l2000:
+   639                           
+   640                           ;pseudopro2.c: 337: 
+   641  026D  081F               	movf	31,w	;volatile
+   642  026E  393F               	andlw	-193
+   643  026F  3880               	iorlw	128
+   644  0270  009F               	movwf	31	;volatile
+   645  0271                     l2002:
+   646                           
+   647                           ;pseudopro2.c: 338:     OPTION_REGbits.T0CS = 0;
+   648  0271  111F               	bcf	31,2	;volatile
+   649  0272                     l2004:
+   650                           
+   651                           ;pseudopro2.c: 339:     OPTION_REGbits.PSA = 0;
+   652  0272  1683               	bsf	3,5	;RP0=1, select bank1
+   653  0273  1303               	bcf	3,6	;RP1=0, select bank1
+   654  0274  129F               	bcf	31,5	;volatile
+   655  0275                     l2006:
+   656                           
+   657                           ;pseudopro2.c: 340:     OPTION_REGbits.PS2 = 0;
+   658  0275  121F               	bcf	31,4	;volatile
+   659  0276                     l2008:
+   660                           
+   661                           ;pseudopro2.c: 341:     OPTION_REGbits.PS1 = 0;
+   662  0276  139F               	bcf	31,7	;volatile
+   663  0277                     l2010:
+   664                           
+   665                           ;pseudopro2.c: 342:     OPTION_REGbits.PS0 = 0;
+   666  0277  1283               	bcf	3,5	;RP0=0, select bank0
+   667  0278  1303               	bcf	3,6	;RP1=0, select bank0
+   668  0279  141F               	bsf	31,0	;volatile
+   669  027A                     l2012:
+   670                           
+   671                           ;pseudopro2.c: 343:     TMR0 = 228;
+   672  027A  300C               	movlw	12
+   673  027B  1283               	bcf	3,5	;RP0=0, select bank0
+   674  027C  1303               	bcf	3,6	;RP1=0, select bank0
+   675  027D  00CB               	movwf	??_main
+   676  027E                     u1037:
+   677  027E  0BCB               	decfsz	??_main,f
+   678  027F  2A7E               	goto	u1037
+   679  0280  0000               	nop
+   680  0281                     l2014:
+   681                           
+   682                           ;pseudopro2.c: 347:     T1CONbits.TMR1ON = 1;
+   683  0281  1683               	bsf	3,5	;RP0=1, select bank1
+   684  0282  1303               	bcf	3,6	;RP1=0, select bank1
+   685  0283  1507               	bsf	7,2	;volatile
+   686  0284                     l2016:
+   687                           
+   688                           ;pseudopro2.c: 348:     T1CONbits.TMR1CS = 0;
+   689  0284  30FA               	movlw	250
+   690  0285  0092               	movwf	18	;volatile
+   691  0286                     l2018:
+   692                           
+   693                           ;pseudopro2.c: 349:     T1CONbits.TMR1CS = 0;
+   694  0286  303F               	movlw	-193
+   695  0287  1283               	bcf	3,5	;RP0=0, select bank0
+   696  0288  1303               	bcf	3,6	;RP1=0, select bank0
+   697  0289  0597               	andwf	23,f	;volatile
+   698  028A                     l2020:
+   699                           
+   700                           ;pseudopro2.c: 350:     T1CONbits.T1CKPS1 = 1;
+   701  028A  0817               	movf	23,w	;volatile
+   702  028B  39F0               	andlw	-16
+   703  028C  380C               	iorlw	12
+   704  028D  0097               	movwf	23	;volatile
+   705  028E                     l2022:
+   706                           
+   707                           ;pseudopro2.c: 351:     T1CONbits.T1CKPS0 = 1;
+   708  028E  300F               	movlw	15
+   709  028F  0095               	movwf	21	;volatile
+   710  0290                     l2024:
+   711                           
+   712                           ;pseudopro2.c: 352:     TMR1H = 255;
+   713  0290  30CF               	movlw	-49
+   714  0291  0597               	andwf	23,f	;volatile
+   715  0292                     l2026:
+   716  0292  108C               	bcf	12,1	;volatile
+   717  0293                     l2028:
+   718  0293  3003               	movlw	3
+   719  0294  0492               	iorwf	18,f	;volatile
+   720  0295                     l2030:
+   721  0295  1512               	bsf	18,2	;volatile
+   722  0296                     l203:
+   723  0296  1C8C               	btfss	12,1	;volatile
+   724  0297  2A99               	goto	u941
+   725  0298  2A9A               	goto	u940
+   726  0299                     u941:
+   727  0299  2A96               	goto	l203
+   728  029A                     u940:
+   729  029A                     l205:
+   730  029A  108C               	bcf	12,1	;volatile
+   731  029B  1683               	bsf	3,5	;RP0=1, select bank1
+   732  029C  1303               	bcf	3,6	;RP1=0, select bank1
+   733  029D  1107               	bcf	7,2	;volatile
+   734  029E  1087               	bcf	7,1	;volatile
+   735  029F  1281               	bcf	1,5	;volatile
+   736  02A0  1181               	bcf	1,3	;volatile
+   737  02A1  1101               	bcf	1,2	;volatile
+   738  02A2  1081               	bcf	1,1	;volatile
+   739  02A3  1001               	bcf	1,0	;volatile
+   740  02A4                     l2032:
+   741  02A4  30E4               	movlw	228
+   742  02A5  1283               	bcf	3,5	;RP0=0, select bank0
+   743  02A6  1303               	bcf	3,6	;RP1=0, select bank0
+   744  02A7  0081               	movwf	1	;volatile
+   745  02A8                     l2034:
+   746  02A8  110B               	bcf	11,2	;volatile
+   747  02A9                     l2036:
+   748  02A9  1410               	bsf	16,0	;volatile
+   749  02AA                     l2038:
+   750  02AA  1090               	bcf	16,1	;volatile
+   751  02AB                     l2040:
+   752  02AB  1090               	bcf	16,1	;volatile
+   753  02AC                     l2042:
+   754  02AC  1690               	bsf	16,5	;volatile
+   755  02AD                     l2044:
+   756  02AD  1610               	bsf	16,4	;volatile
+   757  02AE  30FF               	movlw	255
+   758  02AF  008F               	movwf	15	;volatile
+   759  02B0  3006               	movlw	6
+   760  02B1  008E               	movwf	14	;volatile
+   761  02B2                     l2046:
+   762  02B2  100C               	bcf	12,0	;volatile
+   763  02B3                     l2048:
+   764                           
+   765                           ;pseudopro2.c: 400:     PIR1bits.ADIF = 0;
+   766  02B3  130C               	bcf	12,6	;volatile
+   767  02B4                     l2050:
+   768                           
+   769                           ;pseudopro2.c: 401:     PIE1bits.ADIE = 1;
+   770  02B4  1683               	bsf	3,5	;RP0=1, select bank1
+   771  02B5  1303               	bcf	3,6	;RP1=0, select bank1
+   772  02B6  170C               	bsf	12,6	;volatile
+   773  02B7                     l2052:
+   774                           
+   775                           ;pseudopro2.c: 402:     INTCONbits.PEIE = 1;
+   776  02B7  170B               	bsf	11,6	;volatile
+   777  02B8                     l2054:
+   778                           
+   779                           ;pseudopro2.c: 403:     INTCONbits.GIE = 1;
+   780  02B8  178B               	bsf	11,7	;volatile
+   781  02B9                     l2056:
+   782                           
+   783                           ;pseudopro2.c: 404:     INTCONbits.T0IE = 1;
+   784  02B9  168B               	bsf	11,5	;volatile
+   785  02BA                     l2058:
+   786                           
+   787                           ;pseudopro2.c: 405:     PIE1bits.TMR1IE = 1;
+   788  02BA  140C               	bsf	12,0	;volatile
+   789  02BB                     l2060:
+   790                           
+   791                           ;pseudopro2.c: 406:     ADCON0bits.GO = 1;
+   792  02BB  1283               	bcf	3,5	;RP0=0, select bank0
+   793  02BC  1303               	bcf	3,6	;RP1=0, select bank0
+   794  02BD  149F               	bsf	31,1	;volatile
+   795  02BE                     l2062:
+   796                           
+   797                           ;pseudopro2.c: 408:         if (RB0 == 0)
+   798  02BE  1806               	btfsc	6,0	;volatile
+   799  02BF  2AC1               	goto	u951
+   800  02C0  2AC2               	goto	u950
+   801  02C1                     u951:
+   802  02C1  2AC4               	goto	l207
+   803  02C2                     u950:
+   804  02C2                     l2064:
+   805                           
+   806                           ;pseudopro2.c: 409:             RB0_old = 1;
+   807  02C2  01BC               	clrf	_RB0_old
+   808  02C3  0ABC               	incf	_RB0_old,f
+   809  02C4                     l207:
+   810                           
+   811                           ;pseudopro2.c: 411:         if (RB1 == 0)
+   812  02C4  1886               	btfsc	6,1	;volatile
+   813  02C5  2AC7               	goto	u961
+   814  02C6  2AC8               	goto	u960
+   815  02C7                     u961:
+   816  02C7  2ACA               	goto	l208
+   817  02C8                     u960:
+   818  02C8                     l2066:
+   819                           
+   820                           ;pseudopro2.c: 412:             RB1_old = 1;
+   821  02C8  01BB               	clrf	_RB1_old
+   822  02C9  0ABB               	incf	_RB1_old,f
+   823  02CA                     l208:
+   824                           
+   825                           ;pseudopro2.c: 414:         if (RB0 == 1 && RB0_old == 1 && PC_MN == 0 ){
+   826  02CA  1C06               	btfss	6,0	;volatile
+   827  02CB  2ACD               	goto	u971
+   828  02CC  2ACE               	goto	u970
+   829  02CD                     u971:
+   830  02CD  2C3C               	goto	l2118
+   831  02CE                     u970:
+   832  02CE                     l2068:
+   833  02CE  033C               	decf	_RB0_old,w
+   834  02CF  1D03               	btfss	3,2
+   835  02D0  2AD2               	goto	u981
+   836  02D1  2AD3               	goto	u980
+   837  02D2                     u981:
+   838  02D2  2C3C               	goto	l2118
+   839  02D3                     u980:
+   840  02D3                     l2070:
+   841  02D3  0839               	movf	_PC_MN,w
+   842  02D4  1D03               	btfss	3,2
+   843  02D5  2AD7               	goto	u991
+   844  02D6  2AD8               	goto	u990
+   845  02D7                     u991:
+   846  02D7  2C3C               	goto	l2118
+   847  02D8                     u990:
+   848  02D8  2C22               	goto	l2114
+   849  02D9                     l2074:
+   850                           
+   851                           ;pseudopro2.c: 417:                    writeToEEPROM(CCPR1L,ADD_POT3[0]);
+   852  02D9  0825               	movf	_ADD_POT3,w
+   853  02DA  00CB               	movwf	??_main
+   854  02DB  084B               	movf	??_main,w
+   855  02DC  00C5               	movwf	writeToEEPROM@address
+   856  02DD  0815               	movf	21,w	;volatile
+   857  02DE  120A  118A  25DE  120A  118A  	fcall	_writeToEEPROM
+   858                           
+   859                           ;pseudopro2.c: 418:                    writeToEEPROM(CCP1CON,DC1B1POT3[0]);
+   860  02E3  1283               	bcf	3,5	;RP0=0, select bank0
+   861  02E4  1303               	bcf	3,6	;RP1=0, select bank0
+   862  02E5  0820               	movf	_DC1B1POT3,w
+   863  02E6  00CB               	movwf	??_main
+   864  02E7  084B               	movf	??_main,w
+   865  02E8  00C5               	movwf	writeToEEPROM@address
+   866  02E9  0817               	movf	23,w	;volatile
+   867  02EA  120A  118A  25DE  120A  118A  	fcall	_writeToEEPROM
+   868                           
+   869                           ;pseudopro2.c: 419:                    writeToEEPROM(POT0,ADD_POT0[0]);
+   870  02EF  1283               	bcf	3,5	;RP0=0, select bank0
+   871  02F0  1303               	bcf	3,6	;RP1=0, select bank0
+   872  02F1  0834               	movf	_ADD_POT0,w
+   873  02F2  00CB               	movwf	??_main
+   874  02F3  084B               	movf	??_main,w
+   875  02F4  00C5               	movwf	writeToEEPROM@address
+   876  02F5  0844               	movf	_POT0,w
+   877  02F6  120A  118A  25DE  120A  118A  	fcall	_writeToEEPROM
+   878                           
+   879                           ;pseudopro2.c: 420:                    writeToEEPROM(POT1,ADD_POT1[0]);
+   880  02FB  1283               	bcf	3,5	;RP0=0, select bank0
+   881  02FC  1303               	bcf	3,6	;RP1=0, select bank0
+   882  02FD  082F               	movf	_ADD_POT1,w
+   883  02FE  00CB               	movwf	??_main
+   884  02FF  084B               	movf	??_main,w
+   885  0300  00C5               	movwf	writeToEEPROM@address
+   886  0301  0843               	movf	_POT1,w
+   887  0302  120A  118A  25DE  120A  118A  	fcall	_writeToEEPROM
+   888                           
+   889                           ;pseudopro2.c: 421:                    writeToEEPROM(POT2,ADD_POT2[0]);
+   890  0307  1283               	bcf	3,5	;RP0=0, select bank0
+   891  0308  1303               	bcf	3,6	;RP1=0, select bank0
+   892  0309  082A               	movf	_ADD_POT2,w
+   893  030A  00CB               	movwf	??_main
+   894  030B  084B               	movf	??_main,w
+   895  030C  00C5               	movwf	writeToEEPROM@address
+   896  030D  0842               	movf	_POT2,w
+   897  030E  120A  118A  25DE  120A  118A  	fcall	_writeToEEPROM
+   898  0313                     l2076:
+   899                           
+   900                           ;pseudopro2.c: 422:                    ConTEEPROM = 1;
+   901  0313  1283               	bcf	3,5	;RP0=0, select bank0
+   902  0314  1303               	bcf	3,6	;RP1=0, select bank0
+   903  0315  01BD               	clrf	_ConTEEPROM
+   904  0316  0ABD               	incf	_ConTEEPROM,f
+   905  0317                     l2078:
+   906                           
+   907                           ;pseudopro2.c: 423:                    PORTDbits.RD3 = 1;
+   908  0317  1588               	bsf	8,3	;volatile
+   909  0318                     l2080:
+   910                           
+   911                           ;pseudopro2.c: 424:                    PORTDbits.RD4 = 0;
+   912  0318  1208               	bcf	8,4	;volatile
+   913  0319                     l2082:
+   914                           
+   915                           ;pseudopro2.c: 425:                    PORTDbits.RD5 = 0;
+   916  0319  1288               	bcf	8,5	;volatile
+   917  031A                     l2084:
+   918                           
+   919                           ;pseudopro2.c: 426:                    PORTDbits.RD6 = 0;
+   920  031A  1308               	bcf	8,6	;volatile
+   921  031B                     l2086:
+   922                           
+   923                           ;pseudopro2.c: 427:                    PORTDbits.RD7 = 0;
+   924  031B  1388               	bcf	8,7	;volatile
+   925                           
+   926                           ;pseudopro2.c: 428:                    break;
+   927  031C  2C3B               	goto	l2116
+   928  031D                     l2088:
+   929                           
+   930                           ;pseudopro2.c: 431:                    writeToEEPROM(CCPR1L,ADD_POT3[1]);
+   931  031D  0826               	movf	_ADD_POT3+1,w
+   932  031E  00CB               	movwf	??_main
+   933  031F  084B               	movf	??_main,w
+   934  0320  00C5               	movwf	writeToEEPROM@address
+   935  0321  0815               	movf	21,w	;volatile
+   936  0322  120A  118A  25DE  120A  118A  	fcall	_writeToEEPROM
+   937                           
+   938                           ;pseudopro2.c: 432:                    writeToEEPROM(CCP1CON,DC1B1POT3[1]);
+   939  0327  1283               	bcf	3,5	;RP0=0, select bank0
+   940  0328  1303               	bcf	3,6	;RP1=0, select bank0
+   941  0329  0821               	movf	_DC1B1POT3+1,w
+   942  032A  00CB               	movwf	??_main
+   943  032B  084B               	movf	??_main,w
+   944  032C  00C5               	movwf	writeToEEPROM@address
+   945  032D  0817               	movf	23,w	;volatile
+   946  032E  120A  118A  25DE  120A  118A  	fcall	_writeToEEPROM
+   947                           
+   948                           ;pseudopro2.c: 433:                    writeToEEPROM(POT0,ADD_POT0[1]);
+   949  0333  1283               	bcf	3,5	;RP0=0, select bank0
+   950  0334  1303               	bcf	3,6	;RP1=0, select bank0
+   951  0335  0835               	movf	_ADD_POT0+1,w
+   952  0336  00CB               	movwf	??_main
+   953  0337  084B               	movf	??_main,w
+   954  0338  00C5               	movwf	writeToEEPROM@address
+   955  0339  0844               	movf	_POT0,w
+   956  033A  120A  118A  25DE  120A  118A  	fcall	_writeToEEPROM
+   957                           
+   958                           ;pseudopro2.c: 434:                    writeToEEPROM(POT1,ADD_POT1[1]);
+   959  033F  1283               	bcf	3,5	;RP0=0, select bank0
+   960  0340  1303               	bcf	3,6	;RP1=0, select bank0
+   961  0341  0830               	movf	_ADD_POT1+1,w
+   962  0342  00CB               	movwf	??_main
+   963  0343  084B               	movf	??_main,w
+   964  0344  00C5               	movwf	writeToEEPROM@address
+   965  0345  0843               	movf	_POT1,w
+   966  0346  120A  118A  25DE  120A  118A  	fcall	_writeToEEPROM
+   967                           
+   968                           ;pseudopro2.c: 435:                    writeToEEPROM(POT2,ADD_POT2[1]);
+   969  034B  1283               	bcf	3,5	;RP0=0, select bank0
+   970  034C  1303               	bcf	3,6	;RP1=0, select bank0
+   971  034D  082B               	movf	_ADD_POT2+1,w
+   972  034E  00CB               	movwf	??_main
+   973  034F  084B               	movf	??_main,w
+   974  0350  00C5               	movwf	writeToEEPROM@address
+   975  0351  0842               	movf	_POT2,w
+   976  0352  120A  118A  25DE  120A  118A  	fcall	_writeToEEPROM
+   977  0357                     l2090:
+   978                           
+   979                           ;pseudopro2.c: 436:                    ConTEEPROM = 2;
+   980  0357  3002               	movlw	2
+   981  0358  1283               	bcf	3,5	;RP0=0, select bank0
+   982  0359  1303               	bcf	3,6	;RP1=0, select bank0
+   983  035A  00CB               	movwf	??_main
+   984  035B  084B               	movf	??_main,w
+   985  035C  00BD               	movwf	_ConTEEPROM
+   986  035D                     l2092:
+   987                           
+   988                           ;pseudopro2.c: 437:                    PORTDbits.RD4 = 1;
+   989  035D  1608               	bsf	8,4	;volatile
+   990                           
+   991                           ;pseudopro2.c: 438:                    break;
+   992  035E  2C3B               	goto	l2116
+   993  035F                     l2094:
+   994                           
+   995                           ;pseudopro2.c: 441:                    writeToEEPROM(CCPR1L,ADD_POT3[2]);
+   996  035F  0827               	movf	_ADD_POT3+2,w
+   997  0360  00CB               	movwf	??_main
+   998  0361  084B               	movf	??_main,w
+   999  0362  00C5               	movwf	writeToEEPROM@address
+  1000  0363  0815               	movf	21,w	;volatile
+  1001  0364  120A  118A  25DE  120A  118A  	fcall	_writeToEEPROM
+  1002                           
+  1003                           ;pseudopro2.c: 442:                    writeToEEPROM(CCP1CON,DC1B1POT3[2]);
+  1004  0369  1283               	bcf	3,5	;RP0=0, select bank0
+  1005  036A  1303               	bcf	3,6	;RP1=0, select bank0
+  1006  036B  0822               	movf	_DC1B1POT3+2,w
+  1007  036C  00CB               	movwf	??_main
+  1008  036D  084B               	movf	??_main,w
+  1009  036E  00C5               	movwf	writeToEEPROM@address
+  1010  036F  0817               	movf	23,w	;volatile
+  1011  0370  120A  118A  25DE  120A  118A  	fcall	_writeToEEPROM
+  1012                           
+  1013                           ;pseudopro2.c: 443:                    writeToEEPROM(POT0,ADD_POT0[2]);
+  1014  0375  1283               	bcf	3,5	;RP0=0, select bank0
+  1015  0376  1303               	bcf	3,6	;RP1=0, select bank0
+  1016  0377  0836               	movf	_ADD_POT0+2,w
+  1017  0378  00CB               	movwf	??_main
+  1018  0379  084B               	movf	??_main,w
+  1019  037A  00C5               	movwf	writeToEEPROM@address
+  1020  037B  0844               	movf	_POT0,w
+  1021  037C  120A  118A  25DE  120A  118A  	fcall	_writeToEEPROM
+  1022                           
+  1023                           ;pseudopro2.c: 444:                    writeToEEPROM(POT1,ADD_POT1[2]);
+  1024  0381  1283               	bcf	3,5	;RP0=0, select bank0
+  1025  0382  1303               	bcf	3,6	;RP1=0, select bank0
+  1026  0383  0831               	movf	_ADD_POT1+2,w
+  1027  0384  00CB               	movwf	??_main
+  1028  0385  084B               	movf	??_main,w
+  1029  0386  00C5               	movwf	writeToEEPROM@address
+  1030  0387  0843               	movf	_POT1,w
+  1031  0388  120A  118A  25DE  120A  118A  	fcall	_writeToEEPROM
+  1032                           
+  1033                           ;pseudopro2.c: 445:                    writeToEEPROM(POT2,ADD_POT2[2]);
+  1034  038D  1283               	bcf	3,5	;RP0=0, select bank0
+  1035  038E  1303               	bcf	3,6	;RP1=0, select bank0
+  1036  038F  082C               	movf	_ADD_POT2+2,w
+  1037  0390  00CB               	movwf	??_main
+  1038  0391  084B               	movf	??_main,w
+  1039  0392  00C5               	movwf	writeToEEPROM@address
+  1040  0393  0842               	movf	_POT2,w
+  1041  0394  120A  118A  25DE  120A  118A  	fcall	_writeToEEPROM
+  1042  0399                     l2096:
+  1043                           
+  1044                           ;pseudopro2.c: 446:                    ConTEEPROM = 3;
+  1045  0399  3003               	movlw	3
+  1046  039A  1283               	bcf	3,5	;RP0=0, select bank0
+  1047  039B  1303               	bcf	3,6	;RP1=0, select bank0
+  1048  039C  00CB               	movwf	??_main
+  1049  039D  084B               	movf	??_main,w
+  1050  039E  00BD               	movwf	_ConTEEPROM
+  1051  039F                     l2098:
+  1052                           
+  1053                           ;pseudopro2.c: 447:                    PORTDbits.RD5 = 1;
+  1054  039F  1688               	bsf	8,5	;volatile
+  1055                           
+  1056                           ;pseudopro2.c: 448:                    break;
+  1057  03A0  2C3B               	goto	l2116
+  1058  03A1                     l2100:
+  1059                           
+  1060                           ;pseudopro2.c: 451:                    writeToEEPROM(CCPR1L,ADD_POT3[3]);
+  1061  03A1  0828               	movf	_ADD_POT3+3,w
+  1062  03A2  00CB               	movwf	??_main
+  1063  03A3  084B               	movf	??_main,w
+  1064  03A4  00C5               	movwf	writeToEEPROM@address
+  1065  03A5  0815               	movf	21,w	;volatile
+  1066  03A6  120A  118A  25DE  120A  118A  	fcall	_writeToEEPROM
+  1067                           
+  1068                           ;pseudopro2.c: 452:                    writeToEEPROM(CCP1CON,DC1B1POT3[3]);
+  1069  03AB  1283               	bcf	3,5	;RP0=0, select bank0
+  1070  03AC  1303               	bcf	3,6	;RP1=0, select bank0
+  1071  03AD  0823               	movf	_DC1B1POT3+3,w
+  1072  03AE  00CB               	movwf	??_main
+  1073  03AF  084B               	movf	??_main,w
+  1074  03B0  00C5               	movwf	writeToEEPROM@address
+  1075  03B1  0817               	movf	23,w	;volatile
+  1076  03B2  120A  118A  25DE  120A  118A  	fcall	_writeToEEPROM
+  1077                           
+  1078                           ;pseudopro2.c: 453:                    writeToEEPROM(POT0,ADD_POT0[3]);
+  1079  03B7  1283               	bcf	3,5	;RP0=0, select bank0
+  1080  03B8  1303               	bcf	3,6	;RP1=0, select bank0
+  1081  03B9  0837               	movf	_ADD_POT0+3,w
+  1082  03BA  00CB               	movwf	??_main
+  1083  03BB  084B               	movf	??_main,w
+  1084  03BC  00C5               	movwf	writeToEEPROM@address
+  1085  03BD  0844               	movf	_POT0,w
+  1086  03BE  120A  118A  25DE  120A  118A  	fcall	_writeToEEPROM
+  1087                           
+  1088                           ;pseudopro2.c: 454:                    writeToEEPROM(POT1,ADD_POT1[3]);
+  1089  03C3  1283               	bcf	3,5	;RP0=0, select bank0
+  1090  03C4  1303               	bcf	3,6	;RP1=0, select bank0
+  1091  03C5  0832               	movf	_ADD_POT1+3,w
+  1092  03C6  00CB               	movwf	??_main
+  1093  03C7  084B               	movf	??_main,w
+  1094  03C8  00C5               	movwf	writeToEEPROM@address
+  1095  03C9  0843               	movf	_POT1,w
+  1096  03CA  120A  118A  25DE  120A  118A  	fcall	_writeToEEPROM
+  1097                           
+  1098                           ;pseudopro2.c: 455:                    writeToEEPROM(POT2,ADD_POT2[3]);
+  1099  03CF  1283               	bcf	3,5	;RP0=0, select bank0
+  1100  03D0  1303               	bcf	3,6	;RP1=0, select bank0
+  1101  03D1  082D               	movf	_ADD_POT2+3,w
+  1102  03D2  00CB               	movwf	??_main
+  1103  03D3  084B               	movf	??_main,w
+  1104  03D4  00C5               	movwf	writeToEEPROM@address
+  1105  03D5  0842               	movf	_POT2,w
+  1106  03D6  120A  118A  25DE  120A  118A  	fcall	_writeToEEPROM
+  1107  03DB                     l2102:
+  1108                           
+  1109                           ;pseudopro2.c: 456:                    ConTEEPROM = 4;
+  1110  03DB  3004               	movlw	4
+  1111  03DC  1283               	bcf	3,5	;RP0=0, select bank0
+  1112  03DD  1303               	bcf	3,6	;RP1=0, select bank0
+  1113  03DE  00CB               	movwf	??_main
+  1114  03DF  084B               	movf	??_main,w
+  1115  03E0  00BD               	movwf	_ConTEEPROM
+  1116  03E1                     l2104:
+  1117                           
+  1118                           ;pseudopro2.c: 457:                    PORTDbits.RD6 = 1;
+  1119  03E1  1708               	bsf	8,6	;volatile
+  1120                           
+  1121                           ;pseudopro2.c: 458:                    break;
+  1122  03E2  2C3B               	goto	l2116
+  1123  03E3                     l2106:
+  1124                           
+  1125                           ;pseudopro2.c: 461:                    writeToEEPROM(CCPR1L,ADD_POT3[4]);
+  1126  03E3  0829               	movf	_ADD_POT3+4,w
+  1127  03E4  00CB               	movwf	??_main
+  1128  03E5  084B               	movf	??_main,w
+  1129  03E6  00C5               	movwf	writeToEEPROM@address
+  1130  03E7  0815               	movf	21,w	;volatile
+  1131  03E8  120A  118A  25DE  120A  118A  	fcall	_writeToEEPROM
+  1132                           
+  1133                           ;pseudopro2.c: 462:                    writeToEEPROM(CCP1CON,DC1B1POT3[4]);
+  1134  03ED  1283               	bcf	3,5	;RP0=0, select bank0
+  1135  03EE  1303               	bcf	3,6	;RP1=0, select bank0
+  1136  03EF  0824               	movf	_DC1B1POT3+4,w
+  1137  03F0  00CB               	movwf	??_main
+  1138  03F1  084B               	movf	??_main,w
+  1139  03F2  00C5               	movwf	writeToEEPROM@address
+  1140  03F3  0817               	movf	23,w	;volatile
+  1141  03F4  120A  118A  25DE  120A  118A  	fcall	_writeToEEPROM
+  1142                           
+  1143                           ;pseudopro2.c: 463:                    writeToEEPROM(POT0,ADD_POT0[4]);
+  1144  03F9  1283               	bcf	3,5	;RP0=0, select bank0
+  1145  03FA  1303               	bcf	3,6	;RP1=0, select bank0
+  1146  03FB  0838               	movf	_ADD_POT0+4,w
+  1147  03FC  00CB               	movwf	??_main
+  1148  03FD  084B               	movf	??_main,w
+  1149  03FE  00C5               	movwf	writeToEEPROM@address
+  1150  03FF  0844               	movf	_POT0,w
+  1151  0400  120A  118A  25DE  120A  118A  	fcall	_writeToEEPROM
+  1152                           
+  1153                           ;pseudopro2.c: 464:                    writeToEEPROM(POT1,ADD_POT1[4]);
+  1154  0405  1283               	bcf	3,5	;RP0=0, select bank0
+  1155  0406  1303               	bcf	3,6	;RP1=0, select bank0
+  1156  0407  0833               	movf	_ADD_POT1+4,w
+  1157  0408  00CB               	movwf	??_main
+  1158  0409  084B               	movf	??_main,w
+  1159  040A  00C5               	movwf	writeToEEPROM@address
+  1160  040B  0843               	movf	_POT1,w
+  1161  040C  120A  118A  25DE  120A  118A  	fcall	_writeToEEPROM
+  1162                           
+  1163                           ;pseudopro2.c: 465:                    writeToEEPROM(POT2,ADD_POT2[4]);
+  1164  0411  1283               	bcf	3,5	;RP0=0, select bank0
+  1165  0412  1303               	bcf	3,6	;RP1=0, select bank0
+  1166  0413  082E               	movf	_ADD_POT2+4,w
+  1167  0414  00CB               	movwf	??_main
+  1168  0415  084B               	movf	??_main,w
+  1169  0416  00C5               	movwf	writeToEEPROM@address
+  1170  0417  0842               	movf	_POT2,w
+  1171  0418  120A  118A  25DE  120A  118A  	fcall	_writeToEEPROM
+  1172  041D                     l2108:
+  1173                           
+  1174                           ;pseudopro2.c: 466:                    ConTEEPROM = 0;
+  1175  041D  1283               	bcf	3,5	;RP0=0, select bank0
+  1176  041E  1303               	bcf	3,6	;RP1=0, select bank0
+  1177  041F  01BD               	clrf	_ConTEEPROM
+  1178  0420                     l2110:
+  1179                           
+  1180                           ;pseudopro2.c: 467:                    PORTDbits.RD7 = 1;
+  1181  0420  1788               	bsf	8,7	;volatile
+  1182                           
+  1183                           ;pseudopro2.c: 468:                    break;
+  1184  0421  2C3B               	goto	l2116
+  1185  0422                     l2114:
+  1186  0422  083D               	movf	_ConTEEPROM,w
+  1187  0423  00CB               	movwf	??_main
+  1188  0424  01CC               	clrf	??_main+1
+  1189                           
+  1190                           ; Switch on 2 bytes has been partitioned into a top level switch of size 1, and 1 sub-sw
+      +                          itches
+  1191                           ; Switch size 1, requested type "simple"
+  1192                           ; Number of cases is 1, Range of values is 0 to 0
+  1193                           ; switch strategies available:
+  1194                           ; Name         Instructions Cycles
+  1195                           ; simple_byte            4     3 (average)
+  1196                           ; direct_byte           11     8 (fixed)
+  1197                           ; jumptable            260     6 (fixed)
+  1198                           ;	Chosen strategy is simple_byte
+  1199  0425  084C               	movf	??_main+1,w
+  1200  0426  3A00               	xorlw	0	; case 0
+  1201  0427  1903               	skipnz
+  1202  0428  2C2A               	goto	l2204
+  1203  0429  2C3B               	goto	l2116
+  1204  042A                     l2204:
+  1205                           
+  1206                           ; Switch size 1, requested type "simple"
+  1207                           ; Number of cases is 5, Range of values is 0 to 4
+  1208                           ; switch strategies available:
+  1209                           ; Name         Instructions Cycles
+  1210                           ; simple_byte           16     9 (average)
+  1211                           ; direct_byte           23     8 (fixed)
+  1212                           ; jumptable            260     6 (fixed)
+  1213                           ;	Chosen strategy is simple_byte
+  1214  042A  084B               	movf	??_main,w
+  1215  042B  3A00               	xorlw	0	; case 0
+  1216  042C  1903               	skipnz
+  1217  042D  2AD9               	goto	l2074
+  1218  042E  3A01               	xorlw	1	; case 1
+  1219  042F  1903               	skipnz
+  1220  0430  2B1D               	goto	l2088
+  1221  0431  3A03               	xorlw	3	; case 2
+  1222  0432  1903               	skipnz
+  1223  0433  2B5F               	goto	l2094
+  1224  0434  3A01               	xorlw	1	; case 3
+  1225  0435  1903               	skipnz
+  1226  0436  2BA1               	goto	l2100
+  1227  0437  3A07               	xorlw	7	; case 4
+  1228  0438  1903               	skipnz
+  1229  0439  2BE3               	goto	l2106
+  1230  043A  2C3B               	goto	l2116
+  1231  043B                     l2116:
+  1232                           
+  1233                           ;pseudopro2.c: 470:             RB0_old = 0;
+  1234  043B  01BC               	clrf	_RB0_old
+  1235  043C                     l2118:
+  1236                           
+  1237                           ;pseudopro2.c: 473:         if (RB1 == 1 && RB1_old == 1 && PC_MN == 0){
+  1238  043C  1C86               	btfss	6,1	;volatile
+  1239  043D  2C3F               	goto	u1001
+  1240  043E  2C40               	goto	u1000
+  1241  043F                     u1001:
+  1242  043F  2ABE               	goto	l2062
+  1243  0440                     u1000:
+  1244  0440                     l2120:
+  1245  0440  033B               	decf	_RB1_old,w
+  1246  0441  1D03               	btfss	3,2
+  1247  0442  2C44               	goto	u1011
+  1248  0443  2C45               	goto	u1010
+  1249  0444                     u1011:
+  1250  0444  2ABE               	goto	l2062
+  1251  0445                     u1010:
+  1252  0445                     l2122:
+  1253  0445  0839               	movf	_PC_MN,w
+  1254  0446  1D03               	btfss	3,2
+  1255  0447  2C49               	goto	u1021
+  1256  0448  2C4A               	goto	u1020
+  1257  0449                     u1021:
+  1258  0449  2ABE               	goto	l2062
+  1259  044A                     u1020:
+  1260  044A                     l2124:
+  1261                           
+  1262                           ;pseudopro2.c: 474:             readFromEEPROMPOTS();
+  1263  044A  120A  118A  2032  120A  118A  	fcall	_readFromEEPROMPOTS
+  1264  044F                     l2126:
+  1265                           
+  1266                           ;pseudopro2.c: 475:             RB1_old = 0;
+  1267  044F  1283               	bcf	3,5	;RP0=0, select bank0
+  1268  0450  1303               	bcf	3,6	;RP1=0, select bank0
+  1269  0451  01BB               	clrf	_RB1_old
+  1270  0452  2ABE               	goto	l2062
+  1271  0453  120A  118A  280E   	ljmp	start
+  1272  0456                     __end_of_main:
+  1273                           
+  1274                           	psect	text1
+  1275  05DE                     __ptext1:	
+  1276 ;; *************** function _writeToEEPROM *****************
+  1277 ;; Defined at:
+  1278 ;;		line 107 in file "pseudopro2.c"
+  1279 ;; Parameters:    Size  Location     Type
+  1280 ;;  data            1    wreg     unsigned char 
+  1281 ;;  address         1    0[BANK0 ] unsigned char 
+  1282 ;; Auto vars:     Size  Location     Type
+  1283 ;;  data            1    1[BANK0 ] unsigned char 
+  1284 ;; Return value:  Size  Location     Type
+  1285 ;;                  1    wreg      void 
+  1286 ;; Registers used:
+  1287 ;;		wreg
+  1288 ;; Tracked objects:
+  1289 ;;		On entry : 0/0
+  1290 ;;		On exit  : 0/0
+  1291 ;;		Unchanged: 0/0
+  1292 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1293 ;;      Params:         0       1       0       0       0
+  1294 ;;      Locals:         0       1       0       0       0
+  1295 ;;      Temps:          0       0       0       0       0
+  1296 ;;      Totals:         0       2       0       0       0
+  1297 ;;Total ram usage:        2 bytes
+  1298 ;; Hardware stack levels used:    1
+  1299 ;; Hardware stack levels required when called:    2
+  1300 ;; This function calls:
+  1301 ;;		Nothing
+  1302 ;; This function is called by:
+  1303 ;;		_main
+  1304 ;; This function uses a non-reentrant model
+  1305 ;;
+  1306                           
+  1307                           
+  1308                           ;psect for function _writeToEEPROM
+  1309  05DE                     _writeToEEPROM:
+  1310                           
+  1311                           ;incstack = 0
+  1312                           ; Regs used in _writeToEEPROM: [wreg]
+  1313                           ;writeToEEPROM@data stored from wreg
+  1314  05DE  1283               	bcf	3,5	;RP0=0, select bank0
+  1315  05DF  1303               	bcf	3,6	;RP1=0, select bank0
+  1316  05E0  00C6               	movwf	writeToEEPROM@data
+  1317  05E1                     l1936:
+  1318                           
+  1319                           ;pseudopro2.c: 108: }
+  1320  05E1  0845               	movf	writeToEEPROM@address,w
+  1321  05E2  1283               	bcf	3,5	;RP0=0, select bank2
+  1322  05E3  1703               	bsf	3,6	;RP1=1, select bank2
+  1323  05E4  008D               	movwf	13	;volatile
+  1324                           
+  1325                           ;pseudopro2.c: 109: 
+  1326  05E5  1283               	bcf	3,5	;RP0=0, select bank0
+  1327  05E6  1303               	bcf	3,6	;RP1=0, select bank0
+  1328  05E7  0846               	movf	writeToEEPROM@data,w
+  1329  05E8  1283               	bcf	3,5	;RP0=0, select bank2
+  1330  05E9  1703               	bsf	3,6	;RP1=1, select bank2
+  1331  05EA  008C               	movwf	12	;volatile
+  1332  05EB                     l1938:
+  1333                           
+  1334                           ;pseudopro2.c: 111:     ConTEEPROM = 0;
+  1335  05EB  1683               	bsf	3,5	;RP0=1, select bank3
+  1336  05EC  1703               	bsf	3,6	;RP1=1, select bank3
+  1337  05ED  138C               	bcf	12,7	;volsfr
+  1338  05EE                     l1940:
+  1339                           
+  1340                           ;pseudopro2.c: 112:     Reading = 1;
+  1341  05EE  150C               	bsf	12,2	;volsfr
+  1342  05EF                     l1942:
+  1343                           
+  1344                           ;pseudopro2.c: 114:         switch(ConTEEPROM){
+  1345  05EF  138B               	bcf	11,7	;volatile
+  1346                           
+  1347                           ;pseudopro2.c: 116:                 CCPR1L = readFromEEPROM(ADD_POT3[0]);
+  1348  05F0  3055               	movlw	85
+  1349  05F1  008D               	movwf	13	;volsfr
+  1350                           
+  1351                           ;pseudopro2.c: 117:                 CCP1CONbits.DC1B1 = readFromEEPROM(DC1B1POT3[0]) & 0
+      +                          b00100000;
+  1352  05F2  30AA               	movlw	170
+  1353  05F3  008D               	movwf	13	;volsfr
+  1354  05F4                     l1944:
+  1355                           
+  1356                           ;pseudopro2.c: 118:                 CCP1CONbits.DC1B0 = readFromEEPROM(DC1B1POT3[0]) & 0
+      +                          b00010000;
+  1357  05F4  148C               	bsf	12,1	;volsfr
+  1358  05F5                     l156:	
+  1359                           ;pseudopro2.c: 120:                 POT1 = readFromEEPROM(ADD_POT1[0]);
+  1360                           
+  1361  05F5  1283               	bcf	3,5	;RP0=0, select bank0
+  1362  05F6  1303               	bcf	3,6	;RP1=0, select bank0
+  1363  05F7  1E0D               	btfss	13,4	;volatile
+  1364  05F8  2DFA               	goto	u931
+  1365  05F9  2DFB               	goto	u930
+  1366  05FA                     u931:
+  1367  05FA  2DF5               	goto	l156
+  1368  05FB                     u930:
+  1369  05FB                     l158:
+  1370                           
+  1371                           ;pseudopro2.c: 121:                 POT2 = readFromEEPROM(ADD_POT2[0]);
+  1372  05FB  120D               	bcf	13,4	;volatile
+  1373                           
+  1374                           ;pseudopro2.c: 123:                 PORTDbits.RD4 = 0;
+  1375  05FC  178B               	bsf	11,7	;volatile
+  1376                           
+  1377                           ;pseudopro2.c: 124:                 PORTDbits.RD5 = 0;
+  1378  05FD  1683               	bsf	3,5	;RP0=1, select bank3
+  1379  05FE  1703               	bsf	3,6	;RP1=1, select bank3
+  1380  05FF  110C               	bcf	12,2	;volsfr
+  1381  0600                     l159:	
+  1382                           ;pseudopro2.c: 126:                 PORTDbits.RD7 = 0;
+  1383                           
+  1384  0600  0008               	return
+  1385  0601                     __end_of_writeToEEPROM:
+  1386                           
+  1387                           	psect	text2
+  1388  0032                     __ptext2:	
+  1389 ;; *************** function _readFromEEPROMPOTS *****************
+  1390 ;; Defined at:
+  1391 ;;		line 136 in file "pseudopro2.c"
+  1392 ;; Parameters:    Size  Location     Type
+  1393 ;;		None
+  1394 ;; Auto vars:     Size  Location     Type
+  1395 ;;		None
+  1396 ;; Return value:  Size  Location     Type
+  1397 ;;                  1    wreg      void 
+  1398 ;; Registers used:
+  1399 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+  1400 ;; Tracked objects:
+  1401 ;;		On entry : 0/0
+  1402 ;;		On exit  : 0/0
+  1403 ;;		Unchanged: 0/0
+  1404 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1405 ;;      Params:         0       0       0       0       0
+  1406 ;;      Locals:         0       0       0       0       0
+  1407 ;;      Temps:          0       3       0       0       0
+  1408 ;;      Totals:         0       3       0       0       0
+  1409 ;;Total ram usage:        3 bytes
+  1410 ;; Hardware stack levels used:    1
+  1411 ;; Hardware stack levels required when called:    3
+  1412 ;; This function calls:
+  1413 ;;		_readFromEEPROM
+  1414 ;; This function is called by:
+  1415 ;;		_main
+  1416 ;; This function uses a non-reentrant model
+  1417 ;;
+  1418                           
+  1419                           
+  1420                           ;psect for function _readFromEEPROMPOTS
+  1421  0032                     _readFromEEPROMPOTS:
+  1422  0032                     l1504:	
+  1423                           ;incstack = 0
+  1424                           ; Regs used in _readFromEEPROMPOTS: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+  1425                           
+  1426                           
+  1427                           ;pseudopro2.c: 137:                 POT2 = readFromEEPROM(ADD_POT2[1]);
+  1428  0032  1283               	bcf	3,5	;RP0=0, select bank0
+  1429  0033  1303               	bcf	3,6	;RP1=0, select bank0
+  1430  0034  01BD               	clrf	_ConTEEPROM
+  1431  0035                     l1506:
+  1432                           
+  1433                           ;pseudopro2.c: 138:                 PORTDbits.RD4 = 1;
+  1434  0035  01BA               	clrf	_Reading
+  1435  0036  0ABA               	incf	_Reading,f
+  1436                           
+  1437                           ;pseudopro2.c: 139:                 _delay((unsigned long)((100)*(8000000/4000.0)));
+  1438  0037  2A3D               	goto	l1580
+  1439  0038                     l1508:
+  1440                           
+  1441                           ;pseudopro2.c: 142: 
+  1442  0038  0825               	movf	_ADD_POT3,w
+  1443  0039  120A  118A  261A  120A  118A  	fcall	_readFromEEPROM
+  1444  003E  1283               	bcf	3,5	;RP0=0, select bank0
+  1445  003F  1303               	bcf	3,6	;RP1=0, select bank0
+  1446  0040  0095               	movwf	21	;volatile
+  1447  0041                     l1510:
+  1448                           
+  1449                           ;pseudopro2.c: 143:             case 2:
+  1450  0041  0820               	movf	_DC1B1POT3,w
+  1451  0042  120A  118A  261A  120A  118A  	fcall	_readFromEEPROM
+  1452  0047  3920               	andlw	32
+  1453  0048  1283               	bcf	3,5	;RP0=0, select bank0
+  1454  0049  1303               	bcf	3,6	;RP1=0, select bank0
+  1455  004A  00C8               	movwf	??_readFromEEPROMPOTS
+  1456  004B  0EC8               	swapf	??_readFromEEPROMPOTS,f
+  1457  004C  0DC8               	rlf	??_readFromEEPROMPOTS,f
+  1458  004D  0817               	movf	23,w	;volatile
+  1459  004E  0648               	xorwf	??_readFromEEPROMPOTS,w
+  1460  004F  39DF               	andlw	-33
+  1461  0050  0648               	xorwf	??_readFromEEPROMPOTS,w
+  1462  0051  0097               	movwf	23	;volatile
+  1463  0052                     l1512:
+  1464                           
+  1465                           ;pseudopro2.c: 144:                 CCPR1L = readFromEEPROM(ADD_POT3[2]);
+  1466  0052  0820               	movf	_DC1B1POT3,w
+  1467  0053  120A  118A  261A  120A  118A  	fcall	_readFromEEPROM
+  1468  0058  3910               	andlw	16
+  1469  0059  1283               	bcf	3,5	;RP0=0, select bank0
+  1470  005A  1303               	bcf	3,6	;RP1=0, select bank0
+  1471  005B  00C8               	movwf	??_readFromEEPROMPOTS
+  1472  005C  0EC8               	swapf	??_readFromEEPROMPOTS,f
+  1473  005D  0817               	movf	23,w	;volatile
+  1474  005E  0648               	xorwf	??_readFromEEPROMPOTS,w
+  1475  005F  39EF               	andlw	-17
+  1476  0060  0648               	xorwf	??_readFromEEPROMPOTS,w
+  1477  0061  0097               	movwf	23	;volatile
+  1478                           
+  1479                           ;pseudopro2.c: 145:                 CCP1CONbits.DC1B1 = readFromEEPROM(DC1B1POT3[2]) & 0
+      +                          b00100000;
+  1480  0062  0834               	movf	_ADD_POT0,w
+  1481  0063  120A  118A  261A  120A  118A  	fcall	_readFromEEPROM
+  1482  0068  1283               	bcf	3,5	;RP0=0, select bank0
+  1483  0069  1303               	bcf	3,6	;RP1=0, select bank0
+  1484  006A  00C8               	movwf	??_readFromEEPROMPOTS
+  1485  006B  0848               	movf	??_readFromEEPROMPOTS,w
+  1486  006C  00C4               	movwf	_POT0
+  1487                           
+  1488                           ;pseudopro2.c: 146:                 CCP1CONbits.DC1B0 = readFromEEPROM(DC1B1POT3[2]) & 0
+      +                          b00010000;
+  1489  006D  082F               	movf	_ADD_POT1,w
+  1490  006E  120A  118A  261A  120A  118A  	fcall	_readFromEEPROM
+  1491  0073  1283               	bcf	3,5	;RP0=0, select bank0
+  1492  0074  1303               	bcf	3,6	;RP1=0, select bank0
+  1493  0075  00C8               	movwf	??_readFromEEPROMPOTS
+  1494  0076  0848               	movf	??_readFromEEPROMPOTS,w
+  1495  0077  00C3               	movwf	_POT1
+  1496                           
+  1497                           ;pseudopro2.c: 147:                 POT0 = readFromEEPROM(ADD_POT0[2]);
+  1498  0078  082A               	movf	_ADD_POT2,w
+  1499  0079  120A  118A  261A  120A  118A  	fcall	_readFromEEPROM
+  1500  007E  1283               	bcf	3,5	;RP0=0, select bank0
+  1501  007F  1303               	bcf	3,6	;RP1=0, select bank0
+  1502  0080  00C8               	movwf	??_readFromEEPROMPOTS
+  1503  0081  0848               	movf	??_readFromEEPROMPOTS,w
+  1504  0082  00C2               	movwf	_POT2
+  1505  0083                     l1514:
+  1506                           
+  1507                           ;pseudopro2.c: 148:                 POT1 = readFromEEPROM(ADD_POT1[2]);
+  1508  0083  1588               	bsf	8,3	;volatile
+  1509  0084                     l1516:
+  1510                           
+  1511                           ;pseudopro2.c: 149:                 POT2 = readFromEEPROM(ADD_POT2[2]);
+  1512  0084  1208               	bcf	8,4	;volatile
+  1513  0085                     l1518:
+  1514                           
+  1515                           ;pseudopro2.c: 150:                 PORTDbits.RD5 = 1;
+  1516  0085  1288               	bcf	8,5	;volatile
+  1517  0086                     l1520:
+  1518                           
+  1519                           ;pseudopro2.c: 151:                 _delay((unsigned long)((100)*(8000000/4000.0)));
+  1520  0086  1308               	bcf	8,6	;volatile
+  1521  0087                     l1522:
+  1522                           
+  1523                           ;pseudopro2.c: 152:                 ConTEEPROM = 3;
+  1524  0087  1388               	bcf	8,7	;volatile
+  1525  0088                     l1524:
+  1526                           
+  1527                           ;pseudopro2.c: 153:                break;
+  1528  0088  3002               	movlw	2
+  1529  0089  1283               	bcf	3,5	;RP0=0, select bank0
+  1530  008A  1303               	bcf	3,6	;RP1=0, select bank0
+  1531  008B  00CA               	movwf	??_readFromEEPROMPOTS+2
+  1532  008C  3004               	movlw	4
+  1533  008D  00C9               	movwf	??_readFromEEPROMPOTS+1
+  1534  008E  30B9               	movlw	185
+  1535  008F  00C8               	movwf	??_readFromEEPROMPOTS
+  1536  0090                     u1047:
+  1537  0090  0BC8               	decfsz	??_readFromEEPROMPOTS,f
+  1538  0091  2890               	goto	u1047
+  1539  0092  0BC9               	decfsz	??_readFromEEPROMPOTS+1,f
+  1540  0093  2890               	goto	u1047
+  1541  0094  0BCA               	decfsz	??_readFromEEPROMPOTS+2,f
+  1542  0095  2890               	goto	u1047
+  1543  0096  2897               	nop2
+  1544  0097                     l1526:
+  1545                           
+  1546                           ;pseudopro2.c: 154:             case 3:
+  1547  0097  1283               	bcf	3,5	;RP0=0, select bank0
+  1548  0098  1303               	bcf	3,6	;RP1=0, select bank0
+  1549  0099  01BD               	clrf	_ConTEEPROM
+  1550  009A  0ABD               	incf	_ConTEEPROM,f
+  1551                           
+  1552                           ;pseudopro2.c: 155:                 CCPR1L = readFromEEPROM(ADD_POT3[3]);
+  1553  009B  2A3D               	goto	l1580
+  1554  009C                     l1528:
+  1555                           
+  1556                           ;pseudopro2.c: 158:                 POT0 = readFromEEPROM(ADD_POT0[3]);
+  1557  009C  0826               	movf	_ADD_POT3+1,w
+  1558  009D  120A  118A  261A  120A  118A  	fcall	_readFromEEPROM
+  1559  00A2  1283               	bcf	3,5	;RP0=0, select bank0
+  1560  00A3  1303               	bcf	3,6	;RP1=0, select bank0
+  1561  00A4  0095               	movwf	21	;volatile
+  1562  00A5                     l1530:
+  1563                           
+  1564                           ;pseudopro2.c: 159:                 POT1 = readFromEEPROM(ADD_POT1[3]);
+  1565  00A5  0821               	movf	_DC1B1POT3+1,w
+  1566  00A6  120A  118A  261A  120A  118A  	fcall	_readFromEEPROM
+  1567  00AB  3920               	andlw	32
+  1568  00AC  1283               	bcf	3,5	;RP0=0, select bank0
+  1569  00AD  1303               	bcf	3,6	;RP1=0, select bank0
+  1570  00AE  00C8               	movwf	??_readFromEEPROMPOTS
+  1571  00AF  0EC8               	swapf	??_readFromEEPROMPOTS,f
+  1572  00B0  0DC8               	rlf	??_readFromEEPROMPOTS,f
+  1573  00B1  0817               	movf	23,w	;volatile
+  1574  00B2  0648               	xorwf	??_readFromEEPROMPOTS,w
+  1575  00B3  39DF               	andlw	-33
+  1576  00B4  0648               	xorwf	??_readFromEEPROMPOTS,w
+  1577  00B5  0097               	movwf	23	;volatile
+  1578  00B6                     l1532:
+  1579                           
+  1580                           ;pseudopro2.c: 160:                 POT2 = readFromEEPROM(ADD_POT2[3]);
+  1581  00B6  0821               	movf	_DC1B1POT3+1,w
+  1582  00B7  120A  118A  261A  120A  118A  	fcall	_readFromEEPROM
+  1583  00BC  3910               	andlw	16
+  1584  00BD  1283               	bcf	3,5	;RP0=0, select bank0
+  1585  00BE  1303               	bcf	3,6	;RP1=0, select bank0
+  1586  00BF  00C8               	movwf	??_readFromEEPROMPOTS
+  1587  00C0  0EC8               	swapf	??_readFromEEPROMPOTS,f
+  1588  00C1  0817               	movf	23,w	;volatile
+  1589  00C2  0648               	xorwf	??_readFromEEPROMPOTS,w
+  1590  00C3  39EF               	andlw	-17
+  1591  00C4  0648               	xorwf	??_readFromEEPROMPOTS,w
+  1592  00C5  0097               	movwf	23	;volatile
+  1593                           
+  1594                           ;pseudopro2.c: 161:                 PORTDbits.RD6 = 1;
+  1595  00C6  0835               	movf	_ADD_POT0+1,w
+  1596  00C7  120A  118A  261A  120A  118A  	fcall	_readFromEEPROM
+  1597  00CC  1283               	bcf	3,5	;RP0=0, select bank0
+  1598  00CD  1303               	bcf	3,6	;RP1=0, select bank0
+  1599  00CE  00C8               	movwf	??_readFromEEPROMPOTS
+  1600  00CF  0848               	movf	??_readFromEEPROMPOTS,w
+  1601  00D0  00C4               	movwf	_POT0
+  1602                           
+  1603                           ;pseudopro2.c: 162:                 _delay((unsigned long)((100)*(8000000/4000.0)));
+  1604  00D1  0830               	movf	_ADD_POT1+1,w
+  1605  00D2  120A  118A  261A  120A  118A  	fcall	_readFromEEPROM
+  1606  00D7  1283               	bcf	3,5	;RP0=0, select bank0
+  1607  00D8  1303               	bcf	3,6	;RP1=0, select bank0
+  1608  00D9  00C8               	movwf	??_readFromEEPROMPOTS
+  1609  00DA  0848               	movf	??_readFromEEPROMPOTS,w
+  1610  00DB  00C3               	movwf	_POT1
+  1611                           
+  1612                           ;pseudopro2.c: 163:                 ConTEEPROM = 4;
+  1613  00DC  082B               	movf	_ADD_POT2+1,w
+  1614  00DD  120A  118A  261A  120A  118A  	fcall	_readFromEEPROM
+  1615  00E2  1283               	bcf	3,5	;RP0=0, select bank0
+  1616  00E3  1303               	bcf	3,6	;RP1=0, select bank0
+  1617  00E4  00C8               	movwf	??_readFromEEPROMPOTS
+  1618  00E5  0848               	movf	??_readFromEEPROMPOTS,w
+  1619  00E6  00C2               	movwf	_POT2
+  1620  00E7                     l1534:
+  1621                           
+  1622                           ;pseudopro2.c: 164:                break;
+  1623  00E7  1608               	bsf	8,4	;volatile
+  1624  00E8                     l1536:
+  1625                           
+  1626                           ;pseudopro2.c: 165: 
+  1627  00E8  3002               	movlw	2
+  1628  00E9  1283               	bcf	3,5	;RP0=0, select bank0
+  1629  00EA  1303               	bcf	3,6	;RP1=0, select bank0
+  1630  00EB  00CA               	movwf	??_readFromEEPROMPOTS+2
+  1631  00EC  3004               	movlw	4
+  1632  00ED  00C9               	movwf	??_readFromEEPROMPOTS+1
+  1633  00EE  30B9               	movlw	185
+  1634  00EF  00C8               	movwf	??_readFromEEPROMPOTS
+  1635  00F0                     u1057:
+  1636  00F0  0BC8               	decfsz	??_readFromEEPROMPOTS,f
+  1637  00F1  28F0               	goto	u1057
+  1638  00F2  0BC9               	decfsz	??_readFromEEPROMPOTS+1,f
+  1639  00F3  28F0               	goto	u1057
+  1640  00F4  0BCA               	decfsz	??_readFromEEPROMPOTS+2,f
+  1641  00F5  28F0               	goto	u1057
+  1642  00F6  28F7               	nop2
+  1643  00F7                     l1538:
+  1644                           
+  1645                           ;pseudopro2.c: 166:             case 4:
+  1646  00F7  3002               	movlw	2
+  1647  00F8  1283               	bcf	3,5	;RP0=0, select bank0
+  1648  00F9  1303               	bcf	3,6	;RP1=0, select bank0
+  1649  00FA  00C8               	movwf	??_readFromEEPROMPOTS
+  1650  00FB  0848               	movf	??_readFromEEPROMPOTS,w
+  1651  00FC  00BD               	movwf	_ConTEEPROM
+  1652                           
+  1653                           ;pseudopro2.c: 167:                 CCPR1L = readFromEEPROM(ADD_POT3[4]);
+  1654  00FD  2A3D               	goto	l1580
+  1655  00FE                     l1540:
+  1656                           
+  1657                           ;pseudopro2.c: 170:                 POT0 = readFromEEPROM(ADD_POT0[4]);
+  1658  00FE  0827               	movf	_ADD_POT3+2,w
+  1659  00FF  120A  118A  261A  120A  118A  	fcall	_readFromEEPROM
+  1660  0104  1283               	bcf	3,5	;RP0=0, select bank0
+  1661  0105  1303               	bcf	3,6	;RP1=0, select bank0
+  1662  0106  0095               	movwf	21	;volatile
+  1663  0107                     l1542:
+  1664                           
+  1665                           ;pseudopro2.c: 171:                 POT1 = readFromEEPROM(ADD_POT1[4]);
+  1666  0107  0822               	movf	_DC1B1POT3+2,w
+  1667  0108  120A  118A  261A  120A  118A  	fcall	_readFromEEPROM
+  1668  010D  3920               	andlw	32
+  1669  010E  1283               	bcf	3,5	;RP0=0, select bank0
+  1670  010F  1303               	bcf	3,6	;RP1=0, select bank0
+  1671  0110  00C8               	movwf	??_readFromEEPROMPOTS
+  1672  0111  0EC8               	swapf	??_readFromEEPROMPOTS,f
+  1673  0112  0DC8               	rlf	??_readFromEEPROMPOTS,f
+  1674  0113  0817               	movf	23,w	;volatile
+  1675  0114  0648               	xorwf	??_readFromEEPROMPOTS,w
+  1676  0115  39DF               	andlw	-33
+  1677  0116  0648               	xorwf	??_readFromEEPROMPOTS,w
+  1678  0117  0097               	movwf	23	;volatile
+  1679  0118                     l1544:
+  1680                           
+  1681                           ;pseudopro2.c: 172:                 POT2 = readFromEEPROM(ADD_POT2[4]);
+  1682  0118  0822               	movf	_DC1B1POT3+2,w
+  1683  0119  120A  118A  261A  120A  118A  	fcall	_readFromEEPROM
+  1684  011E  3910               	andlw	16
+  1685  011F  1283               	bcf	3,5	;RP0=0, select bank0
+  1686  0120  1303               	bcf	3,6	;RP1=0, select bank0
+  1687  0121  00C8               	movwf	??_readFromEEPROMPOTS
+  1688  0122  0EC8               	swapf	??_readFromEEPROMPOTS,f
+  1689  0123  0817               	movf	23,w	;volatile
+  1690  0124  0648               	xorwf	??_readFromEEPROMPOTS,w
+  1691  0125  39EF               	andlw	-17
+  1692  0126  0648               	xorwf	??_readFromEEPROMPOTS,w
+  1693  0127  0097               	movwf	23	;volatile
+  1694                           
+  1695                           ;pseudopro2.c: 173:                 PORTDbits.RD7 = 1;
+  1696  0128  0836               	movf	_ADD_POT0+2,w
+  1697  0129  120A  118A  261A  120A  118A  	fcall	_readFromEEPROM
+  1698  012E  1283               	bcf	3,5	;RP0=0, select bank0
+  1699  012F  1303               	bcf	3,6	;RP1=0, select bank0
+  1700  0130  00C8               	movwf	??_readFromEEPROMPOTS
+  1701  0131  0848               	movf	??_readFromEEPROMPOTS,w
+  1702  0132  00C4               	movwf	_POT0
+  1703                           
+  1704                           ;pseudopro2.c: 174:                 _delay((unsigned long)((100)*(8000000/4000.0)));
+  1705  0133  0831               	movf	_ADD_POT1+2,w
+  1706  0134  120A  118A  261A  120A  118A  	fcall	_readFromEEPROM
+  1707  0139  1283               	bcf	3,5	;RP0=0, select bank0
+  1708  013A  1303               	bcf	3,6	;RP1=0, select bank0
+  1709  013B  00C8               	movwf	??_readFromEEPROMPOTS
+  1710  013C  0848               	movf	??_readFromEEPROMPOTS,w
+  1711  013D  00C3               	movwf	_POT1
+  1712                           
+  1713                           ;pseudopro2.c: 175:                 ConTEEPROM = 5;
+  1714  013E  082C               	movf	_ADD_POT2+2,w
+  1715  013F  120A  118A  261A  120A  118A  	fcall	_readFromEEPROM
+  1716  0144  1283               	bcf	3,5	;RP0=0, select bank0
+  1717  0145  1303               	bcf	3,6	;RP1=0, select bank0
+  1718  0146  00C8               	movwf	??_readFromEEPROMPOTS
+  1719  0147  0848               	movf	??_readFromEEPROMPOTS,w
+  1720  0148  00C2               	movwf	_POT2
+  1721  0149                     l1546:
+  1722                           
+  1723                           ;pseudopro2.c: 176:                break;
+  1724  0149  1688               	bsf	8,5	;volatile
+  1725  014A                     l1548:
+  1726                           
+  1727                           ;pseudopro2.c: 177:         }
+  1728  014A  3002               	movlw	2
+  1729  014B  1283               	bcf	3,5	;RP0=0, select bank0
+  1730  014C  1303               	bcf	3,6	;RP1=0, select bank0
+  1731  014D  00CA               	movwf	??_readFromEEPROMPOTS+2
+  1732  014E  3004               	movlw	4
+  1733  014F  00C9               	movwf	??_readFromEEPROMPOTS+1
+  1734  0150  30B9               	movlw	185
+  1735  0151  00C8               	movwf	??_readFromEEPROMPOTS
+  1736  0152                     u1067:
+  1737  0152  0BC8               	decfsz	??_readFromEEPROMPOTS,f
+  1738  0153  2952               	goto	u1067
+  1739  0154  0BC9               	decfsz	??_readFromEEPROMPOTS+1,f
+  1740  0155  2952               	goto	u1067
+  1741  0156  0BCA               	decfsz	??_readFromEEPROMPOTS+2,f
+  1742  0157  2952               	goto	u1067
+  1743  0158  2959               	nop2
+  1744  0159                     l1550:
+  1745                           
+  1746                           ;pseudopro2.c: 178:     }
+  1747  0159  3003               	movlw	3
+  1748  015A  1283               	bcf	3,5	;RP0=0, select bank0
+  1749  015B  1303               	bcf	3,6	;RP1=0, select bank0
+  1750  015C  00C8               	movwf	??_readFromEEPROMPOTS
+  1751  015D  0848               	movf	??_readFromEEPROMPOTS,w
+  1752  015E  00BD               	movwf	_ConTEEPROM
+  1753                           
+  1754                           ;pseudopro2.c: 179:     Reading = 0;
+  1755  015F  2A3D               	goto	l1580
+  1756  0160                     l1552:
+  1757                           
+  1758                           ;pseudopro2.c: 181:     return;
+  1759  0160  0828               	movf	_ADD_POT3+3,w
+  1760  0161  120A  118A  261A  120A  118A  	fcall	_readFromEEPROM
+  1761  0166  1283               	bcf	3,5	;RP0=0, select bank0
+  1762  0167  1303               	bcf	3,6	;RP1=0, select bank0
+  1763  0168  0095               	movwf	21	;volatile
+  1764  0169                     l1554:
+  1765                           
+  1766                           ;pseudopro2.c: 182: }
+  1767  0169  0823               	movf	_DC1B1POT3+3,w
+  1768  016A  120A  118A  261A  120A  118A  	fcall	_readFromEEPROM
+  1769  016F  3920               	andlw	32
+  1770  0170  1283               	bcf	3,5	;RP0=0, select bank0
+  1771  0171  1303               	bcf	3,6	;RP1=0, select bank0
+  1772  0172  00C8               	movwf	??_readFromEEPROMPOTS
+  1773  0173  0EC8               	swapf	??_readFromEEPROMPOTS,f
+  1774  0174  0DC8               	rlf	??_readFromEEPROMPOTS,f
+  1775  0175  0817               	movf	23,w	;volatile
+  1776  0176  0648               	xorwf	??_readFromEEPROMPOTS,w
+  1777  0177  39DF               	andlw	-33
+  1778  0178  0648               	xorwf	??_readFromEEPROMPOTS,w
+  1779  0179  0097               	movwf	23	;volatile
+  1780  017A                     l1556:
+  1781                           
+  1782                           ;pseudopro2.c: 183: 
+  1783  017A  0823               	movf	_DC1B1POT3+3,w
+  1784  017B  120A  118A  261A  120A  118A  	fcall	_readFromEEPROM
+  1785  0180  3910               	andlw	16
+  1786  0181  1283               	bcf	3,5	;RP0=0, select bank0
+  1787  0182  1303               	bcf	3,6	;RP1=0, select bank0
+  1788  0183  00C8               	movwf	??_readFromEEPROMPOTS
+  1789  0184  0EC8               	swapf	??_readFromEEPROMPOTS,f
+  1790  0185  0817               	movf	23,w	;volatile
+  1791  0186  0648               	xorwf	??_readFromEEPROMPOTS,w
+  1792  0187  39EF               	andlw	-17
+  1793  0188  0648               	xorwf	??_readFromEEPROMPOTS,w
+  1794  0189  0097               	movwf	23	;volatile
+  1795                           
+  1796                           ;pseudopro2.c: 184: 
+  1797  018A  0837               	movf	_ADD_POT0+3,w
+  1798  018B  120A  118A  261A  120A  118A  	fcall	_readFromEEPROM
+  1799  0190  1283               	bcf	3,5	;RP0=0, select bank0
+  1800  0191  1303               	bcf	3,6	;RP1=0, select bank0
+  1801  0192  00C8               	movwf	??_readFromEEPROMPOTS
+  1802  0193  0848               	movf	??_readFromEEPROMPOTS,w
+  1803  0194  00C4               	movwf	_POT0
+  1804                           
+  1805                           ;pseudopro2.c: 185: 
+  1806  0195  0832               	movf	_ADD_POT1+3,w
+  1807  0196  120A  118A  261A  120A  118A  	fcall	_readFromEEPROM
+  1808  019B  1283               	bcf	3,5	;RP0=0, select bank0
+  1809  019C  1303               	bcf	3,6	;RP1=0, select bank0
+  1810  019D  00C8               	movwf	??_readFromEEPROMPOTS
+  1811  019E  0848               	movf	??_readFromEEPROMPOTS,w
+  1812  019F  00C3               	movwf	_POT1
+  1813                           
+  1814                           ;pseudopro2.c: 186: 
+  1815  01A0  082D               	movf	_ADD_POT2+3,w
+  1816  01A1  120A  118A  261A  120A  118A  	fcall	_readFromEEPROM
+  1817  01A6  1283               	bcf	3,5	;RP0=0, select bank0
+  1818  01A7  1303               	bcf	3,6	;RP1=0, select bank0
+  1819  01A8  00C8               	movwf	??_readFromEEPROMPOTS
+  1820  01A9  0848               	movf	??_readFromEEPROMPOTS,w
+  1821  01AA  00C2               	movwf	_POT2
+  1822  01AB                     l1558:
+  1823                           
+  1824                           ;pseudopro2.c: 187: void __attribute__((picinterrupt(("")))) isr(void){
+  1825  01AB  1708               	bsf	8,6	;volatile
+  1826  01AC                     l1560:
+  1827                           
+  1828                           ;pseudopro2.c: 188: 
+  1829  01AC  3002               	movlw	2
+  1830  01AD  1283               	bcf	3,5	;RP0=0, select bank0
+  1831  01AE  1303               	bcf	3,6	;RP1=0, select bank0
+  1832  01AF  00CA               	movwf	??_readFromEEPROMPOTS+2
+  1833  01B0  3004               	movlw	4
+  1834  01B1  00C9               	movwf	??_readFromEEPROMPOTS+1
+  1835  01B2  30B9               	movlw	185
+  1836  01B3  00C8               	movwf	??_readFromEEPROMPOTS
+  1837  01B4                     u1077:
+  1838  01B4  0BC8               	decfsz	??_readFromEEPROMPOTS,f
+  1839  01B5  29B4               	goto	u1077
+  1840  01B6  0BC9               	decfsz	??_readFromEEPROMPOTS+1,f
+  1841  01B7  29B4               	goto	u1077
+  1842  01B8  0BCA               	decfsz	??_readFromEEPROMPOTS+2,f
+  1843  01B9  29B4               	goto	u1077
+  1844  01BA  29BB               	nop2
+  1845  01BB                     l1562:
+  1846                           
+  1847                           ;pseudopro2.c: 189: 
+  1848  01BB  3004               	movlw	4
+  1849  01BC  1283               	bcf	3,5	;RP0=0, select bank0
+  1850  01BD  1303               	bcf	3,6	;RP1=0, select bank0
+  1851  01BE  00C8               	movwf	??_readFromEEPROMPOTS
+  1852  01BF  0848               	movf	??_readFromEEPROMPOTS,w
+  1853  01C0  00BD               	movwf	_ConTEEPROM
+  1854                           
+  1855                           ;pseudopro2.c: 190:     if (ADIF == 1) {
+  1856  01C1  2A3D               	goto	l1580
+  1857  01C2                     l1564:
+  1858                           
+  1859                           ;pseudopro2.c: 193:             case 0:
+  1860  01C2  0829               	movf	_ADD_POT3+4,w
+  1861  01C3  120A  118A  261A  120A  118A  	fcall	_readFromEEPROM
+  1862  01C8  1283               	bcf	3,5	;RP0=0, select bank0
+  1863  01C9  1303               	bcf	3,6	;RP1=0, select bank0
+  1864  01CA  0095               	movwf	21	;volatile
+  1865  01CB                     l1566:
+  1866                           
+  1867                           ;pseudopro2.c: 194:                 POT0 = NumIteraciones(ADRESH);
+  1868  01CB  0824               	movf	_DC1B1POT3+4,w
+  1869  01CC  120A  118A  261A  120A  118A  	fcall	_readFromEEPROM
+  1870  01D1  3920               	andlw	32
+  1871  01D2  1283               	bcf	3,5	;RP0=0, select bank0
+  1872  01D3  1303               	bcf	3,6	;RP1=0, select bank0
+  1873  01D4  00C8               	movwf	??_readFromEEPROMPOTS
+  1874  01D5  0EC8               	swapf	??_readFromEEPROMPOTS,f
+  1875  01D6  0DC8               	rlf	??_readFromEEPROMPOTS,f
+  1876  01D7  0817               	movf	23,w	;volatile
+  1877  01D8  0648               	xorwf	??_readFromEEPROMPOTS,w
+  1878  01D9  39DF               	andlw	-33
+  1879  01DA  0648               	xorwf	??_readFromEEPROMPOTS,w
+  1880  01DB  0097               	movwf	23	;volatile
+  1881  01DC                     l1568:
+  1882                           
+  1883                           ;pseudopro2.c: 195:                 ADCON0bits.CHS = 1;
+  1884  01DC  0824               	movf	_DC1B1POT3+4,w
+  1885  01DD  120A  118A  261A  120A  118A  	fcall	_readFromEEPROM
+  1886  01E2  3910               	andlw	16
+  1887  01E3  1283               	bcf	3,5	;RP0=0, select bank0
+  1888  01E4  1303               	bcf	3,6	;RP1=0, select bank0
+  1889  01E5  00C8               	movwf	??_readFromEEPROMPOTS
+  1890  01E6  0EC8               	swapf	??_readFromEEPROMPOTS,f
+  1891  01E7  0817               	movf	23,w	;volatile
+  1892  01E8  0648               	xorwf	??_readFromEEPROMPOTS,w
+  1893  01E9  39EF               	andlw	-17
+  1894  01EA  0648               	xorwf	??_readFromEEPROMPOTS,w
+  1895  01EB  0097               	movwf	23	;volatile
+  1896                           
+  1897                           ;pseudopro2.c: 196:                 break;
+  1898  01EC  0838               	movf	_ADD_POT0+4,w
+  1899  01ED  120A  118A  261A  120A  118A  	fcall	_readFromEEPROM
+  1900  01F2  1283               	bcf	3,5	;RP0=0, select bank0
+  1901  01F3  1303               	bcf	3,6	;RP1=0, select bank0
+  1902  01F4  00C8               	movwf	??_readFromEEPROMPOTS
+  1903  01F5  0848               	movf	??_readFromEEPROMPOTS,w
+  1904  01F6  00C4               	movwf	_POT0
+  1905                           
+  1906                           ;pseudopro2.c: 197: 
+  1907  01F7  0833               	movf	_ADD_POT1+4,w
+  1908  01F8  120A  118A  261A  120A  118A  	fcall	_readFromEEPROM
+  1909  01FD  1283               	bcf	3,5	;RP0=0, select bank0
+  1910  01FE  1303               	bcf	3,6	;RP1=0, select bank0
+  1911  01FF  00C8               	movwf	??_readFromEEPROMPOTS
+  1912  0200  0848               	movf	??_readFromEEPROMPOTS,w
+  1913  0201  00C3               	movwf	_POT1
+  1914                           
+  1915                           ;pseudopro2.c: 198:             case 1:
+  1916  0202  082E               	movf	_ADD_POT2+4,w
+  1917  0203  120A  118A  261A  120A  118A  	fcall	_readFromEEPROM
+  1918  0208  1283               	bcf	3,5	;RP0=0, select bank0
+  1919  0209  1303               	bcf	3,6	;RP1=0, select bank0
+  1920  020A  00C8               	movwf	??_readFromEEPROMPOTS
+  1921  020B  0848               	movf	??_readFromEEPROMPOTS,w
+  1922  020C  00C2               	movwf	_POT2
+  1923  020D                     l1570:
+  1924                           
+  1925                           ;pseudopro2.c: 199:                 POT1 = NumIteraciones(ADRESH);
+  1926  020D  1788               	bsf	8,7	;volatile
+  1927  020E                     l1572:
+  1928                           
+  1929                           ;pseudopro2.c: 200:                 ADCON0bits.CHS = 2;
+  1930  020E  3002               	movlw	2
+  1931  020F  1283               	bcf	3,5	;RP0=0, select bank0
+  1932  0210  1303               	bcf	3,6	;RP1=0, select bank0
+  1933  0211  00CA               	movwf	??_readFromEEPROMPOTS+2
+  1934  0212  3004               	movlw	4
+  1935  0213  00C9               	movwf	??_readFromEEPROMPOTS+1
+  1936  0214  30B9               	movlw	185
+  1937  0215  00C8               	movwf	??_readFromEEPROMPOTS
+  1938  0216                     u1087:
+  1939  0216  0BC8               	decfsz	??_readFromEEPROMPOTS,f
+  1940  0217  2A16               	goto	u1087
+  1941  0218  0BC9               	decfsz	??_readFromEEPROMPOTS+1,f
+  1942  0219  2A16               	goto	u1087
+  1943  021A  0BCA               	decfsz	??_readFromEEPROMPOTS+2,f
+  1944  021B  2A16               	goto	u1087
+  1945  021C  2A1D               	nop2
+  1946  021D                     l1574:
+  1947                           
+  1948                           ;pseudopro2.c: 201:                 break;
+  1949  021D  3005               	movlw	5
+  1950  021E  1283               	bcf	3,5	;RP0=0, select bank0
+  1951  021F  1303               	bcf	3,6	;RP1=0, select bank0
+  1952  0220  00C8               	movwf	??_readFromEEPROMPOTS
+  1953  0221  0848               	movf	??_readFromEEPROMPOTS,w
+  1954  0222  00BD               	movwf	_ConTEEPROM
+  1955                           
+  1956                           ;pseudopro2.c: 202: 
+  1957  0223  2A3D               	goto	l1580
+  1958  0224                     l1578:
+  1959  0224  083D               	movf	_ConTEEPROM,w
+  1960  0225  00C8               	movwf	??_readFromEEPROMPOTS
+  1961  0226  01C9               	clrf	??_readFromEEPROMPOTS+1
+  1962                           
+  1963                           ; Switch on 2 bytes has been partitioned into a top level switch of size 1, and 1 sub-sw
+      +                          itches
+  1964                           ; Switch size 1, requested type "simple"
+  1965                           ; Number of cases is 1, Range of values is 0 to 0
+  1966                           ; switch strategies available:
+  1967                           ; Name         Instructions Cycles
+  1968                           ; simple_byte            4     3 (average)
+  1969                           ; direct_byte           11     8 (fixed)
+  1970                           ; jumptable            260     6 (fixed)
+  1971                           ;	Chosen strategy is simple_byte
+  1972  0227  0849               	movf	??_readFromEEPROMPOTS+1,w
+  1973  0228  3A00               	xorlw	0	; case 0
+  1974  0229  1903               	skipnz
+  1975  022A  2A2C               	goto	l2206
+  1976  022B  2A3D               	goto	l1580
+  1977  022C                     l2206:
+  1978                           
+  1979                           ; Switch size 1, requested type "simple"
+  1980                           ; Number of cases is 5, Range of values is 0 to 4
+  1981                           ; switch strategies available:
+  1982                           ; Name         Instructions Cycles
+  1983                           ; simple_byte           16     9 (average)
+  1984                           ; direct_byte           23     8 (fixed)
+  1985                           ; jumptable            260     6 (fixed)
+  1986                           ;	Chosen strategy is simple_byte
+  1987  022C  0848               	movf	??_readFromEEPROMPOTS,w
+  1988  022D  3A00               	xorlw	0	; case 0
+  1989  022E  1903               	skipnz
+  1990  022F  2838               	goto	l1508
+  1991  0230  3A01               	xorlw	1	; case 1
+  1992  0231  1903               	skipnz
+  1993  0232  289C               	goto	l1528
+  1994  0233  3A03               	xorlw	3	; case 2
+  1995  0234  1903               	skipnz
+  1996  0235  28FE               	goto	l1540
+  1997  0236  3A01               	xorlw	1	; case 3
+  1998  0237  1903               	skipnz
+  1999  0238  2960               	goto	l1552
+  2000  0239  3A07               	xorlw	7	; case 4
+  2001  023A  1903               	skipnz
+  2002  023B  29C2               	goto	l1564
+  2003  023C  2A3D               	goto	l1580
+  2004  023D                     l1580:
+  2005                           
+  2006                           ;pseudopro2.c: 139:                 _delay((unsigned long)((100)*(8000000/4000.0)));
+  2007  023D  3005               	movlw	5
+  2008  023E  023D               	subwf	_ConTEEPROM,w
+  2009  023F  1C03               	skipc
+  2010  0240  2A42               	goto	u691
+  2011  0241  2A43               	goto	u690
+  2012  0242                     u691:
+  2013  0242  2A24               	goto	l1578
+  2014  0243                     u690:
+  2015  0243                     l1582:
+  2016                           
+  2017                           ;pseudopro2.c: 205:                 ADCON0bits.CHS = 3;
+  2018  0243  01BA               	clrf	_Reading
+  2019                           
+  2020                           ;pseudopro2.c: 206:                 break;
+  2021  0244  01BD               	clrf	_ConTEEPROM
+  2022  0245                     l175:
+  2023  0245  0008               	return
+  2024  0246                     __end_of_readFromEEPROMPOTS:
+  2025                           
+  2026                           	psect	text3
+  2027  061A                     __ptext3:	
+  2028 ;; *************** function _readFromEEPROM *****************
+  2029 ;; Defined at:
+  2030 ;;		line 128 in file "pseudopro2.c"
+  2031 ;; Parameters:    Size  Location     Type
+  2032 ;;  address         1    wreg     unsigned char 
+  2033 ;; Auto vars:     Size  Location     Type
+  2034 ;;  address         1    1[BANK0 ] unsigned char 
+  2035 ;;  data            1    2[BANK0 ] unsigned char 
+  2036 ;; Return value:  Size  Location     Type
+  2037 ;;                  1    wreg      unsigned char 
+  2038 ;; Registers used:
+  2039 ;;		wreg
+  2040 ;; Tracked objects:
+  2041 ;;		On entry : 0/0
+  2042 ;;		On exit  : 0/0
+  2043 ;;		Unchanged: 0/0
+  2044 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  2045 ;;      Params:         0       0       0       0       0
+  2046 ;;      Locals:         0       2       0       0       0
+  2047 ;;      Temps:          0       1       0       0       0
+  2048 ;;      Totals:         0       3       0       0       0
+  2049 ;;Total ram usage:        3 bytes
+  2050 ;; Hardware stack levels used:    1
+  2051 ;; Hardware stack levels required when called:    2
+  2052 ;; This function calls:
+  2053 ;;		Nothing
+  2054 ;; This function is called by:
+  2055 ;;		_readFromEEPROMPOTS
+  2056 ;; This function uses a non-reentrant model
+  2057 ;;
+  2058                           
+  2059                           
+  2060                           ;psect for function _readFromEEPROM
+  2061  061A                     _readFromEEPROM:
+  2062                           
+  2063                           ;incstack = 0
+  2064                           ; Regs used in _readFromEEPROM: [wreg]
+  2065                           ;readFromEEPROM@address stored from wreg
+  2066  061A  1283               	bcf	3,5	;RP0=0, select bank0
+  2067  061B  1303               	bcf	3,6	;RP1=0, select bank0
+  2068  061C  00C6               	movwf	readFromEEPROM@address
+  2069  061D                     l1374:
+  2070                           
+  2071                           ;pseudopro2.c: 129:                break;
+  2072  061D  0846               	movf	readFromEEPROM@address,w
+  2073  061E  1283               	bcf	3,5	;RP0=0, select bank2
+  2074  061F  1703               	bsf	3,6	;RP1=1, select bank2
+  2075  0620  008D               	movwf	13	;volatile
+  2076  0621                     l1376:
+  2077                           
+  2078                           ;pseudopro2.c: 130: 
+  2079  0621  1683               	bsf	3,5	;RP0=1, select bank3
+  2080  0622  1703               	bsf	3,6	;RP1=1, select bank3
+  2081  0623  138C               	bcf	12,7	;volsfr
+  2082  0624                     l1378:
+  2083                           
+  2084                           ;pseudopro2.c: 131:             case 1:
+  2085  0624  140C               	bsf	12,0	;volsfr
+  2086                           
+  2087                           ;pseudopro2.c: 132:                 CCPR1L = readFromEEPROM(ADD_POT3[1]);
+  2088  0625  1283               	bcf	3,5	;RP0=0, select bank2
+  2089  0626  1703               	bsf	3,6	;RP1=1, select bank2
+  2090  0627  080C               	movf	12,w	;volatile
+  2091  0628  1283               	bcf	3,5	;RP0=0, select bank0
+  2092  0629  1303               	bcf	3,6	;RP1=0, select bank0
+  2093  062A  00C5               	movwf	??_readFromEEPROM
+  2094  062B  0845               	movf	??_readFromEEPROM,w
+  2095  062C  00C7               	movwf	readFromEEPROM@data
+  2096                           
+  2097                           ;pseudopro2.c: 133:                 CCP1CONbits.DC1B1 = readFromEEPROM(DC1B1POT3[1]) & 0
+      +                          b00100000;
+  2098  062D  0847               	movf	readFromEEPROM@data,w
+  2099  062E                     l162:
+  2100  062E  0008               	return
+  2101  062F                     __end_of_readFromEEPROM:
+  2102                           
+  2103                           	psect	text4
+  2104  0456                     __ptext4:	
+  2105 ;; *************** function _isr *****************
+  2106 ;; Defined at:
+  2107 ;;		line 213 in file "pseudopro2.c"
+  2108 ;; Parameters:    Size  Location     Type
+  2109 ;;		None
+  2110 ;; Auto vars:     Size  Location     Type
+  2111 ;;		None
+  2112 ;; Return value:  Size  Location     Type
+  2113 ;;                  1    wreg      void 
+  2114 ;; Registers used:
+  2115 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+  2116 ;; Tracked objects:
+  2117 ;;		On entry : 0/0
+  2118 ;;		On exit  : 0/0
+  2119 ;;		Unchanged: 0/0
+  2120 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  2121 ;;      Params:         0       0       0       0       0
+  2122 ;;      Locals:         0       0       0       0       0
+  2123 ;;      Temps:          6       0       0       0       0
+  2124 ;;      Totals:         6       0       0       0       0
+  2125 ;;Total ram usage:        6 bytes
+  2126 ;; Hardware stack levels used:    1
+  2127 ;; Hardware stack levels required when called:    1
+  2128 ;; This function calls:
+  2129 ;;		_NumIteraciones
+  2130 ;; This function is called by:
+  2131 ;;		Interrupt level 1
+  2132 ;; This function uses a non-reentrant model
+  2133 ;;
+  2134                           
+  2135                           
+  2136                           ;psect for function _isr
+  2137  0456                     _isr:
+  2138  0456                     i1l1590:
+  2139                           
+  2140                           ;pseudopro2.c: 216:         _delay((unsigned long)((20)*(8000000/4000000.0)));
+  2141  0456  1283               	bcf	3,5	;RP0=0, select bank0
+  2142  0457  1303               	bcf	3,6	;RP1=0, select bank0
+  2143  0458  1F0C               	btfss	12,6	;volatile
+  2144  0459  2C5B               	goto	u70_21
+  2145  045A  2C5C               	goto	u70_20
+  2146  045B                     u70_21:
+  2147  045B  2CDF               	goto	i1l1622
+  2148  045C                     u70_20:
+  2149  045C                     i1l1592:
+  2150                           
+  2151                           ;pseudopro2.c: 217:         PIR1bits.ADIF = 0;
+  2152  045C  083A               	movf	_Reading,w
+  2153  045D  1D03               	btfss	3,2
+  2154  045E  2C60               	goto	u71_21
+  2155  045F  2C61               	goto	u71_20
+  2156  0460                     u71_21:
+  2157  0460  2CD7               	goto	i1l1616
+  2158  0461                     u71_20:
+  2159  0461                     i1l1594:
+  2160  0461  0839               	movf	_PC_MN,w
+  2161  0462  1D03               	btfss	3,2
+  2162  0463  2C65               	goto	u72_21
+  2163  0464  2C66               	goto	u72_20
+  2164  0465                     u72_21:
+  2165  0465  2CD7               	goto	i1l1616
+  2166  0466                     u72_20:
+  2167  0466  2CBE               	goto	i1l1614
+  2168  0467                     i1l1598:
+  2169                           
+  2170                           ;pseudopro2.c: 220: 
+  2171  0467  081E               	movf	30,w	;volatile
+  2172  0468  120A  118A  2547  120A  118A  	fcall	_NumIteraciones
+  2173  046D  00F1               	movwf	??_isr
+  2174  046E  0871               	movf	??_isr,w
+  2175  046F  1283               	bcf	3,5	;RP0=0, select bank0
+  2176  0470  1303               	bcf	3,6	;RP1=0, select bank0
+  2177  0471  00C4               	movwf	_POT0
+  2178  0472                     i1l1600:
+  2179                           
+  2180                           ;pseudopro2.c: 221:    if (T0IF == 1) {
+  2181  0472  081F               	movf	31,w	;volatile
+  2182  0473  39C3               	andlw	-61
+  2183  0474  3804               	iorlw	4
+  2184  0475  009F               	movwf	31	;volatile
+  2185                           
+  2186                           ;pseudopro2.c: 222:         TMR0 = 228;
+  2187  0476  2CD7               	goto	i1l1616
+  2188  0477                     i1l1602:
+  2189                           
+  2190                           ;pseudopro2.c: 225:             ItPOT0 = 0;
+  2191  0477  081E               	movf	30,w	;volatile
+  2192  0478  120A  118A  2547  120A  118A  	fcall	_NumIteraciones
+  2193  047D  00F1               	movwf	??_isr
+  2194  047E  0871               	movf	??_isr,w
+  2195  047F  1283               	bcf	3,5	;RP0=0, select bank0
+  2196  0480  1303               	bcf	3,6	;RP1=0, select bank0
+  2197  0481  00C3               	movwf	_POT1
+  2198  0482                     i1l1604:
+  2199                           
+  2200                           ;pseudopro2.c: 226:             ENTM0Pot0 = 0;
+  2201  0482  081F               	movf	31,w	;volatile
+  2202  0483  39C3               	andlw	-61
+  2203  0484  3808               	iorlw	8
+  2204  0485  009F               	movwf	31	;volatile
+  2205                           
+  2206                           ;pseudopro2.c: 227:         }
+  2207  0486  2CD7               	goto	i1l1616
+  2208  0487                     i1l1606:
+  2209                           
+  2210                           ;pseudopro2.c: 230:             ItPOT1 = 0;
+  2211  0487  081E               	movf	30,w	;volatile
+  2212  0488  120A  118A  2547  120A  118A  	fcall	_NumIteraciones
+  2213  048D  00F1               	movwf	??_isr
+  2214  048E  0871               	movf	??_isr,w
+  2215  048F  1283               	bcf	3,5	;RP0=0, select bank0
+  2216  0490  1303               	bcf	3,6	;RP1=0, select bank0
+  2217  0491  00C2               	movwf	_POT2
+  2218  0492                     i1l1608:
+  2219                           
+  2220                           ;pseudopro2.c: 231:             ENTM0Pot1 = 0;
+  2221  0492  081F               	movf	31,w	;volatile
+  2222  0493  39C3               	andlw	-61
+  2223  0494  380C               	iorlw	12
+  2224  0495  009F               	movwf	31	;volatile
+  2225                           
+  2226                           ;pseudopro2.c: 232:         }
+  2227  0496  2CD7               	goto	i1l1616
+  2228  0497                     i1l1610:
+  2229                           
+  2230                           ;pseudopro2.c: 235:             ItPOT2 = 0;
+  2231  0497  081E               	movf	30,w	;volatile
+  2232  0498  00F1               	movwf	??_isr
+  2233  0499  1003               	clrc
+  2234  049A  0C71               	rrf	??_isr,w
+  2235  049B  3E7C               	addlw	124
+  2236  049C  0095               	movwf	21	;volatile
+  2237                           
+  2238                           ;pseudopro2.c: 236:             ENTM0Pot2 = 0;
+  2239  049D  081E               	movf	30,w	;volatile
+  2240  049E  3901               	andlw	1
+  2241  049F  00F1               	movwf	??_isr
+  2242  04A0  0EF1               	swapf	??_isr,f
+  2243  04A1  0DF1               	rlf	??_isr,f
+  2244  04A2  0817               	movf	23,w	;volatile
+  2245  04A3  0671               	xorwf	??_isr,w
+  2246  04A4  39DF               	andlw	-33
+  2247  04A5  0671               	xorwf	??_isr,w
+  2248  04A6  0097               	movwf	23	;volatile
+  2249                           
+  2250                           ;pseudopro2.c: 237:         }
+  2251  04A7  1683               	bsf	3,5	;RP0=1, select bank1
+  2252  04A8  1303               	bcf	3,6	;RP1=0, select bank1
+  2253  04A9  081E               	movf	30,w	;volatile
+  2254  04AA  00F1               	movwf	??_isr
+  2255  04AB  3007               	movlw	7
+  2256  04AC                     u73_25:
+  2257  04AC  1003               	clrc
+  2258  04AD  0CF1               	rrf	??_isr,f
+  2259  04AE  3EFF               	addlw	-1
+  2260  04AF  1D03               	skipz
+  2261  04B0  2CAC               	goto	u73_25
+  2262  04B1  0871               	movf	??_isr,w
+  2263  04B2  00F2               	movwf	??_isr+1
+  2264  04B3  0EF2               	swapf	??_isr+1,f
+  2265  04B4  1283               	bcf	3,5	;RP0=0, select bank0
+  2266  04B5  1303               	bcf	3,6	;RP1=0, select bank0
+  2267  04B6  0817               	movf	23,w	;volatile
+  2268  04B7  0672               	xorwf	??_isr+1,w
+  2269  04B8  39EF               	andlw	-17
+  2270  04B9  0672               	xorwf	??_isr+1,w
+  2271  04BA  0097               	movwf	23	;volatile
+  2272                           
+  2273                           ;pseudopro2.c: 238:         if (ENTM0Pot0 == 1){
+  2274  04BB  30C3               	movlw	-61
+  2275  04BC  059F               	andwf	31,f	;volatile
+  2276                           
+  2277                           ;pseudopro2.c: 239:             ItPOT0++;
+  2278  04BD  2CD7               	goto	i1l1616
+  2279  04BE                     i1l1614:
+  2280  04BE  0C1F               	rrf	31,w	;volatile
+  2281  04BF  00F1               	movwf	??_isr
+  2282  04C0  0C71               	rrf	??_isr,w
+  2283  04C1  390F               	andlw	15
+  2284  04C2  00F2               	movwf	??_isr+1
+  2285  04C3  01F3               	clrf	??_isr+2
+  2286                           
+  2287                           ; Switch on 2 bytes has been partitioned into a top level switch of size 1, and 1 sub-sw
+      +                          itches
+  2288                           ; Switch size 1, requested type "simple"
+  2289                           ; Number of cases is 1, Range of values is 0 to 0
+  2290                           ; switch strategies available:
+  2291                           ; Name         Instructions Cycles
+  2292                           ; simple_byte            4     3 (average)
+  2293                           ; direct_byte           11     8 (fixed)
+  2294                           ; jumptable            260     6 (fixed)
+  2295                           ;	Chosen strategy is simple_byte
+  2296  04C4  0873               	movf	??_isr+2,w
+  2297  04C5  3A00               	xorlw	0	; case 0
+  2298  04C6  1903               	skipnz
+  2299  04C7  2CC9               	goto	i1l2208
+  2300  04C8  2CD7               	goto	i1l1616
+  2301  04C9                     i1l2208:
+  2302                           
+  2303                           ; Switch size 1, requested type "simple"
+  2304                           ; Number of cases is 4, Range of values is 0 to 3
+  2305                           ; switch strategies available:
+  2306                           ; Name         Instructions Cycles
+  2307                           ; simple_byte           13     7 (average)
+  2308                           ; direct_byte           20     8 (fixed)
+  2309                           ; jumptable            260     6 (fixed)
+  2310                           ;	Chosen strategy is simple_byte
+  2311  04C9  0872               	movf	??_isr+1,w
+  2312  04CA  3A00               	xorlw	0	; case 0
+  2313  04CB  1903               	skipnz
+  2314  04CC  2C67               	goto	i1l1598
+  2315  04CD  3A01               	xorlw	1	; case 1
+  2316  04CE  1903               	skipnz
+  2317  04CF  2C77               	goto	i1l1602
+  2318  04D0  3A03               	xorlw	3	; case 2
+  2319  04D1  1903               	skipnz
+  2320  04D2  2C87               	goto	i1l1606
+  2321  04D3  3A01               	xorlw	1	; case 3
+  2322  04D4  1903               	skipnz
+  2323  04D5  2C97               	goto	i1l1610
+  2324  04D6  2CD7               	goto	i1l1616
+  2325  04D7                     i1l1616:
+  2326                           
+  2327                           ;pseudopro2.c: 242:             ItPOT1++;
+  2328  04D7  300D               	movlw	13
+  2329  04D8  00F1               	movwf	??_isr
+  2330  04D9                     u109_27:
+  2331  04D9  0BF1               	decfsz	??_isr,f
+  2332  04DA  2CD9               	goto	u109_27
+  2333  04DB                     i1l1618:
+  2334                           
+  2335                           ;pseudopro2.c: 243:         }
+  2336  04DB  1283               	bcf	3,5	;RP0=0, select bank0
+  2337  04DC  1303               	bcf	3,6	;RP1=0, select bank0
+  2338  04DD  130C               	bcf	12,6	;volatile
+  2339  04DE                     i1l1620:
+  2340                           
+  2341                           ;pseudopro2.c: 244:         if (ENTM0Pot2 == 1){
+  2342  04DE  149F               	bsf	31,1	;volatile
+  2343  04DF                     i1l1622:
+  2344                           
+  2345                           ;pseudopro2.c: 247:         INTCONbits.T0IF = 0;
+  2346  04DF  1D0B               	btfss	11,2	;volatile
+  2347  04E0  2CE2               	goto	u74_21
+  2348  04E1  2CE3               	goto	u74_20
+  2349  04E2                     u74_21:
+  2350  04E2  2D1C               	goto	i1l1652
+  2351  04E3                     u74_20:
+  2352  04E3                     i1l1624:
+  2353                           
+  2354                           ;pseudopro2.c: 248:     }
+  2355  04E3  30E4               	movlw	228
+  2356  04E4  0081               	movwf	1	;volatile
+  2357                           
+  2358                           ;pseudopro2.c: 249: 
+  2359  04E5  0841               	movf	_ItPOT0,w
+  2360  04E6  0644               	xorwf	_POT0,w
+  2361  04E7  1D03               	skipz
+  2362  04E8  2CEA               	goto	u75_21
+  2363  04E9  2CEB               	goto	u75_20
+  2364  04EA                     u75_21:
+  2365  04EA  2CEE               	goto	i1l1630
+  2366  04EB                     u75_20:
+  2367  04EB                     i1l1626:
+  2368                           
+  2369                           ;pseudopro2.c: 250:     if (TMR1IF == 1){
+  2370  04EB  1008               	bcf	8,0	;volatile
+  2371  04EC                     i1l1628:
+  2372                           
+  2373                           ;pseudopro2.c: 251:         TMR1H = 255;
+  2374  04EC  01C1               	clrf	_ItPOT0
+  2375                           
+  2376                           ;pseudopro2.c: 252:         TMR1L = 6;
+  2377  04ED  01F9               	clrf	_ENTM0Pot0
+  2378  04EE                     i1l1630:
+  2379                           
+  2380                           ;pseudopro2.c: 254:            ENTM0Pot0 = 1;
+  2381  04EE  0840               	movf	_ItPOT1,w
+  2382  04EF  0643               	xorwf	_POT1,w
+  2383  04F0  1D03               	skipz
+  2384  04F1  2CF3               	goto	u76_21
+  2385  04F2  2CF4               	goto	u76_20
+  2386  04F3                     u76_21:
+  2387  04F3  2CF7               	goto	i1l1636
+  2388  04F4                     u76_20:
+  2389  04F4                     i1l1632:
+  2390                           
+  2391                           ;pseudopro2.c: 255:            ENTM0Pot1 = 1;
+  2392  04F4  1088               	bcf	8,1	;volatile
+  2393  04F5                     i1l1634:
+  2394                           
+  2395                           ;pseudopro2.c: 256:            ENTM0Pot2 = 1;
+  2396  04F5  01C0               	clrf	_ItPOT1
+  2397                           
+  2398                           ;pseudopro2.c: 257:         }
+  2399  04F6  01F8               	clrf	_ENTM0Pot1
+  2400  04F7                     i1l1636:
+  2401                           
+  2402                           ;pseudopro2.c: 259:         if (ConTMR1 == 20){
+  2403  04F7  083F               	movf	_ItPOT2,w
+  2404  04F8  0642               	xorwf	_POT2,w
+  2405  04F9  1D03               	skipz
+  2406  04FA  2CFC               	goto	u77_21
+  2407  04FB  2CFD               	goto	u77_20
+  2408  04FC                     u77_21:
+  2409  04FC  2D00               	goto	i1l1642
+  2410  04FD                     u77_20:
+  2411  04FD                     i1l1638:
+  2412                           
+  2413                           ;pseudopro2.c: 260:             ConTMR1 = 0;
+  2414  04FD  1108               	bcf	8,2	;volatile
+  2415  04FE                     i1l1640:
+  2416                           
+  2417                           ;pseudopro2.c: 261:             PORTDbits.RD0 = 1;
+  2418  04FE  01BF               	clrf	_ItPOT2
+  2419                           
+  2420                           ;pseudopro2.c: 262:             PORTDbits.RD1 = 1;
+  2421  04FF  01F7               	clrf	_ENTM0Pot2
+  2422  0500                     i1l1642:
+  2423                           
+  2424                           ;pseudopro2.c: 264:         }
+  2425  0500  0379               	decf	_ENTM0Pot0,w
+  2426  0501  1D03               	btfss	3,2
+  2427  0502  2D04               	goto	u78_21
+  2428  0503  2D05               	goto	u78_20
+  2429  0504                     u78_21:
+  2430  0504  2D09               	goto	i1l192
+  2431  0505                     u78_20:
+  2432  0505                     i1l1644:
+  2433                           
+  2434                           ;pseudopro2.c: 265:         ConTMR1++;
+  2435  0505  3001               	movlw	1
+  2436  0506  00F1               	movwf	??_isr
+  2437  0507  0871               	movf	??_isr,w
+  2438  0508  07C1               	addwf	_ItPOT0,f
+  2439  0509                     i1l192:	
+  2440                           ;pseudopro2.c: 266:         PIR1bits.TMR1IF = 0;
+  2441                           
+  2442                           
+  2443                           ;pseudopro2.c: 267:     }
+  2444  0509  0378               	decf	_ENTM0Pot1,w
+  2445  050A  1D03               	btfss	3,2
+  2446  050B  2D0D               	goto	u79_21
+  2447  050C  2D0E               	goto	u79_20
+  2448  050D                     u79_21:
+  2449  050D  2D12               	goto	i1l193
+  2450  050E                     u79_20:
+  2451  050E                     i1l1646:
+  2452                           
+  2453                           ;pseudopro2.c: 268: }
+  2454  050E  3001               	movlw	1
+  2455  050F  00F1               	movwf	??_isr
+  2456  0510  0871               	movf	??_isr,w
+  2457  0511  07C0               	addwf	_ItPOT1,f
+  2458  0512                     i1l193:	
+  2459                           ;pseudopro2.c: 269: 
+  2460                           
+  2461                           
+  2462                           ;pseudopro2.c: 270: 
+  2463  0512  0377               	decf	_ENTM0Pot2,w
+  2464  0513  1D03               	btfss	3,2
+  2465  0514  2D16               	goto	u80_21
+  2466  0515  2D17               	goto	u80_20
+  2467  0516                     u80_21:
+  2468  0516  2D1B               	goto	i1l1650
+  2469  0517                     u80_20:
+  2470  0517                     i1l1648:
+  2471                           
+  2472                           ;pseudopro2.c: 271: 
+  2473  0517  3001               	movlw	1
+  2474  0518  00F1               	movwf	??_isr
+  2475  0519  0871               	movf	??_isr,w
+  2476  051A  07BF               	addwf	_ItPOT2,f
+  2477  051B                     i1l1650:
+  2478                           
+  2479                           ;pseudopro2.c: 273: 
+  2480  051B  110B               	bcf	11,2	;volatile
+  2481  051C                     i1l1652:
+  2482                           
+  2483                           ;pseudopro2.c: 276: 
+  2484  051C  1C0C               	btfss	12,0	;volatile
+  2485  051D  2D1F               	goto	u81_21
+  2486  051E  2D20               	goto	u81_20
+  2487  051F                     u81_21:
+  2488  051F  2D3E               	goto	i1l198
+  2489  0520                     u81_20:
+  2490  0520                     i1l1654:
+  2491                           
+  2492                           ;pseudopro2.c: 277: 
+  2493  0520  30FF               	movlw	255
+  2494  0521  008F               	movwf	15	;volatile
+  2495                           
+  2496                           ;pseudopro2.c: 278:     OSCCONbits.IRCF = 0b0111;
+  2497  0522  3006               	movlw	6
+  2498  0523  008E               	movwf	14	;volatile
+  2499  0524                     i1l1656:
+  2500                           
+  2501                           ;pseudopro2.c: 279:     OSCCONbits.SCS = 1;
+  2502  0524  033E               	decf	_ConTMR1,w
+  2503  0525  1D03               	btfss	3,2
+  2504  0526  2D28               	goto	u82_21
+  2505  0527  2D29               	goto	u82_20
+  2506  0528                     u82_21:
+  2507  0528  2D2F               	goto	i1l1660
+  2508  0529                     u82_20:
+  2509  0529                     i1l1658:
+  2510                           
+  2511                           ;pseudopro2.c: 280: 
+  2512  0529  01F9               	clrf	_ENTM0Pot0
+  2513  052A  0AF9               	incf	_ENTM0Pot0,f
+  2514                           
+  2515                           ;pseudopro2.c: 281: 
+  2516  052B  01F8               	clrf	_ENTM0Pot1
+  2517  052C  0AF8               	incf	_ENTM0Pot1,f
+  2518                           
+  2519                           ;pseudopro2.c: 282: 
+  2520  052D  01F7               	clrf	_ENTM0Pot2
+  2521  052E  0AF7               	incf	_ENTM0Pot2,f
+  2522  052F                     i1l1660:
+  2523                           
+  2524                           ;pseudopro2.c: 285:     ANSELbits.ANS1 = 1;
+  2525  052F  3014               	movlw	20
+  2526  0530  063E               	xorwf	_ConTMR1,w
+  2527  0531  1D03               	btfss	3,2
+  2528  0532  2D34               	goto	u83_21
+  2529  0533  2D35               	goto	u83_20
+  2530  0534                     u83_21:
+  2531  0534  2D39               	goto	i1l1670
+  2532  0535                     u83_20:
+  2533  0535                     i1l1662:
+  2534                           
+  2535                           ;pseudopro2.c: 286:     ANSELbits.ANS2 = 1;
+  2536  0535  01BE               	clrf	_ConTMR1
+  2537  0536                     i1l1664:
+  2538                           
+  2539                           ;pseudopro2.c: 287:     ANSELbits.ANS3 = 1;
+  2540  0536  1408               	bsf	8,0	;volatile
+  2541  0537                     i1l1666:
+  2542                           
+  2543                           ;pseudopro2.c: 288:     TRISA = 0b11111111;
+  2544  0537  1488               	bsf	8,1	;volatile
+  2545  0538                     i1l1668:
+  2546                           
+  2547                           ;pseudopro2.c: 289:     TRISD = 0;
+  2548  0538  1508               	bsf	8,2	;volatile
+  2549  0539                     i1l1670:
+  2550                           
+  2551                           ;pseudopro2.c: 291:     TRISB = 0b00000011;
+  2552  0539  3001               	movlw	1
+  2553  053A  00F1               	movwf	??_isr
+  2554  053B  0871               	movf	??_isr,w
+  2555  053C  07BE               	addwf	_ConTMR1,f
+  2556  053D                     i1l1672:
+  2557                           
+  2558                           ;pseudopro2.c: 292:     OPTION_REGbits.nRBPU = 0;
+  2559  053D  100C               	bcf	12,0	;volatile
+  2560  053E                     i1l198:
+  2561  053E  0876               	movf	??_isr+5,w
+  2562  053F  008A               	movwf	10
+  2563  0540  0875               	movf	??_isr+4,w
+  2564  0541  0084               	movwf	4
+  2565  0542  0E74               	swapf	??_isr+3,w
+  2566  0543  0083               	movwf	3
+  2567  0544  0EFE               	swapf	btemp,f
+  2568  0545  0E7E               	swapf	btemp,w
+  2569  0546  0009               	retfie
+  2570  0547                     __end_of_isr:
+  2571                           
+  2572                           	psect	intentry
+  2573  0004                     __pintentry:	
+  2574                           ;incstack = 0
+  2575                           ; Regs used in _isr: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+  2576                           
+  2577  0004                     interrupt_function:
+  2578  007E                     saved_w	set	btemp
+  2579  0004  00FE               	movwf	btemp
+  2580  0005  0E03               	swapf	3,w
+  2581  0006  00F4               	movwf	??_isr+3
+  2582  0007  0804               	movf	4,w
+  2583  0008  00F5               	movwf	??_isr+4
+  2584  0009  080A               	movf	10,w
+  2585  000A  00F6               	movwf	??_isr+5
+  2586  000B  120A  118A  2C56   	ljmp	_isr
+  2587                           
+  2588                           	psect	text5
+  2589  0547                     __ptext5:	
+  2590 ;; *************** function _NumIteraciones *****************
+  2591 ;; Defined at:
+  2592 ;;		line 55 in file "pseudopro2.c"
+  2593 ;; Parameters:    Size  Location     Type
+  2594 ;;  ValorPot        1    wreg     unsigned char 
+  2595 ;; Auto vars:     Size  Location     Type
+  2596 ;;  ValorPot        1    0[COMMON] unsigned char 
+  2597 ;; Return value:  Size  Location     Type
+  2598 ;;                  1    wreg      unsigned char 
+  2599 ;; Registers used:
+  2600 ;;		wreg
+  2601 ;; Tracked objects:
+  2602 ;;		On entry : 0/0
+  2603 ;;		On exit  : 0/0
+  2604 ;;		Unchanged: 0/0
+  2605 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  2606 ;;      Params:         0       0       0       0       0
+  2607 ;;      Locals:         1       0       0       0       0
+  2608 ;;      Temps:          0       0       0       0       0
+  2609 ;;      Totals:         1       0       0       0       0
+  2610 ;;Total ram usage:        1 bytes
+  2611 ;; Hardware stack levels used:    1
+  2612 ;; This function calls:
+  2613 ;;		Nothing
+  2614 ;; This function is called by:
+  2615 ;;		_isr
+  2616 ;; This function uses a non-reentrant model
+  2617 ;;
+  2618                           
+  2619                           
+  2620                           ;psect for function _NumIteraciones
+  2621  0547                     _NumIteraciones:
+  2622                           
+  2623                           ;incstack = 0
+  2624                           ; Regs used in _NumIteraciones: [wreg]
+  2625                           ;NumIteraciones@ValorPot stored from wreg
+  2626  0547  00F0               	movwf	NumIteraciones@ValorPot
+  2627  0548                     i1l1382:
+  2628                           
+  2629                           ;pseudopro2.c: 55:     else if (ValorPot < 152 && ValorPot > 130);pseudopro2.c: 56:     
+      +                          {;pseudopro2.c: 57:         return 9;
+  2630  0548  3013               	movlw	19
+  2631  0549  0270               	subwf	NumIteraciones@ValorPot,w
+  2632  054A  1803               	skipnc
+  2633  054B  2D4D               	goto	u47_21
+  2634  054C  2D4E               	goto	u47_20
+  2635  054D                     u47_21:
+  2636  054D  2D50               	goto	i1l1390
+  2637  054E                     u47_20:
+  2638  054E                     i1l1384:
+  2639                           
+  2640                           ;pseudopro2.c: 58:     };pseudopro2.c: 59:     else if (ValorPot < 173 && ValorPot > 151
+      +                          )
+  2641  054E  3002               	movlw	2
+  2642  054F  2DDD               	goto	i1l132
+  2643  0550                     i1l1390:
+  2644  0550  3028               	movlw	40
+  2645  0551  0270               	subwf	NumIteraciones@ValorPot,w
+  2646  0552  1803               	skipnc
+  2647  0553  2D55               	goto	u48_21
+  2648  0554  2D56               	goto	u48_20
+  2649  0555                     u48_21:
+  2650  0555  2D5E               	goto	i1l1400
+  2651  0556                     u48_20:
+  2652  0556                     i1l1392:
+  2653  0556  3013               	movlw	19
+  2654  0557  0270               	subwf	NumIteraciones@ValorPot,w
+  2655  0558  1C03               	skipc
+  2656  0559  2D5B               	goto	u49_21
+  2657  055A  2D5C               	goto	u49_20
+  2658  055B                     u49_21:
+  2659  055B  2D5E               	goto	i1l1400
+  2660  055C                     u49_20:
+  2661  055C                     i1l1394:
+  2662                           
+  2663                           ;pseudopro2.c: 62:     };pseudopro2.c: 63:     else if (ValorPot < 194 && ValorPot > 172
+      +                          )
+  2664  055C  3003               	movlw	3
+  2665  055D  2DDD               	goto	i1l132
+  2666  055E                     i1l1400:
+  2667  055E  303D               	movlw	61
+  2668  055F  0270               	subwf	NumIteraciones@ValorPot,w
+  2669  0560  1803               	skipnc
+  2670  0561  2D63               	goto	u50_21
+  2671  0562  2D64               	goto	u50_20
+  2672  0563                     u50_21:
+  2673  0563  2D6C               	goto	i1l1410
+  2674  0564                     u50_20:
+  2675  0564                     i1l1402:
+  2676  0564  3028               	movlw	40
+  2677  0565  0270               	subwf	NumIteraciones@ValorPot,w
+  2678  0566  1C03               	skipc
+  2679  0567  2D69               	goto	u51_21
+  2680  0568  2D6A               	goto	u51_20
+  2681  0569                     u51_21:
+  2682  0569  2D6C               	goto	i1l1410
+  2683  056A                     u51_20:
+  2684  056A                     i1l1404:
+  2685                           
+  2686                           ;pseudopro2.c: 66:     };pseudopro2.c: 67:     else if (ValorPot < 215 && ValorPot > 193
+      +                          )
+  2687  056A  3005               	movlw	5
+  2688  056B  2DDD               	goto	i1l132
+  2689  056C                     i1l1410:
+  2690  056C  3052               	movlw	82
+  2691  056D  0270               	subwf	NumIteraciones@ValorPot,w
+  2692  056E  1803               	skipnc
+  2693  056F  2D71               	goto	u52_21
+  2694  0570  2D72               	goto	u52_20
+  2695  0571                     u52_21:
+  2696  0571  2D7A               	goto	i1l1420
+  2697  0572                     u52_20:
+  2698  0572                     i1l1412:
+  2699  0572  303D               	movlw	61
+  2700  0573  0270               	subwf	NumIteraciones@ValorPot,w
+  2701  0574  1C03               	skipc
+  2702  0575  2D77               	goto	u53_21
+  2703  0576  2D78               	goto	u53_20
+  2704  0577                     u53_21:
+  2705  0577  2D7A               	goto	i1l1420
+  2706  0578                     u53_20:
+  2707  0578                     i1l1414:
+  2708                           
+  2709                           ;pseudopro2.c: 70:     };pseudopro2.c: 71:     else if (ValorPot < 236 && ValorPot > 214
+      +                          )
+  2710  0578  3006               	movlw	6
+  2711  0579  2DDD               	goto	i1l132
+  2712  057A                     i1l1420:
+  2713  057A  3067               	movlw	103
+  2714  057B  0270               	subwf	NumIteraciones@ValorPot,w
+  2715  057C  1803               	skipnc
+  2716  057D  2D7F               	goto	u54_21
+  2717  057E  2D80               	goto	u54_20
+  2718  057F                     u54_21:
+  2719  057F  2D88               	goto	i1l1430
+  2720  0580                     u54_20:
+  2721  0580                     i1l1422:
+  2722  0580  3052               	movlw	82
+  2723  0581  0270               	subwf	NumIteraciones@ValorPot,w
+  2724  0582  1C03               	skipc
+  2725  0583  2D85               	goto	u55_21
+  2726  0584  2D86               	goto	u55_20
+  2727  0585                     u55_21:
+  2728  0585  2D88               	goto	i1l1430
+  2729  0586                     u55_20:
+  2730  0586                     i1l1424:
+  2731                           
+  2732                           ;pseudopro2.c: 74:     };pseudopro2.c: 75:     else
+  2733  0586  3007               	movlw	7
+  2734  0587  2DDD               	goto	i1l132
+  2735  0588                     i1l1430:
+  2736  0588  3083               	movlw	131
+  2737  0589  0270               	subwf	NumIteraciones@ValorPot,w
+  2738  058A  1803               	skipnc
+  2739  058B  2D8D               	goto	u56_21
+  2740  058C  2D8E               	goto	u56_20
+  2741  058D                     u56_21:
+  2742  058D  2D96               	goto	i1l1440
+  2743  058E                     u56_20:
+  2744  058E                     i1l1432:
+  2745  058E  3067               	movlw	103
+  2746  058F  0270               	subwf	NumIteraciones@ValorPot,w
+  2747  0590  1C03               	skipc
+  2748  0591  2D93               	goto	u57_21
+  2749  0592  2D94               	goto	u57_20
+  2750  0593                     u57_21:
+  2751  0593  2D96               	goto	i1l1440
+  2752  0594                     u57_20:
+  2753  0594                     i1l1434:
+  2754                           
+  2755                           ;pseudopro2.c: 78:     };pseudopro2.c: 79: }
+  2756  0594  3008               	movlw	8
+  2757  0595  2DDD               	goto	i1l132
+  2758  0596                     i1l1440:
+  2759  0596  3098               	movlw	152
+  2760  0597  0270               	subwf	NumIteraciones@ValorPot,w
+  2761  0598  1803               	skipnc
+  2762  0599  2D9B               	goto	u58_21
+  2763  059A  2D9C               	goto	u58_20
+  2764  059B                     u58_21:
+  2765  059B  2DA4               	goto	i1l1450
+  2766  059C                     u58_20:
+  2767  059C                     i1l1442:
+  2768  059C  3083               	movlw	131
+  2769  059D  0270               	subwf	NumIteraciones@ValorPot,w
+  2770  059E  1C03               	skipc
+  2771  059F  2DA1               	goto	u59_21
+  2772  05A0  2DA2               	goto	u59_20
+  2773  05A1                     u59_21:
+  2774  05A1  2DA4               	goto	i1l1450
+  2775  05A2                     u59_20:
+  2776  05A2                     i1l1444:
+  2777                           
+  2778                           ;pseudopro2.c: 82:     EEADR = address;;pseudopro2.c: 83:     EEDAT = data;
+  2779  05A2  3009               	movlw	9
+  2780  05A3  2DDD               	goto	i1l132
+  2781  05A4                     i1l1450:
+  2782  05A4  30AD               	movlw	173
+  2783  05A5  0270               	subwf	NumIteraciones@ValorPot,w
+  2784  05A6  1803               	skipnc
+  2785  05A7  2DA9               	goto	u60_21
+  2786  05A8  2DAA               	goto	u60_20
+  2787  05A9                     u60_21:
+  2788  05A9  2DB2               	goto	i1l1460
+  2789  05AA                     u60_20:
+  2790  05AA                     i1l1452:
+  2791  05AA  3098               	movlw	152
+  2792  05AB  0270               	subwf	NumIteraciones@ValorPot,w
+  2793  05AC  1C03               	skipc
+  2794  05AD  2DAF               	goto	u61_21
+  2795  05AE  2DB0               	goto	u61_20
+  2796  05AF                     u61_21:
+  2797  05AF  2DB2               	goto	i1l1460
+  2798  05B0                     u61_20:
+  2799  05B0                     i1l1454:
+  2800                           
+  2801                           ;pseudopro2.c: 86:     EECON1bits.WREN = 1;;pseudopro2.c: 87: 
+  2802  05B0  300A               	movlw	10
+  2803  05B1  2DDD               	goto	i1l132
+  2804  05B2                     i1l1460:
+  2805  05B2  30C2               	movlw	194
+  2806  05B3  0270               	subwf	NumIteraciones@ValorPot,w
+  2807  05B4  1803               	skipnc
+  2808  05B5  2DB7               	goto	u62_21
+  2809  05B6  2DB8               	goto	u62_20
+  2810  05B7                     u62_21:
+  2811  05B7  2DC0               	goto	i1l1470
+  2812  05B8                     u62_20:
+  2813  05B8                     i1l1462:
+  2814  05B8  30AD               	movlw	173
+  2815  05B9  0270               	subwf	NumIteraciones@ValorPot,w
+  2816  05BA  1C03               	skipc
+  2817  05BB  2DBD               	goto	u63_21
+  2818  05BC  2DBE               	goto	u63_20
+  2819  05BD                     u63_21:
+  2820  05BD  2DC0               	goto	i1l1470
+  2821  05BE                     u63_20:
+  2822  05BE                     i1l1464:
+  2823                           
+  2824                           ;pseudopro2.c: 90:     EECON2 = 0x55;;pseudopro2.c: 91:     EECON2 = 0xAA;
+  2825  05BE  300B               	movlw	11
+  2826  05BF  2DDD               	goto	i1l132
+  2827  05C0                     i1l1470:
+  2828  05C0  30D7               	movlw	215
+  2829  05C1  0270               	subwf	NumIteraciones@ValorPot,w
+  2830  05C2  1803               	skipnc
+  2831  05C3  2DC5               	goto	u64_21
+  2832  05C4  2DC6               	goto	u64_20
+  2833  05C5                     u64_21:
+  2834  05C5  2DCE               	goto	i1l1480
+  2835  05C6                     u64_20:
+  2836  05C6                     i1l1472:
+  2837  05C6  30C2               	movlw	194
+  2838  05C7  0270               	subwf	NumIteraciones@ValorPot,w
+  2839  05C8  1C03               	skipc
+  2840  05C9  2DCB               	goto	u65_21
+  2841  05CA  2DCC               	goto	u65_20
+  2842  05CB                     u65_21:
+  2843  05CB  2DCE               	goto	i1l1480
+  2844  05CC                     u65_20:
+  2845  05CC                     i1l1474:
+  2846                           
+  2847                           ;pseudopro2.c: 94:     while(PIR2bits.EEIF==0);;pseudopro2.c: 95:     PIR2bits.EEIF = 0;
+  2848  05CC  300C               	movlw	12
+  2849  05CD  2DDD               	goto	i1l132
+  2850  05CE                     i1l1480:
+  2851  05CE  30EC               	movlw	236
+  2852  05CF  0270               	subwf	NumIteraciones@ValorPot,w
+  2853  05D0  1803               	skipnc
+  2854  05D1  2DD3               	goto	u66_21
+  2855  05D2  2DD4               	goto	u66_20
+  2856  05D3                     u66_21:
+  2857  05D3  2DDC               	goto	i1l1490
+  2858  05D4                     u66_20:
+  2859  05D4                     i1l1482:
+  2860  05D4  30D7               	movlw	215
+  2861  05D5  0270               	subwf	NumIteraciones@ValorPot,w
+  2862  05D6  1C03               	skipc
+  2863  05D7  2DD9               	goto	u67_21
+  2864  05D8  2DDA               	goto	u67_20
+  2865  05D9                     u67_21:
+  2866  05D9  2DDC               	goto	i1l1490
+  2867  05DA                     u67_20:
+  2868  05DA                     i1l1484:
+  2869                           
+  2870                           ;pseudopro2.c: 98:     EECON1bits.WREN = 0;;pseudopro2.c: 99: 
+  2871  05DA  300E               	movlw	14
+  2872  05DB  2DDD               	goto	i1l132
+  2873  05DC                     i1l1490:
+  2874                           
+  2875                           ;pseudopro2.c: 102: unsigned char readFromEEPROM(unsigned char address){;pseudopro2.c: 1
+      +                          03:     EEADR = address;
+  2876  05DC  300F               	movlw	15
+  2877  05DD                     i1l132:
+  2878  05DD  0008               	return
+  2879  05DE                     __end_of_NumIteraciones:
+  2880  007E                     btemp	set	126	;btemp
+  2881  007E                     wtemp0	set	126
+  2882                           
+  2883                           	psect	config
+  2884                           
+  2885                           ;Config register CONFIG1 @ 0x2007
+  2886                           ;	Oscillator Selection bits
+  2887                           ;	FOSC = INTRC_NOCLKOUT, INTOSCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, I/O f
+      +                          unction on RA7/OSC1/CLKIN
+  2888                           ;	Watchdog Timer Enable bit
+  2889                           ;	WDTE = OFF, WDT disabled and can be enabled by SWDTEN bit of the WDTCON register
+  2890                           ;	Power-up Timer Enable bit
+  2891                           ;	PWRTE = OFF, PWRT disabled
+  2892                           ;	RE3/MCLR pin function select bit
+  2893                           ;	MCLRE = OFF, RE3/MCLR pin function is digital input, MCLR internally tied to VDD
+  2894                           ;	Code Protection bit
+  2895                           ;	CP = OFF, Program memory code protection is disabled
+  2896                           ;	Data Code Protection bit
+  2897                           ;	CPD = OFF, Data memory code protection is disabled
+  2898                           ;	Brown Out Reset Selection bits
+  2899                           ;	BOREN = OFF, BOR disabled
+  2900                           ;	Internal External Switchover bit
+  2901                           ;	IESO = OFF, Internal/External Switchover mode is disabled
+  2902                           ;	Fail-Safe Clock Monitor Enabled bit
+  2903                           ;	FCMEN = OFF, Fail-Safe Clock Monitor is disabled
+  2904                           ;	Low Voltage Programming Enable bit
+  2905                           ;	LVP = OFF, RB3 pin has digital I/O, HV on MCLR must be used for programming
+  2906                           ;	In-Circuit Debugger Mode bit
+  2907                           ;	DEBUG = 0x1, unprogrammed default
+  2908  2007                     	org	8199
+  2909  2007  20D4               	dw	8404
+  2910                           
+  2911                           ;Config register CONFIG2 @ 0x2008
+  2912                           ;	Brown-out Reset Selection bit
+  2913                           ;	BOR4V = BOR40V, Brown-out Reset set to 4.0V
+  2914                           ;	Flash Program Memory Self Write Enable bits
+  2915                           ;	WRT = OFF, Write protection off
+  2916  2008                     	org	8200
+  2917  2008  3FFF               	dw	16383
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        25
+    BSS         15
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMMON           14      7      10
+    BANK0            80      8      45
+    BANK1            80      0       0
+    BANK3            96      0       0
+    BANK2            96      0       0
+
+Pointer List with Targets:
+
+    None.
+
+Critical Paths under _main in COMMON
+
+    None.
+
+Critical Paths under _isr in COMMON
+
+    _isr->_NumIteraciones
+
+Critical Paths under _main in BANK0
+
+    _main->_readFromEEPROMPOTS
+    _readFromEEPROMPOTS->_readFromEEPROM
+
+Critical Paths under _isr in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _isr in BANK1
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _isr in BANK3
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _isr in BANK2
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 2     2      0    2357
+                                              6 BANK0      2     2      0
+                 _readFromEEPROMPOTS
+                      _writeToEEPROM
+ ---------------------------------------------------------------------------------
+ (1) _writeToEEPROM                                        2     1      1    2312
+                                              0 BANK0      2     1      1
+ ---------------------------------------------------------------------------------
+ (1) _readFromEEPROMPOTS                                   3     3      0      45
+                                              3 BANK0      3     3      0
+                     _readFromEEPROM
+ ---------------------------------------------------------------------------------
+ (2) _readFromEEPROM                                       3     3      0      45
+                                              0 BANK0      3     3      0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 2
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (3) _isr                                                  6     6      0     462
+                                              1 COMMON     6     6      0
+                     _NumIteraciones
+ ---------------------------------------------------------------------------------
+ (4) _NumIteraciones                                       1     1      0     462
+                                              0 COMMON     1     1      0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 4
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _readFromEEPROMPOTS
+     _readFromEEPROM
+   _writeToEEPROM
+
+ _isr (ROOT)
+   _NumIteraciones
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BANK3               60      0       0       9        0.0%
+BITBANK3            60      0       0       8        0.0%
+SFR3                 0      0       0       4        0.0%
+BITSFR3              0      0       0       4        0.0%
+BANK2               60      0       0      11        0.0%
+BITBANK2            60      0       0      10        0.0%
+SFR2                 0      0       0       5        0.0%
+BITSFR2              0      0       0       5        0.0%
+BANK1               50      0       0       7        0.0%
+BITBANK1            50      0       0       6        0.0%
+SFR1                 0      0       0       2        0.0%
+BITSFR1              0      0       0       2        0.0%
+BANK0               50      8      2D       5       56.2%
+BITBANK0            50      0       0       4        0.0%
+SFR0                 0      0       0       1        0.0%
+BITSFR0              0      0       0       1        0.0%
+COMMON               E      7       A       1       71.4%
+BITCOMMON            E      0       0       0        0.0%
+CODE                 0      0       0       0        0.0%
+DATA                 0      0      37      12        0.0%
+ABS                  0      0      37       3        0.0%
+NULL                 0      0       0       0        0.0%
+STACK                0      0       0       2        0.0%
+EEDATA             100      0       0       0        0.0%
+
+
+Microchip Technology PIC Macro Assembler V2.31 build 20201012212115 
+Symbol Table                                                                                   Wed Jun 02 18:55:35 2021
+
+             _NumIteraciones 0547                            pc 0002                           fsr 0004  
+                        l203 0296                          l205 029A                          l207 02C4  
+                        l208 02CA                          l162 062E                          l156 05F5  
+                        l158 05FB                          l175 0245                          l159 0600  
+                        _RB0 0030                          _RB1 0031                          _PR2 0092  
+                        u690 0243                          u930 05FB                          u691 0242  
+                        u931 05FA                          u940 029A                          u941 0299  
+                        u950 02C2                          u951 02C1                          u960 02C8  
+                        u961 02C7                          u970 02CE                          u971 02CD  
+                        u980 02D3                          u981 02D2                          u990 02D8  
+                        u991 02D7                          _isr 0456                          fsr0 0004  
+                        indf 0000                         l2000 026D                         l2010 0277  
+                       l2002 0271                         l2100 03A1                         l2020 028A  
+                       l2012 027A                         l2004 0272                         l2110 0420  
+                       l2102 03DB                         l2030 0295                         l2022 028E  
+                       l2014 0281                         l2006 0275                         l2120 0440  
+                       l2104 03E1                         l2040 02AB                         l2032 02A4  
+                       l2024 0290                         l2016 0284                         l2008 0276  
+                       l2122 0445                         l2106 03E3                         l2114 0422  
+                       l2050 02B4                         l2042 02AC                         l2034 02A8  
+                       l2026 0292                         l2018 0286                         l2124 044A  
+                       l2204 042A                         l2108 041D                         l2116 043B  
+                       l2060 02BB                         l2052 02B7                         l2044 02AD  
+                       l2036 02A9                         l2028 0293                         l2206 022C  
+                       l1510 0041                         l2126 044F                         l2070 02D3  
+                       l2118 043C                         l2062 02BE                         l2054 02B8  
+                       l2046 02B2                         l2038 02AA                         l1520 0086  
+                       l1512 0052                         l1504 0032                         l2080 0318  
+                       l2064 02C2                         l2056 02B9                         l2048 02B3  
+                       l1530 00A5                         l1522 0087                         l1514 0083  
+                       l1506 0035                         l2090 0357                         l2082 0319  
+                       l2074 02D9                         l2066 02C8                         l2058 02BA  
+                       l1540 00FE                         l1532 00B6                         l1524 0088  
+                       l1516 0084                         l1508 0038                         l2092 035D  
+                       l2084 031A                         l2076 0313                         l2068 02CE  
+                       l1374 061D                         l1550 0159                         l1542 0107  
+                       l1534 00E7                         l1526 0097                         l1518 0085  
+                       l2094 035F                         l2086 031B                         l2078 0317  
+                       l1376 0621                         l1560 01AC                         l1552 0160  
+                       l1544 0118                         l1536 00E8                         l1528 009C  
+                       l2096 0399                         l2088 031D                         l1378 0624  
+                       l1570 020D                         l1562 01BB                         l1554 0169  
+                       l1546 0149                         l1538 00F7                         l2098 039F  
+                       l1572 020E                         l1564 01C2                         l1556 017A  
+                       l1548 014A                         l1580 023D                   _ConTEEPROM 003D  
+                       l1582 0243                         l1574 021D                         l1566 01CB  
+                       l1558 01AB                         l1568 01DC                         l1578 0224  
+                       l1940 05EE                         l1942 05EF                         l1950 024B  
+                       l1944 05F4                         l1936 05E1                         l1960 0252  
+                       l1952 024E                         l1938 05EB                         l1970 025B  
+                       l1962 0256                         l1954 024F                         l1946 0246  
+                       l1980 0262                         l1972 025C                         l1964 0257  
+                       l1956 0250                         l1948 024A                         l1990 0268  
+                       l1982 0264                         l1974 025D                         l1966 0258  
+                       l1958 0251                         l1992 0269                         l1984 0265  
+                       l1976 025E                         l1968 025A                         l1994 026A  
+                       l1986 0266                         l1978 0261                         l1996 026B  
+                       l1988 0267                         l1998 026C                         _ADIF 0066  
+                       ?_isr 0070                         u1000 0440                         _T0IF 005A  
+                       u1001 043F                         u1010 0445                         u1011 0444  
+                       u1020 044A                         u1021 0449                         u1037 027E  
+                       u1047 0090                         u1057 00F0                         u1067 0152  
+                       u1077 01B4                         u1087 0216                         _POT0 0044  
+                       _POT1 0043                         _POT2 0042                         _TMR0 0001  
+                       _main 0246                         btemp 007E                         start 000E  
+     __end_of_NumIteraciones 05DE                        ??_isr 0071                        ?_main 0070  
+                      _EEADR 010D                        _EEDAT 010C                        i1l132 05DD  
+                      i1l192 0509                        i1l193 0512                        i1l198 053E  
+                      _PC_MN 0039                        _TMR1H 000F                        _TMR1L 000E  
+                      u50_20 0564                        u50_21 0563                        u51_20 056A  
+                      u51_21 0569                        _PORTA 0005                        _PORTB 0006  
+                      _PORTC 0007                        _PORTD 0008                        _PORTE 0009  
+                      u60_20 05AA                        u52_20 0572                        u60_21 05A9  
+                      u52_21 0571                        u61_20 05B0                        u53_20 0578  
+                      u61_21 05AF                        u53_21 0577                        u62_20 05B8  
+                      u54_20 0580                        u70_20 045C                        u62_21 05B7  
+                      u54_21 057F                        u70_21 045B                        u63_20 05BE  
+                      u55_20 0586                        u47_20 054E                        u71_20 0461  
+                      u63_21 05BD                        u55_21 0585                        u47_21 054D  
+                      u71_21 0460                        u64_20 05C6                        u56_20 058E  
+                      u48_20 0556                        u80_20 0517                        u72_20 0466  
+                      u64_21 05C5                        u56_21 058D                        u48_21 0555  
+                      u80_21 0516                        u72_21 0465                        u65_20 05CC  
+                      u57_20 0594                        u49_20 055C                        u81_20 0520  
+                      u65_21 05CB                        u57_21 0593                        u49_21 055B  
+                      u81_21 051F                        _TRISA 0085                        _TRISB 0086  
+                      u73_25 04AC                        _TRISC 0087                        _TRISD 0088  
+                      _TRISE 0089                        u66_20 05D4                        u58_20 059C  
+                      u82_20 0529                        u74_20 04E3                        u66_21 05D3  
+                      u58_21 059B                        u82_21 0528                        u74_21 04E2  
+                      u67_20 05DA                        u59_20 05A2                        u83_20 0535  
+                      u75_20 04EB                        u67_21 05D9                        u59_21 05A1  
+                      u83_21 0534                        u75_21 04EA                        u76_20 04F4  
+                      u76_21 04F3                        u77_20 04FD                        u77_21 04FC  
+                      u78_20 0505                        u78_21 0504                        u79_20 050E  
+                      u79_21 050D                        pclath 000A                        status 0003  
+                      wtemp0 007E              ?_NumIteraciones 0070  __size_of_readFromEEPROMPOTS 0214  
+            __initialization 0011                 __end_of_main 0456           readFromEEPROM@data 0047  
+      readFromEEPROM@address 0046                       ??_main 004B                       _ADRESH 001E  
+                     _ADRESL 009E                       _CCPR1L 0015                       _EECON2 018D  
+                     _ANSELH 0189                       i1l1400 055E                       i1l1402 0564  
+                     i1l1410 056C                       i1l1412 0572                       i1l1420 057A  
+                     i1l1404 056A                       i1l1422 0580                       i1l1430 0588  
+                     i1l1414 0578                       i1l1432 058E                       i1l1440 0596  
+                     i1l1424 0586                       i1l2208 04C9                       i1l1600 0472  
+                     i1l1442 059C                       i1l1450 05A4                       i1l1434 0594  
+                     i1l1610 0497                       i1l1602 0477                       i1l1452 05AA  
+                     i1l1460 05B2                       i1l1444 05A2                       i1l1620 04DE  
+                     i1l1604 0482                       i1l1462 05B8                       i1l1470 05C0  
+                     i1l1454 05B0                       i1l1390 0550                       i1l1382 0548  
+                     i1l1630 04EE                       i1l1606 0487                       i1l1614 04BE  
+                     i1l1622 04DF                       i1l1472 05C6                       i1l1480 05CE  
+                     i1l1464 05BE                       i1l1392 0556                       i1l1384 054E  
+                     i1l1640 04FE                       i1l1632 04F4                       i1l1624 04E3  
+                     i1l1608 0492                       i1l1616 04D7                       i1l1482 05D4  
+                     i1l1490 05DC                       i1l1474 05CC                       i1l1394 055C  
+                     i1l1650 051B                       i1l1642 0500                       i1l1634 04F5  
+                     i1l1626 04EB                       i1l1618 04DB                       i1l1484 05DA  
+                     i1l1660 052F                       i1l1644 0505                       i1l1636 04F7  
+                     i1l1628 04EC                       i1l1652 051C                       i1l1662 0535  
+                     i1l1670 0539                       i1l1654 0520                       i1l1646 050E  
+                     i1l1638 04FD                       i1l1590 0456                       i1l1672 053D  
+                     i1l1664 0536                       i1l1656 0524                       i1l1648 0517  
+                     i1l1592 045C                       i1l1666 0537                       i1l1658 0529  
+                     i1l1594 0461                       i1l1668 0538                       i1l1598 0467  
+                     u109_27 04D9                       _TMR1IF 0060                       _ItPOT0 0041  
+                     _ItPOT1 0040                       _ItPOT2 003F            writeToEEPROM@data 0046  
+                     saved_w 007E       __size_of_writeToEEPROM 0023      __end_of__initialization 002E  
+             __pcstackCOMMON 0070                 __pidataBANK0 0601      __size_of_readFromEEPROM 0015  
+             _OPTION_REGbits 0081                   __pbssBANK0 0039                   __pmaintext 0246  
+              _writeToEEPROM 05DE                   __pintentry 0004                      _CCP1CON 0017  
+                  _DC1B1POT3 0020                      _RB0_old 003C                      _RB1_old 003B  
+           ??_NumIteraciones 0070                      _ConTMR1 003E                      _Reading 003A  
+             ?_writeToEEPROM 0045                    _ANSELbits 0188                      __ptext1 05DE  
+                    __ptext2 0032                      __ptext3 061A                      __ptext4 0456  
+                    __ptext5 0547                    _T1CONbits 0010                    _T2CONbits 0012  
+               __size_of_isr 00F1                    _ENTM0Pot0 0079                    _ENTM0Pot1 0078  
+                  _ENTM0Pot2 0077         end_of_initialization 002E   __end_of_readFromEEPROMPOTS 0246  
+             _readFromEEPROM 061A                    _PORTDbits 0008                    _TRISCbits 0087  
+                _CCP1CONbits 0017              ??_writeToEEPROM 0046       __end_of_readFromEEPROM 062F  
+     NumIteraciones@ValorPot 0070         writeToEEPROM@address 0045          start_initialization 0011  
+                __end_of_isr 0547                   init_fetch0 062F              ?_readFromEEPROM 0070  
+                __pdataBANK0 0020                  __pbssCOMMON 0077                    ___latbits 0002  
+              __pcstackBANK0 0045                     _ADD_POT0 0034                     _ADD_POT1 002F  
+                   _ADD_POT2 002A                     _ADD_POT3 0025            interrupt_function 0004  
+                   _PIE1bits 008C                     _PIR1bits 000C                     _PIR2bits 000D  
+         _readFromEEPROMPOTS 0032                   _ADCON0bits 001F                   _ADCON1bits 009F  
+                   _WPUBbits 0095          ?_readFromEEPROMPOTS 0070                   _EECON1bits 018C  
+       ??_readFromEEPROMPOTS 0048      __size_of_NumIteraciones 0097                __size_of_main 0210  
+           ??_readFromEEPROM 0045        __end_of_writeToEEPROM 0601                   _INTCONbits 000B  
+                   init_ram0 0633                     intlevel1 0000                   _OSCCONbits 008F  

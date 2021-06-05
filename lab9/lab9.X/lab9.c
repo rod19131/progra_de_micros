@@ -8,11 +8,11 @@
  * Creado:      25 de abril de 2021, 10:25 AM
  * Ultima modificacion: 26 de abril de 2021
  */
-#define _XTAL_FREQ 8000000 //frecuencia de 8 MHz
+
 #include <xc.h>
 #pragma config FOSC=INTRC_NOCLKOUT //Oscilador interno sin salida
 #pragma config WDTE=OFF           //Reinicio repetitivo del pic
-#pragma config PWRTE=ON           //espera de 72 ms al iniciar el pic
+#pragma config PWRTE=OFF           //no espera de 72 ms al iniciar el pic
 #pragma config MCLRE=OFF          //El pin MCLR se utiliza como entrada/salida
 #pragma config CP=OFF             //Sin protección de código
 #pragma config CPD=OFF            //Sin protección de datos
@@ -20,11 +20,12 @@
 #pragma config BOREN=OFF //Sin reinicio cuando el input voltage es inferior a 4V
 #pragma config IESO=OFF  //Reinicio sin cambio de reloj de interno a externo
 #pragma config FCMEN=OFF //Cambio de reloj externo a interno en caso de fallas
-#pragma config LVP=ON    //Programación en low voltage permitida
+#pragma config LVP=OFF    //Programación en low voltage apagada
     
 //CONFIGURATION WORD 2
 #pragma config WRT=OFF //Proteccion de autoescritura por el programa desactivada
 #pragma config BOR4V=BOR40V //Reinicio abajo de 4V 
+#define _XTAL_FREQ 8000000 //frecuencia de 8 MHz
 //variables
 //124
 //----------------------interrupciones------------------------------------------
@@ -65,6 +66,7 @@ void main(void) {
     TRISC  = 0;
     PORTA  = 0;//se limpian los puertos
     PORTC  = 0;
+    PORTB  = 0;
     //configuracion adc
     ADCON0bits.ADCS = 2;//10 se selecciona Fosc/32 para conversion 4us full TAD
     ADCON0bits.CHS0 = 0;//se selecciona el canal AN0
