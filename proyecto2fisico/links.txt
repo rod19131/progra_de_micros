@@ -3,4 +3,4 @@ https://youtu.be/euLUsDAD_NM
 Link video código:
 https://youtu.be/TyIWySKf-T0
 Link rep:
-https://github.com/rod19131/progra_de_micros/tree/main/proyectofinal.X
+https://github.com/rod19131/progra_de_micros/tree/main/proyecto2fisico

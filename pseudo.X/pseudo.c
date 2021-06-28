@@ -1,18 +1,20 @@
 /*
- * Archivo:     lab9.c
- * Dispositivo: PIC16F887
- * Autor:       Jose Alejandro Rodriguez Porras
- * Compilador:  XC8 MPLABX V5.40
- * Programa:    Laboratorio9: Servos con pots (modulo PWM1 y 2)
- * Hardware:    2 pots y 2 servos en el puertoA
- * Creado:      25 de abril de 2021, 10:25 AM
- * Ultima modificacion: 19 de abril de 2021
+ * File:   Servos.c
+ * Author: Fredy 
+ *
  */
+
+
+#include <xc.h>
 #define _XTAL_FREQ 8000000
+// PIC16F887 Configuration Bit Settings
+
+// 'C' source line config statements
+
 #include <xc.h>
 #pragma config FOSC=INTRC_NOCLKOUT //Oscilador interno sin salida
 #pragma config WDTE=OFF           //Reinicio repetitivo del pic
-#pragma config PWRTE=ON           //espera de 72 ms al iniciar el pic
+#pragma config PWRTE=OFF           //no espera de 72 ms al iniciar el pic
 #pragma config MCLRE=OFF          //El pin MCLR se utiliza como entrada/salida
 #pragma config CP=OFF             //Sin protección de código
 #pragma config CPD=OFF            //Sin protección de datos
@@ -20,78 +22,126 @@
 #pragma config BOREN=OFF //Sin reinicio cuando el input voltage es inferior a 4V
 #pragma config IESO=OFF  //Reinicio sin cambio de reloj de interno a externo
 #pragma config FCMEN=OFF //Cambio de reloj externo a interno en caso de fallas
-#pragma config LVP=ON    //Programación en low voltage permitida
+#pragma config LVP=OFF    //Programación en low voltage apagada
     
 //CONFIGURATION WORD 2
 #pragma config WRT=OFF //Proteccion de autoescritura por el programa desactivada
 #pragma config BOR4V=BOR40V //Reinicio abajo de 4V 
-//variables
+#define _XTAL_FREQ 8000000 //frecuencia de 8 MHz
 
-//----------------------interrupciones------------------------------------------
-void __interrupt() isr(void){    // only process timer-triggered interrupts
-    //interrupcion del adc
-    if (ADIF == 1) {
-        //multiplexacion de canales para el adc
-        //canal LEDs
-        if(ADCON0bits.CHS == 0){
-            CCPR1L = (ADRESH>>1)+128;//se actualizan los LEDs con valor de pot0
-            CCP1CONbits.DC1B1 = ADRESH & 0b01;
-            CCP1CONbits.DC1B0 = (ADRESL>>7);
-            ADCON0bits.CHS = 1; //se cambia a canal de displays
-        }
-        //canal displays
-        else{
-            PORTD = ADRESH;        //se actualizan los displays con valor de pot1
-            ADCON0bits.CHS = 0;//se cambia a canal de LEDs
-        }
-        __delay_us(50);   //delay de 50 us
-        PIR1bits.ADIF = 0;//interrupcion de adc
-        ADCON0bits.GO = 1;//inicio de la siguiente conversión
+//------------------------------------------------------------------------------
+//********************* Declaraciones de variables *****************************
+char Valor_TMR0 = 100;
+int Contador_Servo_1;
+int Contador_Servo_2;
+int Contador_Servo_3;
+char Valor_Servo_1;
+char Valor_Servo_2;
+char Valor_Servo_3;
+char ADRESH_Servo_1;
+char ADRESH_Servo_2;
+char ADRESH_Servo_3;
+//------------------------------------------------------------------------------
+//***************************** Prototipos *************************************
+
+//------------------------------------------------------------------------------
+//*************************** Interrupciones ***********************************
+void __interrupt() isr (void){
+    // Interrupcion del ADC module
+    if (ADIF == 1){
+        ADIF = 0;
+        if (ADCON0bits.CHS == 0){
+            ADRESH_Servo_1 = ADRESH;
+            ADCON0bits.CHS = 1;
+        } else if(ADCON0bits.CHS == 1){
+            ADRESH_Servo_2 = ADRESH;
+            ADCON0bits.CHS = 2;
+        } else if(ADCON0bits.CHS == 2){
+            ADRESH_Servo_3 = ADRESH;
+            ADCON0bits.CHS = 0;
+        }   
+        __delay_us(50);
+        ADCON0bits.GO = 1; 
     }
-}
+    
+    // Interrupcion del timer0
+    if (T0IF == 1){
+        // Interrupcion cada 20ms: tmr0 100, prescaler 256, 8MHz de oscilador
+        PIE1bits.ADIE = 0;
+        T0IF = 0;
+        TMR0 = Valor_TMR0;
+        // PWM
+        Contador_Servo_1 = 0;
+        Contador_Servo_2 = 0;
+        Contador_Servo_3 = 0;
+        // SERVO 1
+        RD0 = 1;
+        while (Contador_Servo_1 <= Valor_Servo_1){ // max 199, min 98 
+            Contador_Servo_1++;
+        }
+        RD0=0;
+        // SERVO 2
+        RD1 = 1;
+        while (Contador_Servo_2 <= Valor_Servo_2){ // max 199, min 98 
+            Contador_Servo_2++;
+        }
+        RD1=0;
+        // SERVO 3
+        RD2 = 1;
+        while (Contador_Servo_3 <= Valor_Servo_3){ // max 199, min 98 
+            Contador_Servo_3++;
+        }
+        RD2=0;
+        PIE1bits.ADIE = 1;
+    } // Fin de interrupci贸n timer0
+}    
 
 void main(void) {
-    //configuraciones
-    //configuracion reloj
-    OSCCONbits.IRCF = 0b0111;//0100, Frecuencia de reloj 8 MHz
-    OSCCONbits.SCS   = 1;//reloj interno
-    //configuracion in out
-    ANSELH = 0; //Pines digitales
-    ANSELbits.ANS0  = 1;//RA0 y RA1 como pines analogicos
-    ANSELbits.ANS1  = 1;
-    TRISA  = 3; //RA0 y RA1 como inputs y los demas como outputs
-    TRISC  = 0;
-    PORTA  = 0;//se limpian los puertos
-    PORTC  = 0;
-    //configuracion adc
-    ADCON0bits.ADCS = 2;//10 se selecciona Fosc/32 para conversion 4us full TAD
-    ADCON0bits.CHS0 = 0;//se selecciona el canal AN0
-    ADCON0bits.ADON = 1;//se enciende el adc
-    __delay_us(50);   //delay de 50 us
-    ADCON1bits.VCFG1 = 0;//se ponen los voltajes de referencia internos del PIC
-    ADCON1bits.VCFG0 = 0;//0V a 5V
-    ADCON1bits.ADFM = 0; //se justifica a la izquierda, vals más significativos
-    //configuracion pwm
-    TRISCbits.TRISC2 = 1;      //CCP1 como entrada;
-    PR2 = 249;                 //valor para que el periodo pwm sea 2 ms 124
-    CCP1CONbits.P1M = 0;       //config pwm
-    CCP1CONbits.CCP1M = 0b1100;
-    CCPR1L = 0x0f;             //ciclo de trabajo inicial
-    CCP1CONbits.DC1B = 0;
-    //configuracion tmr2
-    PIR1bits.TMR2IF = 0; //se apaga la bandera de interrupcion del tmr2
-    T2CONbits.T2CKPS = 0b01;//prescaler 1:4
-    T2CONbits.TMR2ON = 1;//se enciende el tmr2
-    while(PIR1bits.TMR2IF == 0);//esperar un ciclo de tmr2
-    PIR1bits.TMR2IF = 0;
-    TRISCbits.TRISC2 = 0;//out pwm
-    //configuracion interrupciones
-    INTCONbits.GIE  = 1; //se habilitan las interrupciones globales
-    INTCONbits.PEIE = 1; //se habilitan las interrupciones de los perifericos
-    PIE1bits.ADIE = 1;   //se habilitan las interrupciones por adc
-    PIR1bits.ADIF = 0;
-    //PIE1bits.TMR2IE = 1; //se habilitan las interrupciones del tmr2
-    ADCON0bits.GO = 1;  //se comienza la conversion adc
-    while (1)
-    {}      
-}
+    // Oscilador
+    IRCF0 = 1;       // Configuraci贸n del reloj interno 
+    IRCF1 = 1;
+    IRCF2 = 1;       // 8 Mhz   
+    
+    // Configurar Timer0
+    PS0 = 1;
+    PS1 = 1;
+    PS2 = 1;         //Prescaler de 256
+    T0CS = 0;
+    PSA = 0;
+    INTCON = 0b10101000;
+    TMR0 = Valor_TMR0;
+    
+    // Configuraci贸n del modulo ADC
+    PIE1bits.ADIE = 1;
+    ADIF = 0; // Bandera de interrupci贸n
+    ADCON1bits.ADFM = 0; // Justificado a la izquierda    
+    ADCON1bits.VCFG0 = 0;
+    ADCON1bits.VCFG0 = 0; // Voltajes de referencia en VSS y VDD
+    ADCON0bits.ADCS0 = 0;
+    ADCON0bits.ADCS1 = 1; // FOSC/8
+    ADCON0bits.ADON = 1;
+    __delay_us(50);
+    ADCON0bits.GO = 1;
+    
+    // Configurar puertos
+    ANSEL  = 0b00000111;
+    ANSELH = 0;
+    TRISA  = 0xff;  // Definir el puerto A como entradas
+    TRISC  = 0;     // Definir el puerto C como salida
+    TRISD  = 0;     // Definir el puerto D como salida
+    TRISE  = 0;     // Definir el puerto E como salida
+    
+    //Limpieza de puertos
+    PORTA = 0;
+    PORTB = 0;
+    PORTC = 0;
+    PORTD = 0;
+    PORTE = 0;
+    
+    //loop principal
+    while(1){  
+        Valor_Servo_1 = (ADRESH_Servo_1-0)*(199-98)/(255-0)+98;
+        Valor_Servo_2 = (ADRESH_Servo_2-0)*(199-98)/(255-0)+98;
+        Valor_Servo_3 = (ADRESH_Servo_3-0)*(199-98)/(255-0)+98;
+    } // fin loop principal while 
+} // fin main
