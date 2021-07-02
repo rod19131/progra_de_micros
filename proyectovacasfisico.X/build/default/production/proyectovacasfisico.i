@@ -2518,17 +2518,99 @@ unsigned char valservo0;
 unsigned char valservo1;
 unsigned char valservo2;
 unsigned char valservo3;
-
-
+unsigned char addpotccp1 = 0x04;
+unsigned char addpotccp2 = 0x05;
+unsigned char addpot0 = 0x06;
+unsigned char addpot1 = 0x07;
+unsigned char addpot2 = 0x08;
+unsigned char addpot3 = 0x09;
+unsigned char savedpos = 0;
+unsigned char writepos = 0;
+# 58 "proyectovacasfisico.c"
 unsigned char mapear(unsigned char adresval){
     return (adresval-0)*(254-80)/(255-0)+80;}
+
+void write(unsigned char data, unsigned char address){
+    EEADR = address;
+    EEDAT = data;
+
+    EECON1bits.EEPGD = 0;
+    EECON1bits.WREN = 1;
+
+    INTCONbits.GIE = 0;
+
+    EECON2 = 0x55;
+    EECON2 = 0xAA;
+    EECON1bits.WR = 1;
+
+    while(PIR2bits.EEIF==0);
+    PIR2bits.EEIF = 0;
+
+    INTCONbits.GIE = 1;
+    EECON1bits.WREN = 0;
+
+}
+
+unsigned char read(unsigned char address){
+    EEADR = address;
+    EECON1bits.EEPGD = 0;
+    EECON1bits.RD = 1;
+    unsigned char data = EEDAT;
+
+    return data;
+}
+
+void Envio_caracter (char a){
+    while (TXSTAbits.TRMT == 0){
+
+    }
+    if (PIR1bits.TXIF){
+            TXREG = a;
+        }
+}
+
+void Envio_Cadena (char* cadena){
+    while (*cadena != 0){
+      Envio_caracter(*cadena);
+      cadena++;
+    }
+    if (PIR1bits.TXIF){
+            TXREG = 13;
+        }
+}
 
 
 void __attribute__((picinterrupt(("")))) isr (void){
 
+    if (RBIF == 1) {
+        if (PORTBbits.RB0 == 0){
+            writepos = 1;
+        }
+        else if (PORTBbits.RB1 == 0){
+            switch (savedpos){
+                case 1:
+                    savedpos = 0;
+                    break;
+                case 0:
+                    savedpos = 1;
+                    CCPR1L = read(addpotccp1);
+                    CCPR2L = read(addpotccp2);
+                    valservo0 = read(addpot0);
+                    valservo1 = read(addpot1);
+                    valservo2 = read(addpot2);
+                    valservo3 = read(addpot3);
+                    break;
+            }
+            }
+        else if (PORTBbits.RB2 == 0){
+
+        }
+        INTCONbits.RBIF = 0;
+    }
     if (ADIF == 1) {
 
 
+        if (savedpos == 0){
         switch (ADCON0bits.CHS){
             case 0:
                 CCPR1L = (ADRESH>>1)+124;
@@ -2560,10 +2642,10 @@ void __attribute__((picinterrupt(("")))) isr (void){
                 ADCON0bits.CHS = 0;
                 break;
         }
+        }
         _delay((unsigned long)((20)*(8000000/4000000.0)));
         PIR1bits.ADIF = 0;
         ADCON0bits.GO = 1;
-
     }
 
 
@@ -2608,45 +2690,43 @@ void __attribute__((picinterrupt(("")))) isr (void){
 
 void main(void) {
 
-    IRCF0 = 1;
-    IRCF1 = 1;
-    IRCF2 = 1;
 
+    OSCCONbits.IRCF = 0b111;
+    OSCCONbits.SCS = 1;
 
-    PS0 = 1;
-    PS1 = 1;
-    PS2 = 1;
-    T0CS = 0;
-    PSA = 0;
-    INTCON = 0b10101000;
-    TMR0 = 100;
-
-
-    PIE1bits.ADIE = 1;
-    ADIF = 0;
-    ADCON1bits.ADFM = 0;
-    ADCON1bits.VCFG0 = 0;
-    ADCON1bits.VCFG0 = 0;
-    ADCON0bits.ADCS0 = 0;
-    ADCON0bits.ADCS1 = 1;
-    ADCON0bits.ADON = 1;
-    _delay((unsigned long)((50)*(8000000/4000000.0)));
-    ADCON0bits.GO = 1;
-
-
-    ANSEL = 0b00111111;
     ANSELH = 0;
-    TRISA = 0xff;
+    ANSELbits.ANS0 = 1;
+    ANSELbits.ANS1 = 1;
+    ANSELbits.ANS2 = 1;
+    ANSELbits.ANS3 = 1;
+    ANSELbits.ANS4 = 1;
+    ANSELbits.ANS5 = 1;
+    TRISA = 0b11111111;
+    TRISB = 7;
     TRISC = 0;
     TRISD = 0;
     TRISE = 1;
-
-
     PORTA = 0;
-    PORTB = 0;
     PORTC = 0;
+    PORTB = 0;
     PORTD = 0;
     PORTE = 0;
+
+    OPTION_REGbits.nRBPU = 0;
+    WPUBbits.WPUB = 7;
+
+
+    IOCBbits.IOCB0 = 1;
+    IOCBbits.IOCB1 = 1;
+    IOCBbits.IOCB2 = 1;
+
+    ADCON0bits.ADCS = 2;
+    ADCON0bits.CHS0 = 0;
+    ADCON1bits.VCFG1 = 0;
+    ADCON1bits.VCFG0 = 0;
+    ADCON1bits.ADFM = 0;
+    ADCON0bits.ADON = 1;
+    _delay((unsigned long)((50)*(8000000/4000000.0)));
 
 
     TRISCbits.TRISC2 = 1;
@@ -2661,6 +2741,11 @@ void main(void) {
     CCPR2L = 0x0f;
     CCP2CONbits.DC2B1 = 0;
 
+    OPTION_REGbits.T0CS = 0;
+    OPTION_REGbits.PSA = 0;
+    OPTION_REGbits.PS = 7;
+    TMR0 = 100;
+
     PIR1bits.TMR2IF = 0;
     T2CONbits.T2CKPS = 0b11;
     T2CONbits.TMR2ON = 1;
@@ -2669,17 +2754,35 @@ void main(void) {
     TRISCbits.TRISC2 = 0;
     TRISCbits.TRISC1 = 0;
 
+    TXSTAbits.SYNC = 0;
+    TXSTAbits.BRGH = 1;
+
+    BAUDCTLbits.BRG16 = 1;
+
+    SPBRG = 207;
+    SPBRGH = 0;
+
+    RCSTAbits.SPEN = 1;
+    RCSTAbits.RX9 = 0;
+    RCSTAbits.CREN = 1;
+
+    TXSTAbits.TXEN = 1;
+
     PIR1bits.ADIF = 0;
     PIE1bits.ADIE = 1;
     INTCONbits.PEIE = 1;
     INTCONbits.GIE = 1;
     INTCONbits.T0IE = 1;
     INTCONbits.T0IF = 0;
-    PIE1bits.TMR1IE = 1;
-    PIR1bits.TMR1IF = 0;
+    INTCONbits.RBIE = 1;
     ADCON0bits.GO = 1;
 
-
-    while(1){
-    }
+    while(1){if (writepos == 1){
+                write(CCPR1L, addpotccp1);
+                write(CCPR2L, addpotccp2);
+                write(valservo0, addpot0);
+                write(valservo1, addpot1);
+                write(valservo2, addpot2);
+                write(valservo3, addpot3);
+                writepos = 0;}}
 }
